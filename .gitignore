@@ -32,9 +32,14 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
+
+# Cloud SQL Auth Proxy binary (downloaded locally per db setup instructions,
+# not part of the app)
+/cloud-sql-proxy
 
 # typescript
 *.tsbuildinfo
