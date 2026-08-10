@@ -55,16 +55,19 @@ export function ContactScreen({ state, dispatch, onSubmit }: ContactScreenProps)
       </h2>
       <p className="text-[14px] text-ink-muted">{contactContent.subcopy}</p>
 
-      {/* Honeypot field — real users never see or fill this in */}
+      {/* Honeypot field — real users never see or fill this in.
+          Named/positioned to avoid Chrome's autofill heuristics, which
+          target common patterns like "company"/"website" even through
+          autocomplete="off" and opacity-based hiding. */}
       <input
         type="text"
-        name="companyWebsite"
+        name="hp_field_9f3a"
         value={honeypot}
         onChange={(e) => setHoneypot(e.target.value)}
         tabIndex={-1}
         autoComplete="off"
         aria-hidden="true"
-        className="absolute h-0 w-0 opacity-0"
+        className="absolute left-[-9999px] h-0 w-0 opacity-0"
       />
 
       <div className="flex flex-col gap-1.5">
