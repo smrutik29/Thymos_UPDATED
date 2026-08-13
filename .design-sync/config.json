@@ -1,0 +1,14 @@
+{
+  "projectId": "1417d840-43e3-4f3e-aa6b-6f614580a0a4",
+  "pkg": "thymos-quiz-app",
+  "globalName": "ThymosQuizUI",
+  "shape": "package",
+  "tsconfig": "./tsconfig.json",
+  "buildCmd": "npm run build",
+  "cssEntry": ".ds-compiled/chunks/styles.css",
+  "srcDir": "src/components/quiz",
+  "readmeHeader": ".design-sync/conventions.md",
+  "componentSrcMap": {
+    "QuizApp": null
+  }
+}

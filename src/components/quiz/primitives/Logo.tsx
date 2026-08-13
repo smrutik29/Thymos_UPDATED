@@ -1,4 +1,3 @@
-import Image from "next/image";
 import clsx from "clsx";
 import logo from "@/assets/images/thymos-logo.png";
 
@@ -14,8 +13,8 @@ export function Logo({ variant = "green" }: LogoProps) {
         variant === "green" ? "bg-card-green" : "bg-white"
       )}
     >
-      <Image
-        src={logo}
+      <img
+        src={logo.src}
         alt="Thymos Health"
         width={56}
         height={56}
