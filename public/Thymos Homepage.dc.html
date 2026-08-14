@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&amp;family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&amp;display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', sans-serif; font-size: 18px; line-height: 1.6; color: #212121; background: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+  a { color: #ea6047; text-decoration: none; }
+  a:hover { color: #c14930; }
+  nav a { white-space: nowrap; }
+  .nav-burger { display: none; }
+  @media (max-width: 1080px) {
+    .nav-desktop { display: none !important; }
+    .nav-burger { display: flex !important; }
+  }
+  @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  @keyframes scroll-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+  .tm-marquee:hover .tm-track { animation-play-state: paused; }
+  @keyframes tj-fade-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 860px) {
+    .tj-columns { grid-template-columns: 1fr !important; }
+    .tj-column-conventional { order: 3 !important; margin-top: 4px; }
+    .tj-column-thymos { order: 1 !important; }
+    .tj-vs { order: 2 !important; width: auto !important; height: auto !important; border-radius: 999px !important; padding: 6px 18px !important; margin: 4px auto !important; }
+  }
+</style>
+</helmet>
+
+<div style="width:100%; font-family:'Montserrat',sans-serif; color:#212121;">
+
+  <nav style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:20px clamp(16px,3vw,40px); background:#fff; border-bottom:1px solid #ddd; position:sticky; top:0; z-index:1000; gap:20px;">
+    <a href="Thymos Homepage.dc.html" style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:20px; color:#1a1a1a; white-space:nowrap; text-decoration:none;">
+      <img src="img/thymos-logo-flames.png" alt="Thymos Logo" style="height:52px; width:auto;">
+      <span>Thymos Health</span>
+    </a>
+    <div class="nav-desktop" style="display:flex; gap:20px; font-size:16px;">
+      <a style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;" href="Thymos How We Work.dc.html">How We Work</a>
+      <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">Proven Approach</a>
+      <a href="Thymos Conditions Treated.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">Conditions Treated</a>
+      <a href="Thymos About Us.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">About</a>
+    </div>
+    <div class="nav-desktop" style="display:flex; align-items:center; gap:16px;">
+      <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="color:#333; text-decoration:none; font-size:16px;" style-hover="color:#ea6047; text-decoration:underline;">Sign In</a>
+      <a href="/quiz" style="padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:15px; font-weight:500; text-decoration:none;" style-hover="background:#c14930; color:#fff;">Get Started</a>
+    </div>
+    <button class="nav-burger" onClick="{{ toggleMenu }}" aria-label="Menu" style="flex-direction:column; justify-content:center; gap:5px; width:32px; height:28px; background:none; border:none; cursor:pointer; padding:0;">
+      <span style="width:24px; height:3px; background:#333; border-radius:2px;"></span>
+      <span style="width:24px; height:3px; background:#333; border-radius:2px;"></span>
+      <span style="width:24px; height:3px; background:#333; border-radius:2px;"></span>
+    </button>
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="flex-basis:100%; display:flex; flex-direction:column; gap:14px; padding-top:8px; font-size:16px;">
+        <a href="Thymos How We Work.dc.html" style="color:#333; text-decoration:none;">How We Work</a>
+        <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;">Proven Approach</a>
+        <a href="Thymos Conditions Treated.dc.html" style="color:#333; text-decoration:none;">Conditions Treated</a>
+        <a href="Thymos About Us.dc.html" style="color:#333; text-decoration:none;">About</a>
+        <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="color:#333; text-decoration:none;">Sign In</a>
+        <a href="/quiz" style="align-self:flex-start; padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:15px; font-weight:500; text-decoration:none;">Get Started</a>
+      </div>
+    </sc-if>
+  </nav>
+
+  <header style="position:relative; width:100%; height:650px; overflow:hidden;">
+    <video src="img/thymos-intro.webm" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1;"></video>
+    <div style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:2; background:linear-gradient(to bottom, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.4) 60%, rgba(255,255,255,0) 100%);"></div>
+    <div style="position:relative; z-index:3; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; text-align:center; padding:100px 20px 0;">
+      <h1 style="color:#222; font-size:3.4rem; font-weight:800; line-height:1.3; max-width:1200px; margin-bottom:24px;">Specialty Autoimmune Care,<br>Without Compromise</h1>
+      <p style="font-size:1.6rem; font-weight:600; color:#333; max-width:800px; margin-bottom:20px; line-height:1.6; font-style:italic;">Convenient and collaborative care for <a href="Thymos Conditions Treated.dc.html" style="color:#100650; text-decoration:underline;" style-hover="color:#d24f3f;">150+ autoimmune disorders</a> and mysterious diseases.</p>
+      <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:16px; font-weight:500; margin:24px auto; text-decoration:none;" style-hover="background:#c14930; color:#fff;">Join The Waitlist</a>
+    </div>
+  </header>
+
+  <section style="padding:40px 20px; background:#dfe8e8; text-align:center;">
+    <div style="max-width:1000px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:24px;">
+      <p style="font-size:1.25rem; font-weight:500; color:#333; line-height:1.6; padding:0 20px;">Our data-driven, whole-person approach treats the root cause of autoimmune disorders and optimizes your physical, emotional, and psychological well-being.</p>
+      <div style="display:flex; gap:24px; flex-wrap:wrap; justify-content:center;">
+        <div style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:0.95rem; color:#444;"><span>👤</span> <strong>Trusted by 5,000+</strong></div>
+        <div style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:0.95rem; color:#444;"><span>💲</span> <strong>HSA/FSA-Eligible</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 20px; background:#02302d; text-align:center; overflow:hidden;">
+    <h2 style="font-size:1.8rem; font-weight:600; margin-bottom:32px; color:#f4f9f9; text-wrap:pretty;">Thymos diagnoses, treats, and uncovers the root causes of <strong style="color:#ea6047; font-weight:800;"><a href="Thymos Conditions Treated.dc.html" style="color:#ea6047; text-decoration:underline;">hundreds of conditions</a></strong></h2>
+    <sc-for list="{{ conditionRows }}" as="row" hint-placeholder-count="3">
+      <div style="overflow:hidden; white-space:nowrap; margin:16px 0; position:relative; width:100%;">
+        <div style="display:inline-flex; animation: {{ row.anim }};">
+          <sc-for list="{{ row.tags }}" as="tag" hint-placeholder-count="12">
+            <span style="background:#dfe8e8; border-radius:30px; padding:10px 20px; margin:0 12px; font-size:1rem; font-weight:500; color:#5c4b44; box-shadow:0 2px 6px rgba(0,0,0,0.05); border:1px solid #ddd; flex-shrink:0; white-space:nowrap;">{{ tag }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </section>
+
+  <section style="padding:60px 40px; background:#ede7e3;">
+    <h2 style="font-weight: 700; font-size: 1.8rem; margin-bottom: 12px; text-align: center">Proven Success</h2><p style="font-size: 1.44rem; color: #555; margin-bottom: 32px; text-align: center">Achieve Long Lasting Results in your Autoimmune Journey</p><div style="display:flex; align-items:flex-start; gap:40px; flex-wrap:wrap;">
+      <div style="flex:0 0 40%;">
+        <img src="img/thymos-happy-runner.png" alt="Happy Runner" style="width: 100%; border-radius: 16px; box-shadow: 0px 4px 16px 0px #FFFFFF1A; padding-top: 72px; padding-bottom: 72px">
+      </div><div style="flex: 1 1 480px; min-width: 320px; padding: 48px 40px; border-radius: 20px; text-align: center; background-color: #EDE7E3; padding-left: 12px; padding-right: 12px; padding-top: 0px; padding-bottom: 0px">
+        
+        
+        <h3 style="font-size: 1.46rem; font-weight: 700; color: #333; margin-bottom: 32px; width: 600px">Experience what 5,000+ patients have achieved:</h3>
+        <div style="display:flex; flex-direction:column; align-items:stretch; gap:20px; width:100%; text-align:left;">
+          <sc-for list="{{ stats }}" as="group" hint-placeholder-count="3">
+            <div style="background:#f8f5f0; border-radius:20px; padding:32px 36px; box-shadow:0 8px 24px rgba(0,0,0,0.05); display:flex; flex-direction:column; gap:24px; transition:transform .25s ease, box-shadow .25s ease, background-color .25s ease;" style-hover="transform:translateY(-6px); box-shadow:0 18px 40px rgba(0,0,0,0.14); background:#ffffff;">
+              <h4 style="font-size: 1.35rem; font-weight: 800; letter-spacing: -0.01em; text-transform: uppercase; color: #1a1a1a;">{{ group.period }}</h4>
+              <div style="display:flex; flex-direction:column; gap:20px; width:100%;">
+                <sc-for list="{{ group.rows }}" as="row" hint-placeholder-count="2">
+                  <div style="display:grid; grid-template-columns:1fr auto; gap:16px; align-items:center;">
+                    <span style="font-size: 1.05rem; font-weight: 700; color: #1a1a1a">{{ row.label }}</span>
+                    <span style="display:flex; align-items:baseline; gap:8px; justify-self:end;">
+                      <span style="color: #3aaf3c; font-size: 2.75rem; font-weight: 600; line-height: 1; width: 38px; padding-left: 0px; padding-right: 0px">↓</span>
+                      <span style="font-size:2rem; font-weight:800; color:#a63f2d; line-height:1; min-width:76px; text-align:right; font-variant-numeric:tabular-nums;">{{ row.value }}</span>
+                    </span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:16px; font-weight:500; margin:24px auto 0; text-decoration:none;" style-hover="background:#c14930; color:#fff;">Join The Waitlist</a>
+      </div>
+      
+    </div>
+  </section>
+
+  <section style="padding:60px 40px 100px; background:#f9f9f9; text-align:center;">
+    <h2 style="font-size:2.5rem; font-weight:700; margin-bottom:40px; color:#2d2d2d;">Our Approach</h2>
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; justify-items:center;">
+      <div style="display:flex; flex-direction:column; align-items:center; background:#fff; border-radius:32px; padding:40px 32px; box-shadow:0 8px 24px rgba(0,0,0,0.06); width:100%; max-width:500px; text-align:center; min-height:280px; transition:transform .3s ease;" style-hover="transform:scale(1.05);">
+        <div style="background:#f0f0f0; padding:5px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <img src="img/thymos-services-image-1.png" alt="" style="width:350px; max-width:100%; height:auto; aspect-ratio:16/9;">
+        </div>
+        <div style="font-weight:700; font-size:1.2rem; margin-bottom:12px;">Compassionate Whole-Person Care</div>
+        <div style="font-size:1.05rem; color:#555; text-wrap:pretty;">We provide comprehensive, integrative healthcare and drive results efficiently</div>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; background:#fff; border-radius:32px; padding:40px 32px; box-shadow:0 8px 24px rgba(0,0,0,0.06); width:100%; max-width:500px; text-align:center; min-height:280px; transition:transform .3s ease;" style-hover="transform:scale(1.05);">
+        <div style="background:#f0f0f0; padding:5px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <img src="img/thymos-services-image-2.png" alt="" style="width:350px; max-width:100%; height:auto; aspect-ratio:16/9;">
+        </div>
+        <div style="font-weight:700; font-size:1.2rem; margin-bottom:12px;">Root Cause Analysis</div>
+        <div style="font-size:1.05rem; color:#555; text-wrap:pretty;">We address the underlying causes of autoimmune disorders, other complex, chronic diseases, and corresponding symptoms.</div>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; background:#fff; border-radius:32px; padding:40px 32px; box-shadow:0 8px 24px rgba(0,0,0,0.06); width:100%; max-width:500px; text-align:center; min-height:280px; transition:transform .3s ease;" style-hover="transform:scale(1.05);">
+        <div style="background:#f0f0f0; padding:5px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <img src="img/thymos-services-image-3.png" alt="" style="width:350px; max-width:100%; height:auto; aspect-ratio:16/9;">
+        </div>
+        <div style="font-weight:700; font-size:1.2rem; margin-bottom:12px;">Evidence-Based Integrative Medical Approach</div>
+        <div style="font-size:1.05rem; color:#555; text-wrap:pretty;">We integrate the best of evidence-based Western and Eastern medicine to provide the most effective solutions.</div>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; background:#fff; border-radius:32px; padding:40px 32px; box-shadow:0 8px 24px rgba(0,0,0,0.06); width:100%; max-width:500px; text-align:center; min-height:280px; transition:transform .3s ease;" style-hover="transform:scale(1.05);">
+        <div style="background:#f0f0f0; padding:5px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <img src="img/thymos-services-image-4.png" alt="" style="width:350px; max-width:100%; height:auto; aspect-ratio:16/9;">
+        </div>
+        <div style="font-weight:700; font-size:1.2rem; margin-bottom:12px;">Personalized Treatment</div>
+        <div style="font-size:1.05rem; color:#555; text-wrap:pretty;">Treatment is customized to your unique body, mind, emotions, and epigenetics</div>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; background:#fff; border-radius:32px; padding:40px 32px; box-shadow:0 8px 24px rgba(0,0,0,0.06); width:100%; max-width:500px; text-align:center; min-height:280px; transition:transform .3s ease;" style-hover="transform:scale(1.05);">
+        <div style="background:#f0f0f0; padding:5px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <img src="img/thymos-services-image-5.png" alt="" style="width:350px; max-width:100%; height:auto; aspect-ratio:16/9;">
+        </div>
+        <div style="font-weight:700; font-size:1.2rem; margin-bottom:12px;">Regular Check-Ins with Autoimmune Specialists</div>
+        <div style="font-size:1.05rem; color:#555; text-wrap:pretty;">1-on-1 visits with our autoimmune specialists to drive optimal disease reversal</div>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; background:#fff; border-radius:32px; padding:40px 32px; box-shadow:0 8px 24px rgba(0,0,0,0.06); width:100%; max-width:500px; text-align:center; min-height:280px; transition:transform .3s ease;" style-hover="transform:scale(1.05);">
+        <div style="background:#f0f0f0; padding:5px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <img src="img/thymos-services-image-6.png" alt="" style="width:350px; max-width:100%; height:auto; aspect-ratio:16/9;">
+        </div>
+        <div style="font-weight:700; font-size:1.2rem; margin-bottom:12px;">24x7 Health Tracking and Support</div>
+        <div style="font-size:1.05rem; color:#555; text-wrap:pretty;">Access your personalized analytics, data insights, and support to help achieve your best health.</div>
+      </div>
+    </div>
+    <div style="margin-top:48px;">
+      <a href="Thymos Proven Approach.dc.html" style="background:#ea6047; color:#fff; font-weight:600; font-size:1rem; padding:10px 20px; border-radius:8px; text-decoration:none; display:inline-block;" style-hover="background:#c14930; color:#fff;">Learn More</a>
+    </div>
+  </section>
+
+  <section aria-label="Thymos Journey vs Conventional Medical Journey" style="font-family:'Lexend',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#ffffff; padding:clamp(56px,8vw,104px) clamp(20px,5vw,48px); box-sizing:border-box; color:#475569;">
+    <div style="max-width:1180px; margin:0 auto;">
+      <div style="max-width:680px; margin:0 auto 56px; text-align:center;">
+        <span style="display:inline-block; font-size:13px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#25A08C; margin-bottom:14px;">Two Paths Forward</span>
+        <h2 style="font-size:clamp(28px,4vw,40px); font-weight:800; line-height:1.15; color:#073763; margin:0 0 16px; letter-spacing:-0.01em;">Same diagnosis. Two very different roads.</h2>
+        <p style="font-size:17px; line-height:1.6; color:#64748B; margin:0; font-weight:400; text-wrap:pretty;">Conventional care manages symptoms, one specialist at a time, for years. Thymos gets to the root cause — so you can address autoimmunity, not just control it.</p>
+      </div>
+
+      <div class="tj-columns" style="display:grid; grid-template-columns:1fr auto 1fr; align-items:start; gap:0 8px;">
+
+        <div class="tj-column-thymos" style="order:1; border:1px solid rgba(14,148,83,0.18); border-radius:20px; padding:clamp(20px,3vw,32px); height:100%; background:linear-gradient(180deg, rgba(14,148,83,0.05), rgba(14,148,83,0.02) 40%, #ffffff);">
+          <div style="display:flex; align-items:center; gap:16px; margin-bottom:8px;">
+            <span style="flex-shrink:0; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:700; color:#fff; background:#0E9453;">✓</span>
+            <div>
+              <h3 style="margin:0; font-size:clamp(22px,2.6vw,28px); font-weight:800; line-height:1.15; letter-spacing:-0.01em; color:#073763;">Thymos Journey</h3>
+              <p style="margin:4px 0 0; font-size:15px; font-weight:700; letter-spacing:0.02em; color:#0E9453;">Weeks, not years</p>
+            </div>
+          </div>
+          <hr style="border:none; height:1px; margin:18px 0 0; background:rgba(14,148,83,0.25);">
+
+          <div style="margin-top:22px;">
+            <div style="display:flex; gap:16px; position:relative; padding-bottom:26px; animation:tj-fade-in 0.5s ease 0.05s both;">
+              <span style="flex-shrink:0; width:42px; height:42px; border-radius:50%; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12.5px; z-index:1; position:relative; background:#64748B;">1</span>
+              <div style="position:absolute; top:42px; left:21px; width:2px; height:26px; background:linear-gradient(180deg,#073763,#E2E8F0);"></div>
+              <div style="padding-top:6px;">
+                <h4 style="margin:0 0 6px; font-size:15.5px; font-weight:700; color:#073763; line-height:1.3;">Sign Up &amp; Get Comprehensive Diagnoses</h4>
+                <p style="margin:0; font-size:14px; line-height:1.55; color:#475569; font-weight:400;">Share your medical history, get labs drawn, and gain valuable insights from a Thymos autoimmune specialist.</p>
+              </div>
+            </div>
+            <div style="display:flex; gap:16px; position:relative; padding-bottom:26px; animation:tj-fade-in 0.5s ease 0.15s both;">
+              <span style="flex-shrink:0; width:42px; height:42px; border-radius:50%; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12.5px; z-index:1; position:relative; background:#25A08C;">2</span>
+              <div style="position:absolute; top:42px; left:21px; width:2px; height:26px; background:linear-gradient(180deg,#25A08C,#E2E8F0);"></div>
+              <div style="padding-top:6px;">
+                <h4 style="margin:0 0 6px; font-size:15.5px; font-weight:700; color:#073763; line-height:1.3;">Personalized Relief</h4>
+                <p style="margin:0; font-size:14px; line-height:1.55; color:#475569; font-weight:400;">Reduce symptoms quickly with precise ongoing medical treatment.</p>
+              </div>
+            </div>
+            <div style="display:flex; gap:16px; position:relative; padding-bottom:4px; animation:tj-fade-in 0.5s ease 0.25s both;">
+              <span style="flex-shrink:0; width:42px; height:42px; border-radius:50%; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12.5px; z-index:1; position:relative; background:#0E9453;">3</span>
+              <div style="padding-top:6px;">
+                <h4 style="margin:0 0 6px; font-size:15.5px; font-weight:700; color:#073763; line-height:1.3;">Thrive</h4>
+                <p style="margin:0; font-size:14px; line-height:1.55; color:#475569; font-weight:400;">Address your autoimmunity and live your best life.</p>
+                <span style="display:inline-block; margin-top:10px; font-size:12px; font-weight:700; color:#fff; border-radius:20px; background:#0E9453; padding:8px 24px;">Autoimmunity Addressed</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:28px;">
+            <video src="img/thymos-woman-journey-steps.webm" controls="{{ true }}" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="metadata" style="width:100%; max-width:320px; aspect-ratio:9/16; object-fit:cover; display:block; margin:0 auto; border-radius:14px; border:1px solid rgba(14,148,83,0.2); background:#0b1f33;"></video>
+          </div>
+        </div>
+
+        <div class="tj-vs" style="order:2; align-self:center; justify-self:center; width:44px; height:44px; border-radius:50%; background:#073763; color:#fff; font-size:13px; font-weight:800; letter-spacing:0.03em; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 14px rgba(7,55,99,0.25); z-index:1;"><span>VS</span></div>
+
+        <div class="tj-column-conventional" style="order:3; border:1px solid #E2E8F0; border-radius:20px; padding:clamp(20px,3vw,32px); height:100%; background:linear-gradient(180deg,#ffffff,rgba(148,163,184,0.06) 45%,rgba(152,0,0,0.05));">
+          <div style="display:flex; align-items:center; gap:16px; margin-bottom:8px;">
+            <span style="flex-shrink:0; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:700; color:#fff; background:#980000;">!</span>
+            <div>
+              <h3 style="margin:0; font-size:clamp(22px,2.6vw,28px); font-weight:800; line-height:1.15; letter-spacing:-0.01em; color:#073763;">Conventional Journey</h3>
+              <p style="margin:4px 0 0; font-size:15px; font-weight:700; letter-spacing:0.02em; color:#980000;">Years, with no clear resolution</p>
+            </div>
+          </div>
+          <hr style="border:none; height:1px; margin:18px 0 0; background:rgba(152,0,0,0.2);">
+
+          <div style="margin-top:22px;">
+            <div style="display:flex; gap:16px; position:relative; padding-bottom:26px; animation:tj-fade-in 0.5s ease 0.05s both;">
+              <span style="flex-shrink:0; width:42px; height:42px; border-radius:50%; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12.5px; z-index:1; position:relative; background:#64748B;">1</span>
+              <div style="position:absolute; top:42px; left:21px; width:2px; height:26px; background-image:repeating-linear-gradient(180deg,#64748B 0 5px,transparent 5px 10px); opacity:0.7;"></div>
+              <div style="padding-top:6px;">
+                <h4 style="margin:0 0 6px; font-size:15.5px; font-weight:700; color:#073763; line-height:1.3;">Many Specialists</h4>
+                <p style="margin:0; font-size:14px; line-height:1.55; color:#475569; font-weight:400;">Patients see an average of 5-6 providers over 4.5 years, with no one managing the whole picture.</p>
+              </div>
+            </div>
+            <div style="display:flex; gap:16px; position:relative; padding-bottom:26px; animation:tj-fade-in 0.5s ease 0.15s both;">
+              <span style="flex-shrink:0; width:42px; height:42px; border-radius:50%; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12.5px; z-index:1; position:relative; background:#EE9E53;">2</span>
+              <div style="position:absolute; top:42px; left:21px; width:2px; height:26px; background-image:repeating-linear-gradient(180deg,#64748B 0 5px,transparent 5px 10px); opacity:0.7;"></div>
+              <div style="padding-top:6px;">
+                <h4 style="margin:0 0 6px; font-size:15.5px; font-weight:700; color:#073763; line-height:1.3;">Minimal Relief</h4>
+                <p style="margin:0; font-size:14px; line-height:1.55; color:#475569; font-weight:400;">65%+ of patients do not respond to standard medications.</p>
+              </div>
+            </div>
+            <div style="display:flex; gap:16px; position:relative; padding-bottom:26px; animation:tj-fade-in 0.5s ease 0.25s both;">
+              <span style="flex-shrink:0; width:42px; height:42px; border-radius:50%; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12.5px; z-index:1; position:relative; background:#C2703A;">3</span>
+              <div style="position:absolute; top:42px; left:21px; width:2px; height:26px; background-image:repeating-linear-gradient(180deg,#64748B 0 5px,transparent 5px 10px); opacity:0.7;"></div>
+              <div style="padding-top:6px;">
+                <h4 style="margin:0 0 6px; font-size:15.5px; font-weight:700; color:#073763; line-height:1.3;">Symptoms Persist</h4>
+                <p style="margin:0; font-size:14px; line-height:1.55; color:#475569; font-weight:400;">Symptoms progress while providers try to keep them controlled.</p>
+              </div>
+            </div>
+            <div style="display:flex; gap:16px; position:relative; padding-bottom:4px; animation:tj-fade-in 0.5s ease 0.35s both;">
+              <span style="flex-shrink:0; width:42px; height:42px; border-radius:50%; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12.5px; z-index:1; position:relative; background:#980000;">4</span>
+              <div style="padding-top:6px;">
+                <h4 style="margin:0 0 6px; font-size:15.5px; font-weight:700; color:#073763; line-height:1.3;">Rising Disease Burden</h4>
+                <p style="margin:0; font-size:14px; line-height:1.55; color:#475569; font-weight:400;">Accelerating disease progression escalates risk of severe complications.</p>
+                <span style="display:inline-block; margin-top:10px; font-size:12px; font-weight:700; color:#fff; border-radius:20px; background:#980000; padding:8px 24px;">Disease Progression</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:40px;">
+            <h4 style="margin:0 0 16px; font-size:26px; font-weight:700; letter-spacing:0.02em; color:#083763;">See a Typical Journey by Condition:</h4>
+            <div style="display:flex; flex-wrap:wrap; gap:10px;">
+              <sc-for list="{{ conditions }}" as="c" hint-placeholder-count="11">
+                <a href="{{ c.href }}" style="display:inline-flex; align-items:center; font-family:inherit; font-size:16.5px; font-weight:600; color:#073763; background:#ffffff; border:1px solid #E2E8F0; border-radius:999px; padding:8px 24px; text-decoration:none; cursor:pointer; white-space:nowrap;" style-hover="border-color:#980000; color:#980000; background:rgba(152,0,0,0.05); transform:translateY(-1px);">{{ c.name }}</a>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#f8f9fa; padding:60px 20px 100px; text-align:center;">
+    <h2 style="font-size:2rem; font-weight:700; margin-bottom:40px;">REAL PEOPLE, REAL RESULTS</h2>
+    <div class="tm-marquee" style="overflow:hidden; width:100%; position:relative; -webkit-mask-image:linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); mask-image:linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);">
+      <div class="tm-track" style="display:flex; align-items:stretch; width:max-content; padding:8px 0; animation:scroll-left 80s linear infinite;">
+        <sc-for list="{{ testimonialsLoop }}" as="t" hint-placeholder-count="8">
+          <div style="flex:0 0 460px; width:460px; margin-right:24px; background:#fff; padding:32px 56px; border-radius:16px; box-shadow:0 4px 12px rgba(0,0,0,0.1); text-align:left; min-height:280px; display:flex; flex-direction:column; justify-content:space-between; gap:16px; transition:transform .3s ease, box-shadow .3s ease;" style-hover="transform:translateY(-6px); box-shadow:0 12px 28px rgba(0,0,0,0.14);">
+            <div style="font-family:Georgia, serif; font-size:3.2rem; line-height:0.6; color:#ea6047; height:22px;">&#8220;</div>
+            <p style="font-size:1.05rem; line-height:1.6; color:#333; text-wrap:pretty;">{{ t.text }}</p>
+            <div style="font-family:Georgia, serif; font-size:3.2rem; line-height:0.6; color:#ea6047; height:22px; text-align:right;">&#8221;</div>
+            <p style="font-weight:600; color:#2b6cb0; font-size:1.2rem; align-self:flex-end;">{{ t.byline }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="display:block; width:fit-content; padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:16px; font-weight:500; margin:24px auto 0; text-decoration:none;" style-hover="background:#c14930; color:#fff;">Join The Waitlist</a>
+  </section>
+
+  <footer style="background:#02302d; color:#fff; padding:40px; text-align:center;">
+    <p>© 2025 Thymos Health. All rights reserved.</p>
+    <nav style="margin-top:12px; display:flex; justify-content:center; align-items:center; gap:12px;">
+      <a href="Thymos About Us.dc.html" style="color:#ea6047; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">About Us</a>
+      <span style="color:#aaa; font-weight:400;">|</span>
+      <a href="Thymos Privacy Policy.dc.html" style="color:#ea6047; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">Privacy Policy</a>
+      <span style="color:#aaa; font-weight:400;">|</span>
+      <a href="Thymos Terms of Service.dc.html" style="color:#ea6047; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">Terms of Service</a>
+    </nav>
+  </footer>
+</div>
+<p style="margin: 0">What Our Patients Say</p><p style="margin: 0">What Our Patients Say</p></x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { menuOpen: false };
+
+  renderVals() {
+    const rows = [
+      { dir: "left", tags: ["Lupus","Rheumatoid Arthritis","IBS","Crohns","Lyme","Psoriasis","Addison’s","Hepatitis","Arteriosclerosis","Hashimoto’s","Diabetes","PCOS","Celiac","Glomerulonephritis","Interstitial Cystitis","Meniere"] },
+      { dir: "right", tags: ["Fatigue","Migraines","Constipation","Diarrhea","Tinnitus","Vertigo","Brain Fog","Arthritis","Muscle Pain","Food Sensitivity","Hair Loss","Gastritis","Weight Loss","Shortness of Breath","Chest Pain"] },
+      { dir: "left", tags: ["Asthma","Raynaud’s","Depression","Anxiety","Allergies","Endometriosis","Palpitations","Insomnia","Recurrent infections","Fibromyalgia","Dry Skin"] }
+    ];
+
+    const testimonials = [
+      { byline: "— Kate", text: "Thymos is thorough, highly informative, gentle and calm. I felt a huge relief to know I had found a doctor who will truly work with me to get to the bottom of any health issue." },
+      { byline: "— Linda", text: "I have been battling issues for years, seen several doctors, and Thymos zeroed right in on the problem by listening to my symptoms, studying my bloodwork and examination. They recommended easy to follow dietary changes and prescribed medical grade supplements, which have been transformative. It’s only been two weeks since my first appointment and I‘m feeling so much better." },
+      { byline: "— Lea", text: "Anyone involved in any mysterious disease knows the challenges everyone faces. To have a medical team that genuinely care about their patients….it is Priceless. They go above and beyond to make any situation better, no matter what. They make time for everyone, always. Everyone’s situation is different and they treat everyone according to their specific needs and that’s the way it should be. They actually address your situation and it is priceless to be able to live a “normal life”." },
+      { byline: "— Harry", text: "Thymos helped me discover the underlying causes of my symptoms and took the time to explain everything in detail and also answer lots of questions. They laid out a simple plan for addressing the causes with dietary changes without prescribing expensive medication." }
+    ];
+
+    return {
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      conditionRows: rows.map(r => ({
+        anim: (r.dir === "left" ? "scroll-left" : "scroll-right") + " 40s linear infinite",
+        tags: [...r.tags, ...r.tags]
+      })),
+      stats: [
+        { period: "Within 3 months:", rows: [
+          { label: "Symptoms", value: "80%" },
+          { label: "Digestive Issues", value: "82%" }
+        ] },
+        { period: "Within 6 months:", rows: [
+          { label: "Inflammation", value: "67%" },
+          { label: "Premature Cell Death", value: "50%" }
+        ] },
+        { period: "Within 1 year:", rows: [
+          { label: "Health Burden", value: "80%" },
+          { label: "Neuro Inflammation", value: "65%" }
+        ] }
+      ],
+      services: [
+        { title: "Compassionate Whole-Person Care", desc: "We provide comprehensive, integrative healthcare and drive results efficiently", icon: "img/thymos-services-image-1.png" },
+        { title: "Root Cause Analysis", desc: "We address the underlying causes of autoimmune disorders, other complex, chronic diseases, and corresponding symptoms.", icon: "img/thymos-services-image-2.png" },
+        { title: "Evidence-Based Integrative Medical Approach", desc: "We integrate the best of evidence-based Western and Eastern medicine to provide the most effective solutions.", icon: "img/thymos-services-image-3.png" },
+        { title: "Personalized Treatment", desc: "Treatment is customized to your unique body, mind, emotions, and epigenetics", icon: "img/thymos-services-image-4.png" },
+        { title: "Regular Check-Ins with Autoimmune Specialists", desc: "1-on-1 visits with our autoimmune specialists to drive optimal disease reversal", icon: "img/thymos-services-image-5.png" },
+        { title: "24x7 Health Tracking and Support", desc: "Access your personalized analytics, data insights, and support to help achieve your best health.", icon: "img/thymos-services-image-6.png" }
+      ],
+      conditions: [
+        { name: "Crohn's Disease", href: "Patient Journey - Crohns.html" },
+        { name: "Addison's Disease", href: "Thymos Condition Detail.dc.html?slug=autoimmune-addisons-disease" },
+        { name: "Graves' Disease", href: "Thymos Condition Detail.dc.html?slug=graves-disease" },
+        { name: "Multiple Sclerosis", href: "Thymos Condition Detail.dc.html?slug=multiple-sclerosis" },
+        { name: "Lupus", href: "Thymos Condition Detail.dc.html?slug=systemic-lupus-erythematosus" },
+        { name: "Rheumatoid Arthritis", href: "Thymos Condition Detail.dc.html?slug=rheumatoid-arthritis" },
+        { name: "Myasthenia Gravis", href: "Thymos Condition Detail.dc.html?slug=myasthenia-gravis" },
+        { name: "Ulcerative Colitis", href: "Thymos Condition Detail.dc.html?slug=ulcerative-colitis" },
+        { name: "Sjögren's Syndrome", href: "Thymos Condition Detail.dc.html?slug=sjogren-syndrome" },
+        { name: "Psoriasis", href: "Thymos Condition Detail.dc.html?slug=psoriasis" },
+        { name: "Guillain-Barré Syndrome", href: "Thymos Condition Detail.dc.html?slug=guillain-barre-syndrome" },
+        { name: "Alopecia Areata", href: "Patient Journey - Alopecia Areata.html" },
+        { name: "Ankylosing Spondylitis", href: "Patient Journey - Ankylosing Spondylitis.html" },
+        { name: "Hepatitis", href: "Patient Journey - Autoimmune Hepatitis.html" },
+        { name: "Myositis", href: "Patient Journey - Myositis.html" },
+        { name: "Hashimoto's Thyroiditis", href: "Patient Journey - Hashimotos Thyroiditis.html" }
+      ],
+      journeySteps: [
+        "Sign up and complete forms",
+        "Get labs drawn",
+        "Schedule first consult and get a personalized plan",
+        "Reduce symptoms with 1:1 consults and support from Thymos specialists",
+        "Reverse Autoimmunity and live your best life"
+      ].map((text, n) => ({ label: "Step " + (n + 1), text })),
+      testimonialsLoop: [...testimonials, ...testimonials]
+    };
+  }
+}
+</script>
+</body>
+</html>

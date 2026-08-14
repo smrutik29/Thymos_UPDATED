@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', sans-serif; font-size: 18px; line-height: 1.6; color: #212121; background: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+  a { color: #ea6047; text-decoration: none; }
+  a:hover { color: #c14930; }
+  nav a { white-space: nowrap; }
+  .nav-burger { display: none; }
+  @media (max-width: 1080px) {
+    .nav-desktop { display: none !important; }
+    .nav-burger { display: flex !important; }
+  }
+  @media (max-width: 900px) {
+    .values-grid { grid-template-columns: 1fr 1fr !important; }
+    .split { flex-direction: column !important; }
+  }
+  @media (max-width: 600px) {
+    .values-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+</helmet>
+
+<div style="width:100%; font-family:'Montserrat',sans-serif; color:#212121;">
+
+  <nav style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:20px clamp(16px,3vw,40px); background:#fff; border-bottom:1px solid #ddd; position:sticky; top:0; z-index:1000; gap:20px;">
+    <a href="Thymos Homepage.dc.html" style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:20px; color:#1a1a1a; white-space:nowrap; text-decoration:none;">
+      <img src="img/thymos-logo-flames.png" alt="Thymos Logo" style="height:52px; width:auto;" />
+      <span>Thymos Health</span>
+    </a>
+    <div class="nav-desktop" style="display:flex; gap:20px; font-size:16px;">
+      <a href="Thymos How We Work.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">How We Work</a>
+      <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">Proven Approach</a>
+      <a href="Thymos Conditions Treated.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">Conditions Treated</a>
+      <a href="Thymos About Us.dc.html" style="color:#ea6047; font-weight:600; text-decoration:none;">About</a>
+    </div>
+    <div class="nav-desktop" style="display:flex; align-items:center; gap:16px;">
+      <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="color:#333; text-decoration:none; font-size:16px;" style-hover="color:#ea6047; text-decoration:underline;">Sign In</a>
+      <a href="/quiz" style="padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:15px; font-weight:500; text-decoration:none;" style-hover="background:#c14930; color:#fff;">Get Started</a>
+    </div>
+    <button class="nav-burger" onClick="{{ toggleMenu }}" aria-label="Menu" style="flex-direction:column; justify-content:center; gap:5px; width:32px; height:28px; background:none; border:none; cursor:pointer; padding:0;">
+      <span style="width:24px; height:3px; background:#333; border-radius:2px;"></span>
+      <span style="width:24px; height:3px; background:#333; border-radius:2px;"></span>
+      <span style="width:24px; height:3px; background:#333; border-radius:2px;"></span>
+    </button>
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="flex-basis:100%; display:flex; flex-direction:column; gap:14px; padding-top:8px; font-size:16px;">
+        <a href="Thymos How We Work.dc.html" style="color:#333; text-decoration:none;">How We Work</a>
+        <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;">Proven Approach</a>
+        <a href="Thymos Conditions Treated.dc.html" style="color:#333; text-decoration:none;">Conditions Treated</a>
+        <a href="Thymos About Us.dc.html" style="color:#ea6047; font-weight:600; text-decoration:none;">About</a>
+        <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="color:#333; text-decoration:none;">Sign In</a>
+        <a href="/quiz" style="align-self:flex-start; padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:15px; font-weight:500; text-decoration:none;">Get Started</a>
+      </div>
+    </sc-if>
+  </nav>
+
+  <section style="background:#02302d; color:#dfe8e8; padding:60px clamp(24px,5vw,80px); text-align:center;">
+    <h1 style="font-size:2.5rem; font-weight:800; line-height:1.3; max-width:900px; margin:0 auto 24px; text-wrap:pretty;">Thymos makes autoimmune healthcare accessible</h1>
+    <p style="font-size:1.15rem; line-height:1.8; max-width:820px; margin:0 auto; text-wrap:pretty;">We provide the best in comprehensive, whole person care that combines integrative Western and Eastern medicine with root cause medicine and personalized solutions tailored to your body, mind, and spirit's unique needs.</p>
+    <p style="margin-top:24px; font-size:1.1rem; font-weight:700; color:#ea6047;">Trusted by 5,000+ People</p>
+  </section>
+
+  <section style="padding:60px clamp(24px,5vw,80px); background:#f8f5f0; text-align:center;">
+    <h2 style="font-size:2rem; margin-bottom:20px;"><strong>thymos. θυμός.</strong></h2>
+    <p style="max-width:820px; margin:0 auto 20px; line-height:1.8; text-wrap:pretty;">Thymos is ancient Greek for courage, vitality, and spirit. It is the middle realm of consciousness – sitting between reason (logos) and desire (thelo). It is the driving emotions of the human soul.</p>
+    <p style="max-width:820px; margin:0 auto; line-height:1.8; text-wrap:pretty;">Thymos is associated with our internal physiological processes of thought, emotion, volition, and motivation, ensuring the unity of mind, body and spirit.</p>
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin-top:32px;">
+      <span style="background:#dfe8e8; border-radius:30px; padding:10px 22px; font-size:1rem; font-weight:600; color:#02302d;">Clinical medicine</span>
+      <span style="background:#dfe8e8; border-radius:30px; padding:10px 22px; font-size:1rem; font-weight:600; color:#02302d;">Psychology</span>
+      <span style="background:#dfe8e8; border-radius:30px; padding:10px 22px; font-size:1rem; font-weight:600; color:#02302d;">Emotions</span>
+      <span style="background:#dfe8e8; border-radius:30px; padding:10px 22px; font-size:1rem; font-weight:600; color:#02302d;">Motivations</span>
+      <span style="background:#dfe8e8; border-radius:30px; padding:10px 22px; font-size:1rem; font-weight:600; color:#02302d;">24x7 Availability</span>
+    </div>
+  </section>
+
+  <section class="split" style="padding:60px clamp(24px,5vw,80px); background:#fff; display:flex; gap:48px; align-items:center;">
+    <div style="flex:0 0 340px; max-width:100%;">
+      <img src="img/thymos-aboutus-payal1.jpg" alt="Dr. Payal Bhandari" style="width:100%; height:auto; border-radius:16px; box-shadow:0 10px 24px rgba(0,0,0,0.12);" />
+    </div>
+    <div style="flex:1 1 420px;">
+      <h2 style="font-size:2rem; font-weight:700; margin-bottom:20px;">Our Story</h2>
+      <p style="margin-bottom:18px; line-height:1.8; text-wrap:pretty;">Thymos was founded by integrative functional medicine physician Dr. Payal Bhandari, MD. As a patient herself and mother of two daughters who have suffered with autoimmune disorders, she is not willing to accept anything less than solving these complex, mysterious issues at the root level.</p>
+      <p style="margin-bottom:18px; line-height:1.8; text-wrap:pretty;">She launched the first nationally-recognized accountable care organization in San Francisco and built the largest private integrative functional medical center. Determined to find anything that could reverse her children's condition, Dr. Bhandari went on a 15 year journey to understand the root cause of autoimmune disorders.</p>
+      <p style="line-height:1.8; text-wrap:pretty;">She combines the best in scientifically based Western and Eastern Medicine to understand the root cause and tailor care based on each patient's unique physical, emotional, psychological, and epigenetic profile. Dr. Bhandari has successfully treated more than 5,000 patients with various autoimmune disorders and complex, mysterious conditions.</p>
+    </div>
+  </section>
+
+  <section class="split" style="padding:60px clamp(24px,5vw,80px); background:#dfe8e8; display:flex; gap:48px; align-items:center;">
+    <div style="flex:1 1 440px;">
+      <p style="margin-bottom:18px; line-height:1.8; text-wrap:pretty;">We understand your struggles of not feeling heard by a healthcare provider or getting the right diagnosis and treatment in a timely manner.</p>
+      <p style="margin-bottom:18px; line-height:1.8; text-wrap:pretty;">We are building the kind of healthcare we all deserve – compassionate, courageous, and inspiring. We drive data-driven diagnoses and personalized care that address diseases at the root cause.</p>
+      <p style="margin-bottom:18px; line-height:1.8; text-wrap:pretty;">Ongoing tracking of your symptoms, wearable data, and diagnostic tests allows us to continuously optimize your care and prevent any terrible health outcomes.</p>
+      <p style="line-height:1.8; text-wrap:pretty;">We are always by your side, helping you feel like your best self — physically, mentally, and emotionally.</p>
+    </div>
+    <div style="flex:0 0 380px; max-width:100%;">
+      <img src="img/thymos-aboutus-struggles.png" alt="Patient support visual" style="width:100%; height:auto; border-radius:16px;" />
+    </div>
+  </section>
+
+  <section style="padding:60px clamp(24px,5vw,80px); background:#fff; text-align:center;">
+    <h2 style="font-size:2rem; font-weight:700; margin-bottom:40px;">Our Core Values</h2>
+    <div class="values-grid" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; max-width:1100px; margin:0 auto; text-align:left;">
+      <sc-for list="{{ coreValues }}" as="v" hint-placeholder-count="9">
+        <div style="background:#f8f5f0; border-radius:16px; padding:28px 24px; box-shadow:0 6px 18px rgba(0,0,0,0.05); transition:transform .25s ease, box-shadow .25s ease, background-color .25s ease;" style-hover="transform:translateY(-6px); box-shadow:0 16px 34px rgba(0,0,0,0.12); background:#ffffff;">
+          <div style="font-weight:700; font-size:1.05rem; margin-bottom:8px; color:#02302d;">{{ v.title }}</div>
+          <div style="font-size:0.98rem; color:#555; line-height:1.6; text-wrap:pretty;">{{ v.desc }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding:60px clamp(24px,5vw,80px); background:#f8f5f0; text-align:center;">
+    <h2 style="font-size:2rem; font-weight:700; margin-bottom:40px;">Our Leadership</h2>
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:32px;">
+      <div style="flex:1 1 380px; max-width:460px; background:#fff; border-radius:20px; padding:32px; box-shadow:0 8px 24px rgba(0,0,0,0.06); text-align:left;">
+        <img src="img/thymos-aboutus-payal1.jpg" alt="Dr. Payal Bhandari" style="width:100%; height:auto; border-radius:14px; margin-bottom:20px;" />
+        <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:4px;">Dr. Payal Bhandari, MD</h3>
+        <p style="color:#ea6047; font-weight:600; margin-bottom:16px;">Co-Founder, CEO</p>
+        <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px; margin-bottom:20px;">
+          <li style="position:relative; padding-left:20px; font-size:0.98rem; line-height:1.5;"><span style="position:absolute; left:0; color:#ea6047;">•</span>Clinical medical, strategy, and operations experience</li>
+          <li style="position:relative; padding-left:20px; font-size:0.98rem; line-height:1.5;"><span style="position:absolute; left:0; color:#ea6047;">•</span>@ SF Advanced Health, UCSF, Brown &amp; Toland</li>
+          <li style="position:relative; padding-left:20px; font-size:0.98rem; line-height:1.5;"><span style="position:absolute; left:0; color:#ea6047;">•</span>Launched first ACO in SF</li>
+          <li style="position:relative; padding-left:20px; font-size:0.98rem; line-height:1.5;"><span style="position:absolute; left:0; color:#ea6047;">•</span>Launched SF's largest private integrative medical center</li>
+        </ul>
+        <a href="https://www.linkedin.com/in/payal-bhandari-md/" target="_blank" rel="noopener noreferrer" style="display:inline-block;">
+          <img src="img/linkedin-icon.png" alt="LinkedIn" style="width:28px; height:28px;" />
+        </a>
+      </div>
+      <div style="flex:1 1 380px; max-width:460px; background:#fff; border-radius:20px; padding:32px; box-shadow:0 8px 24px rgba(0,0,0,0.06); text-align:left;">
+        <img src="img/thymos-aboutus-nilesh.png" alt="Nilesh Bhandari" style="width:100%; height:auto; border-radius:14px; margin-bottom:20px;" />
+        <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:4px;">Nilesh Bhandari</h3>
+        <p style="color:#ea6047; font-weight:600; margin-bottom:16px;">Co-Founder, COO</p>
+        <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px; margin-bottom:20px;">
+          <li style="position:relative; padding-left:20px; font-size:0.98rem; line-height:1.5;"><span style="position:absolute; left:0; color:#ea6047;">•</span>Product, marketing, and ML experience</li>
+          <li style="position:relative; padding-left:20px; font-size:0.98rem; line-height:1.5;"><span style="position:absolute; left:0; color:#ea6047;">•</span>@ IronPort/Cisco, Formation, Advanced Health Academy</li>
+          <li style="position:relative; padding-left:20px; font-size:0.98rem; line-height:1.5;"><span style="position:absolute; left:0; color:#ea6047;">•</span>Developed behavior change solutions used by 100M+ people</li>
+          <li style="position:relative; padding-left:20px; font-size:0.98rem; line-height:1.5;"><span style="position:absolute; left:0; color:#ea6047;">•</span>Created world's most precise lab interpretation solution</li>
+        </ul>
+        <a href="https://www.linkedin.com/in/nileshbhandari/" target="_blank" rel="noopener noreferrer" style="display:inline-block;">
+          <img src="img/linkedin-icon.png" alt="LinkedIn" style="width:28px; height:28px;" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="split" style="padding:60px clamp(24px,5vw,80px); background:#fff; display:flex; gap:48px; align-items:center;">
+    <div style="flex:1 1 440px;">
+      <p style="margin-bottom:18px; line-height:1.8; text-wrap:pretty;">We envision a future where individuals are empowered to reverse debilitating diseases and take charge of their health.</p>
+      <p style="line-height:1.8; text-wrap:pretty;">We are a team of healthcare visionaries, practitioners, and technologists who are passionate about making a positive impact on the lives of individuals, their families, and the healthcare industry as a whole.</p>
+    </div>
+    <div style="flex:0 0 380px; max-width:100%;">
+      <img src="img/thymos-aboutus-vision.png" alt="Thymos Vision" style="width:100%; height:auto; border-radius:16px;" />
+    </div>
+  </section>
+
+  <section style="padding:60px clamp(24px,5vw,80px); background:#ede7e3; text-align:center;">
+    <h2 style="font-size:2rem; font-weight:700; margin-bottom:16px;">Join Our Journey</h2>
+    <p style="max-width:760px; margin:0 auto 40px; line-height:1.8; text-wrap:pretty;">If you feel inspired to help reverse diseases at the root causes, please join us on this transformational journey creating a healthier, more equitable world.</p>
+    <div style="background:#fff; border-radius:20px; padding:40px 32px; max-width:640px; margin:0 auto; box-shadow:0 8px 24px rgba(0,0,0,0.06);">
+      <p style="font-size:1.15rem; margin-bottom:8px;"><strong>Join #Thymos Health Community!</strong></p>
+      <p style="color:#555; margin-bottom:24px; text-wrap:pretty;">Sign up with your email address to join the waitlist and receive news and updates.</p>
+      <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="display:inline-block; background:#ea6047; color:#fff; padding:14px 48px; border-radius:8px; font-weight:600; font-size:1.05rem; text-decoration:none;" style-hover="background:#c14930; color:#fff;">Sign Up</a>
+      <p style="margin-top:16px; font-size:0.9rem; color:#777;">We respect your privacy.</p>
+    </div>
+  </section>
+
+  <footer style="background:#02302d; color:#fff; padding:40px; text-align:center;">
+    <p>© 2025 Thymos Health. All rights reserved.</p>
+    <nav style="margin-top:12px; display:flex; justify-content:center; align-items:center; gap:12px;">
+      <a href="Thymos About Us.dc.html" style="color:#ea6047; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">About Us</a>
+      <span style="color:#aaa; font-weight:400;">|</span>
+      <a href="Thymos Privacy Policy.dc.html" style="color:#ea6047; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">Privacy Policy</a>
+      <span style="color:#aaa; font-weight:400;">|</span>
+      <a href="Thymos Terms of Service.dc.html" style="color:#ea6047; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">Terms of Service</a>
+    </nav>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { menuOpen: false };
+  renderVals() {
+    return {
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      coreValues: [
+        { title: "Patient-centered, comprehensive care", desc: "The patient is the most important person in the healthcare equation" },
+        { title: "Accessibility", desc: "Everyone deserves access to the best healthcare" },
+        { title: "Compassion", desc: "Empathy, care and understanding towards everyone" },
+        { title: "Trust", desc: "Trust is built everyday with honesty, transparency, and reliability" },
+        { title: "Uniqueness", desc: "Appreciate the individual characteristics of each person" },
+        { title: "Partnership", desc: "Teamwork is essential to providing high-quality care" },
+        { title: "Diversity & Inclusion", desc: "Committed to an inclusive environment at all times" },
+        { title: "Continuous learning", desc: "Embracing the largest challenges as growth opportunities" },
+        { title: "Social responsibility", desc: "Help people feel connected and live healthier lives" }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

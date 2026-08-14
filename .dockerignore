@@ -1,0 +1,12 @@
+node_modules
+.next
+.git
+.env*
+!.env.example
+cloud-sql-proxy
+*.md
+.design-sync
+.ds-sync
+ds-bundle
+reference
+.claude

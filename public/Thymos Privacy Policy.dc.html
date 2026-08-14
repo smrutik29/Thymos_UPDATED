@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', sans-serif; font-size: 18px; line-height: 1.6; color: #212121; background: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+  a { color: #ea6047; text-decoration: none; }
+  a:hover { color: #c14930; }
+  nav a { white-space: nowrap; }
+  .nav-burger { display: none; }
+  @media (max-width: 1080px) {
+    .nav-desktop { display: none !important; }
+    .nav-burger { display: flex !important; }
+  }
+</style>
+</helmet>
+
+<div style="width:100%; font-family:'Montserrat',sans-serif; color:#212121;">
+
+  <nav style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:20px clamp(16px,3vw,40px); background:#fff; border-bottom:1px solid #ddd; position:sticky; top:0; z-index:1000; gap:20px;">
+    <a href="Thymos Homepage.dc.html" style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:20px; color:#1a1a1a; white-space:nowrap; text-decoration:none;">
+      <img src="img/thymos-logo-flames.png" alt="Thymos Logo" style="height:52px; width:auto;" />
+      <span>Thymos Health</span>
+    </a>
+    <div class="nav-desktop" style="display:flex; gap:20px; font-size:16px;">
+      <a href="Thymos How We Work.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">How We Work</a>
+      <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">Proven Approach</a>
+      <a href="Thymos Conditions Treated.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">Conditions Treated</a>
+      <a href="Thymos About Us.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">About</a>
+    </div>
+    <div class="nav-desktop" style="display:flex; align-items:center; gap:16px;">
+      <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="color:#333; text-decoration:none; font-size:16px;" style-hover="color:#ea6047; text-decoration:underline;">Sign In</a>
+      <a href="/quiz" style="padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:15px; font-weight:500; text-decoration:none;" style-hover="background:#c14930; color:#fff;">Get Started</a>
+    </div>
+    <button class="nav-burger" onClick="{{ toggleMenu }}" aria-label="Menu" style="flex-direction:column; justify-content:center; gap:5px; width:32px; height:28px; background:none; border:none; cursor:pointer; padding:0;">
+      <span style="width:24px; height:3px; background:#333; border-radius:2px;"></span>
+      <span style="width:24px; height:3px; background:#333; border-radius:2px;"></span>
+      <span style="width:24px; height:3px; background:#333; border-radius:2px;"></span>
+    </button>
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="flex-basis:100%; display:flex; flex-direction:column; gap:14px; padding-top:8px; font-size:16px;">
+        <a href="Thymos How We Work.dc.html" style="color:#333; text-decoration:none;">How We Work</a>
+        <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;">Proven Approach</a>
+        <a href="Thymos Conditions Treated.dc.html" style="color:#333; text-decoration:none;">Conditions Treated</a>
+        <a href="Thymos About Us.dc.html" style="color:#333; text-decoration:none;">About</a>
+        <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="color:#333; text-decoration:none;">Sign In</a>
+        <a href="/quiz" style="align-self:flex-start; padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:15px; font-weight:500; text-decoration:none;">Get Started</a>
+      </div>
+    </sc-if>
+  </nav>
+
+  <main style="max-width:840px; margin:0 auto; padding:60px 24px 80px;">
+    <h1 style="font-size:2.4rem; font-weight:800; margin-bottom:12px;">Privacy Policy</h1>
+    <p style="color:#666; font-size:0.95rem;">Effective Date: May 16, 2025</p>
+    <p style="color:#666; font-size:0.95rem; margin-bottom:40px;">Last Updated: January 10, 2026</p>
+
+    <section style="margin-bottom:32px;">
+      <h2 style="font-size:1.3rem; font-weight:700; margin-bottom:10px;">1. Overview</h2>
+      <p style="line-height:1.8; text-wrap:pretty;">This Privacy Policy describes how Thymos Health, Inc. and Thymos Provider Group, PC collect, use, and protect personal and health information.</p>
+    </section>
+    <section style="margin-bottom:32px;">
+      <h2 style="font-size:1.3rem; font-weight:700; margin-bottom:10px;">2. Information Collected</h2>
+      <p style="line-height:1.8; text-wrap:pretty;">Information collected may include personal information you voluntarily provide, including: account details, health information submitted for care, device data, usage data, and payment information.</p>
+    </section>
+    <section style="margin-bottom:32px;">
+      <h2 style="font-size:1.3rem; font-weight:700; margin-bottom:10px;">3. Use of Information</h2>
+      <p style="line-height:1.8; text-wrap:pretty;">Information is used to provide telehealth services, coordinate care, operate the platform, ensure security, and comply with legal obligations.</p>
+    </section>
+    <section style="margin-bottom:32px;">
+      <h2 style="font-size:1.3rem; font-weight:700; margin-bottom:10px;">4. HIPAA</h2>
+      <p style="line-height:1.8; text-wrap:pretty;">Medical information is protected under HIPAA through the Provider Group's Notice of Privacy Practices.</p>
+    </section>
+    <section style="margin-bottom:32px;">
+      <h2 style="font-size:1.3rem; font-weight:700; margin-bottom:10px;">5. Data Sharing</h2>
+      <p style="line-height:1.8; text-wrap:pretty;">We do not sell personal or health information. Information may be shared with clinicians, vendors, or regulators as required by law.</p>
+    </section>
+    <section style="margin-bottom:32px;">
+      <h2 style="font-size:1.3rem; font-weight:700; margin-bottom:10px;">6. Data Security</h2>
+      <p style="line-height:1.8; text-wrap:pretty;">We use administrative, technical, and physical safeguards to protect information.</p>
+    </section>
+    <section style="margin-bottom:32px;">
+      <h2 style="font-size:1.3rem; font-weight:700; margin-bottom:10px;">7. Your Rights</h2>
+      <p style="line-height:1.8; text-wrap:pretty;">You may request access, correction, or deletion of your data subject to applicable law.</p>
+    </section>
+    <section style="margin-bottom:32px;">
+      <h2 style="font-size:1.3rem; font-weight:700; margin-bottom:10px;">8. Data Retention</h2>
+      <p style="line-height:1.8; text-wrap:pretty;">Information is retained as required by law and clinical standards.</p>
+    </section>
+    <section style="margin-bottom:32px;">
+      <h2 style="font-size:1.3rem; font-weight:700; margin-bottom:10px;">9. Children</h2>
+      <p style="line-height:1.8; text-wrap:pretty;">The Services are not directed to children under the age of 18. We do not knowingly collect data from minors without guardian consent.</p>
+    </section>
+    <section style="margin-bottom:32px;">
+      <h2 style="font-size:1.3rem; font-weight:700; margin-bottom:10px;">10. Changes</h2>
+      <p style="line-height:1.8; text-wrap:pretty;">We may update this Privacy Policy from time to time.</p>
+    </section>
+    <section>
+      <h2 style="font-size:1.3rem; font-weight:700; margin-bottom:10px;">11. Contact</h2>
+      <p style="line-height:1.8; text-wrap:pretty;">For any privacy-related questions, reach out to <a href="mailto:privacy@thymoshealth.com">privacy@thymoshealth.com</a></p>
+    </section>
+  </main>
+
+  <footer style="background:#02302d; color:#fff; padding:40px; text-align:center;">
+    <p>© 2025 Thymos Health. All rights reserved.</p>
+    <nav style="margin-top:12px; display:flex; justify-content:center; align-items:center; gap:12px;">
+      <a href="Thymos About Us.dc.html" style="color:#ea6047; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">About Us</a>
+      <span style="color:#aaa; font-weight:400;">|</span>
+      <a href="Thymos Privacy Policy.dc.html" style="color:#ea6047; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">Privacy Policy</a>
+      <span style="color:#aaa; font-weight:400;">|</span>
+      <a href="Thymos Terms of Service.dc.html" style="color:#ea6047; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">Terms of Service</a>
+    </nav>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { menuOpen: false };
+  renderVals() {
+    return {
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen }))
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Your Alopecia Areata Journey | Thymos Health</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        :root {
+            --teal:        #034152;
+            --teal-mid:    #0B5C73;
+            --teal-light:  #5EC4D2;
+            --coral:       #EA6047;
+            --coral-dark:  #D14F38;
+            --sage:        #4A9B86;
+            --sage-dark:   #357A68;
+            --sage-tint:   #DFE8E8;
+            --slate:       #034152;
+            --slate-mid:   #2C4A5C;
+            --amber:       #C4893A;
+            --beige:       #F8F5F0;
+            --gray-50:     #F8F5F0;
+            --gray-100:    #EDE6D9;
+            --gray-200:    #DCD3C2;
+            --gray-300:    #C6B9A3;
+            --gray-500:    #7A8A96;
+            --gray-700:    #3E5550;
+            --gray-900:    #182220;
+            --white:       #FFFFFF;
+            --muted:       #7A8A96;
+            --shadow-sm:   0 1px 3px rgba(3,65,82,0.07), 0 1px 2px rgba(3,65,82,0.04);
+            --shadow-md:   0 4px 14px rgba(3,65,82,0.10), 0 2px 4px rgba(3,65,82,0.05);
+            --shadow-lg:   0 12px 32px rgba(3,65,82,0.14), 0 4px 8px rgba(3,65,82,0.06);
+            --r:           20px;
+            --r-sm:        10px;
+        }
+
+        html {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            font-size: 16px;
+            color: var(--gray-900);
+            background: var(--gray-50);
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body { min-height: 100vh; overflow-x: hidden; }
+
+        /* ── HEADER ───────────────────────────────────── */
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(255,255,255,0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gray-100);
+            padding: 13px 20px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .header-brand { font-size: 15px; font-weight: 700; color: var(--slate); letter-spacing: -0.2px; }
+        .header-brand em { color: var(--teal); font-style: normal; }
+
+        /* ── HERO ─────────────────────────────────────── */
+        .hero {
+            background: var(--slate);
+            padding: 44px 24px 52px;
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -60px; right: -60px;
+            width: 240px; height: 240px;
+            background: radial-gradient(circle, rgba(94,196,210,0.22) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .hero::after {
+            content: ''; position: absolute; bottom: -40px; left: -40px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(234,96,71,0.16) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .hero-chip {
+            display: inline-flex; align-items: center; gap: 5px;
+            background: rgba(94,196,210,0.12);
+            border: 1px solid rgba(94,196,210,0.28);
+            color: var(--teal-light);
+            font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+            padding: 5px 12px; border-radius: 100px; margin-bottom: 22px;
+        }
+        .hero-h1 {
+            font-size: 32px; font-weight: 800; color: var(--white);
+            line-height: 1.13; letter-spacing: -0.6px; margin-bottom: 16px;
+        }
+        .hero-h1 .flame {
+            background: linear-gradient(120deg, #5EC4D2 0%, #4A9B86 60%, #A3D4C8 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-sub {
+            font-size: 15px; color: rgba(255,255,255,0.88); line-height: 1.65;
+            margin-bottom: 36px;
+        }
+        .hero-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+        }
+        .hero-stat {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px; padding: 16px 14px;
+        }
+        .hs-sentence {
+            font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.88);
+            line-height: 1.5;
+        }
+        .hs-num-inline {
+            font-size: 20px; font-weight: 800;
+            background: linear-gradient(120deg, #5EC4D2 0%, #4A9B86 60%, #A3D4C8 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── STRIP NAV BANNER ─────────────────────────── */
+        .nav-strip {
+            background: #154E5E;
+            border-bottom: 1px solid rgba(3,65,82,0.12);
+            padding: 14px 16px;
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 8px;
+        }
+        .nav-strip-btn {
+            background:
+                linear-gradient(var(--slate), var(--slate)) padding-box,
+                linear-gradient(120deg, #5EC4D2 0%, #4A9B86 60%, #A3D4C8 100%) border-box;
+            border: 1.5px solid transparent;
+            border-radius: 100px;
+            padding: 9px 16px;
+            font-size: 12px; font-weight: 700; color: var(--white);
+            text-decoration: none; white-space: nowrap;
+            transition: all 0.15s ease;
+        }
+        .nav-strip-btn:active { opacity: 0.8; }
+
+        /* ── SECTION SHELL ────────────────────────────── */
+        .sec { padding: 44px 20px; background: var(--beige); }
+        .sec.sec-tint { background: var(--sage-tint); }
+        .sec-chip {
+            font-size: 10px; font-weight: 700; letter-spacing: 1.1px;
+            text-transform: uppercase; color: var(--coral); margin-bottom: 8px;
+        }
+        .sec-h2 {
+            font-size: 24px; font-weight: 800; color: var(--slate);
+            line-height: 1.2; letter-spacing: -0.4px; margin-bottom: 8px;
+        }
+        .sec-body {
+            font-size: 14px; color: var(--gray-700); line-height: 1.65;
+            margin-bottom: 28px;
+        }
+        .sec-body-bold {
+            font-size: 18px; font-weight: 700; color: var(--coral);
+            line-height: 1.6; margin: 0; text-align: center;
+        }
+        .mark-row {
+            display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+            gap: 10px; margin-top: -14px; margin-bottom: 28px;
+        }
+        .divider { height: 1px; background: var(--gray-100); margin: 0 20px; }
+
+        /* ── DRUG LADDER ──────────────────────────────── */
+        .ladder { display: flex; flex-direction: column; gap: 6px; }
+        @media (min-width: 860px) {
+            .ladder { padding: 0 80px; }
+        }
+
+        .drug-card {
+            background: var(--white);
+            border-radius: var(--r);
+            box-shadow: 0 10px 28px rgba(3,65,82,0.14);
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        .drug-card.tried  { border-color: var(--amber); }
+        .drug-card.on-now { border-color: var(--teal);  }
+        .drug-card.not-yet { opacity: 0.55; }
+
+        .card-bar { height: 5px; }
+        .bar-1 { background: linear-gradient(90deg, #034152, #4A9B86); }
+        .bar-2 { background: linear-gradient(90deg, #0B5C73, #5EC4D2); }
+        .bar-3 { background: linear-gradient(90deg, #2C4A5C, #034152); }
+        .bar-end{ background: linear-gradient(90deg, #052733, #2C4A5C); }
+
+        .card-inner { padding: 28px 24px 22px; }
+
+        .card-step-line { margin-bottom: 6px; }
+        .card-step-label {
+            font-size: 12px; font-weight: 700; letter-spacing: 0.9px;
+            text-transform: uppercase; color: var(--gray-500);
+        }
+        .card-name-inline {
+            font-size: 19px; font-weight: 800; color: var(--slate);
+            letter-spacing: -0.4px;
+        }
+        .card-name-inline.danger { color: var(--slate-mid); }
+        .card-generic {
+            font-size: 13px; color: var(--gray-500); margin-bottom: 18px;
+        }
+
+        .quote-block {
+            background: var(--gray-50);
+            border-left: 3px solid var(--gray-300);
+            border-radius: 0 var(--r-sm) var(--r-sm) 0;
+            padding: 10px 14px; margin-bottom: 14px;
+        }
+        .quote-label {
+            font-size: 9px; font-weight: 700; letter-spacing: 0.8px;
+            text-transform: uppercase; color: var(--gray-500); margin-bottom: 4px;
+        }
+        .quote-text { font-size: 13px; color: var(--gray-700); font-style: italic; line-height: 1.5; }
+
+        .pills { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+        .pill {
+            display: flex; align-items: center; gap: 4px;
+            background: rgba(3,65,82,0.07);
+            border: 1px solid rgba(3,65,82,0.18);
+            border-radius: 100px; padding: 6px 12px;
+            font-size: 12px; font-weight: 600; color: var(--teal);
+        }
+        .pill.warn-red {
+            background: rgba(44,74,92,0.07);
+            border-color: rgba(44,74,92,0.18);
+            color: var(--slate-mid);
+        }
+        .pill.info {
+            background: rgba(74,155,134,0.08);
+            border-color: rgba(74,155,134,0.22);
+            color: var(--sage-dark);
+        }
+
+        .cost-row {
+            display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px;
+            background: var(--gray-50); border-radius: var(--r-sm);
+            padding: 12px 14px; margin-bottom: 16px;
+        }
+        .cost-lbl { font-size: 14px; font-weight: 600; color: var(--gray-700); }
+        .cost-val { font-size: 16px; font-weight: 800; color: var(--slate); }
+        .cost-val.hot { color: var(--teal); }
+
+        /* status buttons — beige with orange outline/text until selected, then solid orange fill */
+        .sbtn-group { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+        .sbtn {
+            padding: 10px 4px; border-radius: var(--r-sm);
+            border: 2px solid var(--coral);
+            background: var(--beige);
+            font-size: 11.5px; font-weight: 700; color: var(--coral);
+            cursor: pointer; text-align: center; line-height: 1.25;
+            transition: all 0.15s ease; user-select: none;
+        }
+        .sbtn:active { transform: scale(0.96); }
+        .sbtn.active {
+            background: var(--coral);
+            border: 2px solid var(--coral);
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        /* other-drug inline form */
+        .other-input {
+            width: 100%; padding: 11px 14px;
+            border: 1.5px dashed var(--coral); border-radius: var(--r-sm);
+            font-size: 14px; color: var(--slate); background: rgba(234,96,71,0.04);
+            outline: none; transition: border-color 0.15s;
+        }
+        .other-input:focus { border-style: solid; border-color: var(--teal-light); }
+        .other-input::placeholder { color: var(--gray-300); }
+
+        /* expandable detail */
+        .card-detail {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+            background: var(--gray-50);
+            border-top: 1px solid transparent;
+        }
+        .card-detail.open {
+            max-height: 1100px;
+            border-top-color: var(--gray-100);
+            padding: 16px 20px;
+        }
+        .detail-row { margin-bottom: 14px; }
+        .detail-lbl {
+            font-size: 12.5px; font-weight: 700; color: var(--coral);
+            margin-bottom: 8px; display: flex; align-items: center; gap: 5px;
+        }
+        .detail-lbl::before { content: "✎"; font-size: 12px; }
+
+        /* duration chips — dashed border signals a tappable input, not static text */
+        .chip-group { display: flex; flex-wrap: wrap; gap: 7px; }
+        .chip {
+            padding: 7px 13px;
+            border: 1.5px dashed var(--gray-300); border-radius: 100px;
+            background: var(--white);
+            font-size: 12px; font-weight: 600; color: var(--gray-700);
+            cursor: pointer; user-select: none; white-space: nowrap; line-height: 1;
+            transition: all 0.15s ease;
+        }
+        .chip:active { transform: scale(0.93); }
+        .chip.active {
+            background: rgba(3,65,82,0.1);
+            border: 1.5px solid var(--teal); color: var(--teal);
+        }
+
+        /* outcome chips — one line of button choices, same visual language as chips above */
+        .outcome-group { display: flex; flex-wrap: wrap; gap: 7px; }
+        .outcome-chip {
+            padding: 8px 13px;
+            border: 1.5px dashed var(--gray-300); border-radius: 100px;
+            background: var(--white);
+            font-size: 12px; font-weight: 600; color: var(--gray-700);
+            cursor: pointer; user-select: none; text-align: center; line-height: 1.25;
+            transition: all 0.15s ease; max-width: 100%;
+        }
+        .outcome-chip:active { transform: scale(0.96); }
+        .outcome-chip.active {
+            background: rgba(3,65,82,0.08);
+            border: 1.5px solid var(--teal); color: var(--teal); font-weight: 700;
+        }
+        .cost-preview-box {
+            background: linear-gradient(135deg, rgba(3,65,82,0.07), rgba(74,155,134,0.07));
+            border: 1px solid rgba(3,65,82,0.14);
+            border-radius: var(--r-sm); padding: 14px;
+            display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 10px;
+            margin-top: 6px;
+        }
+        .cpb-label { font-size: 13px; font-weight: 600; color: var(--gray-700); }
+        .cpb-amount { font-size: 22px; font-weight: 800; color: var(--teal); letter-spacing: -0.4px; }
+
+        /* connectors */
+        .connector {
+            display: flex; flex-direction: column; align-items: center;
+            padding: 14px 0;
+        }
+        .conn-line { width: 2px; height: 18px; background: var(--gray-200); }
+        .conn-badge {
+            background: var(--teal);
+            border: none;
+            border-radius: 100px; padding: 11px 20px;
+            font-size: 14px; font-weight: 700; color: var(--white);
+            text-align: center; line-height: 1.3;
+            box-shadow: 0 6px 16px rgba(3,65,82,0.28);
+            max-width: 88%;
+        }
+
+        /* ── COST CALCULATOR ──────────────────────────── */
+        .calc-card {
+            background: var(--slate); border-radius: var(--r);
+            padding: 26px 22px; color: var(--white);
+        }
+        @media (min-width: 860px) {
+            .calc-card { margin: 0 80px; }
+        }
+        .calc-sub { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 24px; line-height: 1.5; }
+        .calc-fields { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
+        .cf-row {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 14px; background: rgba(255,255,255,0.06);
+            border: 1.5px dashed rgba(94,196,210,0.4);
+            border-radius: var(--r-sm); padding: 12px 14px;
+        }
+        .cf-label { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.88); flex: 1 1 auto; line-height: 1.4; }
+        .cf-input {
+            width: 108px; flex: 0 0 auto; padding: 11px 12px; text-align: right;
+            background: rgba(255,255,255,0.1);
+            border: 1.5px solid rgba(255,255,255,0.18);
+            border-radius: var(--r-sm);
+            font-size: 18px; font-weight: 700; color: var(--white);
+        }
+        .cf-input:focus { outline: none; border-color: var(--teal-light); }
+        .cf-input::placeholder { color: rgba(255,255,255,0.3); font-weight: 400; font-size: 14px; }
+
+        .total-box {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--r); padding: 22px 20px;
+        }
+        .total-row {
+            display: flex; justify-content: space-between; align-items: baseline;
+            gap: 12px; margin-bottom: 20px;
+        }
+        .total-label { font-size: 16px; color: rgba(255,255,255,0.8); }
+        .total-num {
+            font-size: 46px; font-weight: 800; letter-spacing: -2px; line-height: 1;
+            background: linear-gradient(120deg, #5EC4D2, #4A9B86);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; text-align: right; white-space: nowrap;
+        }
+        @media (max-width: 380px) {
+            .total-num { font-size: 34px; }
+        }
+        .breakdown { display: flex; flex-direction: column; gap: 10px; }
+        .brow {
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 15px;
+        }
+        .brow-lbl { color: rgba(255,255,255,0.78); }
+        .brow-val { font-weight: 600; color: rgba(255,255,255,0.9); }
+        .brow-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 4px 0 16px; }
+
+        /* ── RISK ─────────────────────────────────────── */
+        .risk-card { background: var(--white); border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow-md); }
+        .risk-head {
+            background: linear-gradient(135deg, #052733 0%, #034152 100%);
+            padding: 22px 20px; color: var(--white);
+        }
+        .risk-head-label {
+            font-size: 10px; font-weight: 700; letter-spacing: 1px;
+            text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 5px;
+        }
+        .risk-head-title { font-size: 18px; font-weight: 800; line-height: 1.2; }
+        .risk-items { padding: 22px 20px; display: flex; flex-direction: column; gap: 20px; }
+        .risk-row { display: flex; gap: 14px; align-items: flex-start; }
+        .risk-icon {
+            width: 40px; height: 40px; border-radius: 11px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; flex-shrink: 0;
+        }
+        .ri-o { background: rgba(3,65,82,0.1); }
+        .ri-r { background: rgba(44,74,92,0.1); }
+        .ri-y { background: rgba(196,137,58,0.1); }
+        .ri-g { background: rgba(74,155,134,0.1); }
+        .risk-desc { font-size: 14.5px; color: var(--gray-700); line-height: 1.55; }
+        .risk-num {
+            font-size: 19px; font-weight: 800; color: var(--slate);
+            letter-spacing: -0.3px;
+        }
+        .risk-num.red { color: var(--slate-mid); }
+
+        /* ── THYMOS CTA ───────────────────────────────── */
+        .thymos-card {
+            background: linear-gradient(155deg, #052733 0%, #034152 100%);
+            border-radius: var(--r); padding: 32px 24px;
+            color: var(--white); position: relative; overflow: hidden;
+        }
+        .thymos-card::after {
+            content: ''; position: absolute; bottom: -50px; right: -50px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(94,196,210,0.2) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .thymos-chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(94,196,210,0.14);
+            border: 1px solid rgba(94,196,210,0.3);
+            color: #8CDDE8; font-size: 10px; font-weight: 700;
+            letter-spacing: 1px; text-transform: uppercase;
+            padding: 5px 12px; border-radius: 100px; margin-bottom: 18px;
+        }
+        .thymos-h {
+            font-size: 27px; font-weight: 800; line-height: 1.15;
+            letter-spacing: -0.4px; margin-bottom: 12px;
+        }
+        .thymos-h .g { color: #8CDDE8; }
+        .thymos-body {
+            font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.65;
+            margin-bottom: 26px;
+        }
+        .outcomes { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+        .orow { display: flex; gap: 12px; align-items: flex-start; }
+        .ocheck {
+            width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+            background: rgba(94,196,210,0.18);
+            border: 1px solid rgba(94,196,210,0.38);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 10px; color: #8CDDE8; margin-top: 1px;
+        }
+        .otext { font-size: 14px; color: rgba(255,255,255,0.82); line-height: 1.45; }
+        .otext strong { color: var(--white); }
+
+        .cta-row {
+            display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-start;
+            position: relative; z-index: 1;
+        }
+        .cta-row > * { flex: 1 1 150px; }
+        .cta-col { display: flex; flex-direction: column; }
+        .cta-btn {
+            width: 100%; padding: 17px 14px;
+            border-radius: 100px;
+            font-size: 15px; font-weight: 700; letter-spacing: -0.2px;
+            cursor: pointer; text-align: center;
+            transition: opacity 0.18s;
+        }
+        .cta-btn:active { opacity: 0.88; }
+        .cta-btn-primary {
+            background: var(--coral); border: none; color: var(--white);
+        }
+        .cta-btn-secondary {
+            background: transparent; border: 2px solid rgba(255,255,255,0.5);
+            color: var(--white);
+        }
+        .cta-note {
+            text-align: center; font-size: 12px;
+            color: rgba(255,255,255,0.35); margin-top: 10px;
+        }
+
+        /* ── CITATIONS ────────────────────────────────── */
+        sup.ref {
+            font-size: 9px; font-weight: 700; color: var(--teal);
+            vertical-align: super; line-height: 0;
+            cursor: default; margin-left: 1px;
+        }
+        sup.ref::before { content: "("; }
+        sup.ref::after { content: ")"; }
+        sup.ref a {
+            color: inherit; text-decoration: none; cursor: pointer;
+        }
+        sup.ref a:active { opacity: 0.6; }
+        .cite-item { scroll-margin-top: 90px; }
+        .citations-section { padding: 32px 20px 8px; }
+        .citations-toggle {
+            display: flex; align-items: center; justify-content: space-between;
+            background: var(--white); border: 1.5px solid var(--gray-100);
+            border-radius: var(--r-sm); padding: 14px 16px;
+            cursor: pointer; user-select: none;
+            font-size: 13px; font-weight: 600; color: var(--gray-700);
+        }
+        .citations-toggle .arrow { font-size: 11px; color: var(--gray-500); transition: transform 0.2s; }
+        .citations-toggle.open .arrow { transform: rotate(180deg); }
+        .citations-list {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: var(--white);
+            border: 1.5px solid var(--gray-100); border-top: none;
+            border-radius: 0 0 var(--r-sm) var(--r-sm);
+        }
+        .citations-list.open { max-height: 3200px; }
+        .cite-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--gray-50);
+            font-size: 11px; line-height: 1.55; color: var(--gray-700);
+        }
+        .cite-item:last-child { border-bottom: none; }
+        .cite-num { font-weight: 700; color: var(--teal); margin-right: 4px; }
+        .cite-doi {
+            display: inline-block; margin-top: 3px;
+            font-size: 10px; color: var(--gray-500);
+            word-break: break-all;
+        }
+        .cite-doi a { color: var(--teal); text-decoration: none; }
+
+        /* ── SURGERY DETAIL ──────────────────────────── */
+        .surg-stat-grid {
+            display: flex; flex-direction: column; gap: 8px;
+            margin: 14px 0;
+        }
+        .surg-stat {
+            display: flex; align-items: baseline; gap: 10px;
+            background: rgba(44,74,92,0.06);
+            border: 1px solid rgba(44,74,92,0.12);
+            border-radius: var(--r-sm); padding: 12px 14px;
+        }
+        .ss-num {
+            font-size: 17px; font-weight: 800; color: var(--slate);
+            letter-spacing: -0.4px; line-height: 1.3; flex-shrink: 0;
+        }
+        .ss-label { font-size: 13.5px; color: var(--gray-700); line-height: 1.35; }
+        .surg-expand-btn {
+            width: 100%; padding: 11px;
+            background: rgba(44,74,92,0.07);
+            border: 1.5px solid var(--slate-mid);
+            border-radius: var(--r-sm);
+            font-size: 12px; font-weight: 700; color: var(--slate-mid);
+            cursor: pointer; text-align: center; margin-top: 4px;
+            transition: all 0.15s ease;
+        }
+        .surg-expand-btn:active { opacity: 0.8; }
+        #det-surgery.open { max-height: 1400px; }
+        .surg-section { margin-bottom: 18px; }
+        .surg-section-title {
+            font-size: 11px; font-weight: 700; color: var(--slate);
+            text-transform: uppercase; letter-spacing: 0.8px;
+            margin-bottom: 10px; padding-bottom: 6px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .surg-row {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            padding: 7px 0; border-bottom: 1px solid var(--gray-50);
+            font-size: 13px; gap: 12px;
+        }
+        .surg-row:last-child { border-bottom: none; }
+        .surg-row-lbl { color: var(--gray-700); flex: 1; line-height: 1.4; }
+        .surg-row-val { font-weight: 700; color: var(--slate); text-align: right; white-space: nowrap; }
+        .surg-row-val.warn { color: var(--slate-mid); }
+        .surg-consequence {
+            display: flex; gap: 10px; align-items: flex-start;
+            padding: 8px 0; border-bottom: 1px solid var(--gray-50);
+            font-size: 13px;
+        }
+        .surg-consequence:last-child { border-bottom: none; }
+        .cons-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+        .cons-text { color: var(--gray-700); line-height: 1.5; }
+        .cons-text strong { color: var(--slate); }
+        .surg-alert {
+            background: rgba(196,137,58,0.07);
+            border: 1px solid rgba(196,137,58,0.22);
+            border-radius: var(--r-sm); padding: 12px 14px; margin-top: 4px;
+        }
+        .surg-alert-title {
+            font-size: 11px; font-weight: 700; color: var(--amber);
+            text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 6px;
+        }
+        .surg-alert-text { font-size: 12px; color: var(--gray-700); line-height: 1.55; }
+
+        /* ── FOOTNOTE ─────────────────────────────────── */
+        .footnote {
+            padding: 24px 20px 32px;
+            font-size: 11px; color: var(--gray-500); line-height: 1.6;
+            text-align: center;
+        }
+    
+        /* ── disease-specific: progression consequences & payer sections ── */
+        .payer-body { padding: 20px 20px 4px; }
+        .payer-card { background: var(--white); border-radius: var(--r); box-shadow: 0 10px 28px rgba(3,65,82,0.14); overflow: hidden; }
+        @media (min-width: 860px) {
+            .payer-card { margin: 0 80px; }
+        }
+        .payer-head { background: linear-gradient(135deg,#052733 0%,#2C4A5C 100%); padding: 22px 20px; color: var(--white); }
+        .payer-head-chip { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(94,196,210,0.7); margin-bottom: 6px; }
+        .payer-head-title { font-size: 18px; font-weight: 800; line-height: 1.2; }
+        .payer-head-sub { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 4px; line-height: 1.5; }
+        .payer-insight { background: rgba(196,137,58,0.06); border: 1px solid rgba(196,137,58,0.18); border-radius: var(--r-sm); padding: 12px 14px; margin: 0 20px 20px; }
+        .payer-phase3-box {
+            margin: 0 20px 20px;
+            background: linear-gradient(135deg, rgba(196,137,58,0.08), rgba(196,137,58,0.02));
+            border: 1px solid rgba(196,137,58,0.28); border-radius: var(--r-sm); padding: 16px;
+        }
+        .payer-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 11px 0; border-bottom: 1px solid var(--gray-50); gap: 14px; }
+        .payer-row:last-child { border-bottom: none; }
+        .payer-row-left { flex: 1; }
+        .payer-row-label { font-size: 13px; font-weight: 600; color: var(--slate); margin-bottom: 2px; line-height: 1.35; }
+        .payer-row-desc  { font-size: 11px; color: var(--gray-500); line-height: 1.45; }
+        .payer-row-val { font-size: 16px; font-weight: 800; color: var(--teal); letter-spacing: -0.3px; white-space: nowrap; text-align: right; flex-shrink: 0; }
+        .payer-row-val.warn { color: var(--slate-mid); }
+
+        /* payer total box — label+amount inline at top of the white section */
+        .payer-total-box { margin: 16px 20px 20px; background: linear-gradient(135deg,rgba(3,65,82,0.07),rgba(44,74,92,0.06)); border: 1px solid rgba(3,65,82,0.14); border-radius: var(--r-sm); padding: 16px; }
+        .payer-total-header {
+            display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap;
+            gap: 8px 10px; margin: 0 -20px 4px; padding: 18px 20px 14px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .payer-total-header .ptb-label { font-size: 15px; font-weight: 600; color: var(--gray-700); }
+        .payer-total-header .ptb-amount { font-size: 30px; font-weight: 800; color: var(--slate); letter-spacing: -1px; line-height: 1; }
+        .ptb-label { font-size: 13px; font-weight: 600; color: var(--gray-700); }
+        .ptb-amount { font-size: 28px; font-weight: 800; color: var(--slate); letter-spacing: -1px; line-height: 1; }
+        .ptb-amount span { font-size: 15px; color: var(--teal); }
+        .ptb-note { font-size: 12px; color: var(--gray-500); line-height: 1.5; margin-top: 8px; }
+        .pi-text { font-size: 12px; color: var(--gray-700); line-height: 1.55; }
+        .pi-title { font-size: 10px; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 5px; }
+
+        /* phase-3 (end-of-journey) cost projection box */
+        .phase3-box { margin-top: 14px; background: rgba(196,137,58,0.10); border: 1px solid rgba(196,137,58,0.30); border-radius: var(--r); padding: 18px 20px; }
+        .phase3-label { font-size: 12px; color: rgba(255,255,255,0.7); margin-bottom: 8px; line-height: 1.4; }
+        .phase3-label strong { color: #E8B77A; }
+        .phase3-amount { font-size: 32px; font-weight: 800; color: #E8B77A; letter-spacing: -1px; margin-bottom: 6px; line-height: 1; }
+        .phase3-sub { font-size: 11px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+        .p3-label { font-size: 12px; color: var(--gray-700); margin-bottom: 6px; line-height: 1.4; }
+        .p3-label strong { color: var(--amber); }
+        .p3-amount { font-size: 28px; font-weight: 800; color: var(--amber); letter-spacing: -1px; margin-bottom: 4px; line-height: 1; }
+        .p3-sub { font-size: 11px; color: var(--gray-500); line-height: 1.5; }
+
+        /* progression section (end-stage consequences card, inside the drug ladder) */
+        .prog-alert { background: rgba(196,137,58,0.07); border: 1px solid rgba(196,137,58,0.22); border-radius: var(--r-sm); padding: 12px 14px; margin-top: 4px; }
+        .prog-alert-title { font-size: 11px; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 6px; }
+        .prog-alert-text { font-size: 12px; color: var(--gray-700); line-height: 1.55; }
+        .prog-consequence { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--gray-50); font-size: 13px; }
+        .prog-consequence:last-child { border-bottom: none; }
+        .prog-expand-btn { width: 100%; padding: 11px; background: rgba(44,74,92,0.07); border: 1.5px solid var(--slate-mid); border-radius: var(--r-sm); font-size: 12px; font-weight: 700; color: var(--slate-mid); cursor: pointer; text-align: center; margin-top: 4px; transition: all 0.15s ease; }
+        .prog-expand-btn:active { opacity: 0.8; }
+        .prog-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid var(--gray-50); font-size: 13px; gap: 12px; }
+        .prog-row:last-child { border-bottom: none; }
+        .prog-row-lbl { color: var(--gray-700); flex: 1; line-height: 1.4; }
+        .prog-row-val { font-weight: 700; color: var(--slate); text-align: right; white-space: nowrap; }
+        .prog-row-val.warn { color: var(--slate-mid); }
+        .prog-section { margin-bottom: 18px; }
+        .prog-section-title { font-size: 11px; font-weight: 700; color: var(--slate); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--gray-100); }
+
+        /* progression stats — number sits inline beside its label, matching surg-stat treatment */
+        .prog-stat-grid { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
+        .prog-stat { display: flex; align-items: baseline; gap: 10px; background: rgba(44,74,92,0.06); border: 1px solid rgba(44,74,92,0.12); border-radius: var(--r-sm); padding: 12px 14px; }
+        .ps-num { font-size: 17px; font-weight: 800; color: var(--slate); letter-spacing: -0.4px; line-height: 1.3; flex-shrink: 0; }
+        .ps-label { font-size: 13.5px; color: var(--gray-700); line-height: 1.35; }
+</style>
+</head>
+<body>
+
+<header class="header">
+    <span class="header-brand">Thymos <em>Health</em></span>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-chip">Your Alopecia Areata Journey</div>
+    <h1 class="hero-h1">
+        Still losing hair.<br>Still cycling <span class="flame">through steroid injections.</span><br>Still not sure it will last.
+    </h1>
+    <p class="hero-sub">You're not alone. This is how alopecia areata is typically managed — and an honest look at what that journey costs, and what it leads to, over time.</p>
+    <div class="hero-grid">
+        <div class="hero-stat">
+            <div class="hs-sentence"><span class="hs-num-inline">6.7M</span> Americans will experience alopecia areata during their lifetime.<sup class="ref"><a href="#cite-1" onclick="goToCite(1);return false;">1</a></sup></div>
+        </div>
+        <div class="hero-stat">
+            <div class="hs-sentence"><span class="hs-num-inline">2</span> oral JAK inhibitors are FDA-approved for severe disease, both since 2022.<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
+        </div>
+        <div class="hero-stat">
+            <div class="hs-sentence"><span class="hs-num-inline">~45%</span> of patients reach near-full hair regrowth (SALT ≤20) on the newer JAK inhibitors.<sup class="ref"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
+        </div>
+        <div class="hero-stat">
+            <div class="hs-sentence"><span class="hs-num-inline">$50–90K/yr</span> is the list price for the oral JAK inhibitors used in severe alopecia.<sup class="ref"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></div>
+        </div>
+    </div>
+</section>
+
+<!-- STRIP NAV BANNER -->
+<nav class="nav-strip">
+    <a class="nav-strip-btn" href="#treatment-journey">The Treatment Journey</a>
+    <a class="nav-strip-btn" href="#understanding-risk">Understanding Your Risk</a>
+    <a class="nav-strip-btn" href="#different-journey">A Different Journey Exists</a>
+</nav>
+
+<!-- DRUG JOURNEY -->
+<section class="sec" id="treatment-journey">
+    <h2 class="sec-h2">How severe alopecia areata is typically treated</h2>
+    <p class="sec-body">Most dermatologists and insurance plans move from topical/injected steroids, to immunotherapy, before considering the biologic JAK inhibitor.</p>
+    <div class="mark-row">
+        <p class="sec-body-bold">Mark where you are in your journey and we'll show you the full picture.</p>
+    </div>
+
+    <div class="ladder">
+
+        <div class="drug-card" id="card-s1">
+            <div class="card-bar bar-1"></div>
+            <div class="card-inner">
+                <div class="card-step-line"><span class="card-step-label">Step 1: Your dermatologist starts you with</span> <span class="card-name-inline">Intralesional / Topical Corticosteroids</span></div>
+                <div class="card-generic">Triamcinolone injections every 4–6 weeks, or high-potency topical steroids</div>
+                <div class="quote-block">
+                    <div class="quote-label">What your doctor says</div>
+                    <div class="quote-text">"Let's start with steroid injections directly into the bald patches. This is the standard first-line approach for patchy alopecia areata."</div>
+                </div>
+                <div class="pills">
+                    <div class="pill">Can be effective for limited, patchy disease</div>
+                    <div class="pill warn-red">Regrowth is often not durable once injections stop</div>
+                    <div class="pill info">Limited effect on extensive scalp or body-wide hair loss</div>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-lbl">Annual cost before insurance</span>
+                    <span class="cost-val hot">~$800–$2,500</span>
+                </div>
+                <div class="sbtn-group">
+                    <button class="sbtn tried" onclick="setStatus('s1','tried')">✓ Tried this</button>
+                    <button class="sbtn other" onclick="setStatus('s1','other')">↔ Tried something else</button>
+                    <button class="sbtn on"    onclick="setStatus('s1','on')">● On this now</button>
+                    <button class="sbtn skip"  onclick="setStatus('s1','skip')">Not yet</button>
+                </div>
+            </div>
+            <div class="card-detail" id="det-s1">
+                <div id="std-s1">
+                    <div class="detail-row">
+                        <div class="detail-lbl">Providers seen before this was prescribed</div>
+                        <div class="chip-group" id="pre-docs-s1">
+                            <button class="chip" data-value="1" onclick="pickChip(this)">1</button>
+                            <button class="chip" data-value="2" onclick="pickChip(this)">2–3</button>
+                            <button class="chip" data-value="4" onclick="pickChip(this)">4–5</button>
+                            <button class="chip" data-value="6" onclick="pickChip(this)">6+</button>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">How long were you on this?</div>
+                        <div class="chip-group" id="dur-s1">
+                            <button class="chip" data-value="3" onclick="pickChip(this);recalc()">< 3 mo</button>
+                            <button class="chip" data-value="6" onclick="pickChip(this);recalc()">3–6 mo</button>
+                            <button class="chip active" data-value="12" onclick="pickChip(this);recalc()">6–12 mo</button>
+                            <button class="chip" data-value="24" onclick="pickChip(this);recalc()">1–2 yr</button>
+                            <button class="chip" data-value="48" onclick="pickChip(this);recalc()">2+ yr</button>
+                            
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">What happened?</div>
+                        <div class="outcome-group" id="out-s1">
+                            <button class="outcome-chip" data-value="worked" onclick="pickChip(this)">Good, lasting regrowth</button>
+                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Regrowth that didn't last</button>
+                            <button class="outcome-chip" data-value="never" onclick="pickChip(this)">Little to no regrowth</button>
+                            <button class="outcome-chip" data-value="intolerant" onclick="pickChip(this)">Injection pain / skin atrophy</button>
+                            <button class="outcome-chip" data-value="other" onclick="pickChip(this)">Something else…</button>
+                            
+                        </div>
+                        <input class="other-input" id="out-s1-other" type="text" placeholder="Describe what happened…" style="display:none; margin-top:7px;" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Your coinsurance for this drug</div>
+                        <div class="chip-group" id="coins-s1">
+                            <button class="chip" data-value="0" onclick="pickChip(this);recalc()">$0 covered</button>
+                            <button class="chip" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
+                            <button class="chip active" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
+                            <button class="chip" data-value="0.30" onclick="pickChip(this);recalc()">30%</button>
+                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">No insurance</button>
+                            
+                        </div>
+                    </div>
+                    <div class="cost-preview-box">
+                        <div class="cpb-label">Your estimated annual out-of-pocket for this drug</div>
+                        <div class="cpb-amount" id="s1-oop">$0</div>
+                    </div>
+                </div>
+                <div id="oth-s1" style="display:none">
+                    <div class="detail-row">
+                        <div class="detail-lbl">What did you try at this step?</div>
+                        <input class="other-input" type="text" placeholder="e.g. topical minoxidil, anthralin" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">How often?</div>
+                        <input class="other-input" type="text" placeholder="e.g. daily" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Annual out-of-pocket cost</div>
+                        <input class="other-input" type="number" id="oth-oop-s1" placeholder="e.g. 8000" oninput="recalc()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="connector">
+            <div class="conn-line"></div>
+            <div class="conn-badge">Extensive or recurrent hair loss — contact immunotherapy considered</div>
+            <div class="conn-line"></div>
+        </div>
+
+        <div class="drug-card" id="card-s2">
+            <div class="card-bar bar-2"></div>
+            <div class="card-inner">
+                <div class="card-step-line"><span class="card-step-label">Step 2: For more extensive disease, you try</span> <span class="card-name-inline">Contact Immunotherapy</span></div>
+                <div class="card-generic">Diphenylcyclopropenone (DPCP) — induces a controlled allergic scalp reaction weekly, in-office</div>
+                <div class="quote-block">
+                    <div class="quote-label">What your doctor says</div>
+                    <div class="quote-text">"For more extensive patches, we can try contact immunotherapy. It works by deliberately triggering a mild allergic reaction on your scalp to redirect the immune response."</div>
+                </div>
+                <div class="pills">
+                    <div class="pill">Long track record for moderate-to-extensive disease</div>
+                    <div class="pill warn-red">Requires weekly in-office visits for months</div>
+                    <div class="pill info">Response is unpredictable and often partial</div>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-lbl">Annual cost before insurance</span>
+                    <span class="cost-val hot">~$2,000–$6,000</span>
+                </div>
+                <div class="sbtn-group">
+                    <button class="sbtn tried" onclick="setStatus('s2','tried')">✓ Tried this</button>
+                    <button class="sbtn other" onclick="setStatus('s2','other')">↔ Tried something else</button>
+                    <button class="sbtn on"    onclick="setStatus('s2','on')">● On this now</button>
+                    <button class="sbtn skip"  onclick="setStatus('s2','skip')">Not yet</button>
+                </div>
+            </div>
+            <div class="card-detail" id="det-s2">
+                <div id="std-s2">
+                    <div class="detail-row">
+                        <div class="detail-lbl">How long were you on this?</div>
+                        <div class="chip-group" id="dur-s2">
+                            <button class="chip" data-value="3" onclick="pickChip(this);recalc()">< 3 mo</button>
+                            <button class="chip" data-value="6" onclick="pickChip(this);recalc()">3–6 mo</button>
+                            <button class="chip active" data-value="12" onclick="pickChip(this);recalc()">6–12 mo</button>
+                            <button class="chip" data-value="24" onclick="pickChip(this);recalc()">1–2 yr</button>
+                            <button class="chip" data-value="48" onclick="pickChip(this);recalc()">2+ yr</button>
+                            
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">What happened?</div>
+                        <div class="outcome-group" id="out-s2">
+                            <button class="outcome-chip" data-value="worked" onclick="pickChip(this)">Meaningful regrowth</button>
+                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Partial regrowth</button>
+                            <button class="outcome-chip" data-value="never" onclick="pickChip(this)">No response</button>
+                            <button class="outcome-chip" data-value="intolerant" onclick="pickChip(this)">Reaction too severe / impractical</button>
+                            <button class="outcome-chip" data-value="other" onclick="pickChip(this)">Something else…</button>
+                            
+                        </div>
+                        <input class="other-input" id="out-s2-other" type="text" placeholder="Describe what happened…" style="display:none; margin-top:7px;" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Your coinsurance for this drug</div>
+                        <div class="chip-group" id="coins-s2">
+                            <button class="chip" data-value="0" onclick="pickChip(this);recalc()">$0 covered</button>
+                            <button class="chip" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
+                            <button class="chip active" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
+                            <button class="chip" data-value="0.30" onclick="pickChip(this);recalc()">30%</button>
+                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">No insurance</button>
+                            
+                        </div>
+                    </div>
+                    <div class="cost-preview-box">
+                        <div class="cpb-label">Your estimated annual out-of-pocket for this drug</div>
+                        <div class="cpb-amount" id="s2-oop">$0</div>
+                    </div>
+                </div>
+                <div id="oth-s2" style="display:none">
+                    <div class="detail-row">
+                        <div class="detail-lbl">What did you try at this step?</div>
+                        <input class="other-input" type="text" placeholder="e.g. squaric acid dibutylester (SADBE)" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">How often?</div>
+                        <input class="other-input" type="text" placeholder="e.g. daily" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Annual out-of-pocket cost</div>
+                        <input class="other-input" type="number" id="oth-oop-s2" placeholder="e.g. 8000" oninput="recalc()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="connector">
+            <div class="conn-line"></div>
+            <div class="conn-badge">Severe / refractory disease (>50% scalp hair loss) — oral JAK inhibitor considered</div>
+            <div class="conn-line"></div>
+        </div>
+
+        <div class="drug-card" id="card-s3">
+            <div class="card-bar bar-3"></div>
+            <div class="card-inner">
+                <div class="card-step-line"><span class="card-step-label">Step 3: For severe disease, you're approved for</span> <span class="card-name-inline">Oral JAK Inhibitor</span></div>
+                <div class="card-generic">Ritlecitinib (Litfulo) or baricitinib (Olumiant) — once-daily pill, FDA-approved since 2022</div>
+                <div class="quote-block">
+                    <div class="quote-label">What your doctor says</div>
+                    <div class="quote-text">"Since your hair loss is severe, we can now try an oral JAK inhibitor. This is the first pill ever specifically approved for alopecia areata."</div>
+                </div>
+                <div class="pills">
+                    <div class="pill">45% of patients reach near-full hair regrowth (SALT ≤20) by week 52 on ritlecitinib<sup class="ref"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
+                    <div class="pill warn-red">~29% are non-responders even after a full year<sup class="ref"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
+                    <div class="pill info">Response typically requires 6–12+ months to assess fully<sup class="ref"><a href="#cite-5" onclick="goToCite(5);return false;">5</a></sup></div>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-lbl">Annual list price before insurance</span>
+                    <span class="cost-val hot">~$49,000–$89,000</span>
+                </div>
+                <div class="sbtn-group">
+                    <button class="sbtn tried" onclick="setStatus('s3','tried')">✓ Tried this</button>
+                    <button class="sbtn other" onclick="setStatus('s3','other')">↔ Tried something else</button>
+                    <button class="sbtn on"    onclick="setStatus('s3','on')">● On this now</button>
+                    <button class="sbtn skip"  onclick="setStatus('s3','skip')">Not yet</button>
+                </div>
+            </div>
+            <div class="card-detail" id="det-s3">
+                <div id="std-s3">
+                    <div class="detail-row">
+                        <div class="detail-lbl">How long were you on this?</div>
+                        <div class="chip-group" id="dur-s3">
+                            <button class="chip" data-value="3" onclick="pickChip(this);recalc()">< 3 mo</button>
+                            <button class="chip active" data-value="6" onclick="pickChip(this);recalc()">6 mo</button>
+                            <button class="chip" data-value="12" onclick="pickChip(this);recalc()">1 yr</button>
+                            <button class="chip" data-value="24" onclick="pickChip(this);recalc()">2 yr</button>
+                            <button class="chip" data-value="36" onclick="pickChip(this);recalc()">3+ yr</button>
+                            
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">What happened?</div>
+                        <div class="outcome-group" id="out-s3">
+                            <button class="outcome-chip" data-value="working" onclick="pickChip(this)">Significant regrowth</button>
+                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Partial regrowth</button>
+                            <button class="outcome-chip" data-value="never" onclick="pickChip(this)">No response</button>
+                            <button class="outcome-chip" data-value="switched" onclick="pickChip(this)">Switched between ritlecitinib/baricitinib</button>
+                            <button class="outcome-chip" data-value="other" onclick="pickChip(this)">Something else…</button>
+                            
+                        </div>
+                        <input class="other-input" id="out-s3-other" type="text" placeholder="Describe what happened…" style="display:none; margin-top:7px;" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Your coinsurance for this drug</div>
+                        <div class="chip-group" id="coins-s3">
+                            <button class="chip" data-value="0" onclick="pickChip(this);recalc()">$0 covered</button>
+                            <button class="chip" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
+                            <button class="chip active" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
+                            <button class="chip" data-value="0.30" onclick="pickChip(this);recalc()">30%</button>
+                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">No insurance</button>
+                            
+                        </div>
+                    </div>
+                    <div class="cost-preview-box">
+                        <div class="cpb-label">Your estimated annual out-of-pocket for this drug</div>
+                        <div class="cpb-amount" id="s3-oop">$0</div>
+                    </div>
+                </div>
+                <div id="oth-s3" style="display:none">
+                    <div class="detail-row">
+                        <div class="detail-lbl">What did you try at this step?</div>
+                        <input class="other-input" type="text" placeholder="e.g. deuruxolitinib (Leqselvi)" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">How often?</div>
+                        <input class="other-input" type="text" placeholder="e.g. daily" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Annual out-of-pocket cost</div>
+                        <input class="other-input" type="number" id="oth-oop-s3" placeholder="e.g. 8000" oninput="recalc()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="drug-card" id="card-prog">
+            <div class="card-bar bar-end"></div>
+            <div class="card-inner">
+                <div class="card-step-line"><span class="card-step-label">When alopecia areata outlasts (or outprices) treatment,</span> <span class="card-name-inline danger">Hair Loss After Discontinuation is Common</span></div>
+                <div class="card-generic">Regrowth that depends on continuous, expensive therapy — with no cure and a high relapse rate off treatment</div>
+                <div class="quote-block">
+                    <div class="quote-label">What Your Doctor says</div>
+                    <div class="quote-text">"Your hair has regrown nicely on the medication. If cost or side effects become an issue and you need to stop, we'd expect the hair loss to likely return."</div>
+                </div>
+                <div class="pills">
+                    <div class="pill warn-red">Response requires ongoing daily therapy — this is not a cure</div>
+                    <div class="pill warn-red">~29% of patients remain non-responders even after a year<sup class="ref"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
+                    <div class="pill warn-red">Real-world discontinuation rates for JAK inhibitors run 30–70% by year 1–4<sup class="ref"><a href="#cite-6" onclick="goToCite(6);return false;">6</a></sup></div>
+                </div>
+                <div class="prog-stat-grid">
+                    <div class="prog-stat">
+                        <div class="ps-num">45.5%</div>
+                        <div class="ps-label">Of patients reach near-full hair regrowth (SALT ≤20) by week 52 on ritlecitinib<sup class="ref"><a href="#cite-7" onclick="goToCite(7);return false;">7</a></sup></div>
+                    </div>
+                    <div class="prog-stat">
+                        <div class="ps-num">29.3%</div>
+                        <div class="ps-label">Are non-responders despite treatment<sup class="ref"><a href="#cite-7" onclick="goToCite(7);return false;">7</a></sup></div>
+                    </div>
+                    <div class="prog-stat">
+                        <div class="ps-num">93.1%</div>
+                        <div class="ps-label">Of responders sustain their response if treatment continues<sup class="ref"><a href="#cite-7" onclick="goToCite(7);return false;">7</a></sup></div>
+                    </div>
+                    <div class="prog-stat">
+                        <div class="ps-num">$49–89K/yr</div>
+                        <div class="ps-label">Annual list price range for the drugs required to sustain regrowth<sup class="ref"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></div>
+                    </div>
+                    
+                </div>
+                <button class="prog-expand-btn" id="prog-btn" onclick="toggleProg()">What you should know about durability & relapse ▼</button>
+            </div>
+            <div class="card-detail" id="det-prog">
+                <div class="prog-section">
+                    <div class="prog-section-title">Response categories at 24 months (ALLEGRO ritlecitinib program)</div>
+                    <div class="prog-row">
+                        <span class="prog-row-lbl">Responders (SALT ≤20, sustained)</span>
+                        <span class="prog-row-val">45.5%</span>
+                    </div>
+                    <div class="prog-row">
+                        <span class="prog-row-lbl">Partial responders</span>
+                        <span class="prog-row-val">12.6%</span>
+                    </div>
+                    <div class="prog-row">
+                        <span class="prog-row-lbl">Relapsers (achieved but lost response)</span>
+                        <span class="prog-row-val warn">12.6%</span>
+                    </div>
+                    <div class="prog-row">
+                        <span class="prog-row-lbl">Non-responders</span>
+                        <span class="prog-row-val warn">29.3%</span>
+                    </div>
+                </div>
+<div class="prog-section">
+                    <div class="prog-section-title">What durability actually requires</div>
+                    <div class="prog-consequence">
+                        <span class="cons-icon">⏳</span>
+                        <span class="cons-text"><strong>Full response can take over a year to emerge.</strong> Up to 11% of eventual responders needed more than 12 months of continuous ritlecitinib therapy to reach SALT ≤20 — meaning insurers and patients often have to commit to a full year of drug spend before knowing whether it's working.<sup class="ref"><a href="#cite-7" onclick="goToCite(7);return false;">7</a></sup></span>
+                    </div>
+                    <div class="prog-consequence">
+                        <span class="cons-icon">💊</span>
+                        <span class="cons-text"><strong>This is maintenance therapy, not a cure.</strong> There is no evidence that stopping a JAK inhibitor after successful regrowth preserves that regrowth — the disease is expected to recur once the drug is withdrawn, since the underlying autoimmune process isn't resolved.</strong></span>
+                    </div>
+                    <div class="prog-consequence">
+                        <span class="cons-icon">💰</span>
+                        <span class="cons-text"><strong>Cost-per-responder is a real, calculated metric — because so many patients don't respond.</strong> Formal cost-per-responder models comparing ritlecitinib and baricitinib exist specifically because a meaningful share of patients on each drug never reach a meaningful response, making the effective cost per successful outcome much higher than the list price alone.<sup class="ref"><a href="#cite-8" onclick="goToCite(8);return false;">8</a></sup></span>
+                    </div>
+                    <div class="prog-consequence">
+                        <span class="cons-icon">🧠</span>
+                        <span class="cons-text"><strong>The psychosocial burden is why patients push through years of this ladder.</strong> Patient experts describe severe alopecia areata as having a “profound impact on psychosocial health” — which is precisely why so many patients tolerate years of injections, immunotherapy, and expensive pills in pursuit of regrowth.<sup class="ref"><a href="#cite-9" onclick="goToCite(9);return false;">9</a></sup></span>
+                    </div>
+                </div>
+<div class="prog-section">
+                    <div class="prog-section-title"></div>
+                    <div class="prog-alert">
+                        <div class="prog-alert-title">⚠ “Approved” doesn't mean “guaranteed” — or “affordable”</div>
+                        <div class="prog-alert-text">Alopecia areata now has real, FDA-approved options for the first time — a major advance. But close to a third of patients on the newest therapy still don't respond, and the drugs that do work must generally be taken indefinitely at list prices in the tens of thousands of dollars a year.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div><!-- /ladder -->
+</section>
+
+<div class="divider"></div>
+
+<!-- COST CALCULATOR -->
+<section class="sec">
+    <h2 class="sec-h2">What alopecia areata is really costing you</h2>
+    <p class="sec-body">The drug cost is only part of it. Years of injections, immunotherapy visits, wigs, and the psychosocial burden of visible hair loss all carry a real financial and emotional cost most calculators ignore.</p>
+
+    <div class="calc-card">
+        <div class="calc-sub" id="calcSub">Based on your journey above–adjust the numbers to match your situation.</div>
+        <div class="calc-fields">
+            <div class="cf-row">
+                <div class="cf-label">Work/social days affected by hair loss or treatment visits in the last 12 months</div>
+                <input type="number" class="cf-input" id="sickDays" value="8" min="0" max="365"
+                       oninput="recalc()" placeholder="e.g. 8">
+            </div>
+            <div class="cf-row">
+                <div class="cf-label">Your hourly wage (for lost income calculation)</div>
+                <input type="number" class="cf-input" id="hourlyRate" value="28" min="0"
+                       oninput="recalc()" placeholder="e.g. 28">
+            </div>
+        </div>
+        <div class="total-box">
+            <div class="total-row">
+                <span class="total-label">Your estimated total annual cost of alopecia areata</span>
+                <span class="total-num" id="totalCost">$0</span>
+            </div>
+            <div class="brow-divider"></div>
+            <div class="breakdown">
+                <div class="brow">
+                    <span class="brow-lbl">Drug out-of-pocket costs</span>
+                    <span class="brow-val" id="b-drug">$0</span>
+                </div>
+                <div class="brow">
+                    <span class="brow-lbl">Lost income (missed days)</span>
+                    <span class="brow-val" id="b-sick">$0</span>
+                </div>
+                <div class="brow">
+                    <span class="brow-lbl">Reduced productivity at work (presenteeism)</span>
+                    <span class="brow-val" id="b-present">$0</span>
+                </div>
+                <div class="brow" style="margin-top:2px;">
+                    <span style="font-size:13px; color:rgba(255,255,255,0.6);">Weekly in-office immunotherapy visits and the psychosocial burden of visible hair loss both carry real time and productivity costs</span>
+                </div>
+            </div>
+        </div>
+        <div class="phase3-box">
+            <div class="phase3-label">If your care reaches the last phase of this journey — <strong>Oral JAK Inhibitor</strong></div>
+            <div class="phase3-amount" id="phase3PatientCost">$0</div>
+            <div class="phase3-sub">Projected patient out-of-pocket for a full year on oral JAK Inhibitor, given your coinsurance selection for it above (or a typical default if you haven't reached it yet)</div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PAYER COST SECTION -->
+<section class="sec">
+    <h2 class="sec-h2">What your insurer is paying</h2>
+    <p class="sec-body">Alopecia areata went from essentially no approved systemic drug spend to a $50,000–$90,000/year specialty pharmacy category almost overnight, once the first oral JAK inhibitors were approved in 2022.</p>
+
+    <div class="payer-card">
+        <div class="payer-head">
+            <div class="payer-head-chip">Annual Payer Perspective — Commercial Insurance</div>
+            <div class="payer-head-title">What your health plan spends on your alopecia areata each year</div>
+            <div class="payer-head-sub" id="payerSub">Mark your journey above to calculate your cost · All figures reflect the payer (insurer) paid portion, not your out-of-pocket cost.</div>
+        </div>
+        <div class="payer-body">
+            <div class="payer-total-header">
+                <span class="ptb-label">Estimated annual payer cost for your alopecia areata care</span>
+                <span class="ptb-amount" id="payerTotal">$0</span>
+            </div>
+            <div class="payer-row">
+                <div class="payer-row-left">
+                    <div class="payer-row-label">JAK inhibitor / immunotherapy drug spend (payer portion)</div>
+                    <div class="payer-row-desc">~80% of list price after patient coinsurance; oral JAK inhibitors are the newest and by far the largest cost driver in alopecia areata</div>
+                </div>
+                <div class="payer-row-val" id="p-drug">$0</div>
+            </div>
+            <div class="payer-row">
+                <div class="payer-row-left">
+                    <div class="payer-row-label">Medical costs (dermatology visits, injections, monitoring labs)</div>
+                    <div class="payer-row-desc">JAK inhibitors require baseline and ongoing lab monitoring (CBC, lipids, liver function)</div>
+                </div>
+                <div class="payer-row-val">~$1,800</div>
+            </div>
+            <div class="payer-row" id="prow-relapse" style="display:none;">
+                <div class="payer-row-left">
+                    <div class="payer-row-label">Added cost if therapy fails and switching is required</div>
+                    <div class="payer-row-desc">Roughly 3 in 10 patients don't respond to a given JAK inhibitor, prompting a switch to another agent</div>
+                </div>
+                <div class="payer-row-val warn" id="p-relapse">$0</div>
+            </div>
+        </div>
+        
+        <div style="padding: 0 20px 16px;">
+            <div style="font-size: 12px; font-weight: 600; color: var(--gray-700); margin-bottom: 8px;">Have you had to switch therapies due to non-response?</div>
+            <div class="chip-group" id="relapse-count">
+                <button class="chip active" data-value="0" onclick="pickChip(this);recalcPayer()">No</button>
+                <button class="chip" data-value="1" onclick="pickChip(this);recalcPayer()">Considering it</button>
+                <button class="chip" data-value="2" onclick="pickChip(this);recalcPayer()">Yes, already switched</button>
+                
+            </div>
+            <div style="font-size: 11px; color: var(--gray-500); margin-top: 6px; line-height: 1.45;">A switch effectively restarts the cost-per-responder clock on a second $50,000+/year drug</div>
+        </div>
+        <div class="payer-total-box">
+            <div class="ptb-note">Oral JAK inhibitors for severe alopecia areata list at <strong>$49,000–$89,000/year</strong> — a completely new specialty-pharmacy cost category created since 2022.</div>
+        </div>
+
+        <div class="payer-phase3-box">
+            <div class="p3-label">Payer cost projection if care reaches the last phase of this journey — <strong>Oral JAK Inhibitor</strong></div>
+            <div class="p3-amount" id="phase3PayerCost">$0</div>
+            <div class="p3-sub">Estimated annual payer spend at that phase: ~80% of drug price plus baseline medical costs, excluding any flare/crisis event above</div>
+        </div>
+
+        <div class="payer-insight">
+            <div class="pi-title">⚑ Why cost-per-responder, not list price, is the real number</div>
+            <div class="pi-text">Because roughly 3 in 10 patients don't respond even after a year of therapy, formal cost-per-responder analyses run substantially higher than the sticker price suggests — a detail that matters enormously for a drug class with no generic alternative and no cure to fall back on.</div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- RISK PROJECTION -->
+<section class="sec sec-tint" id="understanding-risk">
+    <div class="sec-chip">Understanding Your Risk</div>
+    <h2 class="sec-h2">What the research shows over time</h2>
+    <p class="sec-body">These outcomes are not inevitable — but they are the documented range of what today's best available therapies can and cannot deliver for severe alopecia areata.</p>
+
+    <div class="risk-card">
+        <div class="risk-head">
+            <div class="risk-head-label">Based on peer-reviewed clinical data</div>
+            <div class="risk-head-title">Long-term outcomes for alopecia areata patients on today's standard of care</div>
+        </div>
+        <div class="risk-items">
+            <div class="risk-row">
+                <div class="risk-icon ri-g">💊</div>
+                <div class="risk-desc"><span class="risk-num">45.5%</span> of patients on the newer JAK inhibitor reach SALT ≤20 (near-full regrowth) with sustained response through 24 months<sup class="ref" style="color:#aaa"><a href="#cite-7" onclick="goToCite(7);return false;">7</a></sup></div>
+            </div>
+            <div class="risk-row">
+                <div class="risk-icon ri-r">🚫</div>
+                <div class="risk-desc"><span class="risk-num red">29.3%</span> remain non-responders despite a full course of modern oral JAK inhibitor therapy<sup class="ref" style="color:#aaa"><a href="#cite-7" onclick="goToCite(7);return false;">7</a></sup></div>
+            </div>
+            <div class="risk-row">
+                <div class="risk-icon ri-y">🔁</div>
+                <div class="risk-desc"><span class="risk-num">12.6%</span> achieve response but relapse — regrowth is not guaranteed to be durable even while remaining on treatment<sup class="ref" style="color:#aaa"><a href="#cite-7" onclick="goToCite(7);return false;">7</a></sup></div>
+            </div>
+            <div class="risk-row">
+                <div class="risk-icon ri-o">💰</div>
+                <div class="risk-desc"><span class="risk-num">$49–89K/yr</span> list price required to sustain regrowth indefinitely, since stopping treatment is expected to allow hair loss to return<sup class="ref" style="color:#aaa"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- THYMOS CTA -->
+<section class="sec" id="different-journey">
+    <div class="thymos-card">
+        <div class="thymos-chip">✦ A different journey exists</div>
+        <h2 class="thymos-h">Thymos Health offers <span class="g">another way</span></h2>
+        <p class="thymos-body">Conventional alopecia areata care focuses on managing symptoms through sequential medications. Thymos goes further – synthesizing diagnostics, medical history, symptoms, and lifestyle to understand what's driving your disease and customizes care based on your individual needs.</p>
+        <div class="outcomes">
+            <div class="orow">
+                <div class="ocheck">✓</div>
+                <div class="otext"><strong>Root cause treatment</strong> — not just another layer of suppression</div>
+            </div>
+            <div class="orow">
+                <div class="ocheck">✓</div>
+                <div class="otext"><strong>Whole system autoimmune specialist</strong> quarterbacks your labs, your team, your care plan</div>
+            </div>
+            <div class="orow">
+                <div class="ocheck">✓</div>
+                <div class="otext"><strong>24/7 personalized support</strong> — not just at your next follow-up in 3 months</div>
+            </div>
+            <div class="orow">
+                <div class="ocheck">✓</div>
+                <div class="otext"><strong>80%+ symptom relief</strong> within 3 months across autoimmune conditions</div>
+            </div>
+        </div>
+        <div class="cta-row">
+            <div class="cta-col">
+                <button class="cta-btn cta-btn-secondary">See if Thymos is right for you →</button>
+                <div class="cta-note">No commitment. Takes 2 minutes.</div>
+            </div>
+            <a class="cta-btn cta-btn-primary" href="/quiz">Get Started</a>
+        </div>
+    </div>
+</section>
+
+<!-- CITATIONS -->
+<div class="citations-section">
+    <div class="citations-toggle" id="citeToggle" onclick="toggleCites()">
+        <span>Sources &amp; Citations</span>
+        <span class="arrow">▼</span>
+    </div>
+    <div class="citations-list" id="citeList">
+        <div class="cite-item" id="cite-1">
+            <span class="cite-num">[1]</span>
+            National Alopecia Areata Foundation prevalence estimates, cross-referenced with FDA drug-approval program materials; commonly cited range of 700,000 to 2 million Americans with active alopecia areata at any given time.
+            <div class="cite-doi">Source: <a href="https://www.va.gov/formularyadvisor/DOC_PDF/MON_Ritlecitinib_LITFULO_in_Alopecia_Areata_Monograph_Dec_2023.pdf" target="_blank">FDA/VA formulary monograph</a></div>
+        </div>
+        <div class="cite-item" id="cite-2">
+            <span class="cite-num">[2]</span>
+            Ritlecitinib (LITFULO) in Alopecia Areata National Drug Monograph, U.S. Department of Veterans Affairs, 2023. Ritlecitinib and baricitinib are the two FDA-approved oral JAK inhibitors for severe alopecia areata, both approved since 2022.
+            <div class="cite-doi">Source: <a href="https://www.va.gov/formularyadvisor/DOC_PDF/MON_Ritlecitinib_LITFULO_in_Alopecia_Areata_Monograph_Dec_2023.pdf" target="_blank">va.gov</a></div>
+        </div>
+        <div class="cite-item" id="cite-3">
+            <span class="cite-num">[3]</span>
+            Patterns of clinical response in patients with alopecia areata treated with ritlecitinib in the ALLEGRO clinical development programme. PMC, 2025. Of 191 patients treated with ritlecitinib 50mg: 45.5% were SALT ≤20 responders, 12.6% partial responders, 12.6% relapsers, 29.3% non-responders through Month 24.
+            <div class="cite-doi">PMC: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12105426/" target="_blank">PMC12105426</a></div>
+        </div>
+        <div class="cite-item" id="cite-4">
+            <span class="cite-num">[4]</span>
+            A Cost-per-Responder Analysis of Ritlecitinib vs Baricitinib in Severe Alopecia Areata. <em>Journal of Health Economics and Outcomes Research</em>, 2026. Cost modeling based on U.S. wholesale acquisition costs for once-daily ritlecitinib 50mg and baricitinib 2mg/4mg over a 1-year time horizon.
+            <div class="cite-doi">DOI: <a href="https://jheor.org/article/159914-a-cost-per-responder-analysis-of-ritlecitinib-vs-baricitinib-in-severe-alopecia-areata" target="_blank">10.36469/001c.159914</a></div>
+        </div>
+        <div class="cite-item" id="cite-5">
+            <span class="cite-num">[5]</span>
+            Long-term safety and efficacy of ritlecitinib in adults and adolescents with alopecia areata (ALLEGRO-LT). PMC, 2025. At Month 24, 73.5% and 66.4% of patients achieved SALT ≤20 and ≤10 respectively; mean exposure was 728.7 days, indicating extended treatment duration is typical.
+            <div class="cite-doi">PMC: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12105460/" target="_blank">PMC12105460</a></div>
+        </div>
+        <div class="cite-item" id="cite-6">
+            <span class="cite-num">[6]</span>
+            Cost-Effectiveness Analysis of Ritlecitinib Compared With No Treatment in Patients With Severe Alopecia Areata in Japan. PMC, 2025. Real-world JAK inhibitor discontinuation/retention benchmarks cited from rheumatoid arthritis literature: ~50% retention at 4 years (Spain), ~70% discontinuation within 12 months in some Japanese cohorts, primarily due to non-response.
+            <div class="cite-doi">PMC: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13075529/" target="_blank">PMC13075529</a></div>
+        </div>
+        <div class="cite-item" id="cite-7">
+            <span class="cite-num">[7]</span>
+            Same ALLEGRO patterns-of-response study (PMC12105426): full response-category breakdown through Month 24, including sustained response and complete response rates among responders.
+            <div class="cite-doi">PMC: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12105426/" target="_blank">PMC12105426</a></div>
+        </div>
+        <div class="cite-item" id="cite-8">
+            <span class="cite-num">[8]</span>
+            A Cost Per Responder Analysis of Ritlecitinib and Baricitinib, ISPOR 2025 poster. Decision-tree cost modeling explicitly built around the fact that a substantial share of initiators on either drug do not reach a meaningful SALT response, making cost-per-responder a materially different (and higher) figure than list price alone.
+            <div class="cite-doi">Source: <a href="https://www.ispor.org/heor-resources/presentations-database/presentation-cti/ispor-2025/poster-session-4/a-cost-per-responder-analysis-of-ritlecitinib-and-baricitinib-assessing-the-impact-of-clinical-efficacy-and-dosing-variability-on-overall-treatment-costs-of-severe-alopecia-areata-aa" target="_blank">ispor.org</a></div>
+        </div>
+        <div class="cite-item" id="cite-9">
+            <span class="cite-num">[9]</span>
+            Ritlecitinib for treating severe alopecia areata in people 12 years and over. NICE/NCBI Bookshelf technology appraisal, 2024. Patient experts described living with severe alopecia areata as having “a profound impact on psychosocial health.”
+            <div class="cite-doi">Source: <a href="https://www.ncbi.nlm.nih.gov/books/NBK613467/" target="_blank">NCBI Bookshelf</a></div>
+        </div>
+    </div>
+</div>
+
+<footer class="footnote">
+    All statistics from peer-reviewed medical literature. Sources available on request.<br>
+    This tool is for educational purposes only and does not constitute medical advice.<br><br>
+    © 2026 Thymos Health &nbsp;·&nbsp; Confidential
+</footer>
+
+<script>
+/* ── CONFIG (disease-specific) ── */
+const STEP_IDS   = ["s1", "s2", "s3"];
+const STEP_NAMES = {"s1": "Intralesional / Topical Corticosteroids", "s2": "Contact Immunotherapy", "s3": "Oral JAK Inhibitor"};
+const AWP        = {"s1": 1500, "s2": 4000, "s3": 60000};
+const IS_DRUG    = {"s1": true, "s2": true, "s3": true};
+const HAS_FLARE  = true;
+const FLARE_VAL  = {"0": 0, "1": 0, "2": 15000};
+const DEFAULT_AWP= 4000;
+const MEDICAL_COST = 1800;
+const PRESENT_MULT = 60;
+const LAST_ID    = "s3";
+const LAST_COINS_DEFAULT = 0.2;
+
+/* ── STATE ── */
+const state = {};
+STEP_IDS.forEach(id => state[id] = {status: null});
+
+/* ── STATUS TOGGLE ── */
+function setStatus(drug, s) {
+    state[drug].status = s;
+    const card   = document.getElementById('card-' + drug);
+    const detail = document.getElementById('det-'  + drug);
+    const std    = document.getElementById('std-'  + drug);
+    const oth    = document.getElementById('oth-'  + drug);
+
+    card.classList.remove('tried', 'on-now', 'not-yet');
+    card.querySelectorAll('.sbtn').forEach(b => b.classList.remove('active'));
+
+    if (s === 'tried') { card.classList.add('tried');   card.querySelector('.sbtn.tried').classList.add('active'); }
+    if (s === 'other') { card.classList.add('tried');   card.querySelector('.sbtn.other').classList.add('active'); }
+    if (s === 'on')    { card.classList.add('on-now');  card.querySelector('.sbtn.on').classList.add('active');    }
+    if (s === 'skip')  { card.classList.add('not-yet'); card.querySelector('.sbtn.skip').classList.add('active');  }
+
+    const open = s === 'tried' || s === 'on' || s === 'other';
+    detail.classList.toggle('open', open);
+    if (std) std.style.display = (open && s !== 'other') ? 'block' : 'none';
+    if (oth) oth.style.display = (s === 'other')         ? 'block' : 'none';
+
+    recalc();
+}
+
+/* ── CHIP HELPERS ── */
+function pickChip(el) {
+    const group = el.closest('.chip-group, .outcome-group');
+    group.querySelectorAll('.chip, .outcome-chip').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    if (group.classList.contains('outcome-group')) {
+        const otherInput = document.getElementById(group.id + '-other');
+        if (otherInput) {
+            const show = el.dataset.value === 'other';
+            otherInput.style.display = show ? 'block' : 'none';
+            if (show) otherInput.focus();
+        }
+    }
+}
+function getChipVal(groupId, fallback) {
+    const active = document.querySelector('#' + groupId + ' [data-value].active');
+    return active ? active.dataset.value : String(fallback);
+}
+
+/* ── RECALCULATE PATIENT COST ── */
+function recalc() {
+    let drugCost = 0;
+
+    STEP_IDS.forEach(id => {
+        const st = state[id].status;
+        if (st === 'tried' || st === 'on') {
+            const months = parseFloat(getChipVal('dur-' + id, 12));
+            const coins  = parseFloat(getChipVal('coins-' + id, 0.20));
+            const years  = Math.min(months / 12, 1);
+            const cost   = AWP[id] * coins * years;
+            drugCost += cost;
+            const oopEl = document.getElementById(id + '-oop');
+            if (oopEl) oopEl.textContent = '$' + Math.round(AWP[id] * coins).toLocaleString();
+        } else if (st === 'other') {
+            const othEl = document.getElementById('oth-oop-' + id);
+            if (othEl) drugCost += parseFloat(othEl.value) || 0;
+        }
+    });
+
+    const sickDaysEl   = document.getElementById('sickDays');
+    const hourlyRateEl = document.getElementById('hourlyRate');
+    const sickDays   = Math.max(0, parseFloat(sickDaysEl ? sickDaysEl.value : 0)  || 0);
+    const hourlyRate = Math.max(0, parseFloat(hourlyRateEl ? hourlyRateEl.value : 0) || 0);
+
+    const sickCost    = sickDays * hourlyRate * 8;
+    const presentCost = PRESENT_MULT * hourlyRate;
+
+    const total = Math.round(drugCost + sickCost + presentCost);
+
+    document.getElementById('b-drug').textContent    = '$' + Math.round(drugCost).toLocaleString();
+    document.getElementById('b-sick').textContent    = '$' + Math.round(sickCost).toLocaleString();
+    document.getElementById('b-present').textContent = '$' + Math.round(presentCost).toLocaleString();
+    document.getElementById('totalCost').textContent  = '$' + total.toLocaleString();
+
+    recalcPayer();
+}
+
+/* ── PAYER RECALCULATE ── */
+function recalcPayer() {
+    let payerDrugAWP = DEFAULT_AWP;
+    for (let i = STEP_IDS.length - 1; i >= 0; i--) {
+        const id = STEP_IDS[i];
+        if (state[id].status === 'on' || state[id].status === 'tried') {
+            payerDrugAWP = AWP[id];
+            break;
+        }
+    }
+    const payerDrugCost = Math.round(payerDrugAWP * 0.80);
+
+    let flareVal = 0;
+    if (HAS_FLARE) {
+        const relapseRow = document.getElementById('prow-relapse');
+        const count = getChipVal('relapse-count', 0);
+        flareVal = FLARE_VAL[count] || 0;
+        if (flareVal > 0) {
+            relapseRow.style.display = 'flex';
+            document.getElementById('p-relapse').textContent = '$' + flareVal.toLocaleString();
+        } else if (relapseRow) {
+            relapseRow.style.display = 'none';
+        }
+    }
+
+    const payerTotal = payerDrugCost + MEDICAL_COST + flareVal;
+
+    document.getElementById('p-drug').textContent  = '$' + payerDrugCost.toLocaleString();
+    document.getElementById('payerTotal').textContent = '$' + payerTotal.toLocaleString();
+
+    updatePhaseIndicator();
+    updatePhase3Projection();
+}
+
+/* ── CURRENT PHASE (based on where the patient is in their journey) ── */
+function findCurrentStepIndex() {
+    for (let i = STEP_IDS.length - 1; i >= 0; i--) {
+        const id = STEP_IDS[i];
+        if (state[id].status === 'on' || state[id].status === 'tried' || state[id].status === 'other') {
+            return i;
+        }
+    }
+    return -1;
+}
+
+function updatePhaseIndicator() {
+    const idx = findCurrentStepIndex();
+    const calcSub  = document.getElementById('calcSub');
+    const payerSub = document.getElementById('payerSub');
+
+    let phaseText;
+    if (idx === -1) {
+        phaseText = 'Mark your journey above to calculate your cost';
+    } else {
+        const id = STEP_IDS[idx];
+        phaseText = 'Reflecting Step ' + (idx + 1) + ' — ' + STEP_NAMES[id];
+    }
+
+    if (calcSub)  calcSub.textContent  = phaseText + ' · adjust the fields below to match your situation';
+    if (payerSub) payerSub.textContent = phaseText + ' · All figures reflect the payer (insurer) paid portion, not your out-of-pocket cost.';
+}
+
+/* ── PHASE 3 (LAST PHASE) PROJECTION — for both patient and payer ── */
+function updatePhase3Projection() {
+    const coins = parseFloat(getChipVal('coins-' + LAST_ID, LAST_COINS_DEFAULT));
+    const lastAWP = AWP[LAST_ID];
+
+    const phase3Patient = lastAWP * coins;
+    const phase3Payer   = Math.round(lastAWP * 0.80) + MEDICAL_COST;
+
+    const p3PatientEl = document.getElementById('phase3PatientCost');
+    const p3PayerEl   = document.getElementById('phase3PayerCost');
+    if (p3PatientEl) p3PatientEl.textContent = '$' + Math.round(phase3Patient).toLocaleString();
+    if (p3PayerEl)   p3PayerEl.textContent   = '$' + Math.round(phase3Payer).toLocaleString();
+}
+
+/* ── PROGRESSION TOGGLE ── */
+function toggleProg() {
+    const detail = document.getElementById('det-prog');
+    const btn    = document.getElementById('prog-btn');
+    const isOpen = detail.classList.toggle('open');
+    btn.textContent = isOpen
+        ? 'What you should know about durability & relapse ▲'
+        : 'What you should know about durability & relapse ▼';
+}
+
+/* ── CITATIONS TOGGLE ── */
+function toggleCites() {
+    document.getElementById('citeToggle').classList.toggle('open');
+    document.getElementById('citeList').classList.toggle('open');
+}
+
+function goToCite(n) {
+    const toggle = document.getElementById('citeToggle');
+    const list   = document.getElementById('citeList');
+    if (!list.classList.contains('open')) {
+        toggle.classList.add('open');
+        list.classList.add('open');
+    }
+    const target = document.getElementById('cite-' + n);
+    if (target) {
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'center' }), 400);
+    }
+}
+
+
+/* ── INIT ── */
+recalc();
+recalcPayer();
+</script>
+</body>
+</html>

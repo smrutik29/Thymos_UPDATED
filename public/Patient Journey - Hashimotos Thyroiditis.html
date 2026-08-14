@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Your Hashimoto's Journey | Thymos Health</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        :root {
+            --teal:        #034152;
+            --teal-mid:    #0B5C73;
+            --teal-light:  #5EC4D2;
+            --coral:       #EA6047;
+            --coral-dark:  #D14F38;
+            --sage:        #4A9B86;
+            --sage-dark:   #357A68;
+            --sage-tint:   #DFE8E8;
+            --slate:       #034152;
+            --slate-mid:   #2C4A5C;
+            --amber:       #C4893A;
+            --beige:       #F8F5F0;
+            --gray-50:     #F8F5F0;
+            --gray-100:    #EDE6D9;
+            --gray-200:    #DCD3C2;
+            --gray-300:    #C6B9A3;
+            --gray-500:    #7A8A96;
+            --gray-700:    #3E5550;
+            --gray-900:    #182220;
+            --white:       #FFFFFF;
+            --muted:       #7A8A96;
+            --shadow-sm:   0 1px 3px rgba(3,65,82,0.07), 0 1px 2px rgba(3,65,82,0.04);
+            --shadow-md:   0 4px 14px rgba(3,65,82,0.10), 0 2px 4px rgba(3,65,82,0.05);
+            --shadow-lg:   0 12px 32px rgba(3,65,82,0.14), 0 4px 8px rgba(3,65,82,0.06);
+            --r:           20px;
+            --r-sm:        10px;
+        }
+
+        html {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            font-size: 16px;
+            color: var(--gray-900);
+            background: var(--gray-50);
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body { min-height: 100vh; overflow-x: hidden; }
+
+        /* ── HEADER ───────────────────────────────────── */
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(255,255,255,0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gray-100);
+            padding: 13px 20px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .header-brand { font-size: 15px; font-weight: 700; color: var(--slate); letter-spacing: -0.2px; }
+        .header-brand em { color: var(--teal); font-style: normal; }
+
+        /* ── HERO ─────────────────────────────────────── */
+        .hero {
+            background: var(--slate);
+            padding: 44px 24px 52px;
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -60px; right: -60px;
+            width: 240px; height: 240px;
+            background: radial-gradient(circle, rgba(94,196,210,0.22) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .hero::after {
+            content: ''; position: absolute; bottom: -40px; left: -40px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(234,96,71,0.16) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .hero-chip {
+            display: inline-flex; align-items: center; gap: 5px;
+            background: rgba(94,196,210,0.12);
+            border: 1px solid rgba(94,196,210,0.28);
+            color: var(--teal-light);
+            font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+            padding: 5px 12px; border-radius: 100px; margin-bottom: 22px;
+        }
+        .hero-h1 {
+            font-size: 32px; font-weight: 800; color: var(--white);
+            line-height: 1.13; letter-spacing: -0.6px; margin-bottom: 16px;
+        }
+        .hero-h1 .flame {
+            background: linear-gradient(120deg, #5EC4D2 0%, #4A9B86 60%, #A3D4C8 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-sub {
+            font-size: 15px; color: rgba(255,255,255,0.88); line-height: 1.65;
+            margin-bottom: 36px;
+        }
+        .hero-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+        }
+        .hero-stat {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px; padding: 16px 14px;
+        }
+        .hs-sentence {
+            font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.88);
+            line-height: 1.5;
+        }
+        .hs-num-inline {
+            font-size: 20px; font-weight: 800;
+            background: linear-gradient(120deg, #5EC4D2 0%, #4A9B86 60%, #A3D4C8 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── STRIP NAV BANNER ─────────────────────────── */
+        .nav-strip {
+            background: #154E5E;
+            border-bottom: 1px solid rgba(3,65,82,0.12);
+            padding: 14px 16px;
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 8px;
+        }
+        .nav-strip-btn {
+            background:
+                linear-gradient(var(--slate), var(--slate)) padding-box,
+                linear-gradient(120deg, #5EC4D2 0%, #4A9B86 60%, #A3D4C8 100%) border-box;
+            border: 1.5px solid transparent;
+            border-radius: 100px;
+            padding: 9px 16px;
+            font-size: 12px; font-weight: 700; color: var(--white);
+            text-decoration: none; white-space: nowrap;
+            transition: all 0.15s ease;
+        }
+        .nav-strip-btn:active { opacity: 0.8; }
+
+        /* ── SECTION SHELL ────────────────────────────── */
+        .sec { padding: 44px 20px; background: var(--beige); }
+        .sec.sec-tint { background: var(--sage-tint); }
+        .sec-chip {
+            font-size: 10px; font-weight: 700; letter-spacing: 1.1px;
+            text-transform: uppercase; color: var(--coral); margin-bottom: 8px;
+        }
+        .sec-h2 {
+            font-size: 24px; font-weight: 800; color: var(--slate);
+            line-height: 1.2; letter-spacing: -0.4px; margin-bottom: 8px;
+        }
+        .sec-body {
+            font-size: 14px; color: var(--gray-700); line-height: 1.65;
+            margin-bottom: 28px;
+        }
+        .sec-body-bold {
+            font-size: 18px; font-weight: 700; color: var(--coral);
+            line-height: 1.6; margin: 0; text-align: center;
+        }
+        .mark-row {
+            display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+            gap: 10px; margin-top: -14px; margin-bottom: 28px;
+        }
+        .divider { height: 1px; background: var(--gray-100); margin: 0 20px; }
+
+        /* ── DRUG LADDER ──────────────────────────────── */
+        .ladder { display: flex; flex-direction: column; gap: 6px; }
+        @media (min-width: 860px) {
+            .ladder { padding: 0 80px; }
+        }
+
+        .drug-card {
+            background: var(--white);
+            border-radius: var(--r);
+            box-shadow: 0 10px 28px rgba(3,65,82,0.14);
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        .drug-card.tried  { border-color: var(--amber); }
+        .drug-card.on-now { border-color: var(--teal);  }
+        .drug-card.not-yet { opacity: 0.55; }
+
+        .card-bar { height: 5px; }
+        .bar-1 { background: linear-gradient(90deg, #034152, #4A9B86); }
+        .bar-2 { background: linear-gradient(90deg, #0B5C73, #5EC4D2); }
+        .bar-3 { background: linear-gradient(90deg, #2C4A5C, #034152); }
+        .bar-end{ background: linear-gradient(90deg, #052733, #2C4A5C); }
+
+        .card-inner { padding: 28px 24px 22px; }
+
+        .card-step-line { margin-bottom: 6px; }
+        .card-step-label {
+            font-size: 12px; font-weight: 700; letter-spacing: 0.9px;
+            text-transform: uppercase; color: var(--gray-500);
+        }
+        .card-name-inline {
+            font-size: 19px; font-weight: 800; color: var(--slate);
+            letter-spacing: -0.4px;
+        }
+        .card-name-inline.danger { color: var(--slate-mid); }
+        .card-generic {
+            font-size: 13px; color: var(--gray-500); margin-bottom: 18px;
+        }
+
+        .quote-block {
+            background: var(--gray-50);
+            border-left: 3px solid var(--gray-300);
+            border-radius: 0 var(--r-sm) var(--r-sm) 0;
+            padding: 10px 14px; margin-bottom: 14px;
+        }
+        .quote-label {
+            font-size: 9px; font-weight: 700; letter-spacing: 0.8px;
+            text-transform: uppercase; color: var(--gray-500); margin-bottom: 4px;
+        }
+        .quote-text { font-size: 13px; color: var(--gray-700); font-style: italic; line-height: 1.5; }
+
+        .pills { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+        .pill {
+            display: flex; align-items: center; gap: 4px;
+            background: rgba(3,65,82,0.07);
+            border: 1px solid rgba(3,65,82,0.18);
+            border-radius: 100px; padding: 6px 12px;
+            font-size: 12px; font-weight: 600; color: var(--teal);
+        }
+        .pill.warn-red {
+            background: rgba(44,74,92,0.07);
+            border-color: rgba(44,74,92,0.18);
+            color: var(--slate-mid);
+        }
+        .pill.info {
+            background: rgba(74,155,134,0.08);
+            border-color: rgba(74,155,134,0.22);
+            color: var(--sage-dark);
+        }
+
+        .cost-row {
+            display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px;
+            background: var(--gray-50); border-radius: var(--r-sm);
+            padding: 12px 14px; margin-bottom: 16px;
+        }
+        .cost-lbl { font-size: 14px; font-weight: 600; color: var(--gray-700); }
+        .cost-val { font-size: 16px; font-weight: 800; color: var(--slate); }
+        .cost-val.hot { color: var(--teal); }
+
+        /* status buttons — beige with orange outline/text until selected, then solid orange fill */
+        .sbtn-group { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+        .sbtn {
+            padding: 10px 4px; border-radius: var(--r-sm);
+            border: 2px solid var(--coral);
+            background: var(--beige);
+            font-size: 11.5px; font-weight: 700; color: var(--coral);
+            cursor: pointer; text-align: center; line-height: 1.25;
+            transition: all 0.15s ease; user-select: none;
+        }
+        .sbtn:active { transform: scale(0.96); }
+        .sbtn.active {
+            background: var(--coral);
+            border: 2px solid var(--coral);
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        /* other-drug inline form */
+        .other-input {
+            width: 100%; padding: 11px 14px;
+            border: 1.5px dashed var(--coral); border-radius: var(--r-sm);
+            font-size: 14px; color: var(--slate); background: rgba(234,96,71,0.04);
+            outline: none; transition: border-color 0.15s;
+        }
+        .other-input:focus { border-style: solid; border-color: var(--teal-light); }
+        .other-input::placeholder { color: var(--gray-300); }
+
+        /* expandable detail */
+        .card-detail {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+            background: var(--gray-50);
+            border-top: 1px solid transparent;
+        }
+        .card-detail.open {
+            max-height: 1100px;
+            border-top-color: var(--gray-100);
+            padding: 16px 20px;
+        }
+        .detail-row { margin-bottom: 14px; }
+        .detail-lbl {
+            font-size: 12.5px; font-weight: 700; color: var(--coral);
+            margin-bottom: 8px; display: flex; align-items: center; gap: 5px;
+        }
+        .detail-lbl::before { content: "✎"; font-size: 12px; }
+
+        /* duration chips — dashed border signals a tappable input, not static text */
+        .chip-group { display: flex; flex-wrap: wrap; gap: 7px; }
+        .chip {
+            padding: 7px 13px;
+            border: 1.5px dashed var(--gray-300); border-radius: 100px;
+            background: var(--white);
+            font-size: 12px; font-weight: 600; color: var(--gray-700);
+            cursor: pointer; user-select: none; white-space: nowrap; line-height: 1;
+            transition: all 0.15s ease;
+        }
+        .chip:active { transform: scale(0.93); }
+        .chip.active {
+            background: rgba(3,65,82,0.1);
+            border: 1.5px solid var(--teal); color: var(--teal);
+        }
+
+        /* outcome chips — one line of button choices, same visual language as chips above */
+        .outcome-group { display: flex; flex-wrap: wrap; gap: 7px; }
+        .outcome-chip {
+            padding: 8px 13px;
+            border: 1.5px dashed var(--gray-300); border-radius: 100px;
+            background: var(--white);
+            font-size: 12px; font-weight: 600; color: var(--gray-700);
+            cursor: pointer; user-select: none; text-align: center; line-height: 1.25;
+            transition: all 0.15s ease; max-width: 100%;
+        }
+        .outcome-chip:active { transform: scale(0.96); }
+        .outcome-chip.active {
+            background: rgba(3,65,82,0.08);
+            border: 1.5px solid var(--teal); color: var(--teal); font-weight: 700;
+        }
+        .cost-preview-box {
+            background: linear-gradient(135deg, rgba(3,65,82,0.07), rgba(74,155,134,0.07));
+            border: 1px solid rgba(3,65,82,0.14);
+            border-radius: var(--r-sm); padding: 14px;
+            display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 10px;
+            margin-top: 6px;
+        }
+        .cpb-label { font-size: 13px; font-weight: 600; color: var(--gray-700); }
+        .cpb-amount { font-size: 22px; font-weight: 800; color: var(--teal); letter-spacing: -0.4px; }
+
+        /* connectors */
+        .connector {
+            display: flex; flex-direction: column; align-items: center;
+            padding: 14px 0;
+        }
+        .conn-line { width: 2px; height: 18px; background: var(--gray-200); }
+        .conn-badge {
+            background: var(--teal);
+            border: none;
+            border-radius: 100px; padding: 11px 20px;
+            font-size: 14px; font-weight: 700; color: var(--white);
+            text-align: center; line-height: 1.3;
+            box-shadow: 0 6px 16px rgba(3,65,82,0.28);
+            max-width: 88%;
+        }
+
+        /* ── COST CALCULATOR ──────────────────────────── */
+        .calc-card {
+            background: var(--slate); border-radius: var(--r);
+            padding: 26px 22px; color: var(--white);
+        }
+        @media (min-width: 860px) {
+            .calc-card { margin: 0 80px; }
+        }
+        .calc-sub { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 24px; line-height: 1.5; }
+        .calc-fields { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
+        .cf-row {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 14px; background: rgba(255,255,255,0.06);
+            border: 1.5px dashed rgba(94,196,210,0.4);
+            border-radius: var(--r-sm); padding: 12px 14px;
+        }
+        .cf-label { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.88); flex: 1 1 auto; line-height: 1.4; }
+        .cf-input {
+            width: 108px; flex: 0 0 auto; padding: 11px 12px; text-align: right;
+            background: rgba(255,255,255,0.1);
+            border: 1.5px solid rgba(255,255,255,0.18);
+            border-radius: var(--r-sm);
+            font-size: 18px; font-weight: 700; color: var(--white);
+        }
+        .cf-input:focus { outline: none; border-color: var(--teal-light); }
+        .cf-input::placeholder { color: rgba(255,255,255,0.3); font-weight: 400; font-size: 14px; }
+        .cf-input-group {
+            display: flex; align-items: center; flex: 0 0 auto;
+            background: rgba(255,255,255,0.1);
+            border: 1.5px solid rgba(255,255,255,0.18);
+            border-radius: var(--r-sm);
+            overflow: hidden;
+        }
+        .cf-input-group:focus-within { border-color: var(--teal-light); }
+        .cf-dollar { padding: 11px 0 11px 12px; font-size: 18px; font-weight: 700; color: var(--white); }
+        .cf-input-group .cf-input {
+            width: 84px; padding: 11px 12px 11px 2px;
+            background: transparent; border: none; border-radius: 0;
+        }
+
+        .total-box {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--r); padding: 22px 20px;
+        }
+        .total-row {
+            display: flex; justify-content: space-between; align-items: baseline;
+            gap: 12px; margin-bottom: 20px;
+        }
+        .total-label { font-size: 16px; color: rgba(255,255,255,0.8); }
+        .total-num {
+            font-size: 46px; font-weight: 800; letter-spacing: -2px; line-height: 1;
+            background: linear-gradient(120deg, #5EC4D2, #4A9B86);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; text-align: right; white-space: nowrap;
+        }
+        @media (max-width: 380px) {
+            .total-num { font-size: 34px; }
+        }
+        .breakdown { display: flex; flex-direction: column; gap: 10px; }
+        .brow {
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 15px;
+        }
+        .brow-lbl { color: rgba(255,255,255,0.78); }
+        .brow-val { font-weight: 600; color: rgba(255,255,255,0.9); }
+        .brow-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 4px 0 16px; }
+
+        /* ── RISK ─────────────────────────────────────── */
+        .risk-card { background: var(--white); border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow-md); }
+        .risk-head {
+            background: linear-gradient(135deg, #052733 0%, #034152 100%);
+            padding: 22px 20px; color: var(--white);
+        }
+        .risk-head-label {
+            font-size: 10px; font-weight: 700; letter-spacing: 1px;
+            text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 5px;
+        }
+        .risk-head-title { font-size: 18px; font-weight: 800; line-height: 1.2; }
+        .risk-items { padding: 22px 20px; display: flex; flex-direction: column; gap: 20px; }
+        .risk-row { display: flex; gap: 14px; align-items: flex-start; }
+        .risk-icon {
+            width: 40px; height: 40px; border-radius: 11px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; flex-shrink: 0;
+        }
+        .ri-o { background: rgba(3,65,82,0.1); }
+        .ri-r { background: rgba(44,74,92,0.1); }
+        .ri-y { background: rgba(196,137,58,0.1); }
+        .ri-g { background: rgba(74,155,134,0.1); }
+        .risk-desc { font-size: 14.5px; color: var(--gray-700); line-height: 1.55; }
+        .risk-num {
+            font-size: 19px; font-weight: 800; color: var(--slate);
+            letter-spacing: -0.3px;
+        }
+        .risk-num.red { color: var(--slate-mid); }
+
+        /* ── THYMOS CTA ───────────────────────────────── */
+        .thymos-card {
+            background: linear-gradient(155deg, #052733 0%, #034152 100%);
+            border-radius: var(--r); padding: 32px 24px;
+            color: var(--white); position: relative; overflow: hidden;
+        }
+        .thymos-card::after {
+            content: ''; position: absolute; bottom: -50px; right: -50px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(94,196,210,0.2) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .thymos-chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(94,196,210,0.14);
+            border: 1px solid rgba(94,196,210,0.3);
+            color: #8CDDE8; font-size: 10px; font-weight: 700;
+            letter-spacing: 1px; text-transform: uppercase;
+            padding: 5px 12px; border-radius: 100px; margin-bottom: 18px;
+        }
+        .thymos-h {
+            font-size: 27px; font-weight: 800; line-height: 1.15;
+            letter-spacing: -0.4px; margin-bottom: 12px;
+        }
+        .thymos-h .g { color: #8CDDE8; }
+        .thymos-body {
+            font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.65;
+            margin-bottom: 26px;
+        }
+        .outcomes { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+        .orow { display: flex; gap: 12px; align-items: flex-start; }
+        .ocheck {
+            width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+            background: rgba(94,196,210,0.18);
+            border: 1px solid rgba(94,196,210,0.38);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 10px; color: #8CDDE8; margin-top: 1px;
+        }
+        .otext { font-size: 14px; color: rgba(255,255,255,0.82); line-height: 1.45; }
+        .otext strong { color: var(--white); }
+
+        .cta-row {
+            display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-start;
+            position: relative; z-index: 1;
+        }
+        .cta-row > * { flex: 1 1 150px; }
+        .cta-col { display: flex; flex-direction: column; }
+        .cta-btn {
+            width: 100%; padding: 17px 14px;
+            border-radius: 100px;
+            font-size: 15px; font-weight: 700; letter-spacing: -0.2px;
+            cursor: pointer; text-align: center;
+            transition: opacity 0.18s;
+        }
+        .cta-btn:active { opacity: 0.88; }
+        .cta-btn-primary {
+            background: var(--coral); border: none; color: var(--white);
+        }
+        .cta-btn-secondary {
+            background: transparent; border: 2px solid rgba(255,255,255,0.5);
+            color: var(--white);
+        }
+        .cta-note {
+            text-align: center; font-size: 12px;
+            color: rgba(255,255,255,0.35); margin-top: 10px;
+        }
+
+        /* ── CITATIONS ────────────────────────────────── */
+        sup.ref {
+            font-size: 9px; font-weight: 700; color: var(--teal);
+            vertical-align: super; line-height: 0;
+            cursor: default; margin-left: 1px;
+        }
+        sup.ref::before { content: "("; }
+        sup.ref::after { content: ")"; }
+        sup.ref a {
+            color: inherit; text-decoration: none; cursor: pointer;
+        }
+        sup.ref a:active { opacity: 0.6; }
+        .cite-item { scroll-margin-top: 90px; }
+        .citations-section { padding: 32px 20px 8px; }
+        .citations-toggle {
+            display: flex; align-items: center; justify-content: space-between;
+            background: var(--white); border: 1.5px solid var(--gray-100);
+            border-radius: var(--r-sm); padding: 14px 16px;
+            cursor: pointer; user-select: none;
+            font-size: 13px; font-weight: 600; color: var(--gray-700);
+        }
+        .citations-toggle .arrow { font-size: 11px; color: var(--gray-500); transition: transform 0.2s; }
+        .citations-toggle.open .arrow { transform: rotate(180deg); }
+        .citations-list {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: var(--white);
+            border: 1.5px solid var(--gray-100); border-top: none;
+            border-radius: 0 0 var(--r-sm) var(--r-sm);
+        }
+        .citations-list.open { max-height: 3200px; }
+        .cite-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--gray-50);
+            font-size: 11px; line-height: 1.55; color: var(--gray-700);
+        }
+        .cite-item:last-child { border-bottom: none; }
+        .cite-num { font-weight: 700; color: var(--teal); margin-right: 4px; }
+        .cite-doi {
+            display: inline-block; margin-top: 3px;
+            font-size: 10px; color: var(--gray-500);
+            word-break: break-all;
+        }
+        .cite-doi a { color: var(--teal); text-decoration: none; }
+
+        /* ── SURGERY DETAIL ──────────────────────────── */
+        .surg-stat-grid {
+            display: flex; flex-direction: column; gap: 8px;
+            margin: 14px 0;
+        }
+        .surg-stat {
+            display: flex; align-items: baseline; gap: 10px;
+            background: rgba(44,74,92,0.06);
+            border: 1px solid rgba(44,74,92,0.12);
+            border-radius: var(--r-sm); padding: 12px 14px;
+        }
+        .ss-num {
+            font-size: 17px; font-weight: 800; color: var(--slate);
+            letter-spacing: -0.4px; line-height: 1.3; flex-shrink: 0;
+        }
+        .ss-label { font-size: 13.5px; color: var(--gray-700); line-height: 1.35; }
+        .surg-expand-btn {
+            width: 100%; padding: 11px;
+            background: rgba(44,74,92,0.07);
+            border: 1.5px solid var(--slate-mid);
+            border-radius: var(--r-sm);
+            font-size: 12px; font-weight: 700; color: var(--slate-mid);
+            cursor: pointer; text-align: center; margin-top: 4px;
+            transition: all 0.15s ease;
+        }
+        .surg-expand-btn:active { opacity: 0.8; }
+        #det-surgery.open { max-height: 1400px; }
+        .surg-section { margin-bottom: 18px; }
+        .surg-section-title {
+            font-size: 11px; font-weight: 700; color: var(--slate);
+            text-transform: uppercase; letter-spacing: 0.8px;
+            margin-bottom: 10px; padding-bottom: 6px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .surg-row {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            padding: 7px 0; border-bottom: 1px solid var(--gray-50);
+            font-size: 13px; gap: 12px;
+        }
+        .surg-row:last-child { border-bottom: none; }
+        .surg-row-lbl { color: var(--gray-700); flex: 1; line-height: 1.4; }
+        .surg-row-val { font-weight: 700; color: var(--slate); text-align: right; white-space: nowrap; }
+        .surg-row-val.warn { color: var(--slate-mid); }
+        .surg-consequence {
+            display: flex; gap: 10px; align-items: flex-start;
+            padding: 8px 0; border-bottom: 1px solid var(--gray-50);
+            font-size: 13px;
+        }
+        .surg-consequence:last-child { border-bottom: none; }
+        .cons-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+        .cons-text { color: var(--gray-700); line-height: 1.5; }
+        .cons-text strong { color: var(--slate); }
+        .surg-alert {
+            background: rgba(196,137,58,0.07);
+            border: 1px solid rgba(196,137,58,0.22);
+            border-radius: var(--r-sm); padding: 12px 14px; margin-top: 4px;
+        }
+        .surg-alert-title {
+            font-size: 11px; font-weight: 700; color: var(--amber);
+            text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 6px;
+        }
+        .surg-alert-text { font-size: 12px; color: var(--gray-700); line-height: 1.55; }
+
+        /* ── FOOTNOTE ─────────────────────────────────── */
+        .footnote {
+            padding: 24px 20px 32px;
+            font-size: 11px; color: var(--gray-500); line-height: 1.6;
+            text-align: center;
+        }
+    
+        /* ── disease-specific: progression consequences & payer sections ── */
+        .payer-body { padding: 20px 20px 4px; }
+        .payer-card { background: var(--white); border-radius: var(--r); box-shadow: 0 10px 28px rgba(3,65,82,0.14); overflow: hidden; }
+        @media (min-width: 860px) {
+            .payer-card { margin: 0 80px; }
+        }
+        .payer-head { background: linear-gradient(135deg,#052733 0%,#2C4A5C 100%); padding: 22px 20px; color: var(--white); }
+        .payer-head-chip { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(94,196,210,0.7); margin-bottom: 6px; }
+        .payer-head-title { font-size: 18px; font-weight: 800; line-height: 1.2; }
+        .payer-head-sub { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 4px; line-height: 1.5; }
+        .payer-insight { background: rgba(196,137,58,0.06); border: 1px solid rgba(196,137,58,0.18); border-radius: var(--r-sm); padding: 12px 14px; margin: 0 20px 20px; }
+        .payer-phase3-box {
+            margin: 0 20px 20px;
+            background: linear-gradient(135deg, rgba(196,137,58,0.08), rgba(196,137,58,0.02));
+            border: 1px solid rgba(196,137,58,0.28); border-radius: var(--r-sm); padding: 16px;
+        }
+        .payer-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 11px 0; border-bottom: 1px solid var(--gray-50); gap: 14px; }
+        .payer-row:last-child { border-bottom: none; }
+        .payer-row-left { flex: 1; }
+        .payer-row-label { font-size: 13px; font-weight: 600; color: var(--slate); margin-bottom: 2px; line-height: 1.35; }
+        .payer-row-desc  { font-size: 11px; color: var(--gray-500); line-height: 1.45; }
+        .payer-row-val { font-size: 16px; font-weight: 800; color: var(--teal); letter-spacing: -0.3px; white-space: nowrap; text-align: right; flex-shrink: 0; }
+        .payer-row-val.warn { color: var(--slate-mid); }
+
+        /* payer total box — label+amount inline at top of the white section */
+        .payer-total-box { margin: 16px 20px 20px; background: linear-gradient(135deg,rgba(3,65,82,0.07),rgba(44,74,92,0.06)); border: 1px solid rgba(3,65,82,0.14); border-radius: var(--r-sm); padding: 16px; }
+        .payer-total-header {
+            display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap;
+            gap: 8px 10px; margin: 0 -20px 4px; padding: 18px 20px 14px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .payer-total-header .ptb-label { font-size: 15px; font-weight: 600; color: var(--gray-700); }
+        .payer-total-header .ptb-amount { font-size: 30px; font-weight: 800; color: var(--slate); letter-spacing: -1px; line-height: 1; }
+        .ptb-label { font-size: 13px; font-weight: 600; color: var(--gray-700); }
+        .ptb-amount { font-size: 28px; font-weight: 800; color: var(--slate); letter-spacing: -1px; line-height: 1; }
+        .ptb-amount span { font-size: 15px; color: var(--teal); }
+        .ptb-note { font-size: 12px; color: var(--gray-500); line-height: 1.5; margin-top: 8px; }
+        .pi-text { font-size: 12px; color: var(--gray-700); line-height: 1.55; }
+        .pi-title { font-size: 10px; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 5px; }
+
+        /* phase-3 (end-of-journey) cost projection box */
+        .phase3-box { margin-top: 14px; background: rgba(196,137,58,0.10); border: 1px solid rgba(196,137,58,0.30); border-radius: var(--r); padding: 18px 20px; }
+        .phase3-label { font-size: 12px; color: rgba(255,255,255,0.7); margin-bottom: 8px; line-height: 1.4; }
+        .phase3-label strong { color: #E8B77A; }
+        .phase3-amount { font-size: 32px; font-weight: 800; color: #E8B77A; letter-spacing: -1px; margin-bottom: 6px; line-height: 1; }
+        .phase3-sub { font-size: 11px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+        .p3-label { font-size: 12px; color: var(--gray-700); margin-bottom: 6px; line-height: 1.4; }
+        .p3-label strong { color: var(--amber); }
+        .p3-amount { font-size: 28px; font-weight: 800; color: var(--amber); letter-spacing: -1px; margin-bottom: 4px; line-height: 1; }
+        .p3-sub { font-size: 11px; color: var(--gray-500); line-height: 1.5; }
+
+        /* progression section (end-stage consequences card, inside the drug ladder) */
+        .prog-alert { background: rgba(196,137,58,0.07); border: 1px solid rgba(196,137,58,0.22); border-radius: var(--r-sm); padding: 12px 14px; margin-top: 4px; }
+        .prog-alert-title { font-size: 11px; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 6px; }
+        .prog-alert-text { font-size: 12px; color: var(--gray-700); line-height: 1.55; }
+        .prog-consequence { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--gray-50); font-size: 13px; }
+        .prog-consequence:last-child { border-bottom: none; }
+        .prog-expand-btn { width: 100%; padding: 11px; background: rgba(44,74,92,0.07); border: 1.5px solid var(--slate-mid); border-radius: var(--r-sm); font-size: 12px; font-weight: 700; color: var(--slate-mid); cursor: pointer; text-align: center; margin-top: 4px; transition: all 0.15s ease; }
+        .prog-expand-btn:active { opacity: 0.8; }
+        .prog-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid var(--gray-50); font-size: 13px; gap: 12px; }
+        .prog-row:last-child { border-bottom: none; }
+        .prog-row-lbl { color: var(--gray-700); flex: 1; line-height: 1.4; }
+        .prog-row-val { font-weight: 700; color: var(--slate); text-align: right; white-space: nowrap; }
+        .prog-row-val.warn { color: var(--slate-mid); }
+        .prog-section { margin-bottom: 18px; }
+        .prog-section-title { font-size: 11px; font-weight: 700; color: var(--slate); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--gray-100); }
+
+        /* progression stats — number sits inline beside its label, matching surg-stat treatment */
+        .prog-stat-grid { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
+        .prog-stat { display: flex; align-items: baseline; gap: 10px; background: rgba(44,74,92,0.06); border: 1px solid rgba(44,74,92,0.12); border-radius: var(--r-sm); padding: 12px 14px; }
+        .ps-num { font-size: 17px; font-weight: 800; color: var(--slate); letter-spacing: -0.4px; line-height: 1.3; flex-shrink: 0; }
+        .ps-label { font-size: 13.5px; color: var(--gray-700); line-height: 1.35; }
+</style>
+</head>
+<body>
+
+<header class="header">
+    <span class="header-brand">Thymos <em>Health</em></span>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-chip">Your Hashimoto's Journey</div>
+    <h1 class="hero-h1">
+        Your labs look "normal."<br>You still feel <span class="flame">exhausted, foggy, and unheard.</span><br>Still no real answers.
+    </h1>
+    <p class="hero-sub">You're not alone. This is how autoimmune thyroiditis (also known as Hashimoto's) is typically managed – and an honest look at what that journey costs, and what it leads to, over time.</p>
+    <div class="hero-grid">
+        <div class="hero-stat">
+            <div class="hs-sentence"><span class="hs-num-inline">~5%</span> of U.S. adults have hypothyroidism, mostly caused by Hashimoto's.<sup class="ref"><a href="#cite-1" onclick="goToCite(1);return false;">1</a></sup></div>
+        </div>
+        <div class="hero-stat">
+            <div class="hs-sentence"><span class="hs-num-inline">10–15%</span> still report persistent symptoms despite normal labs and on thyroid medication.<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
+        </div>
+        <div class="hero-stat">
+            <div class="hs-sentence"><span class="hs-num-inline">$4–15/mo</span> is the typical retail cost of generic levothyroxine — the cheapest chronic drug on this site.<sup class="ref"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
+        </div>
+        <div class="hero-stat">
+            <div class="hs-sentence"><span class="hs-num-inline">1 thyroid pill/day</span> is considered “treatment success” by most healthcare systems.<sup class="ref"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
+        </div>
+    </div>
+</section>
+
+<!-- STRIP NAV BANNER -->
+<nav class="nav-strip">
+    <a class="nav-strip-btn" href="#treatment-journey">The Treatment Journey</a>
+    <a class="nav-strip-btn" href="#understanding-risk">Understanding Your Risk</a>
+    <a class="nav-strip-btn" href="#different-journey">A Different Journey Exists</a>
+</nav>
+
+<!-- DRUG JOURNEY -->
+<section class="sec" id="treatment-journey">
+    <h2 class="sec-h2">How Hashimoto's is typically treated</h2>
+    <p class="sec-body">The drugs commonly used to treat autoimmune thyroiditis (a.k.a., Hashimoto's) are cheap, and the lab test that defines "treatment success" is simple. That's exactly the problem — treatment stops at a number, even when the patient doesn't feel better.</p>
+    <div class="mark-row">
+        <p class="sec-body-bold">Mark where you are in your journey and we'll show you the full picture.</p>
+    </div>
+
+    <div class="ladder">
+
+        <div class="drug-card" id="card-s1">
+            <div class="card-bar bar-1"></div>
+            <div class="card-inner">
+                <div class="card-step-line"><span class="card-step-label">Step 1: Your doctor starts you on</span> <span class="card-name-inline">Levothyroxine (LT4) Monotherapy</span></div>
+                <div class="card-generic">Synthroid, Levoxyl, generic levothyroxine — one pill daily, dose set by TSH</div>
+                <div class="quote-block">
+                    <div class="quote-label">What your doctor says</div>
+                    <div class="quote-text">"Your TSH is elevated, so we'll start you on levothyroxine. Once your levels normalize, you should feel like yourself again."</div>
+                </div>
+                <div class="pills">
+                    <div class="pill">Normalizes TSH and resolves symptoms in most patients</div>
+                    <div class="pill warn-red">10–15% still symptomatic despite a normal TSH<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-lbl">Annual cost before insurance (generic, retail)</span>
+                    <span class="cost-val hot">~$50–$180</span>
+                </div>
+                <div class="sbtn-group">
+                    <button class="sbtn tried" onclick="setStatus('s1','tried')">✓ Tried this</button>
+                    <button class="sbtn other" onclick="setStatus('s1','other')">↔ Tried something else</button>
+                    <button class="sbtn on"    onclick="setStatus('s1','on')">● On this now</button>
+                    <button class="sbtn skip"  onclick="setStatus('s1','skip')">Not yet</button>
+                </div>
+            </div>
+            <div class="card-detail" id="det-s1">
+                <div id="std-s1">
+                    <div class="detail-row">
+                        <div class="detail-lbl">Providers seen before this was prescribed</div>
+                        <div class="chip-group" id="pre-docs-s1">
+                            <button class="chip" data-value="1" onclick="pickChip(this)">1</button>
+                            <button class="chip" data-value="2" onclick="pickChip(this)">2–3</button>
+                            <button class="chip" data-value="4" onclick="pickChip(this)">4–5</button>
+                            <button class="chip" data-value="6" onclick="pickChip(this)">6+</button>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">How long were you on this?</div>
+                        <div class="chip-group" id="dur-s1">
+                            <button class="chip" data-value="3" onclick="pickChip(this);recalc()">< 3 mo</button>
+                            <button class="chip" data-value="6" onclick="pickChip(this);recalc()">3–6 mo</button>
+                            <button class="chip active" data-value="12" onclick="pickChip(this);recalc()">6–12 mo</button>
+                            <button class="chip" data-value="24" onclick="pickChip(this);recalc()">1–2 yr</button>
+                            <button class="chip" data-value="48" onclick="pickChip(this);recalc()">2+ yr</button>
+                            
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">What happened?</div>
+                        <div class="outcome-group" id="out-s1">
+                            <button class="outcome-chip" data-value="worked" onclick="pickChip(this)">Worked — I feel like myself</button>
+                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Labs normal, but still tired/foggy</button>
+                            <button class="outcome-chip" data-value="never" onclick="pickChip(this)">Labs never fully normalized</button>
+                            <button class="outcome-chip" data-value="intolerant" onclick="pickChip(this)">Side effects / dose instability</button>
+                            <button class="outcome-chip" data-value="other" onclick="pickChip(this)">Something else…</button>
+                            
+                        </div>
+                        <input class="other-input" id="out-s1-other" type="text" placeholder="Describe what happened…" style="display:none; margin-top:7px;" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Your coinsurance for this drug</div>
+                        <div class="chip-group" id="coins-s1">
+                            <button class="chip" data-value="0" onclick="pickChip(this);recalc()">$0 covered</button>
+                            <button class="chip active" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
+                            <button class="chip" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
+                            <button class="chip" data-value="0.30" onclick="pickChip(this);recalc()">30%</button>
+                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">No insurance</button>
+                            
+                        </div>
+                    </div>
+                    <div class="cost-preview-box">
+                        <div class="cpb-label">Your estimated annual out-of-pocket for this drug</div>
+                        <div class="cpb-amount" id="s1-oop">$0</div>
+                    </div>
+                </div>
+                <div id="oth-s1" style="display:none">
+                    <div class="detail-row">
+                        <div class="detail-lbl">What did you try at this step?</div>
+                        <input class="other-input" type="text" placeholder="e.g. brand-name Synthroid, Tirosint" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">How often?</div>
+                        <input class="other-input" type="text" placeholder="e.g. daily" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Annual out-of-pocket cost</div>
+                        <input class="other-input" type="number" id="oth-oop-s1" placeholder="e.g. 8000" oninput="recalc()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="connector">
+            <div class="conn-line"></div>
+            <div class="conn-badge">TSH is “normal” but symptoms persist in 1 out of every 7–10 patients</div>
+            <div class="conn-line"></div>
+        </div>
+
+        <div class="drug-card" id="card-s2">
+            <div class="card-bar bar-2"></div>
+            <div class="card-inner">
+                <div class="card-step-line"><span class="card-step-label">Step 2: Your doctor tries</span> <span class="card-name-inline">Dose Titration / Brand Switching</span></div>
+                <div class="card-generic">Adjusting Levothyroxine (T4) dose every 6-8 weeks, or switching between generic and brand formulations</div>
+                <div class="quote-block">
+                    <div class="quote-label">What your doctor says</div>
+                    <div class="quote-text">"Your labs are technically in range. Let's fine-tune your dose a bit more, or try a different brand — sometimes that makes a difference."</div>
+                </div>
+                <div class="pills">
+                    <div class="pill warn-red">Does not help ~25–40% of patients with persistent symptoms</div>
+                    <div class="pill info">Repeated lab draws and dose changes over months to years</div>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-lbl">Annual cost before insurance</span>
+                    <span class="cost-val hot">~$60–$400</span>
+                </div>
+                <div class="sbtn-group">
+                    <button class="sbtn tried" onclick="setStatus('s2','tried')">✓ Tried this</button>
+                    <button class="sbtn other" onclick="setStatus('s2','other')">↔ Tried something else</button>
+                    <button class="sbtn on"    onclick="setStatus('s2','on')">● On this now</button>
+                    <button class="sbtn skip"  onclick="setStatus('s2','skip')">Not yet</button>
+                </div>
+            </div>
+            <div class="card-detail" id="det-s2">
+                <div id="std-s2">
+                    <div class="detail-row">
+                        <div class="detail-lbl">How long were you on this?</div>
+                        <div class="chip-group" id="dur-s2">
+                            <button class="chip" data-value="3" onclick="pickChip(this);recalc()">< 3 mo</button>
+                            <button class="chip" data-value="6" onclick="pickChip(this);recalc()">3–6 mo</button>
+                            <button class="chip active" data-value="12" onclick="pickChip(this);recalc()">6–12 mo</button>
+                            <button class="chip" data-value="24" onclick="pickChip(this);recalc()">1–2 yr</button>
+                            <button class="chip" data-value="48" onclick="pickChip(this);recalc()">2+ yr</button>
+                            
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">What happened?</div>
+                        <div class="outcome-group" id="out-s2">
+                            <button class="outcome-chip" data-value="worked" onclick="pickChip(this)">Finally feel better</button>
+                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Marginal improvement</button>
+                            <button class="outcome-chip" data-value="never" onclick="pickChip(this)">No real change</button>
+                            <button class="outcome-chip" data-value="other" onclick="pickChip(this)">Something else…</button>
+                            
+                        </div>
+                        <input class="other-input" id="out-s2-other" type="text" placeholder="Describe what happened…" style="display:none; margin-top:7px;" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Your coinsurance for this drug</div>
+                        <div class="chip-group" id="coins-s2">
+                            <button class="chip" data-value="0" onclick="pickChip(this);recalc()">$0 covered</button>
+                            <button class="chip active" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
+                            <button class="chip" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
+                            <button class="chip" data-value="0.30" onclick="pickChip(this);recalc()">30%</button>
+                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">No insurance</button>
+                            
+                        </div>
+                    </div>
+                    <div class="cost-preview-box">
+                        <div class="cpb-label">Your estimated annual out-of-pocket for this drug</div>
+                        <div class="cpb-amount" id="s2-oop">$0</div>
+                    </div>
+                </div>
+                <div id="oth-s2" style="display:none">
+                    <div class="detail-row">
+                        <div class="detail-lbl">What did you try at this step?</div>
+                        <input class="other-input" type="text" placeholder="e.g. switching to Tirosint, weight-based re-dosing" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">How often?</div>
+                        <input class="other-input" type="text" placeholder="e.g. daily" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Annual out-of-pocket cost</div>
+                        <input class="other-input" type="number" id="oth-oop-s2" placeholder="e.g. 8000" oninput="recalc()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="connector">
+            <div class="conn-line"></div>
+            <div class="conn-badge">Symptoms persist despite a biochemically “optimal” TSH</div>
+            <div class="conn-line"></div>
+        </div>
+
+        <div class="drug-card" id="card-s3">
+            <div class="card-bar bar-3"></div>
+            <div class="card-inner">
+                <div class="card-step-line"><span class="card-step-label">Step 3: If you push for it</span> <span class="card-name-inline">T3/T4 Combination Therapy</span></div>
+                <div class="card-generic">Liothyronine (T3) added to levothyroxine (T4) — off-guideline, patient-driven in most cases</div>
+                <div class="quote-block">
+                    <div class="quote-label">What your doctor says</div>
+                    <div class="quote-text">"Guidelines don't generally recommend adding T3, but if you're still struggling despite normal labs, we can consider a trial."</div>
+                </div>
+                <div class="pills">
+                    <div class="pill">Randomized crossover trial: improved quality of life vs. LT4 alone<sup class="ref"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></div>
+                    <div class="pill warn-red">Not standard of care — many physicians decline to prescribe it</div>
+                    <div class="pill info">No FDA-approved fixed-dose T3/T4 combination product</div>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-lbl">Annual cost before insurance</span>
+                    <span class="cost-val hot">~$200–$900</span>
+                </div>
+                <div class="sbtn-group">
+                    <button class="sbtn tried" onclick="setStatus('s3','tried')">✓ Tried this</button>
+                    <button class="sbtn other" onclick="setStatus('s3','other')">↔ Tried something else</button>
+                    <button class="sbtn on"    onclick="setStatus('s3','on')">● On this now</button>
+                    <button class="sbtn skip"  onclick="setStatus('s3','skip')">Not yet</button>
+                </div>
+            </div>
+            <div class="card-detail" id="det-s3">
+                <div id="std-s3">
+                    <div class="detail-row">
+                        <div class="detail-lbl">How long were you on this?</div>
+                        <div class="chip-group" id="dur-s3">
+                            <button class="chip" data-value="3" onclick="pickChip(this);recalc()">< 3 mo</button>
+                            <button class="chip active" data-value="6" onclick="pickChip(this);recalc()">6 mo</button>
+                            <button class="chip" data-value="12" onclick="pickChip(this);recalc()">1 yr</button>
+                            <button class="chip" data-value="24" onclick="pickChip(this);recalc()">2 yr</button>
+                            <button class="chip" data-value="36" onclick="pickChip(this);recalc()">3+ yr</button>
+                            
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">What happened?</div>
+                        <div class="outcome-group" id="out-s3">
+                            <button class="outcome-chip" data-value="working" onclick="pickChip(this)">Meaningful improvement</button>
+                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Some improvement</button>
+                            <button class="outcome-chip" data-value="never" onclick="pickChip(this)">No improvement / couldn't get prescribed</button>
+                            <button class="outcome-chip" data-value="other" onclick="pickChip(this)">Something else…</button>
+                            
+                        </div>
+                        <input class="other-input" id="out-s3-other" type="text" placeholder="Describe what happened…" style="display:none; margin-top:7px;" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Your coinsurance for this drug</div>
+                        <div class="chip-group" id="coins-s3">
+                            <button class="chip" data-value="0" onclick="pickChip(this);recalc()">$0 covered</button>
+                            <button class="chip" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
+                            <button class="chip active" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
+                            <button class="chip" data-value="0.30" onclick="pickChip(this);recalc()">30%</button>
+                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">No insurance</button>
+                            
+                        </div>
+                    </div>
+                    <div class="cost-preview-box">
+                        <div class="cpb-label">Your estimated annual out-of-pocket for this drug</div>
+                        <div class="cpb-amount" id="s3-oop">$0</div>
+                    </div>
+                </div>
+                <div id="oth-s3" style="display:none">
+                    <div class="detail-row">
+                        <div class="detail-lbl">What did you try at this step?</div>
+                        <input class="other-input" type="text" placeholder="e.g. compounded T3/T4, desiccated thyroid (NDT)" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">How often?</div>
+                        <input class="other-input" type="text" placeholder="e.g. daily" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Annual out-of-pocket cost</div>
+                        <input class="other-input" type="number" id="oth-oop-s3" placeholder="e.g. 8000" oninput="recalc()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="drug-card" id="card-prog">
+            <div class="card-bar bar-end"></div>
+            <div class="card-inner">
+                <div class="card-step-line"><span class="card-step-label">Where most patients are told the conversation ends</span> <span class="card-name-inline danger">“Your Labs Are Normal”</span></div>
+                <div class="card-generic">Biochemical euthyroidism with an unresolved, undiagnosed symptom burden — the most common dead end in autoimmune care</div>
+                <div class="quote-block">
+                    <div class="quote-label">What Your Doctor says</div>
+                    <div class="quote-text">"I understand you're still tired, but your thyroid levels are completely normal. This may be something else — have you considered your diet, your stress levels, or seeing a therapist?"</div>
+                </div>
+                <div class="prog-stat-grid">
+                    <div class="prog-stat">
+                        <div class="ps-num">10–15%</div>
+                        <div class="ps-label">Of levothyroxine users have persistent symptoms at a normal TSH<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
+                    </div>
+                    <div class="prog-stat">
+                        <div class="ps-num">~1.5M</div>
+                        <div class="ps-label">Estimated Americans still symptomatic despite guideline-concordant care<sup class="ref"><a href="#cite-5" onclick="goToCite(5);return false;">5</a></sup></div>
+                    </div>
+                    <div class="prog-stat">
+                        <div class="ps-num">80.6%</div>
+                        <div class="ps-label">Of levothyroxine users have ≥1 comorbidity, complicating the picture further<sup class="ref"><a href="#cite-6" onclick="goToCite(6);return false;">6</a></sup></div>
+                    </div>
+                    <div class="prog-stat">
+                        <div class="ps-num">Lower QoL</div>
+                        <div class="ps-label">Levothyroxine users score lower on quality-of-life measures than non-users, matched for TSH<sup class="ref"><a href="#cite-6" onclick="goToCite(6);return false;">6</a></sup></div>
+                    </div>
+                    
+                </div>
+                <button class="prog-expand-btn" id="prog-btn" onclick="toggleProg()">What you should know about persistent symptoms on “normal” labs ▼</button>
+            </div>
+            <div class="card-detail" id="det-prog">
+                <div class="prog-section">
+                    <div class="prog-section-title">What “residual symptoms” actually looks like</div>
+                    <div class="prog-row">
+                        <span class="prog-row-lbl">Fatigue</span>
+                        <span class="prog-row-val">Most common</span>
+                    </div>
+                    <div class="prog-row">
+                        <span class="prog-row-lbl">Brain fog / memory complaints</span>
+                        <span class="prog-row-val">Very common</span>
+                    </div>
+                    <div class="prog-row">
+                        <span class="prog-row-lbl">Weight gain despite normal TSH</span>
+                        <span class="prog-row-val warn">Common</span>
+                    </div>
+                    <div class="prog-row">
+                        <span class="prog-row-lbl">Depression / low mood</span>
+                        <span class="prog-row-val warn">Common comorbidity</span>
+                    </div>
+                </div>
+<div class="prog-section">
+                    <div class="prog-section-title">Why the standard approach can miss it</div>
+                    <div class="prog-consequence">
+                        <span class="cons-icon">🧪</span>
+                        <span class="cons-text"><strong>TSH doesn't capture tissue-level thyroid hormone status for everyone.</strong> Even with a normal TSH, differences in deiodinase enzyme activity mean some patients don't achieve adequate T3 availability at the tissue level on LT4 monotherapy alone.<sup class="ref"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></span>
+                    </div>
+                    <div class="prog-consequence">
+                        <span class="cons-icon">🔁</span>
+                        <span class="cons-text"><strong>The randomized evidence actually supports these patients.</strong> In a crossover RCT, patients with residual symptoms on LT4 who switched to LT3 monotherapy for 12 weeks showed measurable quality-of-life improvement — this isn't just anecdote.<sup class="ref"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></span>
+                    </div>
+                    <div class="prog-consequence">
+                        <span class="cons-icon">🩺</span>
+                        <span class="cons-text"><strong>Comorbidity gets tangled with thyroid status.</strong> LT4 users have significantly more comorbidity than people who don't need thyroid hormone, and that comorbidity burden disproportionately drags down quality of life in LT4 users specifically.<sup class="ref"><a href="#cite-6" onclick="goToCite(6);return false;">6</a></sup></span>
+                    </div>
+                    <div class="prog-consequence">
+                        <span class="cons-icon">🚪</span>
+                        <span class="cons-text"><strong>The likeliest next stop is a referral away from endocrinology.</strong> Once TSH is normal, persistent symptoms are often reframed as depression, stress, or “nothing thyroid-related left to check” — even though thyroid autoimmunity itself is associated with persisting symptoms independent of hormone levels.</strong></span>
+                    </div>
+                </div>
+<div class="prog-section">
+                    <div class="prog-section-title"></div>
+                    <div class="prog-alert">
+                        <div class="prog-alert-title">⚠ Normal TSH is a lab target, not a symptom guarantee</div>
+                        <div class="prog-alert-text">Hashimoto's is the cheapest disease on this site to treat by prescription cost — and one of the most common places patients are dismissed once the number on the lab report looks fine. The gap between “treated” and “well” is measured in symptoms, not in TSH.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div><!-- /ladder -->
+</section>
+
+<div class="divider"></div>
+
+<!-- COST CALCULATOR -->
+<section class="sec">
+    <h2 class="sec-h2">What Hashimoto's is really costing you</h2>
+    <p class="sec-body">The pill itself costs almost nothing. What it doesn't show up on any invoice is the fatigue, brain fog, and lost productive hours patients report even when their labs look fine.</p>
+
+    <div class="calc-card">
+        <div class="calc-sub" id="calcSub">Based on your journey above–adjust the numbers to match your situation.</div>
+        <div class="calc-fields">
+            <div class="cf-row">
+                <div class="cf-label">Work days affected by fatigue/brain fog in the last 12 months</div>
+                <input type="number" class="cf-input" id="sickDays" value="12" min="0" max="365"
+                       oninput="recalc()" placeholder="e.g. 12">
+            </div>
+            <div class="cf-row">
+                <div class="cf-label">Your hourly wage (for lost income calculation)</div>
+                <div class="cf-input-group">
+                    <span class="cf-dollar">$</span>
+                    <input type="number" class="cf-input" id="hourlyRate" value="35" min="0"
+                           oninput="recalc()" placeholder="e.g. 35">
+                </div>
+            </div>
+        </div>
+        <div class="total-box">
+            <div class="total-row">
+                <span class="total-label">Your estimated total annual cost of Hashimoto's</span>
+                <span class="total-num" id="totalCost">$0</span>
+            </div>
+            <div class="brow-divider"></div>
+            <div class="breakdown">
+                <div class="brow">
+                    <span class="brow-lbl">Drug out-of-pocket costs</span>
+                    <span class="brow-val" id="b-drug">$0</span>
+                </div>
+                <div class="brow">
+                    <span class="brow-lbl">Lost income (missed days)</span>
+                    <span class="brow-val" id="b-sick">$0</span>
+                </div>
+                <div class="brow">
+                    <span class="brow-lbl">Reduced productivity at work (presenteeism)</span>
+                    <span class="brow-val" id="b-present">$0</span>
+                </div>
+                <div class="brow" style="margin-top:2px;">
+                    <span style="font-size:13px; color:rgba(255,255,255,0.6);">Estimated productivity impact for the ~10–15% of levothyroxine users with persistent symptoms despite a normal TSH<sup class="ref" style="color:rgba(94,196,210,0.8)"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></span>
+                </div>
+            </div>
+        </div>
+        <div class="phase3-box">
+            <div class="phase3-label">If your care reaches the last phase of this journey — <strong>T3/T4 Combination Therapy</strong></div>
+            <div class="phase3-amount" id="phase3PatientCost">$0</div>
+            <div class="phase3-sub">Projected patient out-of-pocket cost for a full year at that phase, given your coinsurance selection for it above (or a typical default if you haven't reached it yet).</div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PAYER COST SECTION -->
+<section class="sec">
+    <h2 class="sec-h2">What your insurer is paying</h2>
+    <p class="sec-body">Hashimoto's is, by prescription cost, nearly the cheapest chronic autoimmune disease your plan covers. The real cost your insurer absorbs shows up elsewhere — in comorbidity care and repeat visits for symptoms that never get connected back to the thyroid.</p>
+
+    <div class="payer-card">
+        <div class="payer-head">
+            <div class="payer-head-chip">Annual Payer Perspective — Commercial Insurance</div>
+            <div class="payer-head-title">What your health plan spends on your Hashimoto's each year</div>
+            <div class="payer-head-sub" id="payerSub">Based on your treatment journey above · All figures reflect payer (insurer) paid portion, not patient out-of-pocket cost.</div>
+        </div>
+        <div class="payer-body">
+            <div class="payer-total-header">
+                <span class="ptb-label">Estimated annual payer cost for your Hashimoto's care</span>
+                <span class="ptb-amount" id="payerTotal">$0</span>
+            </div>
+            <div class="payer-row">
+                <div class="payer-row-left">
+                    <div class="payer-row-label">Levothyroxine drug spend (payer portion)</div>
+                    <div class="payer-row-desc">Generic LT4 is one of the least expensive chronic prescriptions in the U.S. formulary system</div>
+                </div>
+                <div class="payer-row-val" id="p-drug">$0</div>
+            </div>
+            <div class="payer-row">
+                <div class="payer-row-left">
+                    <div class="payer-row-label">Medical costs (endocrinology, labs, dose-titration visits)</div>
+                    <div class="payer-row-desc">Repeat TSH/FT4 panels and follow-up visits for dose adjustment and symptom review</div>
+                </div>
+                <div class="payer-row-val">~$900</div>
+            </div>
+            <div class="payer-row" id="prow-relapse" style="display:none;">
+                <div class="payer-row-left">
+                    <div class="payer-row-label">Cost of unresolved symptoms routed elsewhere in the system</div>
+                    <div class="payer-row-desc">Persistent fatigue/depression/weight complaints often become separate mental-health, weight-management, or specialist referrals</div>
+                </div>
+                <div class="payer-row-val warn" id="p-relapse">$0</div>
+            </div>
+        </div>
+        
+        <div style="padding: 0 20px 16px;">
+            <div style="font-size: 12px; font-weight: 600; color: var(--gray-700); margin-bottom: 8px;">Are you still symptomatic despite a “normal” TSH?</div>
+            <div class="chip-group" id="relapse-count">
+                <button class="chip active" data-value="0" onclick="pickChip(this);recalcPayer()">No, I feel well</button>
+                <button class="chip" data-value="1" onclick="pickChip(this);recalcPayer()">Somewhat</button>
+                <button class="chip" data-value="2" onclick="pickChip(this);recalcPayer()">Yes, significantly</button>
+                
+            </div>
+            <div style="font-size: 11px; color: var(--gray-500); margin-top: 6px; line-height: 1.45;">These costs rarely appear on a “thyroid” line item — they show up as separate claims for depression, weight management, or unexplained fatigue workups</div>
+        </div>
+        <div class="payer-total-box">
+            <div class="ptb-note">Hashimoto's/hypothyroidism is one of the lowest direct drug-cost autoimmune diseases to insure — <strong>which is exactly why persistent symptoms are so easy to deprioritize</strong> once TSH looks normal.</div>
+        </div>
+
+        <div class="payer-phase3-box">
+            <div class="p3-label">Payer cost projection if care reaches the last phase of this journey — <strong>T3/T4 Combination Therapy</strong></div>
+            <div class="p3-amount" id="phase3PayerCost">$0</div>
+            <div class="p3-sub">Estimated annual payer spend at that phase: ~80% of drug price plus baseline medical costs, excluding any flare/crisis event above</div>
+        </div>
+
+        <div class="payer-insight">
+            <div class="pi-title">⚑ The cheapest drug can hide the most overlooked patients</div>
+            <div class="pi-text">Because levothyroxine is inexpensive and TSH normalization is an easy box to check, there is little financial pressure on the system to look further when a patient says they still don't feel right. That silence isn't free — it just gets billed under a different diagnosis code.</div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- RISK PROJECTION -->
+<section class="sec sec-tint" id="understanding-risk">
+    <div class="sec-chip">Understanding Your Risk</div>
+    <h2 class="sec-h2">What the research shows over time</h2>
+    <p class="sec-body">These outcomes are not inevitable — but they are the documented experience for a meaningful share of patients whose care stops once TSH normalizes.</p>
+
+    <div class="risk-card">
+        <div class="risk-head">
+            <div class="risk-head-label">Based on peer-reviewed clinical data</div>
+            <div class="risk-head-title">Long-term outcomes for Hashimoto's patients on standard LT4-only care</div>
+        </div>
+        <div class="risk-items">
+            <div class="risk-row">
+                <div class="risk-icon ri-o">😴</div>
+                <div class="risk-desc"><span class="risk-num">10–15%</span> of levothyroxine users report persistent fatigue, brain fog, and reduced quality of life despite a normal TSH<sup class="ref" style="color:#aaa"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
+            </div>
+            <div class="risk-row">
+                <div class="risk-icon ri-r">📊</div>
+                <div class="risk-desc"><span class="risk-num red">~1.5M</span> estimated Americans currently receiving guideline-concordant treatment who still feel unwell<sup class="ref" style="color:#aaa"><a href="#cite-5" onclick="goToCite(5);return false;">5</a></sup></div>
+            </div>
+            <div class="risk-row">
+                <div class="risk-icon ri-y">🧩</div>
+                <div class="risk-desc"><span class="risk-num">80.6%</span> of LT4 users carry at least one additional comorbidity, which further lowers quality of life and complicates the picture<sup class="ref" style="color:#aaa"><a href="#cite-6" onclick="goToCite(6);return false;">6</a></sup></div>
+            </div>
+            <div class="risk-row">
+                <div class="risk-icon ri-g">🔬</div>
+                <div class="risk-desc"><span class="risk-num">RCT-proven</span> benefit exists for some residual-symptom patients from T3/T4 combination therapy — an option most patients are never offered<sup class="ref" style="color:#aaa"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- THYMOS CTA -->
+<section class="sec" id="different-journey">
+    <div class="thymos-card">
+        <div class="thymos-chip">✦ A different journey exists</div>
+        <h2 class="thymos-h">Thymos Health offers <span class="g">another way</span></h2>
+        <p class="thymos-body">Conventional care treats a normal TSH as success. Thymos goes further – synthesizing your full thyroid panel (including T3, reverse T3, and antibody trends), symptoms, and history to figure out why you still don't feel right, and to build a plan around feeling well, not just testing well.</p>
+        <div class="outcomes">
+            <div class="orow">
+                <div class="ocheck">✓</div>
+                <div class="otext"><strong>Root cause treatment</strong> — not just another layer of suppression</div>
+            </div>
+            <div class="orow">
+                <div class="ocheck">✓</div>
+                <div class="otext"><strong>Whole system autoimmune specialist</strong> quarterbacks your labs, your team, your care plan</div>
+            </div>
+            <div class="orow">
+                <div class="ocheck">✓</div>
+                <div class="otext"><strong>24/7 personalized support</strong> — not just at your next follow-up in 3 months</div>
+            </div>
+            <div class="orow">
+                <div class="ocheck">✓</div>
+                <div class="otext"><strong>80%+ symptom relief</strong> within 3 months across autoimmune conditions</div>
+            </div>
+        </div>
+        <div class="cta-row">
+            <div class="cta-col">
+                <button class="cta-btn cta-btn-secondary">See if Thymos is right for you →</button>
+                <div class="cta-note">No commitment. Takes 2 minutes.</div>
+            </div>
+            <a class="cta-btn cta-btn-primary" href="/quiz">Get Started</a>
+        </div>
+    </div>
+</section>
+
+<!-- CITATIONS -->
+<div class="citations-section">
+    <div class="citations-toggle" id="citeToggle" onclick="toggleCites()">
+        <span>Sources &amp; Citations</span>
+        <span class="arrow">▼</span>
+    </div>
+    <div class="citations-list" id="citeList">
+        <div class="cite-item" id="cite-1">
+            <span class="cite-num">[1]</span>
+            Persistent symptoms in euthyroid Hashimoto's thyroiditis: current hypotheses and emerging management strategies. PMC, 2025. Hypothyroidism affects an estimated 4.8–25.8% of women and 0.9–7.9% of men; Hashimoto's thyroiditis is the most common cause in iodine-sufficient countries and the most common autoimmune/endocrine disease overall.
+            <div class="cite-doi">PMC: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12313505/" target="_blank">PMC12313505</a></div>
+        </div>
+        <div class="cite-item" id="cite-2">
+            <span class="cite-num">[2]</span>
+            Effect of Liothyronine Treatment on Quality of Life in Female Hypothyroid Patients With Residual Symptoms on Levothyroxine Therapy. PMC, randomized crossover study. Despite adequate TSH normalization on LT4, 5–10% (other studies report up to 10–15%) of hypothyroid patients report persisting symptoms with a major negative impact on quality of life.
+            <div class="cite-doi">PMC: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8902821/" target="_blank">PMC8902821</a></div>
+        </div>
+        <div class="cite-item" id="cite-3">
+            <span class="cite-num">[3]</span>
+            Real Practice Assessment of Persistent Symptoms After Initiation of Levothyroxine. <em>Endocrine Practice</em> / ScienceDirect, 2023. Approximately 10%–15% of patients experience persistent symptoms despite normal TSH on LT4; generic levothyroxine remains among the least expensive chronic prescription drugs in the U.S.
+            <div class="cite-doi">Source: <a href="https://www.sciencedirect.com/science/article/abs/pii/S1530891X23007309" target="_blank">sciencedirect.com</a></div>
+        </div>
+        <div class="cite-item" id="cite-4">
+            <span class="cite-num">[4]</span>
+            Effect of Liothyronine Treatment on Quality of Life in Female Hypothyroid Patients With Residual Symptoms on Levothyroxine Therapy: A Randomized Crossover Study. Fifty-nine patients; LT3 monotherapy improved quality of life (ThyPRO, Fatigue Questionnaire, SF-36) versus LT4 monotherapy or LT4/LT3 combination, without inducing biochemical hyperthyroidism or adverse cardiovascular effects short-term.
+            <div class="cite-doi">PMC: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8902821/" target="_blank">PMC8902821</a> &nbsp;·&nbsp; Trial: <a href="https://clinicaltrials.gov/study/NCT03627611" target="_blank">NCT03627611</a></div>
+        </div>
+        <div class="cite-item" id="cite-5">
+            <span class="cite-num">[5]</span>
+            Hypothyroidism symptoms linger despite medication use, normal blood tests. ScienceDaily, reporting Rush University Medical Center research. About 15% of the 10–12 million people in the U.S. with hypothyroidism continue to feel unwell despite following standard-of-care treatment and normal TSH.
+            <div class="cite-doi">Source: <a href="https://www.sciencedaily.com/releases/2016/10/161012132038.htm" target="_blank">sciencedaily.com</a></div>
+        </div>
+        <div class="cite-item" id="cite-6">
+            <span class="cite-num">[6]</span>
+            Endocrine Society press release summarizing Wouters H et al. Netherlands Consortium for Healthy Ageing / BioSHaRE-EU study. Among LT4 users, 80.6% had comorbidity vs. 66.0% of non-users; LT4 users scored lower on nearly all health-related quality-of-life domains than matched non-users, even with normal TSH in 60% of users.
+            <div class="cite-doi">Source: <a href="https://www.endocrine.org/news-and-advocacy/news-room/2018/patients-on-levothyroxine-continue-to-experience-symptoms-despite-normal-thyroid-hormone-levels" target="_blank">endocrine.org</a></div>
+        </div>
+    </div>
+</div>
+
+<footer class="footnote">
+    All statistics from peer-reviewed medical literature. Sources available on request.<br>
+    This tool is for educational purposes only and does not constitute medical advice.<br><br>
+    © 2026 Thymos Health &nbsp;·&nbsp; Confidential
+</footer>
+
+<script>
+/* ── CONFIG (disease-specific) ── */
+const STEP_IDS   = ["s1", "s2", "s3"];
+const STEP_NAMES = {"s1": "Levothyroxine (LT4) Monotherapy", "s2": "Dose Titration / Brand Switching", "s3": "T3/T4 Combination Therapy"};
+const AWP        = {"s1": 100, "s2": 150, "s3": 500};
+const IS_DRUG    = {"s1": true, "s2": true, "s3": true};
+const HAS_FLARE  = true;
+const FLARE_VAL  = {"0": 0, "1": 800, "2": 2600};
+const DEFAULT_AWP= 100;
+const MEDICAL_COST = 900;
+const PRESENT_MULT = 90;
+const LAST_ID    = "s3";
+const LAST_COINS_DEFAULT = 0.2;
+
+/* ── STATE ── */
+const state = {};
+STEP_IDS.forEach(id => state[id] = {status: null});
+
+/* ── STATUS TOGGLE ── */
+function setStatus(drug, s) {
+    state[drug].status = s;
+    const card   = document.getElementById('card-' + drug);
+    const detail = document.getElementById('det-'  + drug);
+    const std    = document.getElementById('std-'  + drug);
+    const oth    = document.getElementById('oth-'  + drug);
+
+    card.classList.remove('tried', 'on-now', 'not-yet');
+    card.querySelectorAll('.sbtn').forEach(b => b.classList.remove('active'));
+
+    if (s === 'tried') { card.classList.add('tried');   card.querySelector('.sbtn.tried').classList.add('active'); }
+    if (s === 'other') { card.classList.add('tried');   card.querySelector('.sbtn.other').classList.add('active'); }
+    if (s === 'on')    { card.classList.add('on-now');  card.querySelector('.sbtn.on').classList.add('active');    }
+    if (s === 'skip')  { card.classList.add('not-yet'); card.querySelector('.sbtn.skip').classList.add('active');  }
+
+    const open = s === 'tried' || s === 'on' || s === 'other';
+    detail.classList.toggle('open', open);
+    if (std) std.style.display = (open && s !== 'other') ? 'block' : 'none';
+    if (oth) oth.style.display = (s === 'other')         ? 'block' : 'none';
+
+    recalc();
+}
+
+/* ── CHIP HELPERS ── */
+function pickChip(el) {
+    const group = el.closest('.chip-group, .outcome-group');
+    group.querySelectorAll('.chip, .outcome-chip').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    if (group.classList.contains('outcome-group')) {
+        const otherInput = document.getElementById(group.id + '-other');
+        if (otherInput) {
+            const show = el.dataset.value === 'other';
+            otherInput.style.display = show ? 'block' : 'none';
+            if (show) otherInput.focus();
+        }
+    }
+}
+function getChipVal(groupId, fallback) {
+    const active = document.querySelector('#' + groupId + ' [data-value].active');
+    return active ? active.dataset.value : String(fallback);
+}
+
+/* ── RECALCULATE PATIENT COST ── */
+function recalc() {
+    let drugCost = 0;
+
+    STEP_IDS.forEach(id => {
+        const st = state[id].status;
+        if (st === 'tried' || st === 'on') {
+            const months = parseFloat(getChipVal('dur-' + id, 12));
+            const coins  = parseFloat(getChipVal('coins-' + id, 0.20));
+            const years  = Math.min(months / 12, 1);
+            const cost   = AWP[id] * coins * years;
+            drugCost += cost;
+            const oopEl = document.getElementById(id + '-oop');
+            if (oopEl) oopEl.textContent = '$' + Math.round(AWP[id] * coins).toLocaleString();
+        } else if (st === 'other') {
+            const othEl = document.getElementById('oth-oop-' + id);
+            if (othEl) drugCost += parseFloat(othEl.value) || 0;
+        }
+    });
+
+    const sickDaysEl   = document.getElementById('sickDays');
+    const hourlyRateEl = document.getElementById('hourlyRate');
+    const sickDays   = Math.max(0, parseFloat(sickDaysEl ? sickDaysEl.value : 0)  || 0);
+    const hourlyRate = Math.max(0, parseFloat(hourlyRateEl ? hourlyRateEl.value : 0) || 0);
+
+    const sickCost    = sickDays * hourlyRate * 8;
+    const presentCost = PRESENT_MULT * hourlyRate;
+
+    const total = Math.round(drugCost + sickCost + presentCost);
+
+    document.getElementById('b-drug').textContent    = '$' + Math.round(drugCost).toLocaleString();
+    document.getElementById('b-sick').textContent    = '$' + Math.round(sickCost).toLocaleString();
+    document.getElementById('b-present').textContent = '$' + Math.round(presentCost).toLocaleString();
+    document.getElementById('totalCost').textContent  = '$' + total.toLocaleString();
+
+    recalcPayer();
+}
+
+/* ── PAYER RECALCULATE ── */
+function recalcPayer() {
+    let payerDrugAWP = DEFAULT_AWP;
+    for (let i = STEP_IDS.length - 1; i >= 0; i--) {
+        const id = STEP_IDS[i];
+        if (state[id].status === 'on' || state[id].status === 'tried') {
+            payerDrugAWP = AWP[id];
+            break;
+        }
+    }
+    const payerDrugCost = Math.round(payerDrugAWP * 0.80);
+
+    let flareVal = 0;
+    if (HAS_FLARE) {
+        const relapseRow = document.getElementById('prow-relapse');
+        const count = getChipVal('relapse-count', 0);
+        flareVal = FLARE_VAL[count] || 0;
+        if (flareVal > 0) {
+            relapseRow.style.display = 'flex';
+            document.getElementById('p-relapse').textContent = '$' + flareVal.toLocaleString();
+        } else if (relapseRow) {
+            relapseRow.style.display = 'none';
+        }
+    }
+
+    const payerTotal = payerDrugCost + MEDICAL_COST + flareVal;
+
+    document.getElementById('p-drug').textContent  = '$' + payerDrugCost.toLocaleString();
+    document.getElementById('payerTotal').textContent = '$' + payerTotal.toLocaleString();
+
+    updatePhaseIndicator();
+    updatePhase3Projection();
+}
+
+/* ── CURRENT PHASE (based on where the patient is in their journey) ── */
+function findCurrentStepIndex() {
+    for (let i = STEP_IDS.length - 1; i >= 0; i--) {
+        const id = STEP_IDS[i];
+        if (state[id].status === 'on' || state[id].status === 'tried' || state[id].status === 'other') {
+            return i;
+        }
+    }
+    return -1;
+}
+
+function updatePhaseIndicator() {
+    const idx = findCurrentStepIndex();
+    const calcSub  = document.getElementById('calcSub');
+    const payerSub = document.getElementById('payerSub');
+
+    let phaseText;
+    if (idx === -1) {
+        phaseText = 'No treatment step marked yet — mark your journey above to calculate your cost';
+    } else {
+        const id = STEP_IDS[idx];
+        phaseText = 'Reflecting Step ' + (idx + 1) + ' — ' + STEP_NAMES[id];
+    }
+
+    if (calcSub)  calcSub.textContent  = phaseText + ' · adjust the fields below to match your situation';
+    if (payerSub) payerSub.textContent = phaseText + ' · all figures reflect payer (insurer) paid portion, not patient out-of-pocket cost.';
+}
+
+/* ── PHASE 3 (LAST PHASE) PROJECTION — for both patient and payer ── */
+function updatePhase3Projection() {
+    const coins = parseFloat(getChipVal('coins-' + LAST_ID, LAST_COINS_DEFAULT));
+    const lastAWP = AWP[LAST_ID];
+
+    const phase3Patient = lastAWP * coins;
+    const phase3Payer   = Math.round(lastAWP * 0.80) + MEDICAL_COST;
+
+    const p3PatientEl = document.getElementById('phase3PatientCost');
+    const p3PayerEl   = document.getElementById('phase3PayerCost');
+    if (p3PatientEl) p3PatientEl.textContent = '$' + Math.round(phase3Patient).toLocaleString();
+    if (p3PayerEl)   p3PayerEl.textContent   = '$' + Math.round(phase3Payer).toLocaleString();
+}
+
+/* ── PROGRESSION TOGGLE ── */
+function toggleProg() {
+    const detail = document.getElementById('det-prog');
+    const btn    = document.getElementById('prog-btn');
+    const isOpen = detail.classList.toggle('open');
+    btn.textContent = isOpen
+        ? 'What you should know about persistent symptoms on “normal” labs ▲'
+        : 'What you should know about persistent symptoms on “normal” labs ▼';
+}
+
+/* ── CITATIONS TOGGLE ── */
+function toggleCites() {
+    document.getElementById('citeToggle').classList.toggle('open');
+    document.getElementById('citeList').classList.toggle('open');
+}
+
+function goToCite(n) {
+    const toggle = document.getElementById('citeToggle');
+    const list   = document.getElementById('citeList');
+    if (!list.classList.contains('open')) {
+        toggle.classList.add('open');
+        list.classList.add('open');
+    }
+    const target = document.getElementById('cite-' + n);
+    if (target) {
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'center' }), 400);
+    }
+}
+
+
+/* ── INIT ── */
+recalc();
+recalcPayer();
+</script>
+</body>
+</html>

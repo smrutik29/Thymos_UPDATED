@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', sans-serif; font-size: 18px; line-height: 1.6; color: #212121; background: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+  a { color: #ea6047; text-decoration: none; }
+  a:hover { color: #c14930; }
+  nav a { white-space: nowrap; }
+  .nav-burger { display: none; }
+  @media (max-width: 1080px) {
+    .nav-desktop { display: none !important; }
+    .nav-burger { display: flex !important; }
+  }
+</style>
+</helmet>
+
+<div style="width:100%; font-family:'Montserrat',sans-serif; color:#212121;">
+
+  <nav style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:20px clamp(16px,3vw,40px); background:#fff; border-bottom:1px solid #ddd; position:sticky; top:0; z-index:1000; gap:20px;">
+    <a href="Thymos Homepage.dc.html" style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:20px; color:#1a1a1a; white-space:nowrap; text-decoration:none;">
+      <img src="img/thymos-logo-flames.png" alt="Thymos Logo" style="height:52px; width:auto;" />
+      <span>Thymos Health</span>
+    </a>
+    <div class="nav-desktop" style="display:flex; gap:20px; font-size:16px;">
+      <a href="Thymos How We Work.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">How We Work</a>
+      <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">Proven Approach</a>
+      <a href="Thymos Conditions Treated.dc.html" style="color:#ea6047; font-weight:600; text-decoration:none;">Conditions Treated</a>
+      <a href="Thymos About Us.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">About</a>
+    </div>
+    <div class="nav-desktop" style="display:flex; align-items:center; gap:16px;">
+      <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="color:#333; text-decoration:none; font-size:16px;" style-hover="color:#ea6047; text-decoration:underline;">Sign In</a>
+      <a href="/quiz" style="padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:15px; font-weight:500; text-decoration:none;" style-hover="background:#c14930; color:#fff;">Get Started</a>
+    </div>
+    <button class="nav-burger" onClick="{{ toggleMenu }}" aria-label="Menu" style="flex-direction:column; justify-content:center; gap:5px; width:32px; height:28px; background:none; border:none; cursor:pointer; padding:0;">
+      <span style="width:24px; height:3px; background:#333; border-radius:2px;"></span>
+      <span style="width:24px; height:3px; background:#333; border-radius:2px;"></span>
+      <span style="width:24px; height:3px; background:#333; border-radius:2px;"></span>
+    </button>
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="flex-basis:100%; display:flex; flex-direction:column; gap:14px; padding-top:8px; font-size:16px;">
+        <a href="Thymos How We Work.dc.html" style="color:#333; text-decoration:none;">How We Work</a>
+        <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;">Proven Approach</a>
+        <a href="Thymos Conditions Treated.dc.html" style="color:#ea6047; font-weight:600; text-decoration:none;">Conditions Treated</a>
+        <a href="Thymos About Us.dc.html" style="color:#333; text-decoration:none;">About</a>
+        <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="color:#333; text-decoration:none;">Sign In</a>
+        <a href="/quiz" style="align-self:flex-start; padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:15px; font-weight:500; text-decoration:none;">Get Started</a>
+      </div>
+    </sc-if>
+  </nav>
+
+  <div style="background:#02302d; padding:40px 20px; text-align:center;">
+    <h1 style="font-size:2.5rem; font-weight:800; line-height:1.3; color:#dfe8e8; max-width:800px; margin:0 auto; text-wrap:pretty;">Get Diagnosed and Address All Autoimmune Disorders — Without Compromise</h1>
+  </div>
+
+  <main style="padding:60px 20px; max-width:900px; margin:0 auto;">
+    <input type="text" placeholder="Search diseases..." value="{{ query }}" onChange="{{ onSearch }}" style="display:block; width:100%; padding:14px; font-size:16px; font-family:inherit; border:1px solid #ccc; border-radius:8px; margin-bottom:16px;" />
+    <p style="font-size:0.95rem; color:#666; margin-bottom:8px;">{{ countLabel }}</p>
+    <p style="font-size:0.9rem; color:#888; margin-bottom:40px;">Select a condition for symptoms, coexisting conditions, risk factors, and research. Conditions with a published patient journey are marked.</p>
+
+    <div style="display:flex; flex-direction:column; gap:32px;">
+      <sc-for list="{{ groups }}" as="group" hint-placeholder-count="8">
+        <div>
+          <h2 style="font-size:28px; font-weight:700; margin-bottom:16px; border-bottom:2px solid #eee; padding-bottom:6px;">{{ group.letter }}</h2>
+          <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:14px;">
+            <sc-for list="{{ group.items }}" as="d" hint-placeholder-count="5">
+              <li style="display:flex; align-items:center;">
+                <a href="{{ d.href }}" style="text-decoration:none; color:inherit; display:block; width:100%;" style-hover="color:#ea6047;">
+                  <div style="display:flex; align-items:baseline; gap:12px; padding:10px 14px; border-radius:10px; transition:background-color .2s ease, transform .2s ease;" style-hover="background:#f8f5f0; transform:translateX(4px);">
+                    <span style="font-size:18px; font-weight:600; text-transform:capitalize;">{{ d.name }}</span>
+                    <sc-if value="{{ d.hasJourney }}" hint-placeholder-val="{{ false }}">
+                      <span style="font-size:13px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#ea6047;">+ Patient journey</span>
+                    </sc-if>
+                  </div>
+                </a>
+              </li>
+            </sc-for>
+          </ul>
+        </div>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+      <p style="padding:40px 0; color:#666;">No conditions match that search.</p>
+    </sc-if>
+  </main>
+
+  <footer style="background:#02302d; color:#fff; padding:40px; text-align:center;">
+    <p>© 2025 Thymos Health. All rights reserved.</p>
+    <nav style="margin-top:12px; display:flex; justify-content:center; align-items:center; gap:12px;">
+      <a href="Thymos About Us.dc.html" style="color:#ea6047; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">About Us</a>
+      <span style="color:#aaa; font-weight:400;">|</span>
+      <a href="Thymos Privacy Policy.dc.html" style="color:#ea6047; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">Privacy Policy</a>
+      <span style="color:#aaa; font-weight:400;">|</span>
+      <a href="Thymos Terms of Service.dc.html" style="color:#ea6047; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">Terms of Service</a>
+    </nav>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { menuOpen: false, query: "", diseases: [] };
+
+  // journey pages that exist in this project, keyed by slug
+  journeys = {
+    "crohns-disease": "Patient Journey - Crohns.html",
+    "alopecia-areata": "Patient Journey - Alopecia Areata.html",
+    "ankylosing-spondylitis": "Patient Journey - Ankylosing Spondylitis.html",
+    "autoimmune-hepatitis": "Patient Journey - Autoimmune Hepatitis.html",
+    "dermatomyositis": "Patient Journey - Myositis.html",
+    "polymyositis": "Patient Journey - Myositis.html",
+    "psoriatic-arthritis": "Patient Journey - Psoriatic Arthritis.html",
+    "hashimotos-thyroiditis": "Patient Journey - Hashimotos Thyroiditis.html"
+  };
+
+  componentDidMount() {
+    fetch("all_diseases.json")
+      .then(r => r.json())
+      .then(diseases => this.setState({ diseases }))
+      .catch(() => {});
+  }
+
+  renderVals() {
+    const q = this.state.query.trim().toLowerCase();
+    const all = this.state.diseases;
+    const filtered = q
+      ? all.filter(d =>
+          d.name.toLowerCase().includes(q) ||
+          (d.description || "").toLowerCase().includes(q))
+      : all;
+
+    const byLetter = {};
+    filtered.forEach(d => {
+      const l = d.name[0].toUpperCase();
+      (byLetter[l] = byLetter[l] || []).push({
+        name: d.name,
+        href: "Thymos Condition Detail.dc.html?slug=" + encodeURIComponent(d.slug),
+        hasJourney: !!this.journeys[d.slug]
+      });
+    });
+
+    const groups = Object.keys(byLetter).sort().map(letter => ({
+      letter,
+      items: byLetter[letter].sort((a, b) => a.name.localeCompare(b.name))
+    }));
+
+    return {
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      query: this.state.query,
+      onSearch: e => this.setState({ query: e.target.value }),
+      groups,
+      empty: all.length > 0 && filtered.length === 0,
+      countLabel: all.length === 0
+        ? "Loading conditions…"
+        : filtered.length + " of " + all.length + " conditions"
+    };
+  }
+}
+</script>
+</body>
+</html>

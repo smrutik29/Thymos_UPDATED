@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', sans-serif; font-size: 18px; line-height: 1.6; color: #212121; background: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+  a { color: #ea6047; text-decoration: none; }
+  a:hover { color: #c14930; }
+  nav a { white-space: nowrap; }
+  .nav-burger { display: none; }
+  @media (max-width: 1080px) {
+    .nav-desktop { display: none !important; }
+    .nav-burger { display: flex !important; }
+  }
+</style>
+</helmet>
+
+<div style="width:100%; min-height:100vh; display:flex; flex-direction:column; font-family:'Montserrat',sans-serif; color:#212121;">
+
+  <nav style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:20px clamp(16px,3vw,40px); background:#fff; border-bottom:1px solid #ddd; position:sticky; top:0; z-index:1000; gap:20px;">
+    <a href="Thymos Homepage.dc.html" style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:20px; color:#1a1a1a; white-space:nowrap; text-decoration:none;">
+      <img src="img/thymos-logo-flames.png" alt="Thymos Logo" style="height:52px; width:auto;" />
+      <span>Thymos Health</span>
+    </a>
+    <div class="nav-desktop" style="display:flex; gap:20px; font-size:16px;">
+      <a href="Thymos How We Work.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">How We Work</a>
+      <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">Proven Approach</a>
+      <a href="Thymos Conditions Treated.dc.html" style="color:#ea6047; font-weight:600; text-decoration:none;">Conditions Treated</a>
+      <a href="Thymos About Us.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">About</a>
+    </div>
+    <div class="nav-desktop" style="display:flex; align-items:center; gap:16px;">
+      <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="color:#333; text-decoration:none; font-size:16px;" style-hover="color:#ea6047; text-decoration:underline;">Sign In</a>
+      <a href="/quiz" style="padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:15px; font-weight:500; text-decoration:none;" style-hover="background:#c14930; color:#fff;">Get Started</a>
+    </div>
+    <button class="nav-burger" onClick="{{ toggleMenu }}" aria-label="Menu" style="flex-direction:column; justify-content:center; gap:5px; width:32px; height:28px; background:none; border:none; cursor:pointer; padding:0;">
+      <span style="width:24px; height:3px; background:#333; border-radius:2px;"></span>
+      <span style="width:24px; height:3px; background:#333; border-radius:2px;"></span>
+      <span style="width:24px; height:3px; background:#333; border-radius:2px;"></span>
+    </button>
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="flex-basis:100%; display:flex; flex-direction:column; gap:14px; padding-top:8px; font-size:16px;">
+        <a href="Thymos How We Work.dc.html" style="color:#333; text-decoration:none;">How We Work</a>
+        <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;">Proven Approach</a>
+        <a href="Thymos Conditions Treated.dc.html" style="color:#ea6047; font-weight:600; text-decoration:none;">Conditions Treated</a>
+        <a href="Thymos About Us.dc.html" style="color:#333; text-decoration:none;">About</a>
+        <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="color:#333; text-decoration:none;">Sign In</a>
+        <a href="/quiz" style="align-self:flex-start; padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:15px; font-weight:500; text-decoration:none;">Get Started</a>
+      </div>
+    </sc-if>
+  </nav>
+
+  <main style="flex:1; max-width:900px; margin:0 auto; padding:60px 20px;">
+    <div style="margin-top:10px; margin-bottom:20px;">
+      <a href="Thymos Conditions Treated.dc.html" style="color:#0077cc; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">← Back to all conditions</a>
+    </div>
+
+    <section style="text-align:center; margin-bottom:40px;">
+      <h1 style="font-size:2.5rem; font-weight:700; margin-bottom:20px; line-height:1.25; text-wrap:pretty;">{{ title }}</h1>
+      <p style="font-size:1.25rem; line-height:1.6; margin-top:1rem; max-width:800px; margin-left:auto; margin-right:auto; text-wrap:pretty;">{{ description }}</p>
+    </section>
+
+    <sc-if value="{{ hasJourney }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; margin-bottom:40px; padding:20px 24px; background:#f8f5f0; border-left:3px solid #ea6047; border-radius:8px;">
+        <p style="font-size:1.05rem; line-height:1.6; color:#333; text-wrap:pretty;">See what a typical journey with this condition looks like — conventional care versus Thymos.</p>
+        <a href="{{ journeyHref }}" style="display:inline-block; background:#ea6047; color:#fff; padding:12px 24px; border-radius:8px; font-weight:600; font-size:1rem; text-decoration:none; white-space:nowrap;" style-hover="background:#c14930; color:#fff;">View the patient journey →</a>
+      </div>
+    </sc-if>
+
+    <sc-for list="{{ sections }}" as="s" hint-placeholder-count="3">
+      <article style="margin-bottom:40px;">
+        <h2 style="font-size:1.75rem; font-weight:700; color:#222; margin-bottom:10px; border-bottom:2px solid #eee; padding-bottom:5px; text-wrap:pretty;">{{ s.heading }}</h2>
+        <p style="font-size:1.05rem; color:#333; line-height:1.6; white-space:pre-line; text-wrap:pretty;">{{ s.body }}</p>
+      </article>
+    </sc-for>
+
+    <sc-if value="{{ hasResearch }}" hint-placeholder-val="{{ false }}">
+      <section>
+        <h2 style="font-size:1.75rem; font-weight:700; color:#222; margin-bottom:10px; border-bottom:2px solid #eee; padding-bottom:5px;">Recent Research</h2>
+        <ul style="list-style-type:disc; padding-left:20px; display:flex; flex-direction:column; gap:10px;">
+          <sc-for list="{{ research }}" as="r" hint-placeholder-count="4">
+            <li style="line-height:1.5;">
+              <a href="{{ r.link }}" target="_blank" rel="noopener noreferrer" style="color:#0077cc; text-decoration:none;" style-hover="text-decoration:underline;">{{ r.label }}</a>
+            </li>
+          </sc-for>
+        </ul>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ notFound }}" hint-placeholder-val="{{ false }}">
+      <p style="color:#666; text-align:center;">That condition could not be found. <a href="Thymos Conditions Treated.dc.html">Back to all conditions</a>.</p>
+    </sc-if>
+  </main>
+
+  <footer style="background:#02302d; color:#fff; padding:40px; text-align:center;">
+    <p>© 2025 Thymos Health. All rights reserved.</p>
+    <nav style="margin-top:12px; display:flex; justify-content:center; align-items:center; gap:12px;">
+      <a href="Thymos About Us.dc.html" style="color:#ea6047; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">About Us</a>
+      <span style="color:#aaa; font-weight:400;">|</span>
+      <a href="Thymos Privacy Policy.dc.html" style="color:#ea6047; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">Privacy Policy</a>
+      <span style="color:#aaa; font-weight:400;">|</span>
+      <a href="Thymos Terms of Service.dc.html" style="color:#ea6047; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">Terms of Service</a>
+    </nav>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { menuOpen: false, disease: null, loaded: false };
+
+  journeys = {
+    "crohns-disease": "Patient Journey - Crohns.html",
+    "alopecia-areata": "Patient Journey - Alopecia Areata.html",
+    "ankylosing-spondylitis": "Patient Journey - Ankylosing Spondylitis.html",
+    "autoimmune-hepatitis": "Patient Journey - Autoimmune Hepatitis.html",
+    "dermatomyositis": "Patient Journey - Myositis.html",
+    "polymyositis": "Patient Journey - Myositis.html",
+    "psoriatic-arthritis": "Patient Journey - Psoriatic Arthritis.html",
+    "hashimotos-thyroiditis": "Patient Journey - Hashimotos Thyroiditis.html"
+  };
+
+  componentDidMount() {
+    const slug = new URLSearchParams(location.search).get("slug");
+    fetch("all_diseases.json")
+      .then(r => r.json())
+      .then(list => {
+        const disease = list.find(d => d.slug === slug) || null;
+        this.setState({ disease, loaded: true });
+        if (disease) document.title = disease.name + " — Thymos Health";
+      })
+      .catch(() => this.setState({ loaded: true }));
+  }
+
+  titleCase(s) {
+    return s.replace(/(^|[^\p{L}'’])(\p{L})/gu, (m, pre, c) => pre + c.toUpperCase());
+  }
+
+  renderVals() {
+    const d = this.state.disease;
+    const href = d ? this.journeys[d.slug] : null;
+    const research = d ? (d.research || []).filter(r => r.link) : [];
+
+    return {
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      title: d ? this.titleCase(d.name) : (this.state.loaded ? "Condition not found" : "Loading…"),
+      description: d ? d.description : "",
+      sections: d ? Object.keys(d.details || {}).map(k => ({
+        heading: k,
+        body: (d.details[k] || "").replace(/\n\s*,\s*\n/g, ", ").replace(/\n+/g, " ").trim()
+      })) : [],
+      hasJourney: !!href,
+      journeyHref: href || "#",
+      hasResearch: research.length > 0,
+      research: research.map(r => ({
+        link: r.link,
+        label: r.year ? r.title + " (" + r.year + ")" : r.title
+      })),
+      notFound: this.state.loaded && !d
+    };
+  }
+}
+</script>
+</body>
+</html>
