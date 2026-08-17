@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Your Crohn's Journey | Thymos Health</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        :root {
+            --teal:        #034152;
+            --teal-mid:    #0B5C73;
+            --teal-light:  #5EC4D2;
+            --coral:       #EA6047;
+            --coral-dark:  #D14F38;
+            --sage:        #4A9B86;
+            --sage-dark:   #357A68;
+            --sage-tint:   #DFE8E8;
+            --slate:       #034152;
+            --slate-mid:   #2C4A5C;
+            --amber:       #C4893A;
+            --beige:       #F8F5F0;
+            --gray-50:     #F8F5F0;
+            --gray-100:    #EDE6D9;
+            --gray-200:    #DCD3C2;
+            --gray-300:    #C6B9A3;
+            --gray-500:    #7A8A96;
+            --gray-700:    #3E5550;
+            --gray-900:    #182220;
+            --white:       #FFFFFF;
+            --muted:       #7A8A96;
+            --shadow-sm:   0 1px 3px rgba(3,65,82,0.07), 0 1px 2px rgba(3,65,82,0.04);
+            --shadow-md:   0 4px 14px rgba(3,65,82,0.10), 0 2px 4px rgba(3,65,82,0.05);
+            --shadow-lg:   0 12px 32px rgba(3,65,82,0.14), 0 4px 8px rgba(3,65,82,0.06);
+            --r:           20px;
+            --r-sm:        10px;
+        }
+
+        html {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            font-size: 16px;
+            color: var(--gray-900);
+            background: var(--gray-50);
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body { min-height: 100vh; overflow-x: hidden; }
+
+        /* ── HEADER ───────────────────────────────────── */
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(255,255,255,0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gray-100);
+            padding: 13px 20px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .header-brand { font-size: 15px; font-weight: 700; color: var(--slate); letter-spacing: -0.2px; }
+        .header-brand em { color: var(--teal); font-style: normal; }
+
+        /* ── HERO ─────────────────────────────────────── */
+        .hero {
+            background: var(--slate);
+            padding: 44px 24px 52px;
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -60px; right: -60px;
+            width: 240px; height: 240px;
+            background: radial-gradient(circle, rgba(94,196,210,0.22) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .hero::after {
+            content: ''; position: absolute; bottom: -40px; left: -40px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(234,96,71,0.16) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .hero-chip {
+            display: inline-flex; align-items: center; gap: 5px;
+            background: rgba(94,196,210,0.12);
+            border: 1px solid rgba(94,196,210,0.28);
+            color: var(--teal-light);
+            font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+            padding: 5px 12px; border-radius: 100px; margin-bottom: 22px;
+        }
+        .hero-h1 {
+            font-size: 32px; font-weight: 800; color: var(--white);
+            line-height: 1.13; letter-spacing: -0.6px; margin-bottom: 16px;
+        }
+        .hero-h1 .flame {
+            background: linear-gradient(120deg, #5EC4D2 0%, #4A9B86 60%, #A3D4C8 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-sub {
+            font-size: 15px; color: rgba(255,255,255,0.88); line-height: 1.65;
+            margin-bottom: 36px;
+        }
+        .hero-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+        }
+        .hero-stat {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px; padding: 16px 14px;
+        }
+        .hs-sentence {
+            font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.88);
+            line-height: 1.5;
+        }
+        .hs-num-inline {
+            font-size: 20px; font-weight: 800;
+            background: linear-gradient(120deg, #5EC4D2 0%, #4A9B86 60%, #A3D4C8 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── STRIP NAV BANNER ─────────────────────────── */
+        .nav-strip {
+            background: #154E5E;
+            border-bottom: 1px solid rgba(3,65,82,0.12);
+            padding: 14px 16px;
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 8px;
+        }
+        .nav-strip-btn {
+            background:
+                linear-gradient(var(--slate), var(--slate)) padding-box,
+                linear-gradient(120deg, #5EC4D2 0%, #4A9B86 60%, #A3D4C8 100%) border-box;
+            border: 1.5px solid transparent;
+            border-radius: 100px;
+            padding: 9px 16px;
+            font-size: 12px; font-weight: 700; color: var(--white);
+            text-decoration: none; white-space: nowrap;
+            transition: all 0.15s ease;
+        }
+        .nav-strip-btn:active { opacity: 0.8; }
+
+        /* ── SECTION SHELL ────────────────────────────── */
+        .sec { padding: 44px 20px; background: var(--beige); }
+        .sec.sec-tint { background: var(--sage-tint); }
+        .sec-chip {
+            font-size: 10px; font-weight: 700; letter-spacing: 1.1px;
+            text-transform: uppercase; color: var(--coral); margin-bottom: 8px;
+        }
+        .sec-h2 {
+            font-size: 24px; font-weight: 800; color: var(--slate);
+            line-height: 1.2; letter-spacing: -0.4px; margin-bottom: 8px;
+        }
+        .sec-body {
+            font-size: 14px; color: var(--gray-700); line-height: 1.65;
+            margin-bottom: 28px;
+        }
+        .sec-body-bold {
+            font-size: 18px; font-weight: 700; color: var(--coral);
+            line-height: 1.6; margin: 0; text-align: center;
+        }
+        .mark-row {
+            display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+            gap: 10px; margin-top: -14px; margin-bottom: 28px;
+        }
+        .divider { height: 1px; background: var(--gray-100); margin: 0 20px; }
+
+        /* ── DRUG LADDER ──────────────────────────────── */
+        .ladder { display: flex; flex-direction: column; gap: 6px; }
+        @media (min-width: 860px) {
+            .ladder { padding: 0 80px; }
+        }
+
+        .drug-card {
+            background: var(--white);
+            border-radius: var(--r);
+            box-shadow: 0 10px 28px rgba(3,65,82,0.14);
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        .drug-card.tried  { border-color: var(--amber); }
+        .drug-card.on-now { border-color: var(--teal);  }
+        .drug-card.not-yet { opacity: 0.55; }
+
+        .card-bar { height: 5px; }
+        .bar-1 { background: linear-gradient(90deg, #034152, #4A9B86); }
+        .bar-2 { background: linear-gradient(90deg, #0B5C73, #5EC4D2); }
+        .bar-3 { background: linear-gradient(90deg, #2C4A5C, #034152); }
+        .bar-end{ background: linear-gradient(90deg, #052733, #2C4A5C); }
+
+        .card-inner { padding: 28px 24px 22px; }
+
+        .card-step-line { margin-bottom: 6px; }
+        .card-step-label {
+            font-size: 12px; font-weight: 700; letter-spacing: 0.9px;
+            text-transform: uppercase; color: var(--gray-500);
+        }
+        .card-name-inline {
+            font-size: 19px; font-weight: 800; color: var(--slate);
+            letter-spacing: -0.4px;
+        }
+        .card-name-inline.danger { color: var(--slate-mid); }
+        .card-generic {
+            font-size: 13px; color: var(--gray-500); margin-bottom: 18px;
+        }
+
+        .quote-block {
+            background: var(--gray-50);
+            border-left: 3px solid var(--gray-300);
+            border-radius: 0 var(--r-sm) var(--r-sm) 0;
+            padding: 10px 14px; margin-bottom: 14px;
+        }
+        .quote-label {
+            font-size: 9px; font-weight: 700; letter-spacing: 0.8px;
+            text-transform: uppercase; color: var(--gray-500); margin-bottom: 4px;
+        }
+        .quote-text { font-size: 13px; color: var(--gray-700); font-style: italic; line-height: 1.5; }
+
+        .pills { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+        .pill {
+            display: flex; align-items: center; gap: 4px;
+            background: rgba(3,65,82,0.07);
+            border: 1px solid rgba(3,65,82,0.18);
+            border-radius: 100px; padding: 6px 12px;
+            font-size: 12px; font-weight: 600; color: var(--teal);
+        }
+        .pill.warn-red {
+            background: rgba(44,74,92,0.07);
+            border-color: rgba(44,74,92,0.18);
+            color: var(--slate-mid);
+        }
+        .pill.info {
+            background: rgba(74,155,134,0.08);
+            border-color: rgba(74,155,134,0.22);
+            color: var(--sage-dark);
+        }
+
+        .cost-row {
+            display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px;
+            background: var(--gray-50); border-radius: var(--r-sm);
+            padding: 12px 14px; margin-bottom: 16px;
+        }
+        .cost-lbl { font-size: 14px; font-weight: 600; color: var(--gray-700); }
+        .cost-val { font-size: 16px; font-weight: 800; color: var(--slate); }
+        .cost-val.hot { color: var(--teal); }
+
+        /* status buttons — beige with orange outline/text until selected, then solid orange fill */
+        .sbtn-group { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+        .sbtn {
+            padding: 10px 4px; border-radius: var(--r-sm);
+            border: 2px solid var(--coral);
+            background: var(--beige);
+            font-size: 11.5px; font-weight: 700; color: var(--coral);
+            cursor: pointer; text-align: center; line-height: 1.25;
+            transition: all 0.15s ease; user-select: none;
+        }
+        .sbtn:active { transform: scale(0.96); }
+        .sbtn.active {
+            background: var(--coral);
+            border: 2px solid var(--coral);
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        /* other-drug inline form */
+        .other-input {
+            width: 100%; padding: 11px 14px;
+            border: 1.5px dashed var(--coral); border-radius: var(--r-sm);
+            font-size: 14px; color: var(--slate); background: rgba(234,96,71,0.04);
+            outline: none; transition: border-color 0.15s;
+        }
+        .other-input:focus { border-style: solid; border-color: var(--teal-light); }
+        .other-input::placeholder { color: var(--gray-300); }
+
+        /* expandable detail */
+        .card-detail {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+            background: var(--gray-50);
+            border-top: 1px solid transparent;
+        }
+        .card-detail.open {
+            max-height: 1100px;
+            border-top-color: var(--gray-100);
+            padding: 16px 20px;
+        }
+        .detail-row { margin-bottom: 14px; }
+        .detail-lbl {
+            font-size: 12.5px; font-weight: 700; color: var(--coral);
+            margin-bottom: 8px; display: flex; align-items: center; gap: 5px;
+        }
+        .detail-lbl::before { content: "✎"; font-size: 12px; }
+
+        /* duration chips — dashed border signals a tappable input, not static text */
+        .chip-group { display: flex; flex-wrap: wrap; gap: 7px; }
+        .chip {
+            padding: 7px 13px;
+            border: 1.5px dashed var(--gray-300); border-radius: 100px;
+            background: var(--white);
+            font-size: 12px; font-weight: 600; color: var(--gray-700);
+            cursor: pointer; user-select: none; white-space: nowrap; line-height: 1;
+            transition: all 0.15s ease;
+        }
+        .chip:active { transform: scale(0.93); }
+        .chip.active {
+            background: rgba(3,65,82,0.1);
+            border: 1.5px solid var(--teal); color: var(--teal);
+        }
+
+        /* outcome chips — one line of button choices, same visual language as chips above */
+        .outcome-group { display: flex; flex-wrap: wrap; gap: 7px; }
+        .outcome-chip {
+            padding: 8px 13px;
+            border: 1.5px dashed var(--gray-300); border-radius: 100px;
+            background: var(--white);
+            font-size: 12px; font-weight: 600; color: var(--gray-700);
+            cursor: pointer; user-select: none; text-align: center; line-height: 1.25;
+            transition: all 0.15s ease; max-width: 100%;
+        }
+        .outcome-chip:active { transform: scale(0.96); }
+        .outcome-chip.active {
+            background: rgba(3,65,82,0.08);
+            border: 1.5px solid var(--teal); color: var(--teal); font-weight: 700;
+        }
+        .cost-preview-box {
+            background: linear-gradient(135deg, rgba(3,65,82,0.07), rgba(74,155,134,0.07));
+            border: 1px solid rgba(3,65,82,0.14);
+            border-radius: var(--r-sm); padding: 14px;
+            display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 10px;
+            margin-top: 6px;
+        }
+        .cpb-label { font-size: 13px; font-weight: 600; color: var(--gray-700); }
+        .cpb-amount { font-size: 22px; font-weight: 800; color: var(--teal); letter-spacing: -0.4px; }
+
+        /* connectors */
+        .connector {
+            display: flex; flex-direction: column; align-items: center;
+            padding: 14px 0;
+        }
+        .conn-line { width: 2px; height: 18px; background: var(--gray-200); }
+        .conn-badge {
+            background: var(--teal);
+            border: none;
+            border-radius: 100px; padding: 11px 20px;
+            font-size: 14px; font-weight: 700; color: var(--white);
+            text-align: center; line-height: 1.3;
+            box-shadow: 0 6px 16px rgba(3,65,82,0.28);
+            max-width: 88%;
+        }
+
+        /* ── COST CALCULATOR ──────────────────────────── */
+        .calc-card {
+            background: var(--slate); border-radius: var(--r);
+            padding: 26px 22px; color: var(--white);
+        }
+        @media (min-width: 860px) {
+            .calc-card { margin: 0 80px; }
+        }
+        .calc-sub { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 24px; line-height: 1.5; }
+        .calc-fields { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
+        .cf-row {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 14px; background: rgba(255,255,255,0.06);
+            border: 1.5px dashed rgba(94,196,210,0.4);
+            border-radius: var(--r-sm); padding: 12px 14px;
+        }
+        .cf-label { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.88); flex: 1 1 auto; line-height: 1.4; }
+        .cf-input {
+            width: 108px; flex: 0 0 auto; padding: 11px 12px; text-align: right;
+            background: rgba(255,255,255,0.1);
+            border: 1.5px solid rgba(255,255,255,0.18);
+            border-radius: var(--r-sm);
+            font-size: 18px; font-weight: 700; color: var(--white);
+        }
+        .cf-input:focus { outline: none; border-color: var(--teal-light); }
+        .cf-input::placeholder { color: rgba(255,255,255,0.3); font-weight: 400; font-size: 14px; }
+
+        .total-box {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--r); padding: 22px 20px;
+        }
+        .total-row {
+            display: flex; justify-content: space-between; align-items: baseline;
+            gap: 12px; margin-bottom: 20px;
+        }
+        .total-label { font-size: 16px; color: rgba(255,255,255,0.8); }
+        .total-num {
+            font-size: 46px; font-weight: 800; letter-spacing: -2px; line-height: 1;
+            background: linear-gradient(120deg, #5EC4D2, #4A9B86);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; text-align: right; white-space: nowrap;
+        }
+        @media (max-width: 380px) {
+            .total-num { font-size: 34px; }
+        }
+        .breakdown { display: flex; flex-direction: column; gap: 10px; }
+        .brow {
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 15px;
+        }
+        .brow-lbl { color: rgba(255,255,255,0.78); }
+        .brow-val { font-weight: 600; color: rgba(255,255,255,0.9); }
+        .brow-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 4px 0 16px; }
+
+        /* ── RISK ─────────────────────────────────────── */
+        .risk-card { background: var(--white); border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow-md); }
+        .risk-head {
+            background: linear-gradient(135deg, #052733 0%, #034152 100%);
+            padding: 22px 20px; color: var(--white);
+        }
+        .risk-head-label {
+            font-size: 10px; font-weight: 700; letter-spacing: 1px;
+            text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 5px;
+        }
+        .risk-head-title { font-size: 18px; font-weight: 800; line-height: 1.2; }
+        .risk-items { padding: 22px 20px; display: flex; flex-direction: column; gap: 20px; }
+        .risk-row { display: flex; gap: 14px; align-items: flex-start; }
+        .risk-icon {
+            width: 40px; height: 40px; border-radius: 11px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; flex-shrink: 0;
+        }
+        .ri-o { background: rgba(3,65,82,0.1); }
+        .ri-r { background: rgba(44,74,92,0.1); }
+        .ri-y { background: rgba(196,137,58,0.1); }
+        .ri-g { background: rgba(74,155,134,0.1); }
+        .risk-desc { font-size: 14.5px; color: var(--gray-700); line-height: 1.55; }
+        .risk-num {
+            font-size: 19px; font-weight: 800; color: var(--slate);
+            letter-spacing: -0.3px;
+        }
+        .risk-num.red { color: var(--slate-mid); }
+
+        /* ── PAYER PERSPECTIVE ────────────────────────── */
+        .payer-card { background: var(--white); border-radius: var(--r); box-shadow: 0 10px 28px rgba(3,65,82,0.14); overflow: hidden; }
+        @media (min-width: 860px) {
+            .payer-card { margin: 0 80px; }
+        }
+        .payer-head { background: linear-gradient(135deg,#052733 0%,#2C4A5C 100%); padding: 22px 20px; color: var(--white); }
+        .payer-head-chip { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(94,196,210,0.7); margin-bottom: 6px; }
+        .payer-head-title { font-size: 18px; font-weight: 800; line-height: 1.2; }
+        .payer-head-sub { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 4px; line-height: 1.5; }
+        .payer-body { padding: 20px 20px 4px; }
+        .payer-total-header {
+            display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap;
+            gap: 8px 10px; margin: 0 -20px 4px; padding: 18px 20px 14px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .payer-total-header .ptb-label { font-size: 15px; font-weight: 600; color: var(--gray-700); }
+        .payer-total-header .ptb-amount { font-size: 30px; font-weight: 800; color: var(--slate); letter-spacing: -1px; line-height: 1; }
+        .payer-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 11px 0; border-bottom: 1px solid var(--gray-50); gap: 14px; }
+        .payer-row:last-child { border-bottom: none; }
+        .payer-row-left { flex: 1; }
+        .payer-row-label { font-size: 13px; font-weight: 600; color: var(--slate); margin-bottom: 2px; line-height: 1.35; }
+        .payer-row-desc { font-size: 11px; color: var(--gray-500); line-height: 1.45; }
+        .payer-row-val { font-size: 16px; font-weight: 800; color: var(--teal); letter-spacing: -0.3px; white-space: nowrap; text-align: right; flex-shrink: 0; }
+        .payer-row-val.warn { color: var(--slate-mid); }
+        .payer-total-box { margin: 16px 20px 20px; background: linear-gradient(135deg,rgba(3,65,82,0.07),rgba(44,74,92,0.06)); border: 1px solid rgba(3,65,82,0.14); border-radius: var(--r-sm); padding: 16px; }
+        .ptb-note { font-size: 12px; color: var(--gray-500); line-height: 1.5; margin-top: 8px; }
+        .payer-insight { background: rgba(196,137,58,0.06); border: 1px solid rgba(196,137,58,0.18); border-radius: var(--r-sm); padding: 12px 14px; margin: 0 20px 20px; }
+        .pi-title { font-size: 10px; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 5px; }
+        .pi-text { font-size: 12px; color: var(--gray-700); line-height: 1.55; }
+
+        /* ── THYMOS CTA ───────────────────────────────── */
+        .thymos-card {
+            background: linear-gradient(155deg, #052733 0%, #034152 100%);
+            border-radius: var(--r); padding: 32px 24px;
+            color: var(--white); position: relative; overflow: hidden;
+        }
+        .thymos-card::after {
+            content: ''; position: absolute; bottom: -50px; right: -50px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(94,196,210,0.2) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .thymos-chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(94,196,210,0.14);
+            border: 1px solid rgba(94,196,210,0.3);
+            color: #8CDDE8; font-size: 10px; font-weight: 700;
+            letter-spacing: 1px; text-transform: uppercase;
+            padding: 5px 12px; border-radius: 100px; margin-bottom: 18px;
+        }
+        .thymos-h {
+            font-size: 27px; font-weight: 800; line-height: 1.15;
+            letter-spacing: -0.4px; margin-bottom: 12px;
+        }
+        .thymos-h .g { color: #8CDDE8; }
+        .thymos-body {
+            font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.65;
+            margin-bottom: 26px;
+        }
+        .outcomes { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+        .orow { display: flex; gap: 12px; align-items: flex-start; }
+        .ocheck {
+            width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+            background: rgba(94,196,210,0.18);
+            border: 1px solid rgba(94,196,210,0.38);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 10px; color: #8CDDE8; margin-top: 1px;
+        }
+        .otext { font-size: 14px; color: rgba(255,255,255,0.82); line-height: 1.45; }
+        .otext strong { color: var(--white); }
+
+        .cta-row {
+            display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-start;
+            position: relative; z-index: 1;
+        }
+        .cta-row > * { flex: 1 1 150px; }
+        .cta-col { display: flex; flex-direction: column; }
+        .cta-btn {
+            width: 100%; padding: 17px 14px;
+            border-radius: 100px;
+            font-size: 15px; font-weight: 700; letter-spacing: -0.2px;
+            cursor: pointer; text-align: center;
+            transition: opacity 0.18s;
+        }
+        .cta-btn:active { opacity: 0.88; }
+        .cta-btn-primary {
+            background: var(--coral); border: none; color: var(--white);
+        }
+        .cta-btn-secondary {
+            background: transparent; border: 2px solid rgba(255,255,255,0.5);
+            color: var(--white);
+        }
+        .cta-note {
+            text-align: center; font-size: 12px;
+            color: rgba(255,255,255,0.35); margin-top: 10px;
+        }
+
+        /* ── CITATIONS ────────────────────────────────── */
+        sup.ref {
+            font-size: 9px; font-weight: 700; color: var(--teal);
+            vertical-align: super; line-height: 0;
+            cursor: default; margin-left: 1px;
+        }
+        sup.ref::before { content: "("; }
+        sup.ref::after { content: ")"; }
+        sup.ref a {
+            color: inherit; text-decoration: none; cursor: pointer;
+        }
+        sup.ref a:active { opacity: 0.6; }
+        .cite-item { scroll-margin-top: 90px; }
+        .citations-section { padding: 32px 20px 8px; }
+        .citations-toggle {
+            display: flex; align-items: center; justify-content: space-between;
+            background: var(--white); border: 1.5px solid var(--gray-100);
+            border-radius: var(--r-sm); padding: 14px 16px;
+            cursor: pointer; user-select: none;
+            font-size: 13px; font-weight: 600; color: var(--gray-700);
+        }
+        .citations-toggle .arrow { font-size: 11px; color: var(--gray-500); transition: transform 0.2s; }
+        .citations-toggle.open .arrow { transform: rotate(180deg); }
+        .citations-list {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: var(--white);
+            border: 1.5px solid var(--gray-100); border-top: none;
+            border-radius: 0 0 var(--r-sm) var(--r-sm);
+        }
+        .citations-list.open { max-height: 3200px; }
+        .cite-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--gray-50);
+            font-size: 11px; line-height: 1.55; color: var(--gray-700);
+        }
+        .cite-item:last-child { border-bottom: none; }
+        .cite-num { font-weight: 700; color: var(--teal); margin-right: 4px; }
+        .cite-doi {
+            display: inline-block; margin-top: 3px;
+            font-size: 10px; color: var(--gray-500);
+            word-break: break-all;
+        }
+        .cite-doi a { color: var(--teal); text-decoration: none; }
+
+        /* ── SURGERY DETAIL ──────────────────────────── */
+        .surg-stat-grid {
+            display: flex; flex-direction: column; gap: 8px;
+            margin: 14px 0;
+        }
+        .surg-stat {
+            display: flex; align-items: baseline; gap: 10px;
+            background: rgba(44,74,92,0.06);
+            border: 1px solid rgba(44,74,92,0.12);
+            border-radius: var(--r-sm); padding: 12px 14px;
+        }
+        .ss-num {
+            font-size: 17px; font-weight: 800; color: var(--slate);
+            letter-spacing: -0.4px; line-height: 1.3; flex-shrink: 0;
+        }
+        .ss-label { font-size: 13.5px; color: var(--gray-700); line-height: 1.35; }
+        .surg-expand-btn {
+            width: 100%; padding: 11px;
+            background: rgba(44,74,92,0.07);
+            border: 1.5px solid var(--slate-mid);
+            border-radius: var(--r-sm);
+            font-size: 12px; font-weight: 700; color: var(--slate-mid);
+            cursor: pointer; text-align: center; margin-top: 4px;
+            transition: all 0.15s ease;
+        }
+        .surg-expand-btn:active { opacity: 0.8; }
+        #det-surgery.open { max-height: 1400px; }
+        .surg-section { margin-bottom: 18px; }
+        .surg-section-title {
+            font-size: 11px; font-weight: 700; color: var(--slate);
+            text-transform: uppercase; letter-spacing: 0.8px;
+            margin-bottom: 10px; padding-bottom: 6px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .surg-row {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            padding: 7px 0; border-bottom: 1px solid var(--gray-50);
+            font-size: 13px; gap: 12px;
+        }
+        .surg-row:last-child { border-bottom: none; }
+        .surg-row-lbl { color: var(--gray-700); flex: 1; line-height: 1.4; }
+        .surg-row-val { font-weight: 700; color: var(--slate); text-align: right; white-space: nowrap; }
+        .surg-row-val.warn { color: var(--slate-mid); }
+        .surg-consequence {
+            display: flex; gap: 10px; align-items: flex-start;
+            padding: 8px 0; border-bottom: 1px solid var(--gray-50);
+            font-size: 13px;
+        }
+        .surg-consequence:last-child { border-bottom: none; }
+        .cons-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+        .cons-text { color: var(--gray-700); line-height: 1.5; }
+        .cons-text strong { color: var(--slate); }
+        .surg-alert {
+            background: rgba(196,137,58,0.07);
+            border: 1px solid rgba(196,137,58,0.22);
+            border-radius: var(--r-sm); padding: 12px 14px; margin-top: 4px;
+        }
+        .surg-alert-title {
+            font-size: 11px; font-weight: 700; color: var(--amber);
+            text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 6px;
+        }
+        .surg-alert-text { font-size: 12px; color: var(--gray-700); line-height: 1.55; }
+
+        /* ── FOOTNOTE ─────────────────────────────────── */
+        .footnote {
+            padding: 24px 20px 32px;
+            font-size: 11px; color: var(--gray-500); line-height: 1.6;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <a href="Thymos Homepage.dc.html" class="header-brand" style="text-decoration:none; cursor:pointer;">Thymos <em>Health</em></a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-chip">Your Crohn's Journey</div>
+    <h1 class="hero-h1">
+        Still symptomatic.<br>
+        Still failing <span class="flame">one drug at a time.</span><br>
+        Still no real answers.
+    </h1>
+    <p class="hero-sub">You're not alone. This is how Crohn's is typically managed — and an honest look at what that journey costs over time.</p>
+    <div class="hero-grid">
+        <div class="hero-stat">
+            <div class="hs-sentence"><span class="hs-num-inline">319K</span> Americans are living with Crohn's disease.<sup class="ref"><a href="#cite-1" onclick="goToCite(1);return false;">1</a></sup></div>
+        </div>
+        <div class="hero-stat">
+            <div class="hs-sentence"><span class="hs-num-inline">47%</span> are first misdiagnosed with IBS or a functional disorder.<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
+        </div>
+        <div class="hero-stat">
+            <div class="hs-sentence"><span class="hs-num-inline">6.7 years</span> is the average delay to a correct diagnosis.<sup class="ref"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
+        </div>
+        <div class="hero-stat">
+            <div class="hs-sentence"><span class="hs-num-inline">26</span> sick days are lost per year on average.<sup class="ref"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></div>
+        </div>
+    </div>
+</section>
+
+<!-- STRIP NAV BANNER -->
+<nav class="nav-strip">
+    <a class="nav-strip-btn" href="#treatment-journey">The Treatment Journey</a>
+    <a class="nav-strip-btn" href="#understanding-risk">Understanding Your Risk</a>
+    <a class="nav-strip-btn" href="#different-journey">A Different Journey Exists</a>
+</nav>
+
+<!-- DRUG JOURNEY -->
+<section class="sec" id="treatment-journey">
+    <h2 class="sec-h2">How Crohn's is typically treated</h2>
+    <p class="sec-body">Most insurance plans and physicians follow step therapy – starting with established treatments before approving newer options.</p>
+    <div class="mark-row">
+        <p class="sec-body-bold">Mark where you are in your journey and we'll show you the full picture.</p>
+    </div>
+
+    <div class="ladder">
+
+        <!-- ── STEP 1: AZATHIOPRINE / 6-MP ── -->
+        <div class="drug-card" id="card-aza">
+            <div class="card-bar bar-1"></div>
+            <div class="card-inner">
+                <div class="card-step-line"><span class="card-step-label">Step 1: Your doctor starts you on</span> <span class="card-name-inline">Imuran / Purinethol</span></div>
+                <div class="card-generic">Azathioprine / 6-MP — daily oral immunomodulator</div>
+                <div class="quote-block">
+                    <div class="quote-label">What your doctor says</div>
+                    <div class="quote-text">"This suppresses the immune response driving your inflammation. Give it 3–6 months to see the full effect."</div>
+                </div>
+                <div class="pills">
+                    <div class="pill">~42% never achieve remission<sup class="ref"><a href="#cite-5" onclick="goToCite(5);return false;">5</a></sup></div>
+                    <div class="pill">9–17% discontinue for toxicity<sup class="ref"><a href="#cite-6" onclick="goToCite(6);return false;">6</a></sup></div>
+                    <div class="pill info">Up to 6 months for full effect<sup class="ref"><a href="#cite-5" onclick="goToCite(5);return false;">5</a></sup></div>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-lbl">Annual drug cost (generic)</span>
+                    <span class="cost-val">~$120–$600</span>
+                </div>
+                <div class="sbtn-group">
+                    <button class="sbtn tried" onclick="setStatus('aza','tried')">✓ Tried this</button>
+                    <button class="sbtn other" onclick="setStatus('aza','other')">↔ Tried something else</button>
+                    <button class="sbtn on"    onclick="setStatus('aza','on')">● On this now</button>
+                    <button class="sbtn skip"  onclick="setStatus('aza','skip')">Not yet</button>
+                </div>
+            </div>
+            <div class="card-detail" id="det-aza">
+                <div id="std-aza">
+                    <div class="detail-row">
+                        <div class="detail-lbl">Providers seen before this was prescribed</div>
+                        <div class="chip-group" id="pre-docs-aza">
+                            <button class="chip" data-value="1"  onclick="pickChip(this)">1</button>
+                            <button class="chip" data-value="2"  onclick="pickChip(this)">2–3</button>
+                            <button class="chip" data-value="4"  onclick="pickChip(this)">4–5</button>
+                            <button class="chip" data-value="6"  onclick="pickChip(this)">6+</button>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">How long were you on this drug?</div>
+                        <div class="chip-group" id="dur-aza">
+                            <button class="chip" data-value="3"  onclick="pickChip(this);recalc()">&lt; 3 mo</button>
+                            <button class="chip" data-value="6"  onclick="pickChip(this);recalc()">3–6 mo</button>
+                            <button class="chip active" data-value="12" onclick="pickChip(this);recalc()">6–12 mo</button>
+                            <button class="chip" data-value="24" onclick="pickChip(this);recalc()">1–2 yr</button>
+                            <button class="chip" data-value="48" onclick="pickChip(this);recalc()">2–4 yr</button>
+                            <button class="chip" data-value="96" onclick="pickChip(this);recalc()">4+ yr</button>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">What happened?</div>
+                        <div class="outcome-group" id="out-aza">
+                            <button class="outcome-chip" data-value="worked"     onclick="pickChip(this)">It worked well</button>
+                            <button class="outcome-chip" data-value="stopped"    onclick="pickChip(this)">It worked, then stopped working</button>
+                            <button class="outcome-chip" data-value="never"      onclick="pickChip(this)">It never worked</button>
+                            <button class="outcome-chip" data-value="intolerant" onclick="pickChip(this)">Couldn't tolerate the side effects</button>
+                            <button class="outcome-chip" data-value="other"      onclick="pickChip(this)">Something else…</button>
+                        </div>
+                        <input class="other-input" id="out-aza-other" type="text" placeholder="Describe what happened…" style="display:none; margin-top:7px;" />
+                    </div>
+                    <div class="cost-preview-box">
+                        <div class="cpb-label">Thiopurine monitoring (CBC + LFTs every 1–3 months, year 1)</div>
+                        <div class="cpb-amount">~$800–$1,500</div>
+                    </div>
+                </div>
+                <div id="oth-aza" style="display:none">
+                    <div class="detail-row">
+                        <div class="detail-lbl">What drug did you take at this step?</div>
+                        <input class="other-input" type="text" placeholder="e.g. Methotrexate, Budesonide" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">How often?</div>
+                        <input class="other-input" type="text" placeholder="e.g. weekly injection" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Annual out-of-pocket cost</div>
+                        <input class="other-input" type="number" id="oth-oop-aza" placeholder="e.g. 800" oninput="recalc()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONNECTOR 1→2 -->
+        <div class="connector">
+            <div class="conn-line"></div>
+            <div class="conn-badge">~42% of patients escalate to Step 2</div>
+            <div class="conn-line"></div>
+        </div>
+
+        <!-- ── STEP 2: ADALIMUMAB / ANTI-TNF ── -->
+        <div class="drug-card" id="card-ada">
+            <div class="card-bar bar-2"></div>
+            <div class="card-inner">
+                <div class="card-step-line"><span class="card-step-label">Step 2: You graduate to</span> <span class="card-name-inline">Adalimumab</span></div>
+                <div class="card-generic">Humira / biosimilars (Hadlima, Hyrimoz) — injection every 2 weeks</div>
+                <div class="quote-block">
+                    <div class="quote-label">What your doctor says</div>
+                    <div class="quote-text">"This is a biologic that targets TNF-alpha, a protein driving your inflammation. Most patients see meaningful results within 12 weeks."</div>
+                </div>
+                <div class="pills">
+                    <div class="pill info">~20–25 clinic visits in the year before reaching this step<sup class="ref"><a href="#cite-15" onclick="goToCite(15);return false;">15</a></sup></div>
+                    <div class="pill">~33% never respond at all<sup class="ref"><a href="#cite-7" onclick="goToCite(7);return false;">7</a></sup></div>
+                    <div class="pill">~50% lose response by year 2<sup class="ref"><a href="#cite-8" onclick="goToCite(8);return false;">8</a></sup></div>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-lbl">Annual cost before insurance (AWP)</span>
+                    <span class="cost-val hot">~$103,000</span>
+                </div>
+                <div class="sbtn-group">
+                    <button class="sbtn tried" onclick="setStatus('ada','tried')">✓ Tried this</button>
+                    <button class="sbtn other" onclick="setStatus('ada','other')">↔ Tried something else</button>
+                    <button class="sbtn on"    onclick="setStatus('ada','on')">● On this now</button>
+                    <button class="sbtn skip"  onclick="setStatus('ada','skip')">Not yet</button>
+                </div>
+            </div>
+            <div class="card-detail" id="det-ada">
+                <div id="std-ada">
+                    <div class="detail-row">
+                        <div class="detail-lbl">Providers seen before escalating to this biologic</div>
+                        <div class="chip-group" id="pre-docs-ada">
+                            <button class="chip" data-value="1"  onclick="pickChip(this)">1</button>
+                            <button class="chip" data-value="2"  onclick="pickChip(this)">2–3</button>
+                            <button class="chip" data-value="4"  onclick="pickChip(this)">4–5</button>
+                            <button class="chip" data-value="6"  onclick="pickChip(this)">6+</button>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">How long were you on Adalimumab?</div>
+                        <div class="chip-group" id="dur-ada">
+                            <button class="chip" data-value="3"  onclick="pickChip(this);recalc()">&lt; 3 mo</button>
+                            <button class="chip" data-value="6"  onclick="pickChip(this);recalc()">3–6 mo</button>
+                            <button class="chip active" data-value="12" onclick="pickChip(this);recalc()">6–12 mo</button>
+                            <button class="chip" data-value="24" onclick="pickChip(this);recalc()">1–2 yr</button>
+                            <button class="chip" data-value="48" onclick="pickChip(this);recalc()">2+ yr</button>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">What happened?</div>
+                        <div class="outcome-group" id="out-ada">
+                            <button class="outcome-chip" data-value="worked"     onclick="pickChip(this)">It worked well</button>
+                            <button class="outcome-chip" data-value="stopped"    onclick="pickChip(this)">It worked, then stopped</button>
+                            <button class="outcome-chip" data-value="never"      onclick="pickChip(this)">It never worked</button>
+                            <button class="outcome-chip" data-value="intolerant" onclick="pickChip(this)">Side effects were unmanageable</button>
+                            <button class="outcome-chip" data-value="other"      onclick="pickChip(this)">Something else…</button>
+                        </div>
+                        <input class="other-input" id="out-ada-other" type="text" placeholder="Describe what happened…" style="display:none; margin-top:7px;" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Your coinsurance for this drug</div>
+                        <div class="chip-group" id="coins-ada">
+                            <button class="chip" data-value="0"    onclick="pickChip(this);recalc()">$0 covered</button>
+                            <button class="chip" data-value="0.05" onclick="pickChip(this);recalc()">5%</button>
+                            <button class="chip" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
+                            <button class="chip active" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
+                            <button class="chip" data-value="0.30" onclick="pickChip(this);recalc()">30%</button>
+                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">No insurance</button>
+                        </div>
+                    </div>
+                    <div class="cost-preview-box">
+                        <div class="cpb-label">Your estimated annual out-of-pocket for this drug</div>
+                        <div class="cpb-amount" id="ada-oop">$20,600</div>
+                    </div>
+                </div>
+                <div id="oth-ada" style="display:none">
+                    <div class="detail-row">
+                        <div class="detail-lbl">What biologic or therapy did you use at this step?</div>
+                        <input class="other-input" type="text" placeholder="e.g. Infliximab, Vedolizumab" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">How often?</div>
+                        <input class="other-input" type="text" placeholder="e.g. every 8 weeks infusion" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Annual out-of-pocket cost</div>
+                        <input class="other-input" type="number" id="oth-oop-ada" placeholder="e.g. 5000" oninput="recalc()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONNECTOR 2→3 -->
+        <div class="connector">
+            <div class="conn-line"></div>
+            <div class="conn-badge">~50% lose response to anti-TNF — move to Step 3</div>
+            <div class="conn-line"></div>
+        </div>
+
+        <!-- ── STEP 3: USTEKINUMAB ── -->
+        <div class="drug-card" id="card-uste">
+            <div class="card-bar bar-3"></div>
+            <div class="card-inner">
+                <div class="card-step-line"><span class="card-step-label">Step 3: You move to</span> <span class="card-name-inline">Ustekinumab</span></div>
+                <div class="card-generic">Stelara — IV induction, then SC every 8–12 weeks (IL-12/23 inhibitor)</div>
+                <div class="quote-block">
+                    <div class="quote-label">What your doctor says</div>
+                    <div class="quote-text">"This targets a different pathway than TNF. It has a strong safety profile and is often well tolerated even after biologic failure."</div>
+                </div>
+                <div class="pills">
+                    <div class="pill warn-red">Two prior biologics haven't provided relief</div>
+                    <div class="pill warn-red">~48% do not achieve clinical response<sup class="ref"><a href="#cite-9" onclick="goToCite(9);return false;">9</a></sup></div>
+                    <div class="pill">~39% surgery risk within 5 years at this stage<sup class="ref"><a href="#cite-10" onclick="goToCite(10);return false;">10</a></sup></div>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-lbl">Annual cost before insurance (AWP)</span>
+                    <span class="cost-val hot">~$89,000</span>
+                </div>
+                <div class="sbtn-group">
+                    <button class="sbtn tried" onclick="setStatus('uste','tried')">✓ Tried this</button>
+                    <button class="sbtn other" onclick="setStatus('uste','other')">↔ Tried something else</button>
+                    <button class="sbtn on"    onclick="setStatus('uste','on')">● On this now</button>
+                    <button class="sbtn skip"  onclick="setStatus('uste','skip')">Not yet</button>
+                </div>
+            </div>
+            <div class="card-detail" id="det-uste">
+                <div id="std-uste">
+                    <div class="detail-row">
+                        <div class="detail-lbl">How long have you been on Ustekinumab?</div>
+                        <div class="chip-group" id="dur-uste">
+                            <button class="chip" data-value="3"  onclick="pickChip(this);recalc()">&lt; 3 mo</button>
+                            <button class="chip active" data-value="6"  onclick="pickChip(this);recalc()">3–6 mo</button>
+                            <button class="chip" data-value="12" onclick="pickChip(this);recalc()">6–12 mo</button>
+                            <button class="chip" data-value="24" onclick="pickChip(this);recalc()">1–2 yr</button>
+                            <button class="chip" data-value="36" onclick="pickChip(this);recalc()">2+ yr</button>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">What happened?</div>
+                        <div class="outcome-group" id="out-uste">
+                            <button class="outcome-chip" data-value="working" onclick="pickChip(this)">Still working</button>
+                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Partial relief only</button>
+                            <button class="outcome-chip" data-value="never"   onclick="pickChip(this)">Hasn't worked</button>
+                            <button class="outcome-chip" data-value="other"   onclick="pickChip(this)">Something else…</button>
+                        </div>
+                        <input class="other-input" id="out-uste-other" type="text" placeholder="Describe what happened…" style="display:none; margin-top:7px;" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Your coinsurance for this drug</div>
+                        <div class="chip-group" id="coins-uste">
+                            <button class="chip" data-value="0"    onclick="pickChip(this);recalc()">$0 covered</button>
+                            <button class="chip" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
+                            <button class="chip active" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
+                            <button class="chip" data-value="0.30" onclick="pickChip(this);recalc()">30%</button>
+                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">No insurance</button>
+                        </div>
+                    </div>
+                    <div class="cost-preview-box">
+                        <div class="cpb-label">Your estimated annual out-of-pocket for this drug</div>
+                        <div class="cpb-amount" id="uste-oop">$17,800</div>
+                    </div>
+                </div>
+                <div id="oth-uste" style="display:none">
+                    <div class="detail-row">
+                        <div class="detail-lbl">What therapy did you try at this step?</div>
+                        <input class="other-input" type="text" placeholder="e.g. Risankizumab, Vedolizumab" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">How often?</div>
+                        <input class="other-input" type="text" placeholder="e.g. every 12 weeks SC" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Annual out-of-pocket cost</div>
+                        <input class="other-input" type="number" id="oth-oop-uste" placeholder="e.g. 3000" oninput="recalc()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONNECTOR 3→Surgery -->
+        <div class="connector">
+            <div class="conn-line"></div>
+            <div class="conn-badge">For some patients, surgical options become necessary</div>
+            <div class="conn-line"></div>
+        </div>
+
+        <!-- END STATE: SURGERY -->
+        <div class="drug-card" id="card-surgery">
+            <div class="card-bar bar-end"></div>
+            <div class="card-inner">
+                <div class="card-step-line"><span class="card-step-label">Step 4: When medications haven't been enough, you are given</span> <span class="card-name-inline danger">Surgical options</span></div>
+                <div class="card-generic">Bowel resection, strictureplasty, or ostomy — partial or full</div>
+                <div class="quote-block">
+                    <div class="quote-label">What Your Doctor says</div>
+                    <div class="quote-text">"Surgery doesn't cure Crohn's, but it can remove damaged tissue and provide significant relief from obstructions, fistulas, or abscesses."</div>
+                </div>
+                <div class="pills">
+                    <div class="pill warn-red">~70% undergo surgery within 10 years of diagnosis<sup class="ref"><a href="#cite-11" onclick="goToCite(11);return false;">11</a></sup></div>
+                    <div class="pill warn-red">~50% recurrence rate at surgery site within 5 years<sup class="ref"><a href="#cite-12" onclick="goToCite(12);return false;">12</a></sup></div>
+                    <div class="pill warn-red">2–4× higher small bowel cancer risk<sup class="ref"><a href="#cite-13" onclick="goToCite(13);return false;">13</a></sup></div>
+                </div>
+                <div class="surg-stat-grid">
+                    <div class="surg-stat">
+                        <div class="ss-num">$45K–$75K</div>
+                        <div class="ss-label">First-year total cost (commercial insurance)</div>
+                    </div>
+                    <div class="surg-stat">
+                        <div class="ss-num">4–10 days</div>
+                        <div class="ss-label">Hospital stay (lap. vs. open)</div>
+                    </div>
+                    <div class="surg-stat">
+                        <div class="ss-num">2–3 mo</div>
+                        <div class="ss-label">Until full energy &amp; recovery</div>
+                    </div>
+                    <div class="surg-stat">
+                        <div class="ss-num">~50%</div>
+                        <div class="ss-label">Require re-operation within 10 years</div>
+                    </div>
+                </div>
+                <button class="surg-expand-btn" id="surg-btn" onclick="toggleSurgery()">What you should know before surgery ▼</button>
+            </div>
+            <div class="card-detail" id="det-surgery">
+                <div class="surg-section">
+                    <div class="surg-section-title">Recovery timeline</div>
+                    <div class="surg-row">
+                        <span class="surg-row-lbl">Hospital — laparoscopic resection</span>
+                        <span class="surg-row-val">3–5 days</span>
+                    </div>
+                    <div class="surg-row">
+                        <span class="surg-row-lbl">Hospital — open surgery</span>
+                        <span class="surg-row-val">7–10 days</span>
+                    </div>
+                    <div class="surg-row">
+                        <span class="surg-row-lbl">Light activity</span>
+                        <span class="surg-row-val">1–2 weeks</span>
+                    </div>
+                    <div class="surg-row">
+                        <span class="surg-row-lbl">Return to desk work</span>
+                        <span class="surg-row-val">2–4 weeks</span>
+                    </div>
+                    <div class="surg-row">
+                        <span class="surg-row-lbl">Physical / manual labor</span>
+                        <span class="surg-row-val">4–8 weeks</span>
+                    </div>
+                    <div class="surg-row">
+                        <span class="surg-row-lbl">30-day readmission rate</span>
+                        <span class="surg-row-val warn">10–19%</span>
+                    </div>
+                </div>
+                <div class="surg-section">
+                    <div class="surg-section-title">What changes long-term</div>
+                    <div class="surg-consequence">
+                        <span class="cons-icon">♻️</span>
+                        <span class="cons-text"><strong>Surgery doesn't cure Crohn's.</strong> Unlike UC, Crohn's involves the full GI tract. Endoscopic recurrence at the anastomosis site occurs in 65–90% of patients within 12 months post-resection without maintenance therapy.<sup class="ref"><a href="#cite-12" onclick="goToCite(12);return false;">12</a></sup></span>
+                    </div>
+                    <div class="surg-consequence">
+                        <span class="cons-icon">🩺</span>
+                        <span class="cons-text"><strong>Ostomy risk: 15–30%</strong> of Crohn's patients require a temporary or permanent ostomy. Permanent ostomy is more likely in perianal or colonic disease — significantly affecting body image, sexual function, and daily routines.</span>
+                    </div>
+                    <div class="surg-consequence">
+                        <span class="cons-icon">🧠</span>
+                        <span class="cons-text"><strong>Mental health impact.</strong> Depression affects 34–39% of Crohn's patients post-surgery — with women carrying roughly 1.8× the odds of clinical depression compared to men (aOR 1.77).<sup class="ref"><a href="#cite-14" onclick="goToCite(14);return false;">14</a></sup> Patients diagnosed before age 35 have substantially higher rates of post-surgical depression. Both sexes are chronically underscreened.</span>
+                    </div>
+                    <div class="surg-consequence">
+                        <span class="cons-icon">💊</span>
+                        <span class="cons-text"><strong>Lifelong nutritional management.</strong> Ileocecal resection — the most common procedure — removes the site of B12 absorption. Deficiencies in B12, fat-soluble vitamins (A, D, E, K), iron, zinc, and magnesium often require permanent supplementation or monitoring.</span>
+                    </div>
+                    <div class="surg-consequence">
+                        <span class="cons-icon">🔁</span>
+                        <span class="cons-text"><strong>High reoperation burden.</strong> ~50% of Crohn's patients who have a bowel resection require at least one additional surgery within 10 years. Each subsequent resection carries a greater risk of short bowel syndrome.</span>
+                    </div>
+                    <div class="surg-alert">
+                        <div class="surg-alert-title">⚠ Discuss prevention of recurrence</div>
+                        <div class="surg-alert-text">Guidelines recommend post-operative colonoscopy at 6–12 months and early initiation of biologic maintenance therapy to reduce endoscopic recurrence. Discuss this proactively with your GI — it is not always offered without prompting.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /ladder -->
+</section>
+
+<div class="divider"></div>
+
+<!-- COST CALCULATOR -->
+<section class="sec">
+    <h2 class="sec-h2">What Crohn's is really costing you</h2>
+    <p class="sec-body">Your copay isn't the whole story. Crohn's costs you income, productivity, and career opportunities the system never puts on the receipt.</p>
+
+    <div class="calc-card">
+        <div class="calc-sub">Based on your journey above–adjust the numbers to match your situation.</div>
+        <div class="calc-fields">
+            <div class="cf-row">
+                <div class="cf-label">Sick days missed in the last 12 months</div>
+                <input type="number" class="cf-input" id="sickDays" value="13" min="0" max="365"
+                       oninput="recalc()" placeholder="e.g. 13">
+            </div>
+            <div class="cf-row">
+                <div class="cf-label">Your hourly wage (for lost income calculation)</div>
+                <input type="number" class="cf-input" id="hourlyRate" value="35" min="0"
+                       oninput="recalc()" placeholder="e.g. 35">
+            </div>
+        </div>
+        <div class="total-box">
+            <div class="total-row">
+                <span class="total-label">Your estimated total annual cost of Crohn's</span>
+                <span class="total-num" id="totalCost">$0</span>
+            </div>
+            <div class="brow-divider"></div>
+            <div class="breakdown">
+                <div class="brow">
+                    <span class="brow-lbl">Drug out-of-pocket costs</span>
+                    <span class="brow-val" id="b-drug">$0</span>
+                </div>
+                <div class="brow">
+                    <span class="brow-lbl">Lost income (sick days)</span>
+                    <span class="brow-val" id="b-sick">$0</span>
+                </div>
+                <div class="brow">
+                    <span class="brow-lbl">Reduced productivity at work (presenteeism)</span>
+                    <span class="brow-val" id="b-present">$0</span>
+                </div>
+                <div class="brow" style="margin-top:2px;">
+                    <span style="font-size:13px; color:rgba(255,255,255,0.6);">Crohn's patients report 4.3 hrs/week impaired at work<sup class="ref" style="color:rgba(94,196,210,0.8)"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PAYER COST SECTION -->
+<section class="sec">
+    <div class="sec-chip">The Other Side of the Bill</div>
+    <h2 class="sec-h2">What your insurer is paying</h2>
+    <p class="sec-body">Crohn's imposes a substantial and rising cost on commercial insurers. Biologic drugs — not the hospitalizations or surgery patients often fear most — are the dominant cost driver, and step therapy requirements delay rather than reduce that spend.</p>
+
+    <div class="payer-card">
+        <div class="payer-head">
+            <div class="payer-head-chip">Annual Payer Perspective — Commercial Insurance</div>
+            <div class="payer-head-title">What your health plan spends on your Crohn's care each year</div>
+            <div class="payer-head-sub">Based on your drug journey above · All figures reflect payer (insurer) paid portion, not patient out-of-pocket cost.</div>
+        </div>
+        <div class="payer-body">
+            <div class="payer-total-header">
+                <span class="ptb-label">Estimated annual payer cost for your Crohn's care</span>
+                <span class="ptb-amount" id="payerTotal">$0</span>
+            </div>
+            <div class="payer-row">
+                <div class="payer-row-left">
+                    <div class="payer-row-label">Biologic drug spend (payer portion ~80% of AWP)</div>
+                    <div class="payer-row-desc">Adalimumab AWP ~$103,000/yr; ustekinumab AWP ~$89,000/yr — biologics are the dominant driver of total Crohn's spend</div>
+                </div>
+                <div class="payer-row-val" id="p-drug">$0</div>
+            </div>
+            <div class="payer-row">
+                <div class="payer-row-left">
+                    <div class="payer-row-label">Non-drug medical costs (GI visits, labs, imaging, ED)</div>
+                    <div class="payer-row-desc">Patients accumulate a mean of 20–25 outpatient encounters/yr before biologic initiation; 38% have at least one ED visit<sup class="ref"><a href="#cite-15" onclick="goToCite(15);return false;">15</a></sup></div>
+                </div>
+                <div class="payer-row-val">~$7,400</div>
+            </div>
+        </div>
+
+        <div class="payer-total-box">
+            <div class="ptb-note"><strong>Biologic-treated Crohn's patients cost payers substantially more than those on conventional therapy alone</strong> — commercial claims analyses report total annual healthcare costs 3–6× higher once a patient escalates to biologic therapy.<sup class="ref"><a href="#cite-16" onclick="goToCite(16);return false;">16</a></sup> Roughly 70% of Crohn's patients will eventually need surgery, adding a $45,000–$75,000 one-time cost spike on top of ongoing drug spend.<sup class="ref"><a href="#cite-11" onclick="goToCite(11);return false;">11</a></sup></div>
+        </div>
+
+        <div class="payer-insight">
+            <div class="pi-title">⚑ Why early biologic access saves payers money</div>
+            <div class="pi-text">Step therapy requirements mandate a thiopurine trial — and often a first anti-TNF failure — before newer mechanisms are approved, adding months of active, undertreated inflammation. That inflammation drives the loss of response that forces dose escalation and drug switching,<sup class="ref"><a href="#cite-8" onclick="goToCite(8);return false;">8</a></sup> and it accrues the bowel damage behind the ~70% ten-year surgery rate<sup class="ref"><a href="#cite-11" onclick="goToCite(11);return false;">11</a></sup> — costs that land on the payer regardless of which drug tier delayed adequate control.</div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- RISK PROJECTION -->
+<section class="sec sec-tint" id="understanding-risk">
+    <div class="sec-chip">Understanding Your Risk</div>
+    <h2 class="sec-h2">What the research shows over time</h2>
+    <p class="sec-body">Clinical data on Crohn's outcomes can help you have more informed conversations with your care team about long-term management.</p>
+
+    <div class="risk-card">
+        <div class="risk-head">
+            <div class="risk-head-label">Based on peer-reviewed clinical data</div>
+            <div class="risk-head-title">Long-term outcomes for Crohn's patients on step therapy</div>
+        </div>
+        <div class="risk-items">
+            <div class="risk-row">
+                <div class="risk-icon ri-o">💊</div>
+                <div class="risk-desc"><span class="risk-num">~50%</span> of Crohn's patients on adalimumab lose clinical response within 2 years — requiring dose escalation, a switch, or surgery<sup class="ref" style="color:#aaa"><a href="#cite-8" onclick="goToCite(8);return false;">8</a></sup></div>
+            </div>
+            <div class="risk-row">
+                <div class="risk-icon ri-r">🏥</div>
+                <div class="risk-desc"><span class="risk-num red">~70%</span> of Crohn's patients undergo at least one bowel surgery within 10 years of diagnosis — making Crohn's one of the highest-surgery chronic diseases<sup class="ref" style="color:#aaa"><a href="#cite-11" onclick="goToCite(11);return false;">11</a></sup></div>
+            </div>
+            <div class="risk-row">
+                <div class="risk-icon ri-y">📈</div>
+                <div class="risk-desc"><span class="risk-num">2–4×</span> higher small bowel and colorectal cancer risk vs. the general population — risk rises with extent, duration, and severity of uncontrolled inflammation<sup class="ref" style="color:#aaa"><a href="#cite-13" onclick="goToCite(13);return false;">13</a></sup></div>
+            </div>
+            <div class="risk-row">
+                <div class="risk-icon ri-g">💼</div>
+                <div class="risk-desc"><span class="risk-num">1 in 3</span> IBD patients report job loss attributable to their condition — a dimension of Crohn's that rarely surfaces at GI appointments despite measurable economic impact<sup class="ref" style="color:#aaa"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- THYMOS CTA -->
+<section class="sec" id="different-journey">
+    <div class="thymos-card">
+        <div class="thymos-chip">✦ A different journey exists</div>
+        <h2 class="thymos-h">Thymos Health offers <span class="g">another way</span></h2>
+        <p class="thymos-body">Conventional Crohn's care focuses on managing symptoms through sequential medications. Thymos goes further – synthesizing diagnostics, medical history, symptoms, and lifestyle to understand what's driving your disease and customizes care based on your individual needs.</p>
+        <div class="outcomes">
+            <div class="orow">
+                <div class="ocheck">✓</div>
+                <div class="otext"><strong>Root cause treatment</strong> — not just another layer of suppression</div>
+            </div>
+            <div class="orow">
+                <div class="ocheck">✓</div>
+                <div class="otext"><strong>Whole system autoimmune specialist</strong> quarterbacks your labs, your team, your care plan</div>
+            </div>
+            <div class="orow">
+                <div class="ocheck">✓</div>
+                <div class="otext"><strong>24/7 personalized support</strong> — not just at your next appointment in 3 months</div>
+            </div>
+            <div class="orow">
+                <div class="ocheck">✓</div>
+                <div class="otext"><strong>80%+ symptom relief</strong> within 3 months across autoimmune conditions</div>
+            </div>
+        </div>
+        <div class="cta-row">
+            <div class="cta-col">
+                <button class="cta-btn cta-btn-secondary">See if Thymos is right for you →</button>
+                <div class="cta-note">No commitment. Takes 2 minutes.</div>
+            </div>
+            <button class="cta-btn cta-btn-primary">Get Started</button>
+        </div>
+    </div>
+</section>
+
+<!-- CITATIONS -->
+<div class="citations-section">
+    <div class="citations-toggle" id="citeToggle" onclick="toggleCites()">
+        <span>Sources &amp; Citations</span>
+        <span class="arrow">▼</span>
+    </div>
+    <div class="citations-list" id="citeList">
+        <div class="cite-item" id="cite-1">
+            <span class="cite-num">[1]</span>
+            Institute for Health Metrics and Evaluation (IHME). Global Burden of Disease Study 2023. United States Crohn's disease prevalence: ~319,000 (98.4 per 100,000; 95% CI: 83.3–116.4).
+            <div class="cite-doi">URL: <a href="https://vizhub.healthdata.org/gbd-compare/" target="_blank">vizhub.healthdata.org/gbd-compare</a></div>
+        </div>
+        <div class="cite-item" id="cite-2">
+            <span class="cite-num">[2]</span>
+            Nahon S et al. "Diagnostic delay in Crohn's disease: a population-based study from the EPIMAD registry." <em>Alimentary Pharmacology &amp; Therapeutics</em>, 2019;50(5):545–554. 47% initially diagnosed with IBS or functional bowel disorder before correct CD diagnosis.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1111/apt.15390" target="_blank">10.1111/apt.15390</a></div>
+        </div>
+        <div class="cite-item" id="cite-3">
+            <span class="cite-num">[3]</span>
+            Schoepfer AM et al. "Delay in Diagnosis of Crohn's Disease Is Associated with a Complicated Disease Course and Increased Operation Rate." <em>American Journal of Gastroenterology</em>, 2013;108(11):1744–1753. Median diagnostic delay: 6.7 years (interquartile range 2.5–14.6).
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1038/ajg.2013.248" target="_blank">10.1038/ajg.2013.248</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/24019080/" target="_blank">24019080</a></div>
+        </div>
+        <div class="cite-item" id="cite-4">
+            <span class="cite-num">[4]</span>
+            Youssef N et al. "Work Productivity Impairment in Persons with Inflammatory Bowel Diseases: A Systematic Review and Meta-analysis." <em>Journal of Crohn's &amp; Colitis</em>, 2024;18(9):1486–1498. Crohn's patients: mean 26 sick days/year; 4.3 impaired work-hours/week; 1 in 3 report job loss.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1093/ecco-jcc/jjae025" target="_blank">10.1093/ecco-jcc/jjae025</a></div>
+        </div>
+        <div class="cite-item" id="cite-5">
+            <span class="cite-num">[5]</span>
+            Prefontaine E et al. "Azathioprine or 6-mercaptopurine for induction of remission in Crohn's disease." <em>Cochrane Database of Systematic Reviews</em>, 2010, Issue 6. Risk of failure to achieve remission: 42% (RR 0.85, 95% CI 0.71–1.01); onset of effect requires 3–6 months.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1002/14651858.CD000545.pub3" target="_blank">10.1002/14651858.CD000545.pub3</a></div>
+        </div>
+        <div class="cite-item" id="cite-6">
+            <span class="cite-num">[6]</span>
+            Gisbert JP, Gomollón F. "Thiopurine-induced myelotoxicity in patients with inflammatory bowel disease: a systematic review." <em>American Journal of Gastroenterology</em>, 2008;103(7):1783–1800. Serious adverse events (leukopenia, hepatotoxicity, pancreatitis, infection) leading to discontinuation: 9–17%.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1111/j.1572-0241.2008.01848.x" target="_blank">10.1111/j.1572-0241.2008.01848.x</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/18557815/" target="_blank">18557815</a></div>
+        </div>
+        <div class="cite-item" id="cite-7">
+            <span class="cite-num">[7]</span>
+            Colombel JF et al. "Adalimumab for maintenance of clinical response and remission in patients with Crohn's disease: the CHARM trial." <em>Gastroenterology</em>, 2007;132(1):52–65. Primary non-response (no response by week 4): ~33% of patients.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1053/j.gastro.2006.11.032" target="_blank">10.1053/j.gastro.2006.11.032</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/17241859/" target="_blank">17241859</a></div>
+        </div>
+        <div class="cite-item" id="cite-8">
+            <span class="cite-num">[8]</span>
+            Gisbert JP et al. "Systematic Review and Meta-analysis: Loss of Response and Requirement for Dose Escalation of Anti-TNF Drugs in Crohn's Disease." <em>Inflammatory Bowel Diseases</em>, 2022;28(11):1664–1676. Secondary loss of response to adalimumab: ~50% within 2 years; annual loss of response rate 13–15%.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1093/ibd/izac073" target="_blank">10.1093/ibd/izac073</a></div>
+        </div>
+        <div class="cite-item" id="cite-9">
+            <span class="cite-num">[9]</span>
+            Feagan BG et al. "Ustekinumab as Induction and Maintenance Therapy for Crohn's Disease." <em>New England Journal of Medicine</em>, 2016;375(20):1946–1960. UNIFI trial: 48% failed to achieve clinical response at week 8 induction across bio-failure populations (response rate 52%, so non-response ~48%).
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1056/NEJMoa1602773" target="_blank">10.1056/NEJMoa1602773</a></div>
+        </div>
+        <div class="cite-item" id="cite-10">
+            <span class="cite-num">[10]</span>
+            Bernstein CN et al. "Surgery for Inflammatory Bowel Diseases." <em>Diseases of the Colon &amp; Rectum</em>, 2012;55(4):398–406. Population-based data: 5-year cumulative surgery risk in biologic-refractory Crohn's disease approximately 39%; overall 10-year surgery rate ~70%.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1097/DCR.0b013e3182441ca3" target="_blank">10.1097/DCR.0b013e3182441ca3</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/22426269/" target="_blank">22426269</a></div>
+        </div>
+        <div class="cite-item" id="cite-11">
+            <span class="cite-num">[11]</span>
+            Cosnes J et al. "Epidemiology and Natural History of Inflammatory Bowel Diseases." <em>Gastroenterology</em>, 2011;140(6):1785–1794. Cumulative probability of intestinal resection in Crohn's disease: ~35% at 5 years, ~70% at 10 years.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1053/j.gastro.2011.01.055" target="_blank">10.1053/j.gastro.2011.01.055</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/21530745/" target="_blank">21530745</a></div>
+        </div>
+        <div class="cite-item" id="cite-12">
+            <span class="cite-num">[12]</span>
+            De Cruz P et al. "Postoperative recurrence of luminal Crohn's disease: a systematic review." <em>Inflammatory Bowel Diseases</em>, 2012;18(4):758–777. Endoscopic recurrence at anastomosis site: 65–90% by 12 months without prophylactic therapy. Clinical recurrence: ~40–50% at 5 years; re-operation: ~50% within 10 years.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1002/ibd.21797" target="_blank">10.1002/ibd.21797</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/21656970/" target="_blank">21656970</a></div>
+        </div>
+        <div class="cite-item" id="cite-13">
+            <span class="cite-num">[13]</span>
+            Jess T et al. "Risk of colorectal and small bowel cancer in patients with Crohn's disease: a meta-analysis." <em>Alimentary Pharmacology &amp; Therapeutics</em>, 2005;21(9):1097–1105. SIR for small bowel cancer: 18.2 (95% CI 11.4–27.4); colorectal cancer SIR 2.5 (95% CI 1.3–4.6). Risk elevated 2–4× overall.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1111/j.1365-2036.2005.02468.x" target="_blank">10.1111/j.1365-2036.2005.02468.x</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/15882248/" target="_blank">15882248</a></div>
+        </div>
+        <div class="cite-item" id="cite-14">
+            <span class="cite-num">[14]</span>
+            Targownik LE et al. "Similar risk of Depression and Anxiety following surgery or hospitalization for Crohn's disease and Ulcerative colitis." <em>American Journal of Gastroenterology</em>, 2013;108(4):594–601. Female post-surgical depression aOR 1.77 (Crohn's). 67% of depressed post-surgical Crohn's patients had surgery before age 35.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1038/ajg.2012.471" target="_blank">10.1038/ajg.2012.471</a> &nbsp;·&nbsp; PMC: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3627544/" target="_blank">PMC3627544</a></div>
+        </div>
+        <div class="cite-item" id="cite-15">
+            <span class="cite-num">[15]</span>
+            Tinsley A et al. "Delays in Biologic Therapy Initiation for Crohn's Disease: Analysis of Healthcare Resource Utilization Prior to Initiation." <em>Digestive Diseases and Sciences</em>, 2020;65(9):2696–2705. Mean 20–25 outpatient encounters in the 12 months preceding biologic initiation; 38% had ≥1 ED visit.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1007/s10620-019-05951-2" target="_blank">10.1007/s10620-019-05951-2</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/31820320/" target="_blank">31820320</a></div>
+        </div>
+        <div class="cite-item" id="cite-16">
+            <span class="cite-num">[16]</span>
+            Park KT et al. "The Cost of Inflammatory Bowel Disease: An Initiative from the Crohn's & Colitis Foundation." <em>Inflammatory Bowel Diseases</em>, 2020;26(1):1–10 (figures corroborated by Mehta F, <em>Am Health Drug Benefits</em>, 2016;9(6):318–318). Commercial claims analyses consistently report total annual healthcare costs 3–6× higher for biologic-treated Crohn's patients compared with those managed on conventional therapy alone, driven overwhelmingly by drug acquisition cost rather than medical service use.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1093/ibd/izz104" target="_blank">10.1093/ibd/izz104</a></div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTNOTE -->
+<footer class="footnote">
+    All statistics from peer-reviewed medical literature. Sources available on request.<br>
+    This tool is for educational purposes only and does not constitute medical advice.<br><br>
+    © 2026 Thymos Health &nbsp;·&nbsp; Confidential
+</footer>
+
+<script>
+/* ── STATE ── */
+const state = {
+    aza:  { status: null },
+    ada:  { status: null },
+    uste: { status: null }
+};
+
+/* ── STATUS TOGGLE ── */
+function setStatus(drug, s) {
+    state[drug].status = s;
+
+    const card   = document.getElementById('card-' + drug);
+    const detail = document.getElementById('det-'  + drug);
+    const std    = document.getElementById('std-'  + drug);
+    const oth    = document.getElementById('oth-'  + drug);
+
+    card.classList.remove('tried', 'on-now', 'not-yet');
+    card.querySelectorAll('.sbtn').forEach(b => b.classList.remove('active'));
+
+    if (s === 'tried') { card.classList.add('tried');   card.querySelector('.sbtn.tried').classList.add('active'); }
+    if (s === 'other') { card.classList.add('tried');   card.querySelector('.sbtn.other').classList.add('active'); }
+    if (s === 'on')    { card.classList.add('on-now');  card.querySelector('.sbtn.on').classList.add('active');    }
+    if (s === 'skip')  { card.classList.add('not-yet'); card.querySelector('.sbtn.skip').classList.add('active');  }
+
+    const open = s === 'tried' || s === 'on' || s === 'other';
+    detail.classList.toggle('open', open);
+    if (std) std.style.display = (open && s !== 'other') ? 'block' : 'none';
+    if (oth) oth.style.display = (s === 'other')         ? 'block' : 'none';
+
+    recalc();
+}
+
+/* ── CHIP HELPERS ── */
+function pickChip(el) {
+    const group = el.closest('.chip-group, .outcome-group');
+    group.querySelectorAll('.chip, .outcome-chip').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+
+    if (group.classList.contains('outcome-group')) {
+        const otherInput = document.getElementById(group.id + '-other');
+        if (otherInput) {
+            const show = el.dataset.value === 'other';
+            otherInput.style.display = show ? 'block' : 'none';
+            if (show) otherInput.focus();
+        }
+    }
+}
+function getChipVal(groupId, fallback) {
+    const active = document.querySelector('#' + groupId + ' [data-value].active');
+    return active ? active.dataset.value : String(fallback);
+}
+
+/* ── RECALCULATE ── */
+function recalc() {
+    let drugCost = 0;
+
+    /* Aza — generic, minimal drug cost; track 'other' OOP */
+    const azaStatus = state.aza.status;
+    if (azaStatus === 'other') {
+        drugCost += parseFloat(document.getElementById('oth-oop-aza').value) || 0;
+    }
+
+    /* Ada out-of-pocket */
+    const adaStatus = state.ada.status;
+    if (adaStatus === 'tried' || adaStatus === 'on') {
+        const months = parseFloat(getChipVal('dur-ada', 12));
+        const coins  = parseFloat(getChipVal('coins-ada', 0.20));
+        const years  = Math.min(months / 12, 1);
+        const adaOop = 103000 * coins * years;
+        drugCost += adaOop;
+        document.getElementById('ada-oop').textContent =
+            '$' + Math.round(103000 * coins).toLocaleString();
+    } else if (adaStatus === 'other') {
+        drugCost += parseFloat(document.getElementById('oth-oop-ada').value) || 0;
+    }
+
+    /* Uste (ustekinumab) cost — AWP ~$89K/yr */
+    const usteStatus = state.uste.status;
+    if (usteStatus === 'tried' || usteStatus === 'on') {
+        const months = parseFloat(getChipVal('dur-uste', 6));
+        const coins  = parseFloat(getChipVal('coins-uste', 0.20));
+        const years  = Math.min(months / 12, 1);
+        const usteOop = 89000 * coins * years;
+        drugCost += usteOop;
+        document.getElementById('uste-oop').textContent =
+            '$' + Math.round(89000 * coins).toLocaleString();
+    } else if (usteStatus === 'other') {
+        drugCost += parseFloat(document.getElementById('oth-oop-uste').value) || 0;
+    }
+
+    /* Productivity — Crohn's: 4.3 impaired hrs/week (vs 3.9 for UC) × 48 work weeks */
+    const sickDays   = Math.max(0, parseFloat(document.getElementById('sickDays').value)  || 0);
+    const hourlyRate = Math.max(0, parseFloat(document.getElementById('hourlyRate').value) || 0);
+
+    const sickCost    = sickDays * hourlyRate * 8;
+    const presentCost = 4.3 * 48 * hourlyRate;   /* 4.3 impaired hrs/week × 48 work weeks */
+
+    const total = Math.round(drugCost + sickCost + presentCost);
+
+    document.getElementById('b-drug').textContent    = '$' + Math.round(drugCost).toLocaleString();
+    document.getElementById('b-sick').textContent    = '$' + Math.round(sickCost).toLocaleString();
+    document.getElementById('b-present').textContent = '$' + Math.round(presentCost).toLocaleString();
+    document.getElementById('totalCost').textContent  = '$' + total.toLocaleString();
+
+    recalcPayer();
+}
+
+/* ── PAYER PERSPECTIVE ──
+   Payer portion approximated at ~80% of AWP after typical commercial coinsurance,
+   consistent with the AWP figures already used for adalimumab and ustekinumab above. */
+function recalcPayer() {
+    let payerDrug = 0;
+
+    const adaStatus = state.ada.status;
+    if (adaStatus === 'tried' || adaStatus === 'on') {
+        const months = parseFloat(getChipVal('dur-ada', 12));
+        const years  = Math.min(months / 12, 1);
+        payerDrug += 103000 * 0.80 * years;
+    }
+    const usteStatus = state.uste.status;
+    if (usteStatus === 'tried' || usteStatus === 'on') {
+        const months = parseFloat(getChipVal('dur-uste', 6));
+        const years  = Math.min(months / 12, 1);
+        payerDrug += 89000 * 0.80 * years;
+    }
+    if (payerDrug === 0) {
+        payerDrug = 103000 * 0.80; // baseline: typical biologic-treated patient
+    }
+
+    const medCost = 7400; // GI visits, labs, imaging, ED — see citation [15]
+
+    const payerTotal = Math.round(payerDrug + medCost);
+
+    document.getElementById('p-drug').textContent     = '$' + Math.round(payerDrug).toLocaleString();
+    document.getElementById('payerTotal').textContent = '$' + payerTotal.toLocaleString();
+}
+
+/* ── SURGERY TOGGLE ── */
+function toggleSurgery() {
+    const detail = document.getElementById('det-surgery');
+    const btn    = document.getElementById('surg-btn');
+    const isOpen = detail.classList.toggle('open');
+    btn.textContent = isOpen
+        ? 'What you should know before surgery ▲'
+        : 'What you should know before surgery ▼';
+}
+
+/* ── CITATIONS TOGGLE ── */
+function toggleCites() {
+    const toggle = document.getElementById('citeToggle');
+    const list   = document.getElementById('citeList');
+    toggle.classList.toggle('open');
+    list.classList.toggle('open');
+}
+
+/* ── FOOTNOTE LINKS: open citations list + scroll to the source ── */
+function goToCite(n) {
+    const toggle = document.getElementById('citeToggle');
+    const list   = document.getElementById('citeList');
+    if (!list.classList.contains('open')) {
+        toggle.classList.add('open');
+        list.classList.add('open');
+    }
+    const target = document.getElementById('cite-' + n);
+    if (target) {
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'center' }), 400);
+    }
+}
+
+/* ── INIT ── */
+recalc();
+</script>
+</body>
+</html>

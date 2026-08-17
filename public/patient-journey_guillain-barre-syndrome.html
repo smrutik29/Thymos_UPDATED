@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Your Guillain-Barré Syndrome Journey | Thymos Health</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        :root {
+            --teal:        #034152;
+            --teal-mid:    #0B5C73;
+            --teal-light:  #5EC4D2;
+            --coral:       #EA6047;
+            --coral-dark:  #D14F38;
+            --sage:        #4A9B86;
+            --sage-dark:   #357A68;
+            --sage-tint:   #DFE8E8;
+            --slate:       #034152;
+            --slate-mid:   #2C4A5C;
+            --amber:       #C4893A;
+            --beige:       #F8F5F0;
+            --gray-50:     #F8F5F0;
+            --gray-100:    #EDE6D9;
+            --gray-200:    #DCD3C2;
+            --gray-300:    #C6B9A3;
+            --gray-500:    #7A8A96;
+            --gray-700:    #3E5550;
+            --gray-900:    #182220;
+            --white:       #FFFFFF;
+            --muted:       #7A8A96;
+            --shadow-sm:   0 1px 3px rgba(3,65,82,0.07), 0 1px 2px rgba(3,65,82,0.04);
+            --shadow-md:   0 4px 14px rgba(3,65,82,0.10), 0 2px 4px rgba(3,65,82,0.05);
+            --shadow-lg:   0 12px 32px rgba(3,65,82,0.14), 0 4px 8px rgba(3,65,82,0.06);
+            --r:           20px;
+            --r-sm:        10px;
+        }
+
+        html {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            font-size: 16px;
+            color: var(--gray-900);
+            background: var(--gray-50);
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body { min-height: 100vh; overflow-x: hidden; }
+
+        /* ── HEADER ───────────────────────────────────── */
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(255,255,255,0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gray-100);
+            padding: 13px 20px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .header-brand { font-size: 15px; font-weight: 700; color: var(--slate); letter-spacing: -0.2px; }
+        .header-brand em { color: var(--teal); font-style: normal; }
+
+        /* ── HERO ─────────────────────────────────────── */
+        .hero {
+            background: var(--slate);
+            padding: 44px 24px 52px;
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -60px; right: -60px;
+            width: 240px; height: 240px;
+            background: radial-gradient(circle, rgba(94,196,210,0.22) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .hero::after {
+            content: ''; position: absolute; bottom: -40px; left: -40px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(234,96,71,0.16) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .hero-chip {
+            display: inline-flex; align-items: center; gap: 5px;
+            background: rgba(94,196,210,0.12);
+            border: 1px solid rgba(94,196,210,0.28);
+            color: var(--teal-light);
+            font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+            padding: 5px 12px; border-radius: 100px; margin-bottom: 22px;
+        }
+        .hero-h1 {
+            font-size: 32px; font-weight: 800; color: var(--white);
+            line-height: 1.13; letter-spacing: -0.6px; margin-bottom: 16px;
+        }
+        .hero-h1 .flame {
+            background: linear-gradient(120deg, #5EC4D2 0%, #4A9B86 60%, #A3D4C8 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-sub {
+            font-size: 15px; color: rgba(255,255,255,0.88); line-height: 1.65;
+            margin-bottom: 36px;
+        }
+        .hero-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+        }
+        .hero-stat {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px; padding: 16px 14px;
+        }
+        .hs-sentence {
+            font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.88);
+            line-height: 1.5;
+        }
+        .hs-num-inline {
+            font-size: 20px; font-weight: 800;
+            background: linear-gradient(120deg, #5EC4D2 0%, #4A9B86 60%, #A3D4C8 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── STRIP NAV BANNER ─────────────────────────── */
+        .nav-strip {
+            background: #154E5E;
+            border-bottom: 1px solid rgba(3,65,82,0.12);
+            padding: 14px 16px;
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 8px;
+        }
+        .nav-strip-btn {
+            background:
+                linear-gradient(var(--slate), var(--slate)) padding-box,
+                linear-gradient(120deg, #5EC4D2 0%, #4A9B86 60%, #A3D4C8 100%) border-box;
+            border: 1.5px solid transparent;
+            border-radius: 100px;
+            padding: 9px 16px;
+            font-size: 12px; font-weight: 700; color: var(--white);
+            text-decoration: none; white-space: nowrap;
+            transition: all 0.15s ease;
+        }
+        .nav-strip-btn:active { opacity: 0.8; }
+
+        /* ── SECTION SHELL ────────────────────────────── */
+        .sec { padding: 44px 20px; background: var(--beige); }
+        .sec.sec-tint { background: var(--sage-tint); }
+        .sec-chip {
+            font-size: 10px; font-weight: 700; letter-spacing: 1.1px;
+            text-transform: uppercase; color: var(--coral); margin-bottom: 8px;
+        }
+        .sec-h2 {
+            font-size: 24px; font-weight: 800; color: var(--slate);
+            line-height: 1.2; letter-spacing: -0.4px; margin-bottom: 8px;
+        }
+        .sec-body {
+            font-size: 14px; color: var(--gray-700); line-height: 1.65;
+            margin-bottom: 28px;
+        }
+        .sec-body-bold {
+            font-size: 18px; font-weight: 700; color: var(--coral);
+            line-height: 1.6; margin: 0; text-align: center;
+        }
+        .mark-row {
+            display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+            gap: 10px; margin-top: -14px; margin-bottom: 28px;
+        }
+        .divider { height: 1px; background: var(--gray-100); margin: 0 20px; }
+
+        /* ── DRUG LADDER ──────────────────────────────── */
+        .ladder { display: flex; flex-direction: column; gap: 6px; }
+        @media (min-width: 860px) {
+            .ladder { padding: 0 80px; }
+        }
+
+        .drug-card {
+            background: var(--white);
+            border-radius: var(--r);
+            box-shadow: 0 10px 28px rgba(3,65,82,0.14);
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        .drug-card.tried  { border-color: var(--amber); }
+        .drug-card.on-now { border-color: var(--teal);  }
+        .drug-card.not-yet { opacity: 0.55; }
+
+        .card-bar { height: 5px; }
+        .bar-1 { background: linear-gradient(90deg, #034152, #4A9B86); }
+        .bar-2 { background: linear-gradient(90deg, #0B5C73, #5EC4D2); }
+        .bar-3 { background: linear-gradient(90deg, #2C4A5C, #034152); }
+        .bar-end{ background: linear-gradient(90deg, #052733, #2C4A5C); }
+
+        .card-inner { padding: 28px 24px 22px; }
+
+        .card-step-line { margin-bottom: 6px; }
+        .card-step-label {
+            font-size: 12px; font-weight: 700; letter-spacing: 0.9px;
+            text-transform: uppercase; color: var(--gray-500);
+        }
+        .card-name-inline {
+            font-size: 19px; font-weight: 800; color: var(--slate);
+            letter-spacing: -0.4px;
+        }
+        .card-name-inline.danger { color: var(--slate-mid); }
+        .card-generic {
+            font-size: 13px; color: var(--gray-500); margin-bottom: 18px;
+        }
+
+        .quote-block {
+            background: var(--gray-50);
+            border-left: 3px solid var(--gray-300);
+            border-radius: 0 var(--r-sm) var(--r-sm) 0;
+            padding: 10px 14px; margin-bottom: 14px;
+        }
+        .quote-label {
+            font-size: 9px; font-weight: 700; letter-spacing: 0.8px;
+            text-transform: uppercase; color: var(--gray-500); margin-bottom: 4px;
+        }
+        .quote-text { font-size: 13px; color: var(--gray-700); font-style: italic; line-height: 1.5; }
+
+        .pills { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+        .pill {
+            display: flex; align-items: center; gap: 4px;
+            background: rgba(3,65,82,0.07);
+            border: 1px solid rgba(3,65,82,0.18);
+            border-radius: 100px; padding: 6px 12px;
+            font-size: 12px; font-weight: 600; color: var(--teal);
+        }
+        .pill.warn-red {
+            background: rgba(44,74,92,0.07);
+            border-color: rgba(44,74,92,0.18);
+            color: var(--slate-mid);
+        }
+        .pill.info {
+            background: rgba(74,155,134,0.08);
+            border-color: rgba(74,155,134,0.22);
+            color: var(--sage-dark);
+        }
+
+        .cost-row {
+            display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px;
+            background: var(--gray-50); border-radius: var(--r-sm);
+            padding: 12px 14px; margin-bottom: 16px;
+        }
+        .cost-lbl { font-size: 14px; font-weight: 600; color: var(--gray-700); }
+        .cost-val { font-size: 16px; font-weight: 800; color: var(--slate); }
+        .cost-val.hot { color: var(--teal); }
+
+        /* status buttons — beige with orange outline/text until selected, then solid orange fill */
+        .sbtn-group { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+        .sbtn {
+            padding: 10px 4px; border-radius: var(--r-sm);
+            border: 2px solid var(--coral);
+            background: var(--beige);
+            font-size: 11.5px; font-weight: 700; color: var(--coral);
+            cursor: pointer; text-align: center; line-height: 1.25;
+            transition: all 0.15s ease; user-select: none;
+        }
+        .sbtn:active { transform: scale(0.96); }
+        .sbtn.active {
+            background: var(--coral);
+            border: 2px solid var(--coral);
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        /* other-drug inline form */
+        .other-input {
+            width: 100%; padding: 11px 14px;
+            border: 1.5px dashed var(--coral); border-radius: var(--r-sm);
+            font-size: 14px; color: var(--slate); background: rgba(234,96,71,0.04);
+            outline: none; transition: border-color 0.15s;
+        }
+        .other-input:focus { border-style: solid; border-color: var(--teal-light); }
+        .other-input::placeholder { color: var(--gray-300); }
+
+        /* expandable detail */
+        .card-detail {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+            background: var(--gray-50);
+            border-top: 1px solid transparent;
+        }
+        .card-detail.open {
+            max-height: 1100px;
+            border-top-color: var(--gray-100);
+            padding: 16px 20px;
+        }
+        .detail-row { margin-bottom: 14px; }
+        .detail-lbl {
+            font-size: 12.5px; font-weight: 700; color: var(--coral);
+            margin-bottom: 8px; display: flex; align-items: center; gap: 5px;
+        }
+        .detail-lbl::before { content: "✎"; font-size: 12px; }
+
+        /* duration chips — dashed border signals a tappable input, not static text */
+        .chip-group { display: flex; flex-wrap: wrap; gap: 7px; }
+        .chip {
+            padding: 7px 13px;
+            border: 1.5px dashed var(--gray-300); border-radius: 100px;
+            background: var(--white);
+            font-size: 12px; font-weight: 600; color: var(--gray-700);
+            cursor: pointer; user-select: none; white-space: nowrap; line-height: 1;
+            transition: all 0.15s ease;
+        }
+        .chip:active { transform: scale(0.93); }
+        .chip.active {
+            background: rgba(3,65,82,0.1);
+            border: 1.5px solid var(--teal); color: var(--teal);
+        }
+
+        /* outcome chips — one line of button choices, same visual language as chips above */
+        .outcome-group { display: flex; flex-wrap: wrap; gap: 7px; }
+        .outcome-chip {
+            padding: 8px 13px;
+            border: 1.5px dashed var(--gray-300); border-radius: 100px;
+            background: var(--white);
+            font-size: 12px; font-weight: 600; color: var(--gray-700);
+            cursor: pointer; user-select: none; text-align: center; line-height: 1.25;
+            transition: all 0.15s ease; max-width: 100%;
+        }
+        .outcome-chip:active { transform: scale(0.96); }
+        .outcome-chip.active {
+            background: rgba(3,65,82,0.08);
+            border: 1.5px solid var(--teal); color: var(--teal); font-weight: 700;
+        }
+        .cost-preview-box {
+            background: linear-gradient(135deg, rgba(3,65,82,0.07), rgba(74,155,134,0.07));
+            border: 1px solid rgba(3,65,82,0.14);
+            border-radius: var(--r-sm); padding: 14px;
+            display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 10px;
+            margin-top: 6px;
+        }
+        .cpb-label { font-size: 13px; font-weight: 600; color: var(--gray-700); }
+        .cpb-amount { font-size: 22px; font-weight: 800; color: var(--teal); letter-spacing: -0.4px; }
+
+        /* connectors */
+        .connector {
+            display: flex; flex-direction: column; align-items: center;
+            padding: 14px 0;
+        }
+        .conn-line { width: 2px; height: 18px; background: var(--gray-200); }
+        .conn-badge {
+            background: var(--teal);
+            border: none;
+            border-radius: 100px; padding: 11px 20px;
+            font-size: 14px; font-weight: 700; color: var(--white);
+            text-align: center; line-height: 1.3;
+            box-shadow: 0 6px 16px rgba(3,65,82,0.28);
+            max-width: 88%;
+        }
+
+        /* ── COST CALCULATOR ──────────────────────────── */
+        .calc-card {
+            background: var(--slate); border-radius: var(--r);
+            padding: 26px 22px; color: var(--white);
+        }
+        @media (min-width: 860px) {
+            .calc-card { margin: 0 80px; }
+        }
+        .calc-sub { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 24px; line-height: 1.5; }
+        .calc-fields { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
+        .cf-row {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 14px; background: rgba(255,255,255,0.06);
+            border: 1.5px dashed rgba(94,196,210,0.4);
+            border-radius: var(--r-sm); padding: 12px 14px;
+        }
+        .cf-label { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.88); flex: 1 1 auto; line-height: 1.4; }
+        .cf-input {
+            width: 108px; flex: 0 0 auto; padding: 11px 12px; text-align: right;
+            background: rgba(255,255,255,0.1);
+            border: 1.5px solid rgba(255,255,255,0.18);
+            border-radius: var(--r-sm);
+            font-size: 18px; font-weight: 700; color: var(--white);
+        }
+        .cf-input:focus { outline: none; border-color: var(--teal-light); }
+        .cf-input::placeholder { color: rgba(255,255,255,0.3); font-weight: 400; font-size: 14px; }
+
+        .total-box {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--r); padding: 22px 20px;
+        }
+        .total-row {
+            display: flex; justify-content: space-between; align-items: baseline;
+            gap: 12px; margin-bottom: 20px;
+        }
+        .total-label { font-size: 16px; color: rgba(255,255,255,0.8); }
+        .total-num {
+            font-size: 46px; font-weight: 800; letter-spacing: -2px; line-height: 1;
+            background: linear-gradient(120deg, #5EC4D2, #4A9B86);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; text-align: right; white-space: nowrap;
+        }
+        @media (max-width: 380px) {
+            .total-num { font-size: 34px; }
+        }
+        .breakdown { display: flex; flex-direction: column; gap: 10px; }
+        .brow {
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 15px;
+        }
+        .brow-lbl { color: rgba(255,255,255,0.78); }
+        .brow-val { font-weight: 600; color: rgba(255,255,255,0.9); }
+        .brow-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 4px 0 16px; }
+
+        /* ── RISK ─────────────────────────────────────── */
+        .risk-card { background: var(--white); border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow-md); }
+        .risk-head {
+            background: linear-gradient(135deg, #052733 0%, #034152 100%);
+            padding: 22px 20px; color: var(--white);
+        }
+        .risk-head-label {
+            font-size: 10px; font-weight: 700; letter-spacing: 1px;
+            text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 5px;
+        }
+        .risk-head-title { font-size: 18px; font-weight: 800; line-height: 1.2; }
+        .risk-items { padding: 22px 20px; display: flex; flex-direction: column; gap: 20px; }
+        .risk-row { display: flex; gap: 14px; align-items: flex-start; }
+        .risk-icon {
+            width: 40px; height: 40px; border-radius: 11px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; flex-shrink: 0;
+        }
+        .ri-o { background: rgba(3,65,82,0.1); }
+        .ri-r { background: rgba(44,74,92,0.1); }
+        .ri-y { background: rgba(196,137,58,0.1); }
+        .ri-g { background: rgba(74,155,134,0.1); }
+        .risk-desc { font-size: 14.5px; color: var(--gray-700); line-height: 1.55; }
+        .risk-num {
+            font-size: 19px; font-weight: 800; color: var(--slate);
+            letter-spacing: -0.3px;
+        }
+        .risk-num.red { color: var(--slate-mid); }
+
+        /* ── THYMOS CTA ───────────────────────────────── */
+        .thymos-card {
+            background: linear-gradient(155deg, #052733 0%, #034152 100%);
+            border-radius: var(--r); padding: 32px 24px;
+            color: var(--white); position: relative; overflow: hidden;
+        }
+        .thymos-card::after {
+            content: ''; position: absolute; bottom: -50px; right: -50px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(94,196,210,0.2) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .thymos-chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(94,196,210,0.14);
+            border: 1px solid rgba(94,196,210,0.3);
+            color: #8CDDE8; font-size: 10px; font-weight: 700;
+            letter-spacing: 1px; text-transform: uppercase;
+            padding: 5px 12px; border-radius: 100px; margin-bottom: 18px;
+        }
+        .thymos-h {
+            font-size: 27px; font-weight: 800; line-height: 1.15;
+            letter-spacing: -0.4px; margin-bottom: 12px;
+        }
+        .thymos-h .g { color: #8CDDE8; }
+        .thymos-body {
+            font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.65;
+            margin-bottom: 26px;
+        }
+        .outcomes { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+        .orow { display: flex; gap: 12px; align-items: flex-start; }
+        .ocheck {
+            width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+            background: rgba(94,196,210,0.18);
+            border: 1px solid rgba(94,196,210,0.38);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 10px; color: #8CDDE8; margin-top: 1px;
+        }
+        .otext { font-size: 14px; color: rgba(255,255,255,0.82); line-height: 1.45; }
+        .otext strong { color: var(--white); }
+
+        .cta-row {
+            display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-start;
+            position: relative; z-index: 1;
+        }
+        .cta-row > * { flex: 1 1 150px; }
+        .cta-col { display: flex; flex-direction: column; }
+        .cta-btn {
+            width: 100%; padding: 17px 14px;
+            border-radius: 100px;
+            font-size: 15px; font-weight: 700; letter-spacing: -0.2px;
+            cursor: pointer; text-align: center;
+            transition: opacity 0.18s;
+        }
+        .cta-btn:active { opacity: 0.88; }
+        .cta-btn-primary {
+            background: var(--coral); border: none; color: var(--white);
+        }
+        .cta-btn-secondary {
+            background: transparent; border: 2px solid rgba(255,255,255,0.5);
+            color: var(--white);
+        }
+        .cta-note {
+            text-align: center; font-size: 12px;
+            color: rgba(255,255,255,0.35); margin-top: 10px;
+        }
+
+        /* ── CITATIONS ────────────────────────────────── */
+        sup.ref {
+            font-size: 9px; font-weight: 700; color: var(--teal);
+            vertical-align: super; line-height: 0;
+            cursor: default; margin-left: 1px;
+        }
+        sup.ref::before { content: "("; }
+        sup.ref::after { content: ")"; }
+        sup.ref a {
+            color: inherit; text-decoration: none; cursor: pointer;
+        }
+        sup.ref a:active { opacity: 0.6; }
+        .cite-item { scroll-margin-top: 90px; }
+        .citations-section { padding: 32px 20px 8px; }
+        .citations-toggle {
+            display: flex; align-items: center; justify-content: space-between;
+            background: var(--white); border: 1.5px solid var(--gray-100);
+            border-radius: var(--r-sm); padding: 14px 16px;
+            cursor: pointer; user-select: none;
+            font-size: 13px; font-weight: 600; color: var(--gray-700);
+        }
+        .citations-toggle .arrow { font-size: 11px; color: var(--gray-500); transition: transform 0.2s; }
+        .citations-toggle.open .arrow { transform: rotate(180deg); }
+        .citations-list {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: var(--white);
+            border: 1.5px solid var(--gray-100); border-top: none;
+            border-radius: 0 0 var(--r-sm) var(--r-sm);
+        }
+        .citations-list.open { max-height: 3200px; }
+        .cite-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--gray-50);
+            font-size: 11px; line-height: 1.55; color: var(--gray-700);
+        }
+        .cite-item:last-child { border-bottom: none; }
+        .cite-num { font-weight: 700; color: var(--teal); margin-right: 4px; }
+        .cite-doi {
+            display: inline-block; margin-top: 3px;
+            font-size: 10px; color: var(--gray-500);
+            word-break: break-all;
+        }
+        .cite-doi a { color: var(--teal); text-decoration: none; }
+
+        /* ── SURGERY DETAIL ──────────────────────────── */
+        .surg-stat-grid {
+            display: flex; flex-direction: column; gap: 8px;
+            margin: 14px 0;
+        }
+        .surg-stat {
+            display: flex; align-items: baseline; gap: 10px;
+            background: rgba(44,74,92,0.06);
+            border: 1px solid rgba(44,74,92,0.12);
+            border-radius: var(--r-sm); padding: 12px 14px;
+        }
+        .ss-num {
+            font-size: 17px; font-weight: 800; color: var(--slate);
+            letter-spacing: -0.4px; line-height: 1.3; flex-shrink: 0;
+        }
+        .ss-label { font-size: 13.5px; color: var(--gray-700); line-height: 1.35; }
+        .surg-expand-btn {
+            width: 100%; padding: 11px;
+            background: rgba(44,74,92,0.07);
+            border: 1.5px solid var(--slate-mid);
+            border-radius: var(--r-sm);
+            font-size: 12px; font-weight: 700; color: var(--slate-mid);
+            cursor: pointer; text-align: center; margin-top: 4px;
+            transition: all 0.15s ease;
+        }
+        .surg-expand-btn:active { opacity: 0.8; }
+        #det-surgery.open { max-height: 1400px; }
+        .surg-section { margin-bottom: 18px; }
+        .surg-section-title {
+            font-size: 11px; font-weight: 700; color: var(--slate);
+            text-transform: uppercase; letter-spacing: 0.8px;
+            margin-bottom: 10px; padding-bottom: 6px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .surg-row {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            padding: 7px 0; border-bottom: 1px solid var(--gray-50);
+            font-size: 13px; gap: 12px;
+        }
+        .surg-row:last-child { border-bottom: none; }
+        .surg-row-lbl { color: var(--gray-700); flex: 1; line-height: 1.4; }
+        .surg-row-val { font-weight: 700; color: var(--slate); text-align: right; white-space: nowrap; }
+        .surg-row-val.warn { color: var(--slate-mid); }
+        .surg-consequence {
+            display: flex; gap: 10px; align-items: flex-start;
+            padding: 8px 0; border-bottom: 1px solid var(--gray-50);
+            font-size: 13px;
+        }
+        .surg-consequence:last-child { border-bottom: none; }
+        .cons-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+        .cons-text { color: var(--gray-700); line-height: 1.5; }
+        .cons-text strong { color: var(--slate); }
+        .surg-alert {
+            background: rgba(196,137,58,0.07);
+            border: 1px solid rgba(196,137,58,0.22);
+            border-radius: var(--r-sm); padding: 12px 14px; margin-top: 4px;
+        }
+        .surg-alert-title {
+            font-size: 11px; font-weight: 700; color: var(--amber);
+            text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 6px;
+        }
+        .surg-alert-text { font-size: 12px; color: var(--gray-700); line-height: 1.55; }
+
+        /* ── FOOTNOTE ─────────────────────────────────── */
+        .footnote {
+            padding: 24px 20px 32px;
+            font-size: 11px; color: var(--gray-500); line-height: 1.6;
+            text-align: center;
+        }
+    
+        /* ── disease-specific: progression consequences & payer sections ── */
+        .payer-body { padding: 20px 20px 4px; }
+        .payer-card { background: var(--white); border-radius: var(--r); box-shadow: 0 10px 28px rgba(3,65,82,0.14); overflow: hidden; }
+        @media (min-width: 860px) {
+            .payer-card { margin: 0 80px; }
+        }
+        .payer-head { background: linear-gradient(135deg,#052733 0%,#2C4A5C 100%); padding: 22px 20px; color: var(--white); }
+        .payer-head-chip { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(94,196,210,0.7); margin-bottom: 6px; }
+        .payer-head-title { font-size: 18px; font-weight: 800; line-height: 1.2; }
+        .payer-head-sub { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 4px; line-height: 1.5; }
+        .payer-insight { background: rgba(196,137,58,0.06); border: 1px solid rgba(196,137,58,0.18); border-radius: var(--r-sm); padding: 12px 14px; margin: 0 20px 20px; }
+        .payer-phase3-box {
+            margin: 0 20px 20px;
+            background: linear-gradient(135deg, rgba(196,137,58,0.08), rgba(196,137,58,0.02));
+            border: 1px solid rgba(196,137,58,0.28); border-radius: var(--r-sm); padding: 16px;
+        }
+        .payer-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 11px 0; border-bottom: 1px solid var(--gray-50); gap: 14px; }
+        .payer-row:last-child { border-bottom: none; }
+        .payer-row-left { flex: 1; }
+        .payer-row-label { font-size: 13px; font-weight: 600; color: var(--slate); margin-bottom: 2px; line-height: 1.35; }
+        .payer-row-desc  { font-size: 11px; color: var(--gray-500); line-height: 1.45; }
+        .payer-row-val { font-size: 16px; font-weight: 800; color: var(--teal); letter-spacing: -0.3px; white-space: nowrap; text-align: right; flex-shrink: 0; }
+        .payer-row-val.warn { color: var(--slate-mid); }
+
+        /* payer total box — label+amount inline at top of the white section */
+        .payer-total-box { margin: 16px 20px 20px; background: linear-gradient(135deg,rgba(3,65,82,0.07),rgba(44,74,92,0.06)); border: 1px solid rgba(3,65,82,0.14); border-radius: var(--r-sm); padding: 16px; }
+        .payer-total-header {
+            display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap;
+            gap: 8px 10px; margin: 0 -20px 4px; padding: 18px 20px 14px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .payer-total-header .ptb-label { font-size: 15px; font-weight: 600; color: var(--gray-700); }
+        .payer-total-header .ptb-amount { font-size: 30px; font-weight: 800; color: var(--slate); letter-spacing: -1px; line-height: 1; }
+        .ptb-label { font-size: 13px; font-weight: 600; color: var(--gray-700); }
+        .ptb-amount { font-size: 28px; font-weight: 800; color: var(--slate); letter-spacing: -1px; line-height: 1; }
+        .ptb-amount span { font-size: 15px; color: var(--teal); }
+        .ptb-note { font-size: 12px; color: var(--gray-500); line-height: 1.5; margin-top: 8px; }
+        .pi-text { font-size: 12px; color: var(--gray-700); line-height: 1.55; }
+        .pi-title { font-size: 10px; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 5px; }
+
+        /* phase-3 (end-of-journey) cost projection box */
+        .phase3-box { margin-top: 14px; background: rgba(196,137,58,0.10); border: 1px solid rgba(196,137,58,0.30); border-radius: var(--r); padding: 18px 20px; }
+        .phase3-label { font-size: 12px; color: rgba(255,255,255,0.7); margin-bottom: 8px; line-height: 1.4; }
+        .phase3-label strong { color: #E8B77A; }
+        .phase3-amount { font-size: 32px; font-weight: 800; color: #E8B77A; letter-spacing: -1px; margin-bottom: 6px; line-height: 1; }
+        .phase3-sub { font-size: 11px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+        .p3-label { font-size: 12px; color: var(--gray-700); margin-bottom: 6px; line-height: 1.4; }
+        .p3-label strong { color: var(--amber); }
+        .p3-amount { font-size: 28px; font-weight: 800; color: var(--amber); letter-spacing: -1px; margin-bottom: 4px; line-height: 1; }
+        .p3-sub { font-size: 11px; color: var(--gray-500); line-height: 1.5; }
+
+        /* progression section (end-stage consequences card, inside the drug ladder) */
+        .prog-alert { background: rgba(196,137,58,0.07); border: 1px solid rgba(196,137,58,0.22); border-radius: var(--r-sm); padding: 12px 14px; margin-top: 4px; }
+        .prog-alert-title { font-size: 11px; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 6px; }
+        .prog-alert-text { font-size: 12px; color: var(--gray-700); line-height: 1.55; }
+        .prog-consequence { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--gray-50); font-size: 13px; }
+        .prog-consequence:last-child { border-bottom: none; }
+        .prog-expand-btn { width: 100%; padding: 11px; background: rgba(44,74,92,0.07); border: 1.5px solid var(--slate-mid); border-radius: var(--r-sm); font-size: 12px; font-weight: 700; color: var(--slate-mid); cursor: pointer; text-align: center; margin-top: 4px; transition: all 0.15s ease; }
+        .prog-expand-btn:active { opacity: 0.8; }
+        .prog-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid var(--gray-50); font-size: 13px; gap: 12px; }
+        .prog-row:last-child { border-bottom: none; }
+        .prog-row-lbl { color: var(--gray-700); flex: 1; line-height: 1.4; }
+        .prog-row-val { font-weight: 700; color: var(--slate); text-align: right; white-space: nowrap; }
+        .prog-row-val.warn { color: var(--slate-mid); }
+        .prog-section { margin-bottom: 18px; }
+        .prog-section-title { font-size: 11px; font-weight: 700; color: var(--slate); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--gray-100); }
+
+        /* progression stats — number sits inline beside its label, matching surg-stat treatment */
+        .prog-stat-grid { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
+        .prog-stat { display: flex; align-items: baseline; gap: 10px; background: rgba(44,74,92,0.06); border: 1px solid rgba(44,74,92,0.12); border-radius: var(--r-sm); padding: 12px 14px; }
+        .ps-num { font-size: 17px; font-weight: 800; color: var(--slate); letter-spacing: -0.4px; line-height: 1.3; flex-shrink: 0; }
+        .ps-label { font-size: 13.5px; color: var(--gray-700); line-height: 1.35; }
+</style>
+</head>
+<body>
+
+<header class="header">
+    <a href="Thymos Homepage.dc.html" class="header-brand" style="text-decoration:none; cursor:pointer;">Thymos <em>Health</em></a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-chip">Your Guillain-Barré Syndrome Journey</div>
+    <h1 class="hero-h1">
+        One week you were fine.<br>Then you couldn't <span class="flame">walk, or breathe on your own.</span><br>Recovery is still not guaranteed.
+    </h1>
+    <p class="hero-sub">You're not alone. This is how Guillain-Barré syndrome (GBS) is typically managed in the hospital — and an honest look at what that admission costs, and what recovery actually looks like, over time.</p>
+    <div class="hero-grid">
+        <div class="hero-stat">
+            <div class="hs-sentence"><span class="hs-num-inline">1–2 per 100K</span> people develop Guillain-Barré syndrome each year — the most common cause of acute flaccid paralysis in the U.S.<sup class="ref"><a href="#cite-1" onclick="goToCite(1);return false;">1</a></sup></div>
+        </div>
+        <div class="hero-stat">
+            <div class="hs-sentence"><span class="hs-num-inline">22%</span> of hospitalized patients require mechanical ventilation.<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
+        </div>
+        <div class="hero-stat">
+            <div class="hs-sentence"><span class="hs-num-inline">2.8–4.4%</span> is the in-hospital mortality rate, higher still in ICU-level cases.<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
+        </div>
+        <div class="hero-stat">
+            <div class="hs-sentence"><span class="hs-num-inline">$116–158K</span> is the average hospitalization cost, depending on treatment chosen.<sup class="ref"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
+        </div>
+    </div>
+</section>
+
+<!-- STRIP NAV BANNER -->
+<nav class="nav-strip">
+    <a class="nav-strip-btn" href="#treatment-journey">The Treatment Journey</a>
+    <a class="nav-strip-btn" href="#understanding-risk">Understanding Your Risk</a>
+    <a class="nav-strip-btn" href="#different-journey">A Different Journey Exists</a>
+</nav>
+
+<!-- DRUG JOURNEY -->
+<section class="sec" id="treatment-journey">
+    <h2 class="sec-h2">How Guillain-Barré syndrome is typically treated</h2>
+    <p class="sec-body">Unlike most other autoimmune conditions, Guillain-Barré syndrome is usually a single acute event rather than a lifelong chronic disease — but the treatment choice made in the first days of admission has lasting consequences for both recovery and cost.</p>
+    <div class="mark-row">
+        <p class="sec-body-bold">Mark where you are in your journey and we'll show you the full picture.</p>
+    </div>
+
+    <div class="ladder">
+
+        <div class="drug-card" id="card-s1">
+            <div class="card-bar bar-1"></div>
+            <div class="card-inner">
+                <div class="card-step-line"><span class="card-step-label">Step 1: On admission, your team starts</span> <span class="card-name-inline">Diagnosis, Monitoring & Supportive Care</span></div>
+                <div class="card-generic">Nerve conduction studies, spinal fluid analysis, and close monitoring of breathing and swallowing function</div>
+                <div class="quote-block">
+                    <div class="quote-label">What your doctor says</div>
+                    <div class="quote-text">"Your weakness pattern and reflex loss are consistent with Guillain-Barré syndrome. We need to monitor your breathing very closely — this can worsen quickly over the first 1–2 weeks."</div>
+                </div>
+                <div class="pills">
+                    <div class="pill">Early recognition is critical to preventing respiratory crisis</div>
+                    <div class="pill warn-red">Up to 22% of patients progress to needing a ventilator<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
+                    <div class="pill info">Autonomic instability (heart rate, blood pressure) is common and serious</div>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-lbl">Typical initial workup cost before insurance</span>
+                    <span class="cost-val hot">~$8,000–$20,000</span>
+                </div>
+                <div class="sbtn-group">
+                    <button class="sbtn tried" onclick="setStatus('s1','tried')">✓ Tried this</button>
+                    <button class="sbtn other" onclick="setStatus('s1','other')">↔ Tried something else</button>
+                    <button class="sbtn on"    onclick="setStatus('s1','on')">● On this now</button>
+                    <button class="sbtn skip"  onclick="setStatus('s1','skip')">Not yet</button>
+                </div>
+            </div>
+            <div class="card-detail" id="det-s1">
+                <div id="std-s1">
+                    <div class="detail-row">
+                        <div class="detail-lbl">Providers seen before this was prescribed</div>
+                        <div class="chip-group" id="pre-docs-s1">
+                            <button class="chip" data-value="1" onclick="pickChip(this)">1</button>
+                            <button class="chip" data-value="2" onclick="pickChip(this)">2–3</button>
+                            <button class="chip" data-value="4" onclick="pickChip(this)">4–5</button>
+                            <button class="chip" data-value="6" onclick="pickChip(this)">6+</button>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">How long was your initial hospital stay?</div>
+                        <div class="chip-group" id="dur-s1">
+                            <button class="chip" data-value="1" onclick="pickChip(this);recalc()">< 1 wk</button>
+                            <button class="chip active" data-value="2" onclick="pickChip(this);recalc()">1–2 wk</button>
+                            <button class="chip" data-value="4" onclick="pickChip(this);recalc()">2–4 wk</button>
+                            <button class="chip" data-value="8" onclick="pickChip(this);recalc()">1–2 mo</button>
+                            <button class="chip" data-value="12" onclick="pickChip(this);recalc()">2+ mo</button>
+                            
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">What happened?</div>
+                        <div class="outcome-group" id="out-s1">
+                            <button class="outcome-chip" data-value="worked" onclick="pickChip(this)">Stabilized without ventilation</button>
+                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Required ICU monitoring</button>
+                            <button class="outcome-chip" data-value="never" onclick="pickChip(this)">Progressed to respiratory failure</button>
+                            <button class="outcome-chip" data-value="other" onclick="pickChip(this)">Something else…</button>
+                            
+                        </div>
+                        <input class="other-input" id="out-s1-other" type="text" placeholder="Describe what happened…" style="display:none; margin-top:7px;" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Your coinsurance for this drug</div>
+                        <div class="chip-group" id="coins-s1">
+                            <button class="chip" data-value="0" onclick="pickChip(this);recalc()">$0 covered</button>
+                            <button class="chip" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
+                            <button class="chip active" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
+                            <button class="chip" data-value="0.30" onclick="pickChip(this);recalc()">30%</button>
+                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">No insurance</button>
+                            
+                        </div>
+                    </div>
+                    <div class="cost-preview-box">
+                        <div class="cpb-label">Your estimated annual out-of-pocket for this treatment</div>
+                        <div class="cpb-amount" id="s1-oop">$0</div>
+                    </div>
+                </div>
+                <div id="oth-s1" style="display:none">
+                    <div class="detail-row">
+                        <div class="detail-lbl">What did you try at this step?</div>
+                        <input class="other-input" type="text" placeholder="e.g. extended ICU monitoring" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">How often?</div>
+                        <input class="other-input" type="text" placeholder="e.g. daily" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Annual out-of-pocket cost</div>
+                        <input class="other-input" type="number" id="oth-oop-s1" placeholder="e.g. 8000" oninput="recalc()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="connector">
+            <div class="conn-line"></div>
+            <div class="conn-badge">Disease-modifying treatment started — usually within days of diagnosis</div>
+            <div class="conn-line"></div>
+        </div>
+
+        <div class="drug-card" id="card-s2">
+            <div class="card-bar bar-2"></div>
+            <div class="card-inner">
+                <div class="card-step-line"><span class="card-step-label">Step 2: Your team starts disease-modifying treatment with</span> <span class="card-name-inline">IVIG or Plasma Exchange (PLEX)</span></div>
+                <div class="card-generic">IVIG 0.4g/kg/day × 5 days, or 5 sessions of therapeutic plasma exchange — equally recommended first-line options</div>
+                <div class="quote-block">
+                    <div class="quote-label">What your doctor says</div>
+                    <div class="quote-text">"We have two equally effective first-line treatments: IVIG or plasma exchange. IVIG is more common in U.S. practice because it's more convenient to administer, even though it's the more expensive of the two."</div>
+                </div>
+                <div class="pills">
+                    <div class="pill">IVIG and PLEX are considered equally efficacious<sup class="ref"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></div>
+                    <div class="pill warn-red">IVIG direct drug cost is more than 2× that of PLEX<sup class="ref"><a href="#cite-5" onclick="goToCite(5);return false;">5</a></sup></div>
+                    <div class="pill info">IVIG patients: shorter ventilator time and fewer infections in one large study<sup class="ref"><a href="#cite-6" onclick="goToCite(6);return false;">6</a></sup></div>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-lbl">Typical direct treatment cost before insurance</span>
+                    <span class="cost-val hot">~$10,000–$16,000</span>
+                </div>
+                <div class="sbtn-group">
+                    <button class="sbtn tried" onclick="setStatus('s2','tried')">✓ Tried this</button>
+                    <button class="sbtn other" onclick="setStatus('s2','other')">↔ Tried something else</button>
+                    <button class="sbtn on"    onclick="setStatus('s2','on')">● On this now</button>
+                    <button class="sbtn skip"  onclick="setStatus('s2','skip')">Not yet</button>
+                </div>
+            </div>
+            <div class="card-detail" id="det-s2">
+                <div id="std-s2">
+                    <div class="detail-row">
+                        <div class="detail-lbl">How long did your treatment course last?</div>
+                        <div class="chip-group" id="dur-s2">
+                            <button class="chip active" data-value="1" onclick="pickChip(this);recalc()">5 days</button>
+                            <button class="chip" data-value="2" onclick="pickChip(this);recalc()">1–2 wk</button>
+                            <button class="chip" data-value="4" onclick="pickChip(this);recalc()">2–4 wk</button>
+                            <button class="chip" data-value="8" onclick="pickChip(this);recalc()">1–2 mo</button>
+                            
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">What happened?</div>
+                        <div class="outcome-group" id="out-s2">
+                            <button class="outcome-chip" data-value="worked" onclick="pickChip(this)">Improved steadily after treatment</button>
+                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Partial improvement, slow recovery</button>
+                            <button class="outcome-chip" data-value="never" onclick="pickChip(this)">Minimal early improvement</button>
+                            <button class="outcome-chip" data-value="other" onclick="pickChip(this)">Something else…</button>
+                            
+                        </div>
+                        <input class="other-input" id="out-s2-other" type="text" placeholder="Describe what happened…" style="display:none; margin-top:7px;" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Your coinsurance for this drug</div>
+                        <div class="chip-group" id="coins-s2">
+                            <button class="chip" data-value="0" onclick="pickChip(this);recalc()">$0 covered</button>
+                            <button class="chip" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
+                            <button class="chip active" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
+                            <button class="chip" data-value="0.30" onclick="pickChip(this);recalc()">30%</button>
+                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">No insurance</button>
+                            
+                        </div>
+                    </div>
+                    <div class="cost-preview-box">
+                        <div class="cpb-label">Your estimated annual out-of-pocket for this treatment</div>
+                        <div class="cpb-amount" id="s2-oop">$0</div>
+                    </div>
+                </div>
+                <div id="oth-s2" style="display:none">
+                    <div class="detail-row">
+                        <div class="detail-lbl">What did you try at this step?</div>
+                        <input class="other-input" type="text" placeholder="e.g. combined IVIG + PLEX" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">How often?</div>
+                        <input class="other-input" type="text" placeholder="e.g. daily" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Annual out-of-pocket cost</div>
+                        <input class="other-input" type="number" id="oth-oop-s2" placeholder="e.g. 8000" oninput="recalc()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="connector">
+            <div class="conn-line"></div>
+            <div class="conn-badge">Inadequate improvement in the first 2 weeks — escalation considered</div>
+            <div class="conn-line"></div>
+        </div>
+
+        <div class="drug-card" id="card-s3">
+            <div class="card-bar bar-3"></div>
+            <div class="card-inner">
+                <div class="card-step-line"><span class="card-step-label">Step 3: For inadequate early improvement, your team considers</span> <span class="card-name-inline">A Second Treatment Course or PLEX-After-IVIG</span></div>
+                <div class="card-generic">Repeat Step 1 and Step 2 for non-responders, despite lack of scientific evidence that its effective<sup class="ref"><a href="#cite-7" onclick="goToCite(7);return false;">7</a></sup></div>
+                <div class="quote-block">
+                    <div class="quote-label">What your doctor says</div>
+                    <div class="quote-text">"You haven't improved as much as we'd hoped in the first two weeks. We can consider a second round of treatment, although the evidence for this is less clear than for the first course."</div>
+                </div>
+                <div class="pills">
+                    <div class="pill warn-red">Combination treatment increases cost and length of hospitalization without proven benefit<sup class="ref"><a href="#cite-7" onclick="goToCite(7);return false;">7</a></sup></div>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-lbl">Typical added cost before insurance</span>
+                    <span class="cost-val hot">~$10,000–$20,000</span>
+                </div>
+                <div class="sbtn-group">
+                    <button class="sbtn tried" onclick="setStatus('s3','tried')">✓ Tried this</button>
+                    <button class="sbtn other" onclick="setStatus('s3','other')">↔ Tried something else</button>
+                    <button class="sbtn on"    onclick="setStatus('s3','on')">● On this now</button>
+                    <button class="sbtn skip"  onclick="setStatus('s3','skip')">Not yet</button>
+                </div>
+            </div>
+            <div class="card-detail" id="det-s3">
+                <div id="std-s3">
+                    <div class="detail-row">
+                        <div class="detail-lbl">How long did this additional course last?</div>
+                        <div class="chip-group" id="dur-s3">
+                            <button class="chip active" data-value="1" onclick="pickChip(this);recalc()">5 days</button>
+                            <button class="chip" data-value="2" onclick="pickChip(this);recalc()">1–2 wk</button>
+                            <button class="chip" data-value="4" onclick="pickChip(this);recalc()">2–4 wk</button>
+                            
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">What happened?</div>
+                        <div class="outcome-group" id="out-s3">
+                            <button class="outcome-chip" data-value="working" onclick="pickChip(this)">Improved after second course</button>
+                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Some additional improvement</button>
+                            <button class="outcome-chip" data-value="never" onclick="pickChip(this)">No additional benefit</button>
+                            <button class="outcome-chip" data-value="other" onclick="pickChip(this)">Something else…</button>
+                            
+                        </div>
+                        <input class="other-input" id="out-s3-other" type="text" placeholder="Describe what happened…" style="display:none; margin-top:7px;" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Your coinsurance for this drug</div>
+                        <div class="chip-group" id="coins-s3">
+                            <button class="chip" data-value="0" onclick="pickChip(this);recalc()">$0 covered</button>
+                            <button class="chip" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
+                            <button class="chip active" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
+                            <button class="chip" data-value="0.30" onclick="pickChip(this);recalc()">30%</button>
+                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">No insurance</button>
+                            
+                        </div>
+                    </div>
+                    <div class="cost-preview-box">
+                        <div class="cpb-label">Your estimated annual out-of-pocket for this treatment</div>
+                        <div class="cpb-amount" id="s3-oop">$0</div>
+                    </div>
+                </div>
+                <div id="oth-s3" style="display:none">
+                    <div class="detail-row">
+                        <div class="detail-lbl">What did you try at this step?</div>
+                        <input class="other-input" type="text" placeholder="e.g. rehabilitation-focused approach instead" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">How often?</div>
+                        <input class="other-input" type="text" placeholder="e.g. daily" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Annual out-of-pocket cost</div>
+                        <input class="other-input" type="number" id="oth-oop-s3" placeholder="e.g. 8000" oninput="recalc()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="drug-card" id="card-prog">
+            <div class="card-bar bar-end"></div>
+            <div class="card-inner">
+                <div class="card-step-line"><span class="card-step-label">When the acute illness becomes a long recovery — or something more:</span> <span class="card-name-inline danger">Long-term Disability</span></div>
+                <div class="card-generic">Weeks to months of inpatient rehabilitation, with a meaningful share of patients never fully returning to baseline — and a small subset transitioning to a chronic relapsing form</div>
+                <div class="quote-block">
+                    <div class="quote-label">What Your Doctor says</div>
+                    <div class="quote-text">"You've come a long way since your admission. Some residual weakness and fatigue may persist for months, or longer, even with the best treatment we have."</div>
+                </div>
+                <div class="prog-stat-grid">
+                    <div class="prog-stat">
+                        <div class="ps-num">2.8% → 3.9%</div>
+                        <div class="ps-label">In-hospital mortality at 6 vs. 12 months post-diagnosis<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
+                    </div>
+                    <div class="prog-stat">
+                        <div class="ps-num">22%</div>
+                        <div class="ps-label">Require mechanical ventilation during the acute phase<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
+                    </div>
+                    <div class="prog-stat">
+                        <div class="ps-num">7% ICU / <2% ward</div>
+                        <div class="ps-label">Mortality contrast between ICU-level and floor-level admissions<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
+                    </div>
+                    <div class="prog-stat">
+                        <div class="ps-num">$116–158K</div>
+                        <div class="ps-label">Average acute hospitalization cost, by treatment chosen<sup class="ref"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
+                    </div>
+                    
+                </div>
+                <button class="prog-expand-btn" id="prog-btn" onclick="toggleProg()">What you should know about recovery, cost, and rare relapse ▼</button>
+            </div>
+            <div class="card-detail" id="det-prog">
+                <div class="prog-section">
+                    <div class="prog-section-title">Acute-phase severity markers</div>
+                    <div class="prog-row">
+                        <span class="prog-row-lbl">Require mechanical ventilation</span>
+                        <span class="prog-row-val warn">Up to 22%</span>
+                    </div>
+                    <div class="prog-row">
+                        <span class="prog-row-lbl">In-hospital mortality, overall</span>
+                        <span class="prog-row-val warn">2.8–4.4%</span>
+                    </div>
+                    <div class="prog-row">
+                        <span class="prog-row-lbl">Mortality in ICU-admitted patients</span>
+                        <span class="prog-row-val warn">>7%</span>
+                    </div>
+                    <div class="prog-row">
+                        <span class="prog-row-lbl">Mortality in non-ICU-admitted patients</span>
+                        <span class="prog-row-val"><2%</span>
+                    </div>
+                </div>
+<div class="prog-section">
+                    <div class="prog-section-title">What the recovery period and cost actually involve</div>
+                    <div class="prog-consequence">
+                        <span class="cons-icon">🏥</span>
+                        <span class="cons-text"><strong>The choice of first-line treatment measurably affects both recovery and the bill.</strong> In one statewide database analysis, IVIG patients had a shorter median hospital stay (7 vs. 14 days), fewer in-hospital infections, and lower average hospitalization costs than plasmapheresis patients ($115,950 vs. $158,000).<sup class="ref"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></span>
+                    </div>
+                    <div class="prog-consequence">
+                        <span class="cons-icon">🌀</span>
+                        <span class="cons-text"><strong>Adding a second treatment doesn't clearly help.</strong> A critical reassessment found no association between adding plasma exchange after IVIG and improved short-term outcomes — only an association with increased cost and longer hospitalization.<sup class="ref"><a href="#cite-7" onclick="goToCite(7);return false;">7</a></sup></span>
+                    </div>
+                    <div class="prog-consequence">
+                        <span class="cons-icon">🧠</span>
+                        <span class="cons-text"><strong>Autonomic instability is a serious, under-discussed complication.</strong> Cardiac arrhythmias and blood pressure instability are common during the acute phase and are a major contributor to ICU-level mortality risk, independent of respiratory failure.</strong></span>
+                    </div>
+                    <div class="prog-consequence">
+                        <span class="cons-icon">🔁</span>
+                        <span class="cons-text"><strong>A small subset of patients don't have a truly monophasic course.</strong> Some patients initially diagnosed with Guillain-Barré syndrome go on to develop a relapsing or chronic course consistent with CIDP — a distinction that matters enormously for long-term treatment planning and is sometimes only clear in retrospect.</strong></span>
+                    </div>
+                </div>
+<div class="prog-section">
+                    <div class="prog-section-title"></div>
+                    <div class="prog-alert">
+                        <div class="prog-alert-title">⚠ “Acute” does not mean “short” for every patient</div>
+                        <div class="prog-alert-text">Most Guillain-Barré syndrome patients do recover, and treatment is genuinely effective when started early. But a meaningful minority face a recovery measured in months to years, some degree of permanent residual weakness, and — rarely — an ongoing chronic course that the initial “acute illness” framing doesn't prepare anyone for.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div><!-- /ladder -->
+</section>
+
+<div class="divider"></div>
+
+<!-- COST CALCULATOR -->
+<section class="sec">
+    <h2 class="sec-h2">What Guillain-Barré syndrome is really costing you</h2>
+    <p class="sec-body">The hospitalization bill is only the beginning. Inpatient rehabilitation, outpatient physical therapy, and lost income during a recovery that can stretch for months all add up long after discharge.</p>
+
+    <div class="calc-card">
+        <div class="calc-sub" id="calcSub">Based on your journey above–adjust the numbers to match your situation.</div>
+        <div class="calc-fields">
+            <div class="cf-row">
+                <div class="cf-label">Work days missed for treatment and recovery in the last 12 months</div>
+                <input type="number" class="cf-input" id="sickDays" value="60" min="0" max="365"
+                       oninput="recalc()" placeholder="e.g. 60">
+            </div>
+            <div class="cf-row">
+                <div class="cf-label">Your hourly wage (for lost income calculation)</div>
+                <input type="number" class="cf-input" id="hourlyRate" value="30" min="0"
+                       oninput="recalc()" placeholder="e.g. 30">
+            </div>
+        </div>
+        <div class="total-box">
+            <div class="total-row">
+                <span class="total-label">Your estimated total cost of your Guillain-Barré syndrome episode and recovery</span>
+                <span class="total-num" id="totalCost">$0</span>
+            </div>
+            <div class="brow-divider"></div>
+            <div class="breakdown">
+                <div class="brow">
+                    <span class="brow-lbl">Drug out-of-pocket costs</span>
+                    <span class="brow-val" id="b-drug">$0</span>
+                </div>
+                <div class="brow">
+                    <span class="brow-lbl">Lost income (missed days)</span>
+                    <span class="brow-val" id="b-sick">$0</span>
+                </div>
+                <div class="brow">
+                    <span class="brow-lbl">Reduced productivity at work (presenteeism)</span>
+                    <span class="brow-val" id="b-present">$0</span>
+                </div>
+                <div class="brow" style="margin-top:2px;">
+                    <span style="font-size:13px; color:rgba(255,255,255,0.6);">Residual weakness and fatigue during recovery commonly reduce work capacity well beyond the days formally missed</span>
+                </div>
+            </div>
+        </div>
+        <div class="phase3-box">
+            <div class="phase3-label">If your care reaches the last phase of this journey — <strong>A Second Treatment Course or PLEX-After-IVIG</strong></div>
+            <div class="phase3-amount" id="phase3PatientCost">$0</div>
+            <div class="phase3-sub">Projected patient out-of-pocket for a full year at that phase, given your coinsurance selection for it above (or a typical default if you haven't reached it yet).</div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PAYER COST SECTION -->
+<section class="sec">
+    <h2 class="sec-h2">What your insurer is paying</h2>
+    <p class="sec-body">Guillain-Barré syndrome generates most of its cost in a single, intense hospitalization — but the treatment choice made in the first 48 hours drives a real difference in what that admission ultimately costs.</p>
+
+    <div class="payer-card">
+        <div class="payer-head">
+            <div class="payer-head-chip">Acute Hospitalization Perspective — Commercial Insurance</div>
+            <div class="payer-head-title">What your health plan spends on your Guillain-Barré syndrome admission</div>
+            <div class="payer-head-sub" id="payerSub">Based on your treatment journey above · All figures reflect payer (insurer) paid portion, not patient out-of-pocket cost.</div>
+        </div>
+        <div class="payer-body">
+            <div class="payer-total-header">
+                <span class="ptb-label">Estimated total payer cost for your Guillain-Barré syndrome episode</span>
+                <span class="ptb-amount" id="payerTotal">$0</span>
+            </div>
+            <div class="payer-row">
+                <div class="payer-row-left">
+                    <div class="payer-row-label">IVIG / PLEX treatment cost (payer portion)</div>
+                    <div class="payer-row-desc">~80% of direct treatment cost after patient coinsurance; IVIG drug costs alone can exceed 2× those of plasma exchange</div>
+                </div>
+                <div class="payer-row-val" id="p-drug">$0</div>
+            </div>
+            <div class="payer-row">
+                <div class="payer-row-left">
+                    <div class="payer-row-label">Hospitalization costs (ICU, ventilator, nursing, rehab)</div>
+                    <div class="payer-row-desc">The dominant cost driver — average total hospitalization cost runs $116,000–$158,000 depending on treatment and severity</div>
+                </div>
+                <div class="payer-row-val">~$130,000</div>
+            </div>
+            <div class="payer-row" id="prow-relapse" style="display:none;">
+                <div class="payer-row-left">
+                    <div class="payer-row-label">Added cost from mechanical ventilation or ICU-level care</div>
+                    <div class="payer-row-desc">Ventilator support and ICU admission substantially increase both length of stay and total cost</div>
+                </div>
+                <div class="payer-row-val warn" id="p-relapse">$0</div>
+            </div>
+        </div>
+        
+        <div style="padding: 0 20px 16px;">
+            <div style="font-size: 12px; font-weight: 600; color: var(--gray-700); margin-bottom: 8px;">Did your care include ICU admission or mechanical ventilation?</div>
+            <div class="chip-group" id="relapse-count">
+                <button class="chip active" data-value="0" onclick="pickChip(this);recalcPayer()">No, floor-level care</button>
+                <button class="chip" data-value="1" onclick="pickChip(this);recalcPayer()">ICU, no ventilator</button>
+                <button class="chip" data-value="2" onclick="pickChip(this);recalcPayer()">ICU with ventilator</button>
+                
+            </div>
+            <div style="font-size: 11px; color: var(--gray-500); margin-top: 6px; line-height: 1.45;">Roughly 1 in 5 hospitalized Guillain-Barré syndrome patients require mechanical ventilation, which is one of the largest single cost multipliers in this admission</div>
+        </div>
+        <div class="payer-total-box">
+            <div class="ptb-note">Average hospitalization costs ran <strong>$115,950 for IVIG</strong> vs. <strong>$158,000 for plasmapheresis</strong> in one 5-year statewide analysis — a real cost difference between two “equally effective” first-line options.</div>
+        </div>
+
+        <div class="payer-phase3-box">
+            <div class="p3-label">Payer cost projection if care reaches the last phase of this journey — <strong>A Second Treatment Course or PLEX-After-IVIG</strong></div>
+            <div class="p3-amount" id="phase3PayerCost">$0</div>
+            <div class="p3-sub">Estimated annual payer spend at that phase: ~80% of drug price plus baseline medical costs, excluding any flare/crisis event above</div>
+        </div>
+
+        <div class="payer-insight">
+            <div class="pi-title">⚑ Why the first-line choice matters more than it seems</div>
+            <div class="pi-text">IVIG and plasma exchange are considered equally efficacious, but real-world data show meaningfully different costs and hospital courses between them — and no added benefit at all from combining both. The treatment decision made in the first 48 hours may be the single biggest cost lever in this entire episode.</div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- RISK PROJECTION -->
+<section class="sec sec-tint" id="understanding-risk">
+    <div class="sec-chip">Understanding Your Risk</div>
+    <h2 class="sec-h2">What the research shows over time</h2>
+    <p class="sec-body">These outcomes are not inevitable — but they are the documented range of what happens across the severity spectrum of Guillain-Barré syndrome, even with prompt treatment.</p>
+
+    <div class="risk-card">
+        <div class="risk-head">
+            <div class="risk-head-label">Based on peer-reviewed clinical data</div>
+            <div class="risk-head-title">Documented range of outcomes for hospitalized Guillain-Barré syndrome patients</div>
+        </div>
+        <div class="risk-items">
+            <div class="risk-row">
+                <div class="risk-icon ri-r">🫁</div>
+                <div class="risk-desc"><span class="risk-num red">22%</span> of hospitalized patients require mechanical ventilation during the acute phase of illness<sup class="ref" style="color:#aaa"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
+            </div>
+            <div class="risk-row">
+                <div class="risk-icon ri-y">⚠️</div>
+                <div class="risk-desc"><span class="risk-num">2.8–4.4%</span> in-hospital mortality rate overall, rising above 7% specifically among ICU-admitted patients<sup class="ref" style="color:#aaa"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
+            </div>
+            <div class="risk-row">
+                <div class="risk-icon ri-g">💊</div>
+                <div class="risk-desc"><span class="risk-num">Equally effective</span> — IVIG and plasma exchange are considered equivalent first-line options; the choice mainly affects cost and convenience, not outcome<sup class="ref" style="color:#aaa"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></div>
+            </div>
+            <div class="risk-row">
+                <div class="risk-icon ri-o">💰</div>
+                <div class="risk-desc"><span class="risk-num">$116–158K</span> average total hospitalization cost range, depending on which first-line treatment is chosen<sup class="ref" style="color:#aaa"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- THYMOS CTA -->
+<section class="sec" id="different-journey">
+    <div class="thymos-card">
+        <div class="thymos-chip">✦ A different journey exists</div>
+        <h2 class="thymos-h">Thymos Health offers <span class="g">another way</span></h2>
+        <p class="thymos-body">Conventional Guillain-Barré syndrome care is excellent at acute crisis management, but coordination often ends once you leave the hospital — even though recovery can take months to years. Thymos goes further – synthesizing your acute course, nerve studies, and rehabilitation progress to build a coordinated long-term recovery plan, and to watch for the rare cases that evolve into a chronic course.</p>
+        <div class="outcomes">
+            <div class="orow">
+                <div class="ocheck">✓</div>
+                <div class="otext"><strong>Root cause treatment</strong> — not just another layer of suppression</div>
+            </div>
+            <div class="orow">
+                <div class="ocheck">✓</div>
+                <div class="otext"><strong>Whole system autoimmune specialist</strong> quarterbacks your labs, your team, your care plan</div>
+            </div>
+            <div class="orow">
+                <div class="ocheck">✓</div>
+                <div class="otext"><strong>24/7 personalized support</strong> — not just at your next follow-up in 6 months</div>
+            </div>
+            <div class="orow">
+                <div class="ocheck">✓</div>
+                <div class="otext"><strong>80%+ symptom relief</strong> within 3 months across autoimmune conditions</div>
+            </div>
+        </div>
+        <div class="cta-row">
+            <div class="cta-col">
+                <button class="cta-btn cta-btn-secondary">See if Thymos is right for you →</button>
+                <div class="cta-note">No commitment. Takes 2 minutes.</div>
+            </div>
+            <button class="cta-btn cta-btn-primary">Get Started</button>
+        </div>
+    </div>
+</section>
+
+<!-- CITATIONS -->
+<div class="citations-section">
+    <div class="citations-toggle" id="citeToggle" onclick="toggleCites()">
+        <span>Sources &amp; Citations</span>
+        <span class="arrow">▼</span>
+    </div>
+    <div class="citations-list" id="citeList">
+        <div class="cite-item" id="cite-1">
+            <span class="cite-num">[1]</span>
+            Cost-minimization analysis of the direct costs of TPE and IVIg in the treatment of Guillain-Barré syndrome. <em>BMC Health Services Research</em>, 2011. Guillain-Barré syndrome is the most common cause of acute neuromuscular paralysis in the U.S., with an annual incidence of 1–2 per 100,000.
+            <div class="cite-doi">PMC: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3121582/" target="_blank">PMC3121582</a></div>
+        </div>
+        <div class="cite-item" id="cite-2">
+            <span class="cite-num">[2]</span>
+            Comparing Guillain-Barré syndrome outcomes between rural and urban hospitals in the United States: A retrospective cohort study. PMC, 2025 (n>10,000 Guillain-Barré syndrome hospitalizations). Up to 22% of patients require mechanical ventilation; in-hospital mortality 2.8–4.4% overall, exceeding 7% in ICU-admitted patients vs. under 2% for non-ICU patients; mortality 2.8% at 6 months rising to 3.9% at 12 months.
+            <div class="cite-doi">PMC: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12463200/" target="_blank">PMC12463200</a></div>
+        </div>
+        <div class="cite-item" id="cite-3">
+            <span class="cite-num">[3]</span>
+            IVIg Versus Plasmapheresis Outcomes and Costs in Patients Diagnosed with Guillain-Barré Syndrome (2009-2013): A New York SPARCS Database Report. <em>Neurology</em>, 2016. Average hospitalization cost: $115,950 (IVIG) vs. $158,000 (plasmapheresis); IVIG group had shorter median length of stay (7 vs. 14 days) and fewer in-hospital infections (19% vs. 26%).
+            <div class="cite-doi">Source: <a href="https://www.neurology.org/doi/10.1212/WNL.86.16_supplement.P2.273" target="_blank">neurology.org</a></div>
+        </div>
+        <div class="cite-item" id="cite-4">
+            <span class="cite-num">[4]</span>
+            Cost-minimization analysis of the direct costs of TPE and IVIg in the treatment of Guillain-Barré syndrome. <em>BMC Health Services Research</em>, 2011, citing the 1997 Plasma Exchange/Sandoglobulin GBS Trial: IVIg and plasma exchange are considered to have equal therapeutic benefit.
+            <div class="cite-doi">PMC: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3121582/" target="_blank">PMC3121582</a></div>
+        </div>
+        <div class="cite-item" id="cite-5">
+            <span class="cite-num">[5]</span>
+            Same cost-minimization analysis (PMC3121582): direct cost of a 5-day IVIg course (2.0 g/kg) was $10,329.85, more than double the $4,638.16 direct cost of a 5-session TPE (plasma exchange) course.
+            <div class="cite-doi">PMC: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3121582/" target="_blank">PMC3121582</a></div>
+        </div>
+        <div class="cite-item" id="cite-6">
+            <span class="cite-num">[6]</span>
+            Same SPARCS database report (Neurology, 2016): IVIG patients required less mechanical ventilation (2% for <96 hrs, 8% for >96 hrs) than plasmapheresis patients (5% and 18% respectively).
+            <div class="cite-doi">Source: <a href="https://www.neurology.org/doi/10.1212/WNL.86.16_supplement.P2.273" target="_blank">neurology.org</a></div>
+        </div>
+        <div class="cite-item" id="cite-7">
+            <span class="cite-num">[7]</span>
+            Plasma exchange after initial intravenous immunoglobulin treatment in Guillain-Barré syndrome: Critical reassessment of effectiveness and cost-efficiency. PubMed, retrospective chart review of 46 patients (1995–2005). No association found between adding plasma exchange after IVIG and improved short-term outcomes; combination therapy was associated with increased cost and duration of hospitalization.
+            <div class="cite-doi">PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/21386771/" target="_blank">21386771</a></div>
+        </div>
+    </div>
+</div>
+
+<footer class="footnote">
+    All statistics from peer-reviewed medical literature. Sources available on request.<br>
+    This tool is for educational purposes only and does not constitute medical advice.<br><br>
+    © 2026 Thymos Health &nbsp;·&nbsp; Confidential
+</footer>
+
+<script>
+/* ── CONFIG (disease-specific) ── */
+const STEP_IDS   = ["s1", "s2", "s3"];
+const STEP_NAMES = {"s1": "Diagnosis, Monitoring & Supportive Care", "s2": "IVIG or Plasma Exchange (PLEX)", "s3": "A Second Treatment Course or PLEX-After-IVIG"};
+const AWP        = {"s1": 14000, "s2": 13000, "s3": 15000};
+const IS_DRUG    = {"s1": false, "s2": false, "s3": false};
+const HAS_FLARE  = true;
+const FLARE_VAL  = {"0": 0, "1": 25000, "2": 70000};
+const DEFAULT_AWP= 13000;
+const MEDICAL_COST = 130000;
+const PRESENT_MULT = 300;
+const LAST_ID    = "s3";
+const LAST_COINS_DEFAULT = 0.2;
+
+/* ── STATE ── */
+const state = {};
+STEP_IDS.forEach(id => state[id] = {status: null});
+
+/* ── STATUS TOGGLE ── */
+function setStatus(drug, s) {
+    state[drug].status = s;
+    const card   = document.getElementById('card-' + drug);
+    const detail = document.getElementById('det-'  + drug);
+    const std    = document.getElementById('std-'  + drug);
+    const oth    = document.getElementById('oth-'  + drug);
+
+    card.classList.remove('tried', 'on-now', 'not-yet');
+    card.querySelectorAll('.sbtn').forEach(b => b.classList.remove('active'));
+
+    if (s === 'tried') { card.classList.add('tried');   card.querySelector('.sbtn.tried').classList.add('active'); }
+    if (s === 'other') { card.classList.add('tried');   card.querySelector('.sbtn.other').classList.add('active'); }
+    if (s === 'on')    { card.classList.add('on-now');  card.querySelector('.sbtn.on').classList.add('active');    }
+    if (s === 'skip')  { card.classList.add('not-yet'); card.querySelector('.sbtn.skip').classList.add('active');  }
+
+    const open = s === 'tried' || s === 'on' || s === 'other';
+    detail.classList.toggle('open', open);
+    if (std) std.style.display = (open && s !== 'other') ? 'block' : 'none';
+    if (oth) oth.style.display = (s === 'other')         ? 'block' : 'none';
+
+    recalc();
+}
+
+/* ── CHIP HELPERS ── */
+function pickChip(el) {
+    const group = el.closest('.chip-group, .outcome-group');
+    group.querySelectorAll('.chip, .outcome-chip').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    if (group.classList.contains('outcome-group')) {
+        const otherInput = document.getElementById(group.id + '-other');
+        if (otherInput) {
+            const show = el.dataset.value === 'other';
+            otherInput.style.display = show ? 'block' : 'none';
+            if (show) otherInput.focus();
+        }
+    }
+}
+function getChipVal(groupId, fallback) {
+    const active = document.querySelector('#' + groupId + ' [data-value].active');
+    return active ? active.dataset.value : String(fallback);
+}
+
+/* ── RECALCULATE PATIENT COST ── */
+function recalc() {
+    let drugCost = 0;
+
+    STEP_IDS.forEach(id => {
+        const st = state[id].status;
+        if (st === 'tried' || st === 'on') {
+            const months = parseFloat(getChipVal('dur-' + id, 12));
+            const coins  = parseFloat(getChipVal('coins-' + id, 0.20));
+            const years  = Math.min(months / 12, 1);
+            const cost   = AWP[id] * coins * years;
+            drugCost += cost;
+            const oopEl = document.getElementById(id + '-oop');
+            if (oopEl) oopEl.textContent = '$' + Math.round(AWP[id] * coins).toLocaleString();
+        } else if (st === 'other') {
+            const othEl = document.getElementById('oth-oop-' + id);
+            if (othEl) drugCost += parseFloat(othEl.value) || 0;
+        }
+    });
+
+    const sickDaysEl   = document.getElementById('sickDays');
+    const hourlyRateEl = document.getElementById('hourlyRate');
+    const sickDays   = Math.max(0, parseFloat(sickDaysEl ? sickDaysEl.value : 0)  || 0);
+    const hourlyRate = Math.max(0, parseFloat(hourlyRateEl ? hourlyRateEl.value : 0) || 0);
+
+    const sickCost    = sickDays * hourlyRate * 8;
+    const presentCost = PRESENT_MULT * hourlyRate;
+
+    const total = Math.round(drugCost + sickCost + presentCost);
+
+    document.getElementById('b-drug').textContent    = '$' + Math.round(drugCost).toLocaleString();
+    document.getElementById('b-sick').textContent    = '$' + Math.round(sickCost).toLocaleString();
+    document.getElementById('b-present').textContent = '$' + Math.round(presentCost).toLocaleString();
+    document.getElementById('totalCost').textContent  = '$' + total.toLocaleString();
+
+    recalcPayer();
+}
+
+/* ── PAYER RECALCULATE ── */
+function recalcPayer() {
+    let payerDrugAWP = DEFAULT_AWP;
+    for (let i = STEP_IDS.length - 1; i >= 0; i--) {
+        const id = STEP_IDS[i];
+        if (state[id].status === 'on' || state[id].status === 'tried') {
+            payerDrugAWP = AWP[id];
+            break;
+        }
+    }
+    const payerDrugCost = Math.round(payerDrugAWP * 0.80);
+
+    let flareVal = 0;
+    if (HAS_FLARE) {
+        const relapseRow = document.getElementById('prow-relapse');
+        const count = getChipVal('relapse-count', 0);
+        flareVal = FLARE_VAL[count] || 0;
+        if (flareVal > 0) {
+            relapseRow.style.display = 'flex';
+            document.getElementById('p-relapse').textContent = '$' + flareVal.toLocaleString();
+        } else if (relapseRow) {
+            relapseRow.style.display = 'none';
+        }
+    }
+
+    const payerTotal = payerDrugCost + MEDICAL_COST + flareVal;
+
+    document.getElementById('p-drug').textContent  = '$' + payerDrugCost.toLocaleString();
+    document.getElementById('payerTotal').textContent = '$' + payerTotal.toLocaleString();
+
+    updatePhaseIndicator();
+    updatePhase3Projection();
+}
+
+/* ── CURRENT PHASE (based on where the patient is in their journey) ── */
+function findCurrentStepIndex() {
+    for (let i = STEP_IDS.length - 1; i >= 0; i--) {
+        const id = STEP_IDS[i];
+        if (state[id].status === 'on' || state[id].status === 'tried' || state[id].status === 'other') {
+            return i;
+        }
+    }
+    return -1;
+}
+
+function updatePhaseIndicator() {
+    const idx = findCurrentStepIndex();
+    const calcSub  = document.getElementById('calcSub');
+    const payerSub = document.getElementById('payerSub');
+
+    let phaseText;
+    if (idx === -1) {
+        phaseText = 'No treatment step marked yet — mark your journey above to calculate your cost';
+    } else {
+        const id = STEP_IDS[idx];
+        phaseText = 'Reflecting Step ' + (idx + 1) + ' — ' + STEP_NAMES[id];
+    }
+
+    if (calcSub)  calcSub.textContent  = phaseText + ' · adjust the fields below to match your situation';
+    if (payerSub) payerSub.textContent = phaseText + ' · all figures reflect payer (insurer) paid portion, not patient out-of-pocket cost.';
+}
+
+/* ── PHASE 3 (LAST PHASE) PROJECTION — for both patient and payer ── */
+function updatePhase3Projection() {
+    const coins = parseFloat(getChipVal('coins-' + LAST_ID, LAST_COINS_DEFAULT));
+    const lastAWP = AWP[LAST_ID];
+
+    const phase3Patient = lastAWP * coins;
+    const phase3Payer   = Math.round(lastAWP * 0.80) + MEDICAL_COST;
+
+    const p3PatientEl = document.getElementById('phase3PatientCost');
+    const p3PayerEl   = document.getElementById('phase3PayerCost');
+    if (p3PatientEl) p3PatientEl.textContent = '$' + Math.round(phase3Patient).toLocaleString();
+    if (p3PayerEl)   p3PayerEl.textContent   = '$' + Math.round(phase3Payer).toLocaleString();
+}
+
+/* ── PROGRESSION TOGGLE ── */
+function toggleProg() {
+    const detail = document.getElementById('det-prog');
+    const btn    = document.getElementById('prog-btn');
+    const isOpen = detail.classList.toggle('open');
+    btn.textContent = isOpen
+        ? 'What you should know about recovery, cost, and rare relapse ▲'
+        : 'What you should know about recovery, cost, and rare relapse ▼';
+}
+
+/* ── CITATIONS TOGGLE ── */
+function toggleCites() {
+    document.getElementById('citeToggle').classList.toggle('open');
+    document.getElementById('citeList').classList.toggle('open');
+}
+
+function goToCite(n) {
+    const toggle = document.getElementById('citeToggle');
+    const list   = document.getElementById('citeList');
+    if (!list.classList.contains('open')) {
+        toggle.classList.add('open');
+        list.classList.add('open');
+    }
+    const target = document.getElementById('cite-' + n);
+    if (target) {
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'center' }), 400);
+    }
+}
+
+
+/* ── INIT ── */
+recalc();
+recalcPayer();
+</script>
+</body>
+</html>

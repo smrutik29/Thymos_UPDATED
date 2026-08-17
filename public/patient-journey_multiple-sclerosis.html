@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Your Multiple Sclerosis Journey | Thymos Health</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        :root {
+            --teal:        #034152;
+            --teal-mid:    #0B5C73;
+            --teal-light:  #5EC4D2;
+            --coral:       #EA6047;
+            --coral-dark:  #D14F38;
+            --sage:        #4A9B86;
+            --sage-dark:   #357A68;
+            --sage-tint:   #DFE8E8;
+            --slate:       #034152;
+            --slate-mid:   #2C4A5C;
+            --amber:       #C4893A;
+            --beige:       #F8F5F0;
+            --gray-50:     #F8F5F0;
+            --gray-100:    #EDE6D9;
+            --gray-200:    #DCD3C2;
+            --gray-300:    #C6B9A3;
+            --gray-500:    #7A8A96;
+            --gray-700:    #3E5550;
+            --gray-900:    #182220;
+            --white:       #FFFFFF;
+            --muted:       #7A8A96;
+            --shadow-sm:   0 1px 3px rgba(3,65,82,0.07), 0 1px 2px rgba(3,65,82,0.04);
+            --shadow-md:   0 4px 14px rgba(3,65,82,0.10), 0 2px 4px rgba(3,65,82,0.05);
+            --shadow-lg:   0 12px 32px rgba(3,65,82,0.14), 0 4px 8px rgba(3,65,82,0.06);
+            --r:           20px;
+            --r-sm:        10px;
+        }
+
+        html {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            font-size: 16px;
+            color: var(--gray-900);
+            background: var(--gray-50);
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body { min-height: 100vh; overflow-x: hidden; }
+
+        /* ── HEADER ───────────────────────────────────── */
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(255,255,255,0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gray-100);
+            padding: 13px 20px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .header-brand { font-size: 15px; font-weight: 700; color: var(--slate); letter-spacing: -0.2px; }
+        .header-brand em { color: var(--teal); font-style: normal; }
+
+        /* ── HERO ─────────────────────────────────────── */
+        .hero {
+            background: var(--slate);
+            padding: 44px 24px 52px;
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -60px; right: -60px;
+            width: 240px; height: 240px;
+            background: radial-gradient(circle, rgba(94,196,210,0.22) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .hero::after {
+            content: ''; position: absolute; bottom: -40px; left: -40px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(234,96,71,0.16) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .hero-chip {
+            display: inline-flex; align-items: center; gap: 5px;
+            background: rgba(94,196,210,0.12);
+            border: 1px solid rgba(94,196,210,0.28);
+            color: var(--teal-light);
+            font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+            padding: 5px 12px; border-radius: 100px; margin-bottom: 22px;
+        }
+        .hero-h1 {
+            font-size: 32px; font-weight: 800; color: var(--white);
+            line-height: 1.13; letter-spacing: -0.6px; margin-bottom: 16px;
+        }
+        .hero-h1 .flame {
+            background: linear-gradient(120deg, #5EC4D2 0%, #4A9B86 60%, #A3D4C8 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-sub {
+            font-size: 15px; color: rgba(255,255,255,0.88); line-height: 1.65;
+            margin-bottom: 36px;
+        }
+        .hero-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+        }
+        .hero-stat {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px; padding: 16px 14px;
+        }
+        .hs-sentence {
+            font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.88);
+            line-height: 1.5;
+        }
+        .hs-num-inline {
+            font-size: 20px; font-weight: 800;
+            background: linear-gradient(120deg, #5EC4D2 0%, #4A9B86 60%, #A3D4C8 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── STRIP NAV BANNER ─────────────────────────── */
+        .nav-strip {
+            background: #154E5E;
+            border-bottom: 1px solid rgba(3,65,82,0.12);
+            padding: 14px 16px;
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 8px;
+        }
+        .nav-strip-btn {
+            background:
+                linear-gradient(var(--slate), var(--slate)) padding-box,
+                linear-gradient(120deg, #5EC4D2 0%, #4A9B86 60%, #A3D4C8 100%) border-box;
+            border: 1.5px solid transparent;
+            border-radius: 100px;
+            padding: 9px 16px;
+            font-size: 12px; font-weight: 700; color: var(--white);
+            text-decoration: none; white-space: nowrap;
+            transition: all 0.15s ease;
+        }
+        .nav-strip-btn:active { opacity: 0.8; }
+
+        /* ── SECTION SHELL ────────────────────────────── */
+        .sec { padding: 44px 20px; background: var(--beige); }
+        .sec.sec-tint { background: var(--sage-tint); }
+        .sec-chip {
+            font-size: 10px; font-weight: 700; letter-spacing: 1.1px;
+            text-transform: uppercase; color: var(--coral); margin-bottom: 8px;
+        }
+        .sec-h2 {
+            font-size: 24px; font-weight: 800; color: var(--slate);
+            line-height: 1.2; letter-spacing: -0.4px; margin-bottom: 8px;
+        }
+        .sec-body {
+            font-size: 14px; color: var(--gray-700); line-height: 1.65;
+            margin-bottom: 28px;
+        }
+        .sec-body-bold {
+            font-size: 18px; font-weight: 700; color: var(--coral);
+            line-height: 1.6; margin: 0; text-align: center;
+        }
+        .mark-row {
+            display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+            gap: 10px; margin-top: -14px; margin-bottom: 28px;
+        }
+        .divider { height: 1px; background: var(--gray-100); margin: 0 20px; }
+
+        /* ── DRUG LADDER ──────────────────────────────── */
+        .ladder { display: flex; flex-direction: column; gap: 6px; }
+        @media (min-width: 860px) {
+            .ladder { padding: 0 80px; }
+        }
+
+        .drug-card {
+            background: var(--white);
+            border-radius: var(--r);
+            box-shadow: 0 10px 28px rgba(3,65,82,0.14);
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        .drug-card.tried  { border-color: var(--amber); }
+        .drug-card.on-now { border-color: var(--teal);  }
+        .drug-card.not-yet { opacity: 0.55; }
+
+        .card-bar { height: 5px; }
+        .bar-1 { background: linear-gradient(90deg, #034152, #4A9B86); }
+        .bar-2 { background: linear-gradient(90deg, #0B5C73, #5EC4D2); }
+        .bar-3 { background: linear-gradient(90deg, #2C4A5C, #034152); }
+        .bar-end{ background: linear-gradient(90deg, #052733, #2C4A5C); }
+
+        .card-inner { padding: 28px 24px 22px; }
+
+        .card-step-line { margin-bottom: 6px; }
+        .card-step-label {
+            font-size: 12px; font-weight: 700; letter-spacing: 0.9px;
+            text-transform: uppercase; color: var(--gray-500);
+        }
+        .card-name-inline {
+            font-size: 19px; font-weight: 800; color: var(--slate);
+            letter-spacing: -0.4px;
+        }
+        .card-name-inline.danger { color: var(--slate-mid); }
+        .card-generic {
+            font-size: 13px; color: var(--gray-500); margin-bottom: 18px;
+        }
+
+        .quote-block {
+            background: var(--gray-50);
+            border-left: 3px solid var(--gray-300);
+            border-radius: 0 var(--r-sm) var(--r-sm) 0;
+            padding: 10px 14px; margin-bottom: 14px;
+        }
+        .quote-label {
+            font-size: 9px; font-weight: 700; letter-spacing: 0.8px;
+            text-transform: uppercase; color: var(--gray-500); margin-bottom: 4px;
+        }
+        .quote-text { font-size: 13px; color: var(--gray-700); font-style: italic; line-height: 1.5; }
+
+        .pills { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+        .pill {
+            display: flex; align-items: center; gap: 4px;
+            background: rgba(3,65,82,0.07);
+            border: 1px solid rgba(3,65,82,0.18);
+            border-radius: 100px; padding: 6px 12px;
+            font-size: 12px; font-weight: 600; color: var(--teal);
+        }
+        .pill.warn-red {
+            background: rgba(44,74,92,0.07);
+            border-color: rgba(44,74,92,0.18);
+            color: var(--slate-mid);
+        }
+        .pill.info {
+            background: rgba(74,155,134,0.08);
+            border-color: rgba(74,155,134,0.22);
+            color: var(--sage-dark);
+        }
+
+        .cost-row {
+            display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px;
+            background: var(--gray-50); border-radius: var(--r-sm);
+            padding: 12px 14px; margin-bottom: 16px;
+        }
+        .cost-lbl { font-size: 14px; font-weight: 600; color: var(--gray-700); }
+        .cost-val { font-size: 16px; font-weight: 800; color: var(--slate); }
+        .cost-val.hot { color: var(--teal); }
+
+        /* status buttons — beige with orange outline/text until selected, then solid orange fill */
+        .sbtn-group { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+        .sbtn {
+            padding: 10px 4px; border-radius: var(--r-sm);
+            border: 2px solid var(--coral);
+            background: var(--beige);
+            font-size: 11.5px; font-weight: 700; color: var(--coral);
+            cursor: pointer; text-align: center; line-height: 1.25;
+            transition: all 0.15s ease; user-select: none;
+        }
+        .sbtn:active { transform: scale(0.96); }
+        .sbtn.active {
+            background: var(--coral);
+            border: 2px solid var(--coral);
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        /* other-drug inline form */
+        .other-input {
+            width: 100%; padding: 11px 14px;
+            border: 1.5px dashed var(--coral); border-radius: var(--r-sm);
+            font-size: 14px; color: var(--slate); background: rgba(234,96,71,0.04);
+            outline: none; transition: border-color 0.15s;
+        }
+        .other-input:focus { border-style: solid; border-color: var(--teal-light); }
+        .other-input::placeholder { color: var(--gray-300); }
+
+        /* expandable detail */
+        .card-detail {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+            background: var(--gray-50);
+            border-top: 1px solid transparent;
+        }
+        .card-detail.open {
+            max-height: 1100px;
+            border-top-color: var(--gray-100);
+            padding: 16px 20px;
+        }
+        .detail-row { margin-bottom: 14px; }
+        .detail-lbl {
+            font-size: 12.5px; font-weight: 700; color: var(--coral);
+            margin-bottom: 8px; display: flex; align-items: center; gap: 5px;
+        }
+        .detail-lbl::before { content: "✎"; font-size: 12px; }
+
+        /* duration chips — dashed border signals a tappable input, not static text */
+        .chip-group { display: flex; flex-wrap: wrap; gap: 7px; }
+        .chip {
+            padding: 7px 13px;
+            border: 1.5px dashed var(--gray-300); border-radius: 100px;
+            background: var(--white);
+            font-size: 12px; font-weight: 600; color: var(--gray-700);
+            cursor: pointer; user-select: none; white-space: nowrap; line-height: 1;
+            transition: all 0.15s ease;
+        }
+        .chip:active { transform: scale(0.93); }
+        .chip.active {
+            background: rgba(3,65,82,0.1);
+            border: 1.5px solid var(--teal); color: var(--teal);
+        }
+
+        /* outcome chips — one line of button choices, same visual language as chips above */
+        .outcome-group { display: flex; flex-wrap: wrap; gap: 7px; }
+        .outcome-chip {
+            padding: 8px 13px;
+            border: 1.5px dashed var(--gray-300); border-radius: 100px;
+            background: var(--white);
+            font-size: 12px; font-weight: 600; color: var(--gray-700);
+            cursor: pointer; user-select: none; text-align: center; line-height: 1.25;
+            transition: all 0.15s ease; max-width: 100%;
+        }
+        .outcome-chip:active { transform: scale(0.96); }
+        .outcome-chip.active {
+            background: rgba(3,65,82,0.08);
+            border: 1.5px solid var(--teal); color: var(--teal); font-weight: 700;
+        }
+        .cost-preview-box {
+            background: linear-gradient(135deg, rgba(3,65,82,0.07), rgba(74,155,134,0.07));
+            border: 1px solid rgba(3,65,82,0.14);
+            border-radius: var(--r-sm); padding: 14px;
+            display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 10px;
+            margin-top: 6px;
+        }
+        .cpb-label { font-size: 13px; font-weight: 600; color: var(--gray-700); }
+        .cpb-amount { font-size: 22px; font-weight: 800; color: var(--teal); letter-spacing: -0.4px; }
+
+        /* connectors */
+        .connector {
+            display: flex; flex-direction: column; align-items: center;
+            padding: 14px 0;
+        }
+        .conn-line { width: 2px; height: 18px; background: var(--gray-200); }
+        .conn-badge {
+            background: var(--teal);
+            border: none;
+            border-radius: 100px; padding: 11px 20px;
+            font-size: 14px; font-weight: 700; color: var(--white);
+            text-align: center; line-height: 1.3;
+            box-shadow: 0 6px 16px rgba(3,65,82,0.28);
+            max-width: 88%;
+        }
+
+        /* ── COST CALCULATOR ──────────────────────────── */
+        .calc-card {
+            background: var(--slate); border-radius: var(--r);
+            padding: 26px 22px; color: var(--white);
+        }
+        @media (min-width: 860px) {
+            .calc-card { margin: 0 80px; }
+            .payer-card { margin: 0 80px; }
+        }
+        .calc-sub { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 24px; line-height: 1.5; }
+        .calc-fields { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
+        .cf-row {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 14px; background: rgba(255,255,255,0.06);
+            border: 1.5px dashed rgba(94,196,210,0.4);
+            border-radius: var(--r-sm); padding: 12px 14px;
+        }
+        .cf-label { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.88); flex: 1 1 auto; line-height: 1.4; }
+        .cf-input {
+            width: 108px; flex: 0 0 auto; padding: 11px 12px; text-align: right;
+            background: rgba(255,255,255,0.1);
+            border: 1.5px solid rgba(255,255,255,0.18);
+            border-radius: var(--r-sm);
+            font-size: 18px; font-weight: 700; color: var(--white);
+        }
+        .cf-input:focus { outline: none; border-color: var(--teal-light); }
+        .cf-input::placeholder { color: rgba(255,255,255,0.3); font-weight: 400; font-size: 14px; }
+        .cf-input-group {
+            display: flex; align-items: center; flex: 0 0 auto;
+            background: rgba(255,255,255,0.1);
+            border: 1.5px solid rgba(255,255,255,0.18);
+            border-radius: var(--r-sm);
+            overflow: hidden;
+        }
+        .cf-input-group:focus-within { border-color: var(--teal-light); }
+        .cf-dollar { padding: 11px 0 11px 12px; font-size: 18px; font-weight: 700; color: var(--white); }
+        .cf-input-group .cf-input {
+            width: 84px; padding: 11px 12px 11px 2px;
+            background: transparent; border: none; border-radius: 0;
+        }
+
+        .total-box {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--r); padding: 22px 20px;
+        }
+        .total-row {
+            display: flex; justify-content: space-between; align-items: baseline;
+            gap: 12px; margin-bottom: 20px;
+        }
+        .total-label { font-size: 16px; color: rgba(255,255,255,0.8); }
+        .total-num {
+            font-size: 46px; font-weight: 800; letter-spacing: -2px; line-height: 1;
+            background: linear-gradient(120deg, #5EC4D2, #4A9B86);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; text-align: right; white-space: nowrap;
+        }
+        @media (max-width: 380px) {
+            .total-num { font-size: 34px; }
+        }
+        .breakdown { display: flex; flex-direction: column; gap: 10px; }
+        .brow {
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 15px;
+        }
+        .brow-lbl { color: rgba(255,255,255,0.78); }
+        .brow-val { font-weight: 600; color: rgba(255,255,255,0.9); }
+        .brow-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 4px 0 16px; }
+
+        /* ── RISK ─────────────────────────────────────── */
+        .risk-card { background: var(--white); border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow-md); }
+        .risk-head {
+            background: linear-gradient(135deg, #052733 0%, #034152 100%);
+            padding: 22px 20px; color: var(--white);
+        }
+        .risk-head-label {
+            font-size: 10px; font-weight: 700; letter-spacing: 1px;
+            text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 5px;
+        }
+        .risk-head-title { font-size: 18px; font-weight: 800; line-height: 1.2; }
+        .risk-items { padding: 22px 20px; display: flex; flex-direction: column; gap: 20px; }
+        .risk-row { display: flex; gap: 14px; align-items: flex-start; }
+        .risk-icon {
+            width: 40px; height: 40px; border-radius: 11px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; flex-shrink: 0;
+        }
+        .ri-o { background: rgba(3,65,82,0.1); }
+        .ri-r { background: rgba(44,74,92,0.1); }
+        .ri-y { background: rgba(196,137,58,0.1); }
+        .ri-g { background: rgba(74,155,134,0.1); }
+        .risk-desc { font-size: 14.5px; color: var(--gray-700); line-height: 1.55; }
+        .risk-num {
+            font-size: 19px; font-weight: 800; color: var(--slate);
+            letter-spacing: -0.3px;
+        }
+        .risk-num.red { color: var(--slate-mid); }
+
+        /* ── THYMOS CTA ───────────────────────────────── */
+        .thymos-card {
+            background: linear-gradient(155deg, #052733 0%, #034152 100%);
+            border-radius: var(--r); padding: 32px 24px;
+            color: var(--white); position: relative; overflow: hidden;
+        }
+        .thymos-card::after {
+            content: ''; position: absolute; bottom: -50px; right: -50px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(94,196,210,0.2) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .thymos-chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(94,196,210,0.14);
+            border: 1px solid rgba(94,196,210,0.3);
+            color: #8CDDE8; font-size: 10px; font-weight: 700;
+            letter-spacing: 1px; text-transform: uppercase;
+            padding: 5px 12px; border-radius: 100px; margin-bottom: 18px;
+        }
+        .thymos-h {
+            font-size: 27px; font-weight: 800; line-height: 1.15;
+            letter-spacing: -0.4px; margin-bottom: 12px;
+        }
+        .thymos-h .g { color: #8CDDE8; }
+        .thymos-body {
+            font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.65;
+            margin-bottom: 26px;
+        }
+        .outcomes { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+        .orow { display: flex; gap: 12px; align-items: flex-start; }
+        .ocheck {
+            width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+            background: rgba(94,196,210,0.18);
+            border: 1px solid rgba(94,196,210,0.38);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 10px; color: #8CDDE8; margin-top: 1px;
+        }
+        .otext { font-size: 14px; color: rgba(255,255,255,0.82); line-height: 1.45; }
+        .otext strong { color: var(--white); }
+
+        .cta-row {
+            display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-start;
+            position: relative; z-index: 1;
+        }
+        .cta-row > * { flex: 1 1 150px; }
+        .cta-col { display: flex; flex-direction: column; }
+        .cta-btn {
+            width: 100%; padding: 17px 14px;
+            border-radius: 100px;
+            font-size: 15px; font-weight: 700; letter-spacing: -0.2px;
+            cursor: pointer; text-align: center;
+            transition: opacity 0.18s;
+        }
+        .cta-btn:active { opacity: 0.88; }
+        .cta-btn-primary {
+            background: var(--coral); border: none; color: var(--white);
+        }
+        .cta-btn-secondary {
+            background: transparent; border: 2px solid rgba(255,255,255,0.5);
+            color: var(--white);
+        }
+        .cta-note {
+            text-align: center; font-size: 12px;
+            color: rgba(255,255,255,0.35); margin-top: 10px;
+        }
+
+        /* ── CITATIONS ────────────────────────────────── */
+        sup.ref {
+            font-size: 9px; font-weight: 700; color: var(--teal);
+            vertical-align: super; line-height: 0;
+            cursor: default; margin-left: 1px;
+        }
+        sup.ref::before { content: "("; }
+        sup.ref::after { content: ")"; }
+        sup.ref a {
+            color: inherit; text-decoration: none; cursor: pointer;
+        }
+        sup.ref a:active { opacity: 0.6; }
+        .cite-item { scroll-margin-top: 90px; }
+        .citations-section { padding: 32px 20px 8px; }
+        .citations-toggle {
+            display: flex; align-items: center; justify-content: space-between;
+            background: var(--white); border: 1.5px solid var(--gray-100);
+            border-radius: var(--r-sm); padding: 14px 16px;
+            cursor: pointer; user-select: none;
+            font-size: 13px; font-weight: 600; color: var(--gray-700);
+        }
+        .citations-toggle .arrow { font-size: 11px; color: var(--gray-500); transition: transform 0.2s; }
+        .citations-toggle.open .arrow { transform: rotate(180deg); }
+        .citations-list {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: var(--white);
+            border: 1.5px solid var(--gray-100); border-top: none;
+            border-radius: 0 0 var(--r-sm) var(--r-sm);
+        }
+        .citations-list.open { max-height: 3200px; }
+        .cite-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--gray-50);
+            font-size: 11px; line-height: 1.55; color: var(--gray-700);
+        }
+        .cite-item:last-child { border-bottom: none; }
+        .cite-num { font-weight: 700; color: var(--teal); margin-right: 4px; }
+        .cite-doi {
+            display: inline-block; margin-top: 3px;
+            font-size: 10px; color: var(--gray-500);
+            word-break: break-all;
+        }
+        .cite-doi a { color: var(--teal); text-decoration: none; }
+
+        /* ── SURGERY DETAIL ──────────────────────────── */
+        .surg-stat-grid {
+            display: flex; flex-direction: column; gap: 8px;
+            margin: 14px 0;
+        }
+        .surg-stat {
+            display: flex; align-items: baseline; gap: 10px;
+            background: rgba(44,74,92,0.06);
+            border: 1px solid rgba(44,74,92,0.12);
+            border-radius: var(--r-sm); padding: 12px 14px;
+        }
+        .ss-num {
+            font-size: 17px; font-weight: 800; color: var(--slate);
+            letter-spacing: -0.4px; line-height: 1.3; flex-shrink: 0;
+        }
+        .ss-label { font-size: 13.5px; color: var(--gray-700); line-height: 1.35; }
+        .surg-expand-btn {
+            width: 100%; padding: 11px;
+            background: rgba(44,74,92,0.07);
+            border: 1.5px solid var(--slate-mid);
+            border-radius: var(--r-sm);
+            font-size: 12px; font-weight: 700; color: var(--slate-mid);
+            cursor: pointer; text-align: center; margin-top: 4px;
+            transition: all 0.15s ease;
+        }
+        .surg-expand-btn:active { opacity: 0.8; }
+        #det-surgery.open { max-height: 1400px; }
+        .surg-section { margin-bottom: 18px; }
+        .surg-section-title {
+            font-size: 11px; font-weight: 700; color: var(--slate);
+            text-transform: uppercase; letter-spacing: 0.8px;
+            margin-bottom: 10px; padding-bottom: 6px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .surg-row {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            padding: 7px 0; border-bottom: 1px solid var(--gray-50);
+            font-size: 13px; gap: 12px;
+        }
+        .surg-row:last-child { border-bottom: none; }
+        .surg-row-lbl { color: var(--gray-700); flex: 1; line-height: 1.4; }
+        .surg-row-val { font-weight: 700; color: var(--slate); text-align: right; white-space: nowrap; }
+        .surg-row-val.warn { color: var(--slate-mid); }
+        .surg-consequence {
+            display: flex; gap: 10px; align-items: flex-start;
+            padding: 8px 0; border-bottom: 1px solid var(--gray-50);
+            font-size: 13px;
+        }
+        .surg-consequence:last-child { border-bottom: none; }
+        .cons-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+        .cons-text { color: var(--gray-700); line-height: 1.5; }
+        .cons-text strong { color: var(--slate); }
+        .surg-alert {
+            background: rgba(196,137,58,0.07);
+            border: 1px solid rgba(196,137,58,0.22);
+            border-radius: var(--r-sm); padding: 12px 14px; margin-top: 4px;
+        }
+        .surg-alert-title {
+            font-size: 11px; font-weight: 700; color: var(--amber);
+            text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 6px;
+        }
+        .surg-alert-text { font-size: 12px; color: var(--gray-700); line-height: 1.55; }
+
+        /* ── FOOTNOTE ─────────────────────────────────── */
+        .footnote {
+            padding: 24px 20px 32px;
+            font-size: 11px; color: var(--gray-500); line-height: 1.6;
+            text-align: center;
+        }
+    
+        /* ── disease-specific: progression consequences & payer sections ── */
+        .payer-body { padding: 20px 20px 4px; }
+        .payer-card { background: var(--white); border-radius: var(--r); box-shadow: 0 10px 28px rgba(3,65,82,0.14); overflow: hidden; }
+        .payer-head { background: linear-gradient(135deg,#052733 0%,#2C4A5C 100%); padding: 22px 20px; color: var(--white); }
+        .payer-head-chip { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(94,196,210,0.7); margin-bottom: 6px; }
+        .payer-head-title { font-size: 18px; font-weight: 800; line-height: 1.2; }
+        .payer-head-sub { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 4px; line-height: 1.5; }
+        .payer-insight { background: rgba(196,137,58,0.06); border: 1px solid rgba(196,137,58,0.18); border-radius: var(--r-sm); padding: 12px 14px; margin: 0 20px 20px; }
+        .payer-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 11px 0; border-bottom: 1px solid var(--gray-50); gap: 14px; }
+        .payer-row:last-child { border-bottom: none; }
+        .payer-row-left { flex: 1; }
+        .payer-row-label { font-size: 13px; font-weight: 600; color: var(--slate); margin-bottom: 2px; line-height: 1.35; }
+        .payer-row-desc  { font-size: 11px; color: var(--gray-500); line-height: 1.45; }
+        .payer-row-val { font-size: 16px; font-weight: 800; color: var(--teal); letter-spacing: -0.3px; white-space: nowrap; text-align: right; flex-shrink: 0; }
+        .payer-row-val.warn { color: var(--slate-mid); }
+
+        /* payer total box — label+amount inline, matching cost-preview-box treatment */
+        .payer-total-box { margin: 16px 20px 20px; background: linear-gradient(135deg,rgba(3,65,82,0.07),rgba(44,74,92,0.06)); border: 1px solid rgba(3,65,82,0.14); border-radius: var(--r-sm); padding: 16px; }
+        .payer-total-header {
+            display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap;
+            gap: 8px 10px; margin: 0 -20px 4px; padding: 18px 20px 14px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .payer-total-header .ptb-label { font-size: 15px; font-weight: 600; color: var(--gray-700); }
+        .payer-total-header .ptb-amount { font-size: 30px; font-weight: 800; color: var(--slate); letter-spacing: -1px; line-height: 1; }
+        .ptb-label { font-size: 13px; font-weight: 600; color: var(--gray-700); }
+        .ptb-amount { font-size: 28px; font-weight: 800; color: var(--slate); letter-spacing: -1px; line-height: 1; }
+        .ptb-amount span { font-size: 15px; color: var(--teal); }
+        .ptb-note { font-size: 12px; color: var(--gray-500); line-height: 1.5; margin-top: 8px; }
+        .pi-text { font-size: 12px; color: var(--gray-700); line-height: 1.55; }
+        .pi-title { font-size: 10px; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 5px; }
+
+        .prog-alert { background: rgba(196,137,58,0.07); border: 1px solid rgba(196,137,58,0.22); border-radius: var(--r-sm); padding: 12px 14px; margin-top: 4px; }
+        .prog-alert-title { font-size: 11px; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 6px; }
+        .prog-alert-text { font-size: 12px; color: var(--gray-700); line-height: 1.55; }
+        .prog-consequence { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--gray-50); font-size: 13px; }
+        .prog-consequence:last-child { border-bottom: none; }
+
+        /* progression expand button — danger theme matching surg-expand-btn */
+        .prog-expand-btn { width: 100%; padding: 11px; background: rgba(44,74,92,0.07); border: 1.5px solid var(--slate-mid); border-radius: var(--r-sm); font-size: 12px; font-weight: 700; color: var(--slate-mid); cursor: pointer; text-align: center; margin-top: 4px; transition: all 0.15s ease; }
+        .prog-expand-btn:active { opacity: 0.8; }
+
+        .prog-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid var(--gray-50); font-size: 13px; gap: 12px; }
+        .prog-row:last-child { border-bottom: none; }
+        .prog-row-lbl { color: var(--gray-700); flex: 1; line-height: 1.4; }
+        .prog-row-val { font-weight: 700; color: var(--slate); text-align: right; white-space: nowrap; }
+        .prog-row-val.warn { color: var(--slate-mid); }
+        .prog-section { margin-bottom: 18px; }
+        .prog-section-title { font-size: 11px; font-weight: 700; color: var(--slate); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--gray-100); }
+
+        /* progression stats — number sits inline beside its label, matching surg-stat treatment */
+        .prog-stat-grid { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
+        .prog-stat { display: flex; align-items: baseline; gap: 10px; background: rgba(44,74,92,0.06); border: 1px solid rgba(44,74,92,0.12); border-radius: var(--r-sm); padding: 12px 14px; }
+        .ps-num { font-size: 17px; font-weight: 800; color: var(--slate); letter-spacing: -0.4px; line-height: 1.3; flex-shrink: 0; }
+        .ps-label { font-size: 13.5px; color: var(--gray-700); line-height: 1.35; }
+</style>
+</head>
+<body>
+
+<header class="header">
+    <a href="Thymos Homepage.dc.html" class="header-brand" style="text-decoration:none; cursor:pointer;">Thymos <em>Health</em></a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-chip">Your Multiple Sclerosis Journey</div>
+    <h1 class="hero-h1">
+        Still relapsing.<br>
+        Still switching <span class="flame">one drug at a time.</span><br>
+        Still no real answers.
+    </h1>
+    <p class="hero-sub">You're not alone. This is how multiple sclerosis (MS) is typically managed — and an honest look at what that journey costs, and what it leads to, over time.</p>
+    <div class="hero-grid">
+        <div class="hero-stat">
+            <div class="hs-sentence"><span class="hs-num-inline">1M</span> Americans are living with multiple sclerosis.<sup class="ref"><a href="#cite-1" onclick="goToCite(1);return false;">1</a></sup></div>
+        </div>
+        <div class="hero-stat">
+            <div class="hs-sentence"><span class="hs-num-inline">3×</span> more common in women than men.<sup class="ref"><a href="#cite-1" onclick="goToCite(1);return false;">1</a></sup></div>
+        </div>
+        <div class="hero-stat">
+            <div class="hs-sentence"><span class="hs-num-inline">40%</span> report symptoms misdiagnosed before multiple sclerosis was identified.<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
+        </div>
+        <div class="hero-stat">
+            <div class="hs-sentence"><span class="hs-num-inline">5.4 years</span> is the median delay between first symptoms and diagnosis.<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
+        </div>
+    </div>
+</section>
+
+<!-- STRIP NAV BANNER -->
+<nav class="nav-strip">
+    <a class="nav-strip-btn" href="#treatment-journey">The Treatment Journey</a>
+    <a class="nav-strip-btn" href="#understanding-risk">Understanding Your Risk</a>
+    <a class="nav-strip-btn" href="#different-journey">A Different Journey Exists</a>
+</nav>
+
+<!-- DRUG JOURNEY -->
+<section class="sec" id="treatment-journey">
+    <h2 class="sec-h2">How multiple sclerosis is typically treated</h2>
+    <p class="sec-body">Most doctors and insurance plans follow step therapy — starting with lower-efficacy injectables before approving high-efficacy biologics. The stakes are high: multiple sclerosis lesions can accumulate silently between relapses, and each year without adequate disease control carries a compounding disability burden.</p>
+    <div class="mark-row">
+        <p class="sec-body-bold">Mark where you are in your journey and we'll show you the full picture.</p>
+    </div>
+
+    <div class="ladder">
+
+        <!-- ── STEP 1: INTERFERON-BETA / GLATIRAMER ACETATE ── -->
+        <div class="drug-card" id="card-ifn">
+            <div class="card-bar bar-1"></div>
+            <div class="card-inner">
+                <div class="card-step-line"><span class="card-step-label">Step 1: Your neurologist starts you on</span> <span class="card-name-inline">Interferon-beta / Glatiramer acetate</span></div>
+                <div class="card-generic">Avonex, Rebif, Betaseron / Copaxone — weekly or daily injectable platform therapies</div>
+                <div class="quote-block">
+                    <div class="quote-label">What your doctor says</div>
+                    <div class="quote-text">"These are well-established, well-tolerated first-line therapies. They reduce your relapse rate by around 30%, with a long track record of safety."</div>
+                </div>
+                <div class="pills">
+                    <div class="pill warn-red">~30–50% inadequate responders<sup class="ref"><a href="#cite-5" onclick="goToCite(5);return false;">5</a></sup></div>
+                    <div class="pill info">Typically 3–6 months to assess full response</div>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-lbl">Annual cost before insurance (AWP)</span>
+                    <span class="cost-val hot">~$60,000–$90,000</span>
+                </div>
+                <div class="sbtn-group">
+                    <button class="sbtn tried" onclick="setStatus('ifn','tried')">✓ Tried this</button>
+                    <button class="sbtn other" onclick="setStatus('ifn','other')">↔ Tried something else</button>
+                    <button class="sbtn on"    onclick="setStatus('ifn','on')">● On this now</button>
+                    <button class="sbtn skip"  onclick="setStatus('ifn','skip')">Not yet</button>
+                </div>
+            </div>
+            <div class="card-detail" id="det-ifn">
+                <div id="std-ifn">
+                    <div class="detail-row">
+                        <div class="detail-lbl">Providers seen before this was prescribed</div>
+                        <div class="chip-group" id="pre-docs-ifn">
+                            <button class="chip" data-value="1" onclick="pickChip(this)">1</button>
+                            <button class="chip" data-value="2" onclick="pickChip(this)">2–3</button>
+                            <button class="chip" data-value="4" onclick="pickChip(this)">4–5</button>
+                            <button class="chip" data-value="6" onclick="pickChip(this)">6+</button>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">How long were you on this drug?</div>
+                        <div class="chip-group" id="dur-ifn">
+                            <button class="chip" data-value="3"  onclick="pickChip(this);recalc()">&lt; 3 mo</button>
+                            <button class="chip" data-value="6"  onclick="pickChip(this);recalc()">3–6 mo</button>
+                            <button class="chip active" data-value="12" onclick="pickChip(this);recalc()">6–12 mo</button>
+                            <button class="chip" data-value="24" onclick="pickChip(this);recalc()">1–2 yr</button>
+                            <button class="chip" data-value="48" onclick="pickChip(this);recalc()">2+ yr</button>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">What happened?</div>
+                        <div class="outcome-group" id="out-ifn">
+                            <button class="outcome-chip" data-value="worked"     onclick="pickChip(this)">It worked — no relapses</button>
+                            <button class="outcome-chip" data-value="partial"    onclick="pickChip(this)">Reduced relapses, but still some activity</button>
+                            <button class="outcome-chip" data-value="never"      onclick="pickChip(this)">I still had relapses / MRI lesions</button>
+                            <button class="outcome-chip" data-value="intolerant" onclick="pickChip(this)">Couldn't tolerate the side effects</button>
+                            <button class="outcome-chip" data-value="other"      onclick="pickChip(this)">Something else…</button>
+                        </div>
+                        <input class="other-input" id="out-ifn-other" type="text" placeholder="Describe what happened…" style="display:none; margin-top:7px;" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Your coinsurance for this drug</div>
+                        <div class="chip-group" id="coins-ifn">
+                            <button class="chip" data-value="0"    onclick="pickChip(this);recalc()">$0 covered</button>
+                            <button class="chip" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
+                            <button class="chip active" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
+                            <button class="chip" data-value="0.30" onclick="pickChip(this);recalc()">30%</button>
+                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">No insurance</button>
+                        </div>
+                    </div>
+                    <div class="cost-preview-box">
+                        <div class="cpb-label">Your estimated annual out-of-pocket for this drug (based on $75K mid-point)</div>
+                        <div class="cpb-amount" id="ifn-oop">$15,000</div>
+                    </div>
+                </div>
+                <div id="oth-ifn" style="display:none">
+                    <div class="detail-row">
+                        <div class="detail-lbl">What drug did you take at this step?</div>
+                        <input class="other-input" type="text" placeholder="e.g. Tecfidera, Aubagio, Gilenya (oral DMTs)" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">How often?</div>
+                        <input class="other-input" type="text" placeholder="e.g. twice daily" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Annual out-of-pocket cost</div>
+                        <input class="other-input" type="number" id="oth-oop-ifn" placeholder="e.g. 8000" oninput="recalc()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONNECTOR 1→2 -->
+        <div class="connector">
+            <div class="conn-line"></div>
+            <div class="conn-badge">~40% have breakthrough disease — escalate to Step 2</div>
+            <div class="conn-line"></div>
+        </div>
+
+        <!-- ── STEP 2: NATALIZUMAB ── -->
+        <div class="drug-card" id="card-ntz">
+            <div class="card-bar bar-2"></div>
+            <div class="card-inner">
+                <div class="card-step-line"><span class="card-step-label">Step 2: You escalate to</span> <span class="card-name-inline">Natalizumab</span></div>
+                <div class="card-generic">Tysabri — IV infusion every 4 weeks (anti-α4-integrin monoclonal antibody)</div>
+                <div class="quote-block">
+                    <div class="quote-label">What your doctor says</div>
+                    <div class="quote-text">"This is a high-efficacy therapy. It blocks immune cells from entering the brain and spinal cord. Most patients see dramatic reductions in relapse activity — often from the first infusion."</div>
+                </div>
+                <div class="pills">
+                    <div class="pill info">~68% reduction in annualised relapse rate vs. placebo<sup class="ref"><a href="#cite-6" onclick="goToCite(6);return false;">6</a></sup></div>
+                    <div class="pill warn-red">Risk of severe brain infections and neurodegeneration sharply increases after 2 years<sup class="ref"><a href="#cite-7" onclick="goToCite(7);return false;">7</a></sup></div>
+                    <div class="pill warn-red">Disease rebound when medication is stopped<sup class="ref"><a href="#cite-7" onclick="goToCite(7);return false;">7</a></sup></div>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-lbl">Annual cost before insurance (AWP)</span>
+                    <span class="cost-val hot">~$82,000</span>
+                </div>
+                <div class="sbtn-group">
+                    <button class="sbtn tried" onclick="setStatus('ntz','tried')">✓ Tried this</button>
+                    <button class="sbtn other" onclick="setStatus('ntz','other')">↔ Tried something else</button>
+                    <button class="sbtn on"    onclick="setStatus('ntz','on')">● On this now</button>
+                    <button class="sbtn skip"  onclick="setStatus('ntz','skip')">Not yet</button>
+                </div>
+            </div>
+            <div class="card-detail" id="det-ntz">
+                <div id="std-ntz">
+                    <div class="detail-row">
+                        <div class="detail-lbl">How long were you on Natalizumab?</div>
+                        <div class="chip-group" id="dur-ntz">
+                            <button class="chip" data-value="3"  onclick="pickChip(this);recalc()">&lt; 3 mo</button>
+                            <button class="chip" data-value="6"  onclick="pickChip(this);recalc()">3–6 mo</button>
+                            <button class="chip active" data-value="12" onclick="pickChip(this);recalc()">6–12 mo</button>
+                            <button class="chip" data-value="24" onclick="pickChip(this);recalc()">1–2 yr</button>
+                            <button class="chip" data-value="36" onclick="pickChip(this);recalc()">2+ yr</button>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">What happened?</div>
+                        <div class="outcome-group" id="out-ntz">
+                            <button class="outcome-chip" data-value="worked"  onclick="pickChip(this)">Worked well — no relapses</button>
+                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Partial response — some activity</button>
+                            <button class="outcome-chip" data-value="switched" onclick="pickChip(this)">Had to switch due to JCV / PML risk</button>
+                            <button class="outcome-chip" data-value="never"   onclick="pickChip(this)">Didn't respond</button>
+                            <button class="outcome-chip" data-value="other"   onclick="pickChip(this)">Something else…</button>
+                        </div>
+                        <input class="other-input" id="out-ntz-other" type="text" placeholder="Describe what happened…" style="display:none; margin-top:7px;" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Your coinsurance for this drug</div>
+                        <div class="chip-group" id="coins-ntz">
+                            <button class="chip" data-value="0"    onclick="pickChip(this);recalc()">$0 covered</button>
+                            <button class="chip" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
+                            <button class="chip active" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
+                            <button class="chip" data-value="0.30" onclick="pickChip(this);recalc()">30%</button>
+                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">No insurance</button>
+                        </div>
+                    </div>
+                    <div class="cost-preview-box">
+                        <div class="cpb-label">Your estimated annual out-of-pocket for this drug</div>
+                        <div class="cpb-amount" id="ntz-oop">$16,400</div>
+                    </div>
+                </div>
+                <div id="oth-ntz" style="display:none">
+                    <div class="detail-row">
+                        <div class="detail-lbl">What therapy did you use at this step?</div>
+                        <input class="other-input" type="text" placeholder="e.g. Fingolimod, Siponimod, Cladribine" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">How often?</div>
+                        <input class="other-input" type="text" placeholder="e.g. once daily" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Annual out-of-pocket cost</div>
+                        <input class="other-input" type="number" id="oth-oop-ntz" placeholder="e.g. 8000" oninput="recalc()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONNECTOR 2→3 -->
+        <div class="connector">
+            <div class="conn-line"></div>
+            <div class="conn-badge">Progressive brain and nerve tissue disease</div>
+            <div class="conn-line"></div>
+        </div>
+
+        <!-- ── STEP 3: OCRELIZUMAB ── -->
+        <div class="drug-card" id="card-ocr">
+            <div class="card-bar bar-3"></div>
+            <div class="card-inner">
+                <div class="card-step-line"><span class="card-step-label">Step 3: You move to</span> <span class="card-name-inline">Ocrelizumab</span></div>
+                <div class="card-generic">Ocrevus — IV infusion every 6 months (anti-CD20 B-cell depleting monoclonal antibody)</div>
+                <div class="quote-block">
+                    <div class="quote-label">What your doctor says</div>
+                    <div class="quote-text">"Ocrelizumab targets B cells, which drive inflammation differently from T-cell–focused therapies. It's the only drug approved for both relapsing and primary progressive multiple sclerosis."</div>
+                </div>
+                <div class="pills">
+                    <div class="pill warn-red">~50% are non-responders at 2 years, resulting in worsening multi-organ and neurological damage<sup class="ref"><a href="#cite-8" onclick="goToCite(8);return false;">8</a></sup></div>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-lbl">Annual list price (WAC) — Genentech 2024</span>
+                    <span class="cost-val hot">~$78,858</span>
+                </div>
+                <div class="sbtn-group">
+                    <button class="sbtn tried" onclick="setStatus('ocr','tried')">✓ Tried this</button>
+                    <button class="sbtn other" onclick="setStatus('ocr','other')">↔ Tried something else</button>
+                    <button class="sbtn on"    onclick="setStatus('ocr','on')">● On this now</button>
+                    <button class="sbtn skip"  onclick="setStatus('ocr','skip')">Not yet</button>
+                </div>
+            </div>
+            <div class="card-detail" id="det-ocr">
+                <div id="std-ocr">
+                    <div class="detail-row">
+                        <div class="detail-lbl">How long have you been on Ocrelizumab?</div>
+                        <div class="chip-group" id="dur-ocr">
+                            <button class="chip" data-value="3"  onclick="pickChip(this);recalc()">&lt; 3 mo</button>
+                            <button class="chip active" data-value="6"  onclick="pickChip(this);recalc()">6 mo</button>
+                            <button class="chip" data-value="12" onclick="pickChip(this);recalc()">1 yr</button>
+                            <button class="chip" data-value="24" onclick="pickChip(this);recalc()">2 yr</button>
+                            <button class="chip" data-value="36" onclick="pickChip(this);recalc()">3+ yr</button>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">What happened?</div>
+                        <div class="outcome-group" id="out-ocr">
+                            <button class="outcome-chip" data-value="working" onclick="pickChip(this)">Still working — no new activity</button>
+                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Some continued disease activity</button>
+                            <button class="outcome-chip" data-value="progressing" onclick="pickChip(this)">Disability still progressing despite treatment</button>
+                            <button class="outcome-chip" data-value="other"   onclick="pickChip(this)">Something else…</button>
+                        </div>
+                        <input class="other-input" id="out-ocr-other" type="text" placeholder="Describe what happened…" style="display:none; margin-top:7px;" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Your coinsurance for this drug</div>
+                        <div class="chip-group" id="coins-ocr">
+                            <button class="chip" data-value="0"    onclick="pickChip(this);recalc()">$0 co-pay program</button>
+                            <button class="chip" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
+                            <button class="chip active" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
+                            <button class="chip" data-value="0.30" onclick="pickChip(this);recalc()">30%</button>
+                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">No insurance</button>
+                        </div>
+                    </div>
+                    <div class="cost-preview-box">
+                        <div class="cpb-label">Your estimated annual out-of-pocket for this drug</div>
+                        <div class="cpb-amount" id="ocr-oop">$15,772</div>
+                    </div>
+                </div>
+                <div id="oth-ocr" style="display:none">
+                    <div class="detail-row">
+                        <div class="detail-lbl">What therapy did you try at this step?</div>
+                        <input class="other-input" type="text" placeholder="e.g. Alemtuzumab, Ofatumumab, Ublituximab" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">How often?</div>
+                        <input class="other-input" type="text" placeholder="e.g. every 6 months infusion" />
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-lbl">Annual out-of-pocket cost</div>
+                        <input class="other-input" type="number" id="oth-oop-ocr" placeholder="e.g. 5000" oninput="recalc()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONNECTOR 3→Progression -->
+        <div class="connector">
+            <div class="conn-line"></div>
+            <div class="conn-badge">~72% of disability worsening is independent of relapses<sup class="ref" style="color:var(--teal)"><a href="#cite-16" onclick="goToCite(16);return false;">16</a></sup></div>
+            <div class="conn-line"></div>
+        </div>
+
+        <!-- END STATE: SECONDARY PROGRESSION -->
+        <div class="drug-card" id="card-prog">
+            <div class="card-bar bar-end"></div>
+            <div class="card-inner">
+                <div class="card-step-line"><span class="card-step-label">When relapse control is no longer the primary challenge</span> <span class="card-name-inline danger">Secondary Progressive Multiple Sclerosis</span></div>
+                <div class="card-generic">Secondary Progressive Multiple Sclerosis — gradual, accumulating disability with or without superimposed relapses</div>
+                <div class="quote-block">
+                    <div class="quote-label">What Your Doctor says</div>
+                    <div class="quote-text">"Your multiple sclerosis has shifted from relapsing to progressive. We have limited options to slow this phase, but we'll continue managing your symptoms."</div>
+                </div>
+                <div class="pills">
+                    <div class="pill warn-red">~40% leave employment within 5 years of Secondary Progressive Multiple Sclerosis diagnosis<sup class="ref"><a href="#cite-10" onclick="goToCite(10);return false;">10</a></sup></div>
+                </div>
+                <div class="prog-stat-grid">
+                    <div class="prog-stat">
+                        <div class="ps-num">50–72%</div>
+                        <div class="ps-label">Experience slow, accumulating disability annually within 10 years of diagnosis<sup class="ref"><a href="#cite-16" onclick="goToCite(16);return false;">16</a></sup></div>
+                    </div>
+                    <div class="prog-stat">
+                        <div class="ps-num">7–10 yr</div>
+                        <div class="ps-label">Reduced life expectancy vs. general population<sup class="ref"><a href="#cite-12" onclick="goToCite(12);return false;">12</a></sup></div>
+                    </div>
+                    <div class="prog-stat">
+                        <div class="ps-num">~$97K</div>
+                        <div class="ps-label">Mean annual total cost with moderate-severe multiple sclerosis<sup class="ref"><a href="#cite-11" onclick="goToCite(11);return false;">11</a></sup></div>
+                    </div>
+                </div>
+                <button class="prog-expand-btn" id="prog-btn" onclick="toggleProg()">What you should know about progression ▼</button>
+            </div>
+            <div class="card-detail" id="det-prog">
+                <div class="prog-section">
+                    <div class="prog-section-title">Disability milestones — EDSS scale</div>
+                    <div class="prog-row">
+                        <span class="prog-row-lbl">EDSS 3.0 — Mild-to-moderate disability, fully ambulatory</span>
+                        <span class="prog-row-val">Variable onset</span>
+                    </div>
+                    <div class="prog-row">
+                        <span class="prog-row-lbl">EDSS 6.0 — Requires unilateral walking aid (cane or crutch)</span>
+                        <span class="prog-row-val warn">Median ~15 yrs</span>
+                    </div>
+                    <div class="prog-row">
+                        <span class="prog-row-lbl">EDSS 8.0 — Restricted to bed or chair, assisted self-care</span>
+                        <span class="prog-row-val warn">Late disease</span>
+                    </div>
+                    <div class="prog-row">
+                        <span class="prog-row-lbl">30-day hospitalisation rate (progressive multiple sclerosis)</span>
+                        <span class="prog-row-val warn">Elevated vs. RRMS</span>
+                    </div>
+                </div>
+                <div class="prog-section">
+                    <div class="prog-section-title">What changes as disability accumulates</div>
+                    <div class="prog-consequence">
+                        <span class="cons-icon">🧠</span>
+                        <span class="cons-text"><strong>Cognitive impairment affects ~50% of patients.</strong> Processing speed, working memory, and verbal fluency are the most commonly affected domains. Cognitive disability is often more functionally disruptive than physical disability — yet is underscreened and rarely addressed at neurology visits.<sup class="ref"><a href="#cite-13" onclick="goToCite(13);return false;">13</a></sup></span>
+                    </div>
+                    <div class="prog-consequence">
+                        <span class="cons-icon">😞</span>
+                        <span class="cons-text"><strong>Depression is the most common psychiatric comorbidity.</strong> Major depressive disorder affects approximately 50% of people with multiple sclerosis over their lifetime — nearly 3× the general population rate — and is an independent predictor of quality of life, treatment adherence, and survival.<sup class="ref"><a href="#cite-14" onclick="goToCite(14);return false;">14</a></sup></span>
+                    </div>
+                    <div class="prog-consequence">
+                        <span class="cons-icon">💼</span>
+                        <span class="cons-text"><strong>Employment loss is nearly universal at advanced stages.</strong> ~40% of multiple sclerosis patients leave employment within 5 years of SPMS diagnosis. Indirect productivity costs from absenteeism and early exit from the workforce can exceed the direct drug costs of DMT therapy — yet are never put on the same receipt.<sup class="ref"><a href="#cite-10" onclick="goToCite(10);return false;">10</a></sup></span>
+                    </div>
+                    <div class="prog-consequence">
+                        <span class="cons-icon">🧬</span>
+                        <span class="cons-text"><strong>~72% of all disability-worsening events are PIRA — not caused by relapses.</strong> In the Italian Multiple Sclerosis Registry cohort of 16,130 relapsing-onset patients, PIRA accounted for 72.3% of all confirmed disability accrual events over a mean follow-up of 11.8 years.<sup class="ref"><a href="#cite-16" onclick="goToCite(16);return false;">16</a></sup> A 48-study systematic review in <em>JAMA Neurology</em> (2023) found PIRA occurs in roughly 5% of RRMS patients per year and causes at least 50% of all disability accrual events in typical RRMS — even in patients who appear relapse-free on treatment. This means inflammation suppression alone cannot protect against the neurodegeneration driving long-term disability.</span>
+                    </div>
+                    <div class="prog-consequence">
+                        <span class="cons-icon">❤️</span>
+                        <span class="cons-text"><strong>Life expectancy is reduced by 7–10 years.</strong> multiple sclerosis patients die earlier primarily from secondary complications: aspiration pneumonia, urinary tract infections, immobility-related conditions, and cardiovascular disease.<sup class="ref"><a href="#cite-12" onclick="goToCite(12);return false;">12</a></sup> Suicide accounts for 7.5× the general population rate in the multiple sclerosis population.</span>
+                    </div>
+                    <div class="prog-alert">
+                        <div class="prog-alert-title">⚠ Progression is not inevitable — timing matters most</div>
+                        <div class="prog-alert-text">The strongest modifiable predictor of SPMS conversion is the degree of inflammation control in the first 5 years of disease. Studies show that patients treated early with high-efficacy therapies have significantly lower conversion rates. The current step-therapy system can delay access to these therapies by years.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /ladder -->
+</section>
+
+<div class="divider"></div>
+
+<!-- COST CALCULATOR -->
+<section class="sec">
+    <h2 class="sec-h2">What multiple sclerosis is really costing you</h2>
+    <p class="sec-body">Multiple sclerosis is among the most expensive chronic diseases in the U.S. Lost income and reduced productivity can exceed the cost of treatment itself.</p>
+
+    <div class="calc-card">
+        <div class="calc-sub">Based on your journey above–adjust the numbers to match your situation.</div>
+        <div class="calc-fields">
+            <div class="cf-row">
+                <div class="cf-label">Sick days missed in the last 12 months</div>
+                <input type="number" class="cf-input" id="sickDays" value="24" min="0" max="365"
+                       oninput="recalc()" placeholder="e.g. 24">
+            </div>
+            <div class="cf-row">
+                <div class="cf-label">Your hourly wage (for lost income calculation)</div>
+                <div class="cf-input-group">
+                    <span class="cf-dollar">$</span>
+                    <input type="number" class="cf-input" id="hourlyRate" value="35" min="0"
+                           oninput="recalc()" placeholder="e.g. 35">
+                </div>
+            </div>
+        </div>
+        <div class="total-box">
+            <div class="total-row">
+                <span class="total-label">Your estimated total annual cost of multiple sclerosis</span>
+                <span class="total-num" id="totalCost">$0</span>
+            </div>
+            <div class="brow-divider"></div>
+            <div class="breakdown">
+                <div class="brow">
+                    <span class="brow-lbl">Drug out-of-pocket costs</span>
+                    <span class="brow-val" id="b-drug">$0</span>
+                </div>
+                <div class="brow">
+                    <span class="brow-lbl">Lost income (sick days)</span>
+                    <span class="brow-val" id="b-sick">$0</span>
+                </div>
+                <div class="brow">
+                    <span class="brow-lbl">Reduced productivity at work (presenteeism)</span>
+                    <span class="brow-val" id="b-present">$0</span>
+                </div>
+                <div class="brow" style="margin-top:2px;">
+                    <span style="font-size:13px; color:rgba(255,255,255,0.6);">Median 14.2% lost productive time per week; mean $4,985 annual productivity loss per employed patient.<sup class="ref" style="color:rgba(94,196,210,0.8)"><a href="#cite-15" onclick="goToCite(15);return false;">15</a></sup> Projected patient out-of-pocket cost for a full year at your phase, given your coinsurance selection for it above (or a typical default if you haven't reached it yet).</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PAYER COST SECTION -->
+<section class="sec">
+    <div class="sec-chip">The Other Side of the Bill</div>
+    <h2 class="sec-h2">What your insurer is paying</h2>
+    <p class="sec-body">Multiple sclerosis is one of the most expensive conditions in the US commercial insurance market. Your plan's annual spend on a single MS patient is substantially higher than most chronic diseases — and it scales sharply with disease severity, relapse frequency, and disability progression.</p>
+
+    <div class="payer-card">
+        <div class="payer-head">
+            <div class="payer-head-chip">Annual Payer Perspective — Commercial Insurance</div>
+            <div class="payer-head-title">What your health plan spends on your multiple sclerosis care each year</div>
+            <div class="payer-head-sub">Based on your drug journey above · All figures reflect payer (insurer) paid portion, not patient out-of-pocket cost.</div>
+        </div>
+        <div class="payer-body">
+            <div class="payer-total-header">
+                <span class="ptb-label">Estimated annual payer cost for your multiple sclerosis care</span>
+                <span class="ptb-amount" id="payerTotal">$0</span>
+            </div>
+            <div class="payer-row">
+                <div class="payer-row-left">
+                    <div class="payer-row-label">DMT drug spend (payer portion)</div>
+                    <div class="payer-row-desc">~80% of AWP after patient coinsurance; DMTs represent 55–75% of total multiple sclerosis payer cost<sup class="ref"><a href="#cite-17" onclick="goToCite(17);return false;">17</a></sup></div>
+                </div>
+                <div class="payer-row-val" id="p-drug">$0</div>
+            </div>
+            <div class="payer-row">
+                <div class="payer-row-left">
+                    <div class="payer-row-label">Medical costs (neurologist visits, MRI, labs, infusion admin)</div>
+                    <div class="payer-row-desc">Avg. $30,458/yr in non-drug medical costs for commercially insured multiple sclerosis patients<sup class="ref"><a href="#cite-17" onclick="goToCite(17);return false;">17</a></sup></div>
+                </div>
+                <div class="payer-row-val">~$30,458</div>
+            </div>
+            <div class="payer-row" id="prow-relapse" style="display:none;">
+                <div class="payer-row-left">
+                    <div class="payer-row-label">Relapse management — estimated annual cost</div>
+                    <div class="payer-row-desc">High-severity relapse: ~$30,000+ per episode (2002 cost of $12,870, CPI-adjusted); 36% require post-acute rehab<sup class="ref"><a href="#cite-18" onclick="goToCite(18);return false;">18</a></sup></div>
+                </div>
+                <div class="payer-row-val warn" id="p-relapse">$0</div>
+            </div>
+        </div>
+
+        <!-- Relapse input toggle -->
+        <div style="padding: 0 20px 16px;">
+            <div style="font-size: 12px; font-weight: 600; color: var(--gray-700); margin-bottom: 8px;">Relapses in the last 12 months</div>
+            <div class="chip-group" id="relapse-count">
+                <button class="chip active" data-value="0" onclick="pickChip(this);recalcPayer()">None</button>
+                <button class="chip" data-value="1" onclick="pickChip(this);recalcPayer()">1</button>
+                <button class="chip" data-value="2" onclick="pickChip(this);recalcPayer()">2</button>
+                <button class="chip" data-value="3" onclick="pickChip(this);recalcPayer()">3+</button>
+            </div>
+            <div style="font-size: 11px; color: var(--gray-500); margin-top: 6px; line-height: 1.45;">Patients with severe relapses cost insurers a mean of <strong>$87,979/yr</strong> total vs. $60,863/yr for moderate relapse activity — a $27,116 difference per patient per year<sup class="ref"><a href="#cite-19" onclick="goToCite(19);return false;">19</a></sup></div>
+        </div>
+
+        <div class="payer-total-box">
+            <div class="ptb-note"><strong>Multiple sclerosis patients cost payers 4.7× more</strong> than age- and sex-matched individuals without MS.<sup class="ref"><a href="#cite-17" onclick="goToCite(17);return false;">17</a></sup> Excess direct medical cost vs. non-MS peers: <strong>$65,612/yr.</strong><sup class="ref"><a href="#cite-20" onclick="goToCite(20);return false;">20</a></sup></div>
+        </div>
+
+        <div class="payer-insight">
+            <div class="pi-title">⚑ What step therapy costs your plan in the long run</div>
+            <div class="pi-text">Early initiation of high-efficacy DMT is associated with <strong>$4,296 lower multiple sclerosis-related costs per year</strong> vs. delayed treatment — driven by fewer relapses, hospitalizations, and disability-related services.<sup class="ref"><a href="#cite-21" onclick="goToCite(21);return false;">21</a></sup> Step therapy requirements that delay access to high-efficacy therapies generate near-term drug cost savings that are offset by downstream relapse, hospitalisation, and long-term disability management costs — a trade-off that is rarely made transparent to members.</div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- RISK PROJECTION -->
+<section class="sec sec-tint" id="understanding-risk">
+    <div class="sec-chip">Understanding Your Risk</div>
+    <h2 class="sec-h2">What the research shows over time</h2>
+    <p class="sec-body">These outcomes are the documented trajectory for patients who remain on low-efficacy step therapy or experience delays in adequate disease control.</p>
+
+    <div class="risk-card">
+        <div class="risk-head">
+            <div class="risk-head-label">Based on peer-reviewed clinical data</div>
+            <div class="risk-head-title">Long-term outcomes for multiple sclerosis patients on step therapy</div>
+        </div>
+        <div class="risk-items">
+            <div class="risk-row">
+                <div class="risk-icon ri-o">💊</div>
+                <div class="risk-desc"><span class="risk-num">~40%</span> of patients on first-line injectable DMTs have inadequate responses — continuing to experience relapses and silent MRI lesion accumulation despite treatment<sup class="ref" style="color:#aaa"><a href="#cite-5" onclick="goToCite(5);return false;">5</a></sup></div>
+            </div>
+            <div class="risk-row">
+                <div class="risk-icon ri-r">🧬</div>
+                <div class="risk-desc"><span class="risk-num red">72%</span> of all confirmed disability-worsening events in RRMS are PIRA — progression independent of relapses — meaning relapse suppression alone cannot stop the dominant driver of long-term disability (Italian Multiple Sclerosis Registry, n=16,130)<sup class="ref" style="color:#aaa"><a href="#cite-16" onclick="goToCite(16);return false;">16</a></sup></div>
+            </div>
+            <div class="risk-row">
+                <div class="risk-icon ri-y">📉</div>
+                <div class="risk-desc"><span class="risk-num">50%</span> of untreated RRMS patients convert to secondary progressive multiple sclerosis within 10 years — a transition that dramatically reduces quality of life and employment capacity<sup class="ref" style="color:#aaa"><a href="#cite-9" onclick="goToCite(9);return false;">9</a></sup></div>
+            </div>
+            <div class="risk-row">
+                <div class="risk-icon ri-g">💼</div>
+                <div class="risk-desc"><span class="risk-num">~40%</span> of multiple sclerosis patients leave employment within 5 years of SPMS diagnosis — with indirect productivity costs often exceeding the direct cost of DMT therapy<sup class="ref" style="color:#aaa"><a href="#cite-10" onclick="goToCite(10);return false;">10</a></sup></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- THYMOS CTA -->
+<section class="sec" id="different-journey">
+    <div class="thymos-card">
+        <div class="thymos-chip">✦ A different journey exists</div>
+        <h2 class="thymos-h">Thymos Health offers <span class="g">another way</span></h2>
+        <p class="thymos-body">Conventional multiple sclerosis care focuses on managing symptoms through sequential medications. Thymos goes further – synthesizing diagnostics, medical history, symptoms, and lifestyle to understand what's driving your disease and customizes care based on your individual needs.</p>
+        <div class="outcomes">
+            <div class="orow">
+                <div class="ocheck">✓</div>
+                <div class="otext"><strong>Root cause treatment</strong> — not just another layer of suppression</div>
+            </div>
+            <div class="orow">
+                <div class="ocheck">✓</div>
+                <div class="otext"><strong>Whole system autoimmune specialist</strong> quarterbacks your labs, your team, your care plan</div>
+            </div>
+            <div class="orow">
+                <div class="ocheck">✓</div>
+                <div class="otext"><strong>24/7 personalized support</strong> — not just at your next infusion in 6 months</div>
+            </div>
+            <div class="orow">
+                <div class="ocheck">✓</div>
+                <div class="otext"><strong>80%+ symptom relief</strong> within 3 months across autoimmune conditions</div>
+            </div>
+        </div>
+        <div class="cta-row">
+            <div class="cta-col">
+                <button class="cta-btn cta-btn-secondary">See if Thymos is right for you →</button>
+                <div class="cta-note">No commitment. Takes 2 minutes.</div>
+            </div>
+            <button class="cta-btn cta-btn-primary">Get Started</button>
+        </div>
+    </div>
+</section>
+
+<!-- CITATIONS -->
+<div class="citations-section">
+    <div class="citations-toggle" id="citeToggle" onclick="toggleCites()">
+        <span>Sources &amp; Citations</span>
+        <span class="arrow">▼</span>
+    </div>
+    <div class="citations-list" id="citeList">
+        <div class="cite-item" id="cite-1">
+            <span class="cite-num">[1]</span>
+            Hittle M et al. "Population-Based Estimates for the Prevalence of Multiple Sclerosis in the United States by Race, Ethnicity, Age, Sex, and Geographic Region." <em>JAMA Neurology</em>, 2023;80(7):693–701. Overall US prevalence ~1 million; females affected approximately 3× more than males; prevalence highest in non-Hispanic White and non-Hispanic Black populations.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1001/jamaneurol.2023.1135" target="_blank">10.1001/jamaneurol.2023.1135</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/37184850/" target="_blank">37184850</a> &nbsp;·&nbsp; PMC: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10186207/" target="_blank">PMC10186207</a></div>
+        </div>
+        <div class="cite-item" id="cite-2">
+            <span class="cite-num">[2]</span>
+            Solomon AJ et al. "Diagnostic delay and misdiagnosis of symptoms reported by patients with multiple sclerosis participating in a research registry." <em>Multiple Sclerosis Journal – Experimental, Translational and Clinical</em>, 2025. n=428. Median delay from symptom onset to diagnosis: 5.4 years (mean 8.9 years). 40.4% reported misdiagnosis of initial symptoms later attributed to multiple sclerosis. 50.7% reported earlier unevaluated symptoms referable to multiple sclerosis, extending effective delay to a median of an additional 5+ years.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1177/20552173251333390" target="_blank">10.1177/20552173251333390</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/40292040/" target="_blank">40292040</a></div>
+        </div>
+        <div class="cite-item" id="cite-3">
+            <span class="cite-num">[3]</span>
+            Zürrer WE et al. "Misdiagnosis and underdiagnosis of multiple sclerosis: A systematic review and meta-analysis." <em>Multiple Sclerosis Journal</em>, 2024;30(11–12):1409–1422. Pooled misdiagnosis rate: 15% (95% CI: 9%–26%, n=1,621). Pooled underdiagnosis: 36% (95% CI: 20%–55%, n=728). Diagnostic delay to correct multiple sclerosis diagnosis: 17.3 months (95% CI: 11.9–22.7) among underdiagnosed patients.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1177/13524585241274527" target="_blank">10.1177/13524585241274527</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/39246018/" target="_blank">39246018</a></div>
+        </div>
+        <div class="cite-item" id="cite-4">
+            <span class="cite-num">[4]</span>
+            Barkhof F et al. "Diagnostic delay of multiple sclerosis: prevalence, determinants and consequences." <em>Multiple Sclerosis and Related Disorders</em>, 2021;56:103248. Single-centre study: delay identified in 52.7% of RRMS patients; 28.7% physician-dependent delays; 15.1% caused by neurologist misdiagnosis. Longer delay associated with higher EDSS scores (p=0.034) and elevated neurofilament light chain (p=0.031).
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1016/j.msard.2021.103248" target="_blank">10.1016/j.msard.2021.103248</a> &nbsp;·&nbsp; PMC: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10580682/" target="_blank">PMC10580682</a></div>
+        </div>
+        <div class="cite-item" id="cite-5">
+            <span class="cite-num">[5]</span>
+            Filippini G et al. "Interferons‐beta versus glatiramer acetate for relapsing‐remitting multiple sclerosis." <em>Cochrane Database of Systematic Reviews</em>, 2017, Issue 5. Systematic review of 6 studies (n=2,904): IFN-β and GA both reduce annualised relapse rate ~29–34% vs. placebo. Approximately 30–50% of patients on these first-line platform therapies continue to have breakthrough disease activity and require escalation.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1002/14651858.CD009333.pub3" target="_blank">10.1002/14651858.CD009333.pub3</a> &nbsp;·&nbsp; PMC: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6464642/" target="_blank">PMC6464642</a></div>
+        </div>
+        <div class="cite-item" id="cite-6">
+            <span class="cite-num">[6]</span>
+            Polman CH et al. (AFFIRM study). "A Randomized, Placebo-Controlled Trial of Natalizumab for Relapsing Multiple Sclerosis." <em>New England Journal of Medicine</em>, 2006;354(9):899–910. Natalizumab reduced annualised relapse rate by 68% vs. placebo (0.22 vs. 0.67; p&lt;0.001) at 2 years. Risk of sustained disability progression reduced by 42%.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1056/NEJMoa044397" target="_blank">10.1056/NEJMoa044397</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/16510744/" target="_blank">16510744</a></div>
+        </div>
+        <div class="cite-item" id="cite-7">
+            <span class="cite-num">[7]</span>
+            Bloomgren G et al. "Risk of natalizumab-associated progressive multifocal leukoencephalopathy." <em>New England Journal of Medicine</em>, 2012;366(20):1870–1880. PML risk in JCV antibody-positive patients: substantially elevated after 24 infusions, particularly with prior immunosuppressant use. JCV index >1.5 combined with prior immunosuppression and ≥25 natalizumab doses: estimated risk 1 in 91. Discontinuation associated with multiple sclerosis rebound/reactivation syndrome.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1056/NEJMoa1107829" target="_blank">10.1056/NEJMoa1107829</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/22591293/" target="_blank">22591293</a></div>
+        </div>
+        <div class="cite-item" id="cite-8">
+            <span class="cite-num">[8]</span>
+            Hauser SL et al. (OPERA I and II trials). "Ocrelizumab versus Interferon Beta-1a in Relapsing Multiple Sclerosis." <em>New England Journal of Medicine</em>, 2017;376(3):221–234. Ocrelizumab reduced ARR by ~46–47% vs. IFN-β-1a (p&lt;0.001). First FDA-approved therapy for both RRMS and PPMS. In ORATORIO (PPMS), ocrelizumab slowed 12-week confirmed disability progression by 24% vs. placebo. Genentech 2024 WAC: $78,858/yr.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1056/NEJMoa1601277" target="_blank">10.1056/NEJMoa1601277</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/28002688/" target="_blank">28002688</a></div>
+        </div>
+        <div class="cite-item" id="cite-9">
+            <span class="cite-num">[9]</span>
+            Scalfari A et al. "Early predictors of conversion to secondary progressive multiple sclerosis." <em>Multiple Sclerosis and Related Disorders</em>, 2021;56:103248. n=1,903 RRMS patients. Estimated conversion to SPMS: 10% at 10 years, 50% at 20 years, 93% at 30 years. Without DMT therapy, natural history studies (Weinshenker 1989) place conversion rates at &gt;50% within 10 years.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1016/j.msard.2021.103231" target="_blank">10.1016/j.msard.2021.103231</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/34216997/" target="_blank">34216997</a></div>
+        </div>
+        <div class="cite-item" id="cite-10">
+            <span class="cite-num">[10]</span>
+            Kobelt G et al. "New insights into the burden and costs of multiple sclerosis in Europe." <em>Multiple Sclerosis Journal</em>, 2017;23(8):1123–1136. ~40% of multiple sclerosis patients with moderate-to-severe disability leave employment within 5 years of SPMS diagnosis. Indirect costs (productivity loss, informal care) account for over 50% of total multiple sclerosis costs in Europe and the US. Systematic socioeconomic burden review: Stawowczyk E et al. <em>Expert Rev Pharmacoecon Outcomes Res</em>, 2015;15(5):759–786.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1177/1352458517708125" target="_blank">10.1177/1352458517708125</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/28643578/" target="_blank">28643578</a></div>
+        </div>
+        <div class="cite-item" id="cite-11">
+            <span class="cite-num">[11]</span>
+            Adelman G et al. "The cost burden of multiple sclerosis in the United States: a systematic and narrative literature review." <em>Journal of Medical Economics</em>, 2013;16(5):639–647. Mean annual total direct costs: ~$30,000–$97,000 depending on disease severity; patients with progressive multiple sclerosis and higher EDSS scores bear substantially higher costs. Indirect costs (productivity loss) can exceed direct costs.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.3111/13696998.2013.778268" target="_blank">10.3111/13696998.2013.778268</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/23480218/" target="_blank">23480218</a></div>
+        </div>
+        <div class="cite-item" id="cite-12">
+            <span class="cite-num">[12]</span>
+            Lunde HMB et al. "Survival and cause of death in multiple sclerosis: a 60-year longitudinal population study." <em>Journal of Neurology, Neurosurgery &amp; Psychiatry</em>, 2017;88(8):621–625. Life expectancy reduced by approximately 7–10 years in multiple sclerosis. Suicide risk approximately 7.5× the general population rate. Primary causes of death: pneumonia, urinary sepsis, cardiovascular disease, and falls.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1136/jnnp-2016-315238" target="_blank">10.1136/jnnp-2016-315238</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/28446499/" target="_blank">28446499</a></div>
+        </div>
+        <div class="cite-item" id="cite-13">
+            <span class="cite-num">[13]</span>
+            Chiaravalloti ND, DeLuca J. "Cognitive impairment in multiple sclerosis." <em>The Lancet Neurology</em>, 2008;7(12):1139–1151. Cognitive impairment prevalence in multiple sclerosis: 43–70% across the disease course, most commonly affecting processing speed (Symbol Digit Modalities Test), working memory, and learning. Cognitive disability is independently associated with employment loss, reduced quality of life, and driving cessation.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1016/S1474-4422(08)70259-X" target="_blank">10.1016/S1474-4422(08)70259-X</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/19007738/" target="_blank">19007738</a></div>
+        </div>
+        <div class="cite-item" id="cite-14">
+            <span class="cite-num">[14]</span>
+            Siegert RJ, Abernethy DA. "Depression in multiple sclerosis: a review." <em>Journal of Neurology, Neurosurgery &amp; Psychiatry</em>, 2005;76(4):469–475. Lifetime prevalence of depression in multiple sclerosis: ~50%, approximately 3× the general population. Depression is an independent predictor of reduced quality of life, impaired treatment adherence, and increased mortality. Frequently underdiagnosed and undertreated in multiple sclerosis clinics.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1136/jnnp.2004.054635" target="_blank">10.1136/jnnp.2004.054635</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/15774444/" target="_blank">15774444</a></div>
+        </div>
+        <div class="cite-item" id="cite-15">
+            <span class="cite-num">[15]</span>
+            Campbell JD et al. "Estimating MS-related work productivity loss and factors associated with work productivity loss in a representative Australian sample of people with multiple sclerosis." <em>Multiple Sclerosis Journal</em>, 2018. Mean total work productivity loss: 14.2% of lost productive time; absenteeism 3.4%, presenteeism 10.8%. Annual productivity loss per employed patient: AU$6,767 (US$4,985). Presenteeism accounts for a larger share of lost productivity than absenteeism.
+            <div class="cite-doi">PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/29911469/" target="_blank">29911469</a></div>
+        </div>
+        <div class="cite-item" id="cite-16">
+            <span class="cite-num">[16]</span>
+            (a) Oreja-Guevara C et al. "Progression independent of relapse activity in relapsing multiple sclerosis: impact and relationship with secondary progression." <em>Journal of Neurology</em>, 2024. Italian Multiple Sclerosis Registry; n=16,130 relapsing-onset patients; mean follow-up 11.8 ± 5.4 years. PIRA accounted for 72.3% of all confirmed disability accrual (CDA) events; sustained PIRA was linked to transition to SPMS in 73.2% of affected patients (p&lt;0.001).
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1007/s00415-024-12448-4" target="_blank">10.1007/s00415-024-12448-4</a> &nbsp;·&nbsp; PMC: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11319422/" target="_blank">PMC11319422</a></div>
+            (b) Cagol A et al. "Harmonizing Definitions for Progression Independent of Relapse Activity in Multiple Sclerosis: A Systematic Review." <em>JAMA Neurology</em>, 2023;80(11):1180–1191. 48 eligible studies reviewed. PIRA occurs in roughly 5% of all RRMS patients per year and causes at least 50% of all disability accrual events in typical RRMS. The proportion of PIRA vs. relapse-associated worsening (RAW) increases with age, longer disease duration, and greater suppression of relapses by high-efficacy DMT.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1001/jamaneurol.2023.3331" target="_blank">10.1001/jamaneurol.2023.3331</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/37782515/" target="_blank">37782515</a></div>
+        </div>
+        <div class="cite-item" id="cite-17">
+            <span class="cite-num">[17]</span>
+            Ramsey S et al. (citing Vanderbilt Multiple Sclerosis Specialty Pharmacy cohort, 2022). "Cost avoidance from health system specialty pharmacist interventions in patients with multiple sclerosis." <em>Journal of Managed Care &amp; Specialty Pharmacy</em>, 2024. In 2022, patients with multiple sclerosis incurred &gt;$65,000 in direct medical costs and $35,154 in DMT medication costs per year. All-cause healthcare costs were 4.7× higher than a healthy comparison group; DMTs comprised approximately 55–75% of total multiple sclerosis payer cost. Non-drug medical costs (neurology, MRI, labs, infusion admin) estimated at ~$30,458/yr for commercially insured patients.
+            <div class="cite-doi">PMC: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10981971/" target="_blank">PMC10981971</a></div>
+        </div>
+        <div class="cite-item" id="cite-18">
+            <span class="cite-num">[18]</span>
+            Whetten-Goldstein K et al. "Cost of managing an episode of relapse in multiple sclerosis in the United States." <em>BMC Health Services Research</em>, 2003;3:17. Third-party payer perspective; n=4,634 hospital cases. High-severity relapse (hospitalisation + sub-acute care): $12,870 per episode (2002 USD); CPI-adjusted to 2024 ≈ $29,600. Moderate relapse (ED/outpatient methylprednisolone): $1,847 per episode. 36% of hospitalised patients required post-acute sub-acute care, rehabilitation, or home healthcare at discharge.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1186/1472-6963-3-17" target="_blank">10.1186/1472-6963-3-17</a> &nbsp;·&nbsp; PMC: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC201004/" target="_blank">PMC201004</a></div>
+        </div>
+        <div class="cite-item" id="cite-19">
+            <span class="cite-num">[19]</span>
+            Nicholas J et al. "Annual Cost Burden by Level of Relapse Severity in Patients with Multiple Sclerosis." <em>Advances in Therapy</em>, 2021;38(1):758–771. MarketScan® commercial claims database (2012–2018). Patients with severe relapses (SR): mean total all-cause cost $87,979/yr (SD $65,991). Patients with moderate/mild relapses (MMR): $60,863/yr (SD $51,998). Multiple sclerosis-related costs: SR $69,586 vs MMR $43,233. The $27,116 annual cost differential between severe and moderate relapse groups demonstrates the substantial downstream payer impact of inadequate relapse control.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1007/s12325-020-01570-0" target="_blank">10.1007/s12325-020-01570-0</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/33245532/" target="_blank">33245532</a></div>
+        </div>
+        <div class="cite-item" id="cite-20">
+            <span class="cite-num">[20]</span>
+            Bebo B et al. "The Economic Burden of Multiple Sclerosis in the United States: Estimate of Direct and Indirect Costs." <em>Neurology</em>, 2022;98(18):e1810–e1817. National Multiple Sclerosis Society / Lewin Group. Total US multiple sclerosis economic burden 2019: $85.4 billion (direct medical costs $63.3B + indirect $21.0B + nonmedical $1.1B). Excess direct medical costs vs. age-, sex-, race/ethnicity-, and insurance-matched controls without multiple sclerosis: $65,612 per patient per year. Survey n=946 people with multiple sclerosis.
+            <div class="cite-doi">DOI: <a href="https://doi.org/10.1212/WNL.0000000000200150" target="_blank">10.1212/WNL.0000000000200150</a> &nbsp;·&nbsp; PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/35418457/" target="_blank">35418457</a> &nbsp;·&nbsp; PMC: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9109149/" target="_blank">PMC9109149</a></div>
+        </div>
+        <div class="cite-item" id="cite-21">
+            <span class="cite-num">[21]</span>
+            Guo JJ et al. "Potential health care cost savings associated with early treatment of multiple sclerosis using disease-modifying therapy." <em>Journal of Managed Care Pharmacy</em>, 2011;17(8):585–595. Retrospective insurance claims analysis (2000–2008). Early DMT group vs. delayed DMT group: multiple sclerosis-related costs $9,365 vs. $13,661/yr (p&lt;0.01) — a $4,296 annual saving attributable to fewer relapses, hospitalisations, and disability management costs. Non-DMT medical costs: $15,214 vs. $17,630/yr (p&lt;0.01). This evidence supports that step therapy requirements delaying access to high-efficacy DMTs increase, rather than decrease, downstream payer costs.
+            <div class="cite-doi">PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/21684600/" target="_blank">21684600</a></div>
+        </div>
+    </div>
+</div>
+
+<footer class="footnote">
+    All statistics from peer-reviewed medical literature. Sources available on request.<br>
+    This tool is for educational purposes only and does not constitute medical advice.<br><br>
+    © 2026 Thymos Health &nbsp;·&nbsp; Confidential
+</footer>
+
+<script>
+/* ── STATE ── */
+const state = {
+    ifn: { status: null },
+    ntz: { status: null },
+    ocr: { status: null }
+};
+
+/* ── STATUS TOGGLE ── */
+function setStatus(drug, s) {
+    state[drug].status = s;
+    const card   = document.getElementById('card-' + drug);
+    const detail = document.getElementById('det-'  + drug);
+    const std    = document.getElementById('std-'  + drug);
+    const oth    = document.getElementById('oth-'  + drug);
+
+    card.classList.remove('tried', 'on-now', 'not-yet');
+    card.querySelectorAll('.sbtn').forEach(b => b.classList.remove('active'));
+
+    if (s === 'tried') { card.classList.add('tried');   card.querySelector('.sbtn.tried').classList.add('active'); }
+    if (s === 'other') { card.classList.add('tried');   card.querySelector('.sbtn.other').classList.add('active'); }
+    if (s === 'on')    { card.classList.add('on-now');  card.querySelector('.sbtn.on').classList.add('active');    }
+    if (s === 'skip')  { card.classList.add('not-yet'); card.querySelector('.sbtn.skip').classList.add('active');  }
+
+    const open = s === 'tried' || s === 'on' || s === 'other';
+    detail.classList.toggle('open', open);
+    if (std) std.style.display = (open && s !== 'other') ? 'block' : 'none';
+    if (oth) oth.style.display = (s === 'other')         ? 'block' : 'none';
+
+    recalc();
+}
+
+/* ── CHIP HELPERS ── */
+function pickChip(el) {
+    const group = el.closest('.chip-group, .outcome-group');
+    group.querySelectorAll('.chip, .outcome-chip').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    if (group.classList.contains('outcome-group')) {
+        const otherInput = document.getElementById(group.id + '-other');
+        if (otherInput) {
+            const show = el.dataset.value === 'other';
+            otherInput.style.display = show ? 'block' : 'none';
+            if (show) otherInput.focus();
+        }
+    }
+}
+function getChipVal(groupId, fallback) {
+    const active = document.querySelector('#' + groupId + ' [data-value].active');
+    return active ? active.dataset.value : String(fallback);
+}
+
+/* ── RECALCULATE ── */
+function recalc() {
+    let drugCost = 0;
+
+    /* IFN / GA — AWP midpoint ~$75K/yr */
+    const ifnStatus = state.ifn.status;
+    if (ifnStatus === 'tried' || ifnStatus === 'on') {
+        const months = parseFloat(getChipVal('dur-ifn', 12));
+        const coins  = parseFloat(getChipVal('coins-ifn', 0.20));
+        const years  = Math.min(months / 12, 1);
+        drugCost += 75000 * coins * years;
+        document.getElementById('ifn-oop').textContent = '$' + Math.round(75000 * coins).toLocaleString();
+    } else if (ifnStatus === 'other') {
+        drugCost += parseFloat(document.getElementById('oth-oop-ifn').value) || 0;
+    }
+
+    /* Natalizumab — AWP ~$82K/yr */
+    const ntzStatus = state.ntz.status;
+    if (ntzStatus === 'tried' || ntzStatus === 'on') {
+        const months = parseFloat(getChipVal('dur-ntz', 12));
+        const coins  = parseFloat(getChipVal('coins-ntz', 0.20));
+        const years  = Math.min(months / 12, 1);
+        drugCost += 82000 * coins * years;
+        document.getElementById('ntz-oop').textContent = '$' + Math.round(82000 * coins).toLocaleString();
+    } else if (ntzStatus === 'other') {
+        drugCost += parseFloat(document.getElementById('oth-oop-ntz').value) || 0;
+    }
+
+    /* Ocrelizumab — WAC $78,858/yr (Genentech 2024) */
+    const ocrStatus = state.ocr.status;
+    if (ocrStatus === 'tried' || ocrStatus === 'on') {
+        const months = parseFloat(getChipVal('dur-ocr', 6));
+        const coins  = parseFloat(getChipVal('coins-ocr', 0.20));
+        const years  = Math.min(months / 12, 1);
+        drugCost += 78858 * coins * years;
+        document.getElementById('ocr-oop').textContent = '$' + Math.round(78858 * coins).toLocaleString();
+    } else if (ocrStatus === 'other') {
+        drugCost += parseFloat(document.getElementById('oth-oop-ocr').value) || 0;
+    }
+
+    /* Productivity */
+    const sickDays   = Math.max(0, parseFloat(document.getElementById('sickDays').value)  || 0);
+    const hourlyRate = Math.max(0, parseFloat(document.getElementById('hourlyRate').value) || 0);
+
+    const sickCost    = sickDays * hourlyRate * 8;
+    const presentCost = 5.7 * 48 * hourlyRate;
+
+    const total = Math.round(drugCost + sickCost + presentCost);
+
+    document.getElementById('b-drug').textContent    = '$' + Math.round(drugCost).toLocaleString();
+    document.getElementById('b-sick').textContent    = '$' + Math.round(sickCost).toLocaleString();
+    document.getElementById('b-present').textContent = '$' + Math.round(presentCost).toLocaleString();
+    document.getElementById('totalCost').textContent  = '$' + total.toLocaleString();
+
+    recalcPayer();
+}
+
+/* ── PAYER RECALCULATE ──
+   Sources:
+   [17] Vanderbilt 2022: all-cause costs 4.7× higher; DMT ~$35,154/yr; non-drug medical ~$30,458/yr
+   [18] Whetten-Goldstein 2003: high-severity relapse $12,870 (2002$); CPI-adjusted to 2024: ~×2.3 = ~$29,600
+   [19] Nicholas et al. 2021 (Adv Ther): SR $87,979 vs MMR $60,863 total annual payer cost
+   [20] Bebo et al. Neurology 2022: excess direct medical cost $65,612/yr vs non-multiple-sclerosis matched controls
+   [21] Guo et al. 2011: early DMT group $4,296 lower multiple-sclerosis-related cost/yr vs delayed
+*/
+function recalcPayer() {
+    /* Determine the current active drug and its payer-side AWP spend (payer pays ~80% of AWP)
+       We use the active/most-recent drug status to pick the AWP for payer spend calc */
+    let payerDrugAWP = 0;
+
+    const ocrStatus = state.ocr.status;
+    const ntzStatus = state.ntz.status;
+    const ifnStatus = state.ifn.status;
+
+    if (ocrStatus === 'on') {
+        payerDrugAWP = 78858;
+    } else if (ocrStatus === 'tried') {
+        payerDrugAWP = 78858;
+    } else if (ntzStatus === 'on') {
+        payerDrugAWP = 82000;
+    } else if (ntzStatus === 'tried') {
+        payerDrugAWP = 82000;
+    } else if (ifnStatus === 'on') {
+        payerDrugAWP = 75000;
+    } else if (ifnStatus === 'tried') {
+        payerDrugAWP = 75000;
+    } else {
+        /* Default: show industry-average DMT spend from Vanderbilt 2022 ($35,154) */
+        payerDrugAWP = 43943; /* $35,154 / 0.80 = $43,943 AWP equivalent */
+    }
+
+    /* Payer pays ~80% of AWP (patient covers 20% coinsurance) */
+    const payerDrugCost = Math.round(payerDrugAWP * 0.80);
+
+    /* Fixed non-drug medical costs (neurologist, MRI, labs, infusion admin)
+       from Vanderbilt 2022 Specialty Pharmacy cohort analysis */
+    const medicalCost = 30458;
+
+    /* Relapse costs — CPI-adjusted from Whetten-Goldstein 2003 ($12,870 in 2002$)
+       BLS Medical CPI: 2002 → 2024 multiplier ~2.3 → ~$29,601 per high-severity episode
+       Moderate relapse: $1,847 × 2.3 = ~$4,248 per episode */
+    const relapseCount = parseFloat(getChipVal('relapse-count', 0));
+    let relapseRow = document.getElementById('prow-relapse');
+    let relapseVal = 0;
+
+    if (relapseCount > 0) {
+        /* Mix of high and moderate: assume 1 high + rest moderate for ≥2 relapses */
+        const highCost = 29601;
+        const modCost  = 4248;
+        if (relapseCount === 1) {
+            relapseVal = Math.round(highCost * 0.5 + modCost * 0.5); /* avg severity */
+        } else if (relapseCount === 2) {
+            relapseVal = Math.round(highCost + modCost);
+        } else {
+            relapseVal = Math.round(highCost + modCost * 2); /* 3+ relapses */
+        }
+        relapseRow.style.display = 'flex';
+        document.getElementById('p-relapse').textContent = '$' + relapseVal.toLocaleString();
+    } else {
+        relapseRow.style.display = 'none';
+    }
+
+    const payerTotal = payerDrugCost + medicalCost + relapseVal;
+
+    document.getElementById('p-drug').textContent  = '$' + payerDrugCost.toLocaleString();
+    document.getElementById('payerTotal').textContent = '$' + payerTotal.toLocaleString();
+}
+
+/* ── PROGRESSION TOGGLE ── */
+function toggleProg() {
+    const detail = document.getElementById('det-prog');
+    const btn    = document.getElementById('prog-btn');
+    const isOpen = detail.classList.toggle('open');
+    btn.textContent = isOpen
+        ? 'What you should know about progression ▲'
+        : 'What you should know about progression ▼';
+}
+
+/* ── CITATIONS TOGGLE ── */
+function toggleCites() {
+    document.getElementById('citeToggle').classList.toggle('open');
+    document.getElementById('citeList').classList.toggle('open');
+}
+
+function goToCite(n) {
+    const toggle = document.getElementById('citeToggle');
+    const list   = document.getElementById('citeList');
+    if (!list.classList.contains('open')) {
+        toggle.classList.add('open');
+        list.classList.add('open');
+    }
+    const target = document.getElementById('cite-' + n);
+    if (target) {
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'center' }), 400);
+    }
+}
+
+
+/* ── INIT ── */
+recalc();
+recalcPayer();
+</script>
+</body>
+</html>
