@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Approach | Thymos Health</title>
+<meta name="description" content="Thymos specialists have diagnosed and helped 5,000+ patients achieve lasting relief through a proven, data-driven approach to autoimmune care.">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -67,7 +69,7 @@
 
   <section style="position:relative; width:100%; aspect-ratio:16/9; max-height:70vh; display:flex; align-items:center; justify-content:center; overflow:hidden;">
     <div style="position:relative; width:100%; height:90%; overflow:hidden;">
-      <video src="img/thymos-vs-traditional.webm" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); min-width:100%; min-height:100%; width:auto; height:auto; object-fit:cover; z-index:1;"></video>
+      <video src="img/thymos-vs-traditional.webm" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" onLoadedMetadata="{{ playHero }}" onCanPlay="{{ playHero }}" onEnded="{{ restartHero }}" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1;"></video>
     </div>
   </section>
 
@@ -211,6 +213,13 @@ class Component extends DCLogic {
     return {
       menuOpen: this.state.menuOpen,
       toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      // Chrome doesn't reliably honor `autoplay`/`loop` on a <video> whose
+      // attributes were set after the initial HTML parse (same quirk
+      // documented for the quiz app's IntroVideo) — force playback explicitly
+      // once metadata is ready, and manually restart on end since `loop`
+      // alone leaves it frozen on the last frame instead of looping.
+      playHero: (e) => { e.target.play().catch(() => {}); },
+      restartHero: (e) => { e.target.currentTime = 0; e.target.play().catch(() => {}); },
       statsRowOne: [
         { title: "Symptoms", value: "80%", note: "within 3 months" },
         { title: "Inflammation", value: "67%", note: "within 6 months" },

@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thymos Health — Specialty Autoimmune Care, Without Compromise</title>
+<meta name="description" content="Convenient, collaborative, data-driven care for 150+ autoimmune disorders and mysterious diseases. Trusted by 5,000+ patients.">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -70,7 +72,7 @@
   </nav>
 
   <header style="position:relative; width:100%; height:650px; overflow:hidden;">
-    <video src="img/thymos-intro.webm" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1;"></video>
+    <video src="img/thymos-intro.webm" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" onLoadedMetadata="{{ playHero }}" onCanPlay="{{ playHero }}" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1;"></video>
     <div style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:2; background:linear-gradient(to bottom, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.4) 60%, rgba(255,255,255,0) 100%);"></div>
     <div style="position:relative; z-index:3; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; text-align:center; padding:100px 20px 0;">
       <h1 style="color:#222; font-size:3.4rem; font-weight:800; line-height:1.3; max-width:1200px; margin-bottom:24px;">Specialty Autoimmune Care,<br>Without Compromise</h1>
@@ -233,7 +235,7 @@
           </div>
 
           <div style="margin-top:28px;">
-            <video src="img/thymos-woman-journey-steps.webm" controls="{{ true }}" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="metadata" style="width:100%; max-width:320px; aspect-ratio:9/16; object-fit:cover; display:block; margin:0 auto; border-radius:14px; border:1px solid rgba(14,148,83,0.2); background:#0b1f33;"></video>
+            <video src="img/thymos-woman-journey-steps.webm" controls="{{ true }}" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" onLoadedMetadata="{{ playHero }}" onCanPlay="{{ playHero }}" style="width:100%; max-width:320px; aspect-ratio:9/16; object-fit:cover; display:block; margin:0 auto; border-radius:14px; border:1px solid rgba(14,148,83,0.2); background:#0b1f33;"></video>
           </div>
         </div>
 
@@ -348,6 +350,11 @@ class Component extends DCLogic {
     return {
       menuOpen: this.state.menuOpen,
       toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      // Chrome doesn't reliably honor `autoplay` on a <video> whose attributes
+      // were set after the initial HTML parse (same quirk documented for the
+      // quiz app's IntroVideo) — force it explicitly once each video's own
+      // metadata is ready, rather than guessing at page/component mount timing.
+      playHero: (e) => { e.target.play().catch(() => {}); },
       conditionRows: rows.map(r => ({
         anim: (r.dir === "left" ? "scroll-left" : "scroll-right") + " 40s linear infinite",
         tags: [...r.tags, ...r.tags]
@@ -375,22 +382,22 @@ class Component extends DCLogic {
         { title: "24x7 Health Tracking and Support", desc: "Access your personalized analytics, data insights, and support to help achieve your best health.", icon: "img/thymos-services-image-6.png" }
       ],
       conditions: [
-        { name: "Crohn's Disease", href: "Patient Journey - Crohns.html" },
+        { name: "Crohn's Disease", href: "patient-journey_crohns-disease.html" },
         { name: "Addison's Disease", href: "Thymos Condition Detail.dc.html?slug=autoimmune-addisons-disease" },
         { name: "Graves' Disease", href: "Thymos Condition Detail.dc.html?slug=graves-disease" },
-        { name: "Multiple Sclerosis", href: "Thymos Condition Detail.dc.html?slug=multiple-sclerosis" },
-        { name: "Lupus", href: "Thymos Condition Detail.dc.html?slug=systemic-lupus-erythematosus" },
-        { name: "Rheumatoid Arthritis", href: "Thymos Condition Detail.dc.html?slug=rheumatoid-arthritis" },
-        { name: "Myasthenia Gravis", href: "Thymos Condition Detail.dc.html?slug=myasthenia-gravis" },
-        { name: "Ulcerative Colitis", href: "Thymos Condition Detail.dc.html?slug=ulcerative-colitis" },
-        { name: "Sjögren's Syndrome", href: "Thymos Condition Detail.dc.html?slug=sjogren-syndrome" },
-        { name: "Psoriasis", href: "Thymos Condition Detail.dc.html?slug=psoriasis" },
-        { name: "Guillain-Barré Syndrome", href: "Thymos Condition Detail.dc.html?slug=guillain-barre-syndrome" },
-        { name: "Alopecia Areata", href: "Patient Journey - Alopecia Areata.html" },
-        { name: "Ankylosing Spondylitis", href: "Patient Journey - Ankylosing Spondylitis.html" },
-        { name: "Hepatitis", href: "Patient Journey - Autoimmune Hepatitis.html" },
-        { name: "Myositis", href: "Patient Journey - Myositis.html" },
-        { name: "Hashimoto's Thyroiditis", href: "Patient Journey - Hashimotos Thyroiditis.html" }
+        { name: "Multiple Sclerosis", href: "patient-journey_multiple-sclerosis.html" },
+        { name: "Lupus", href: "patient-journey_lupus.html" },
+        { name: "Rheumatoid Arthritis", href: "patient-journey_rheumatoid-arthritis.html" },
+        { name: "Myasthenia Gravis", href: "patient-journey_myasthenia-gravis.html" },
+        { name: "Ulcerative Colitis", href: "patient-journey_ulcerative-colitis.html" },
+        { name: "Sjögren's Syndrome", href: "patient-journey_sjogrens-syndrome.html" },
+        { name: "Psoriasis", href: "patient-journey_psoriasis.html" },
+        { name: "Guillain-Barré Syndrome", href: "patient-journey_guillain-barre-syndrome.html" },
+        { name: "Alopecia Areata", href: "patient-journey_alopecia-areata.html" },
+        { name: "Ankylosing Spondylitis", href: "patient-journey_ankylosing-spondylitis.html" },
+        { name: "Hepatitis", href: "patient-journey_hepatitis.html" },
+        { name: "Myositis", href: "patient-journey_myositis.html" },
+        { name: "Hashimoto's Thyroiditis", href: "patient-journey_hashimotos-thyroiditis.html" }
       ],
       journeySteps: [
         "Sign up and complete forms",
