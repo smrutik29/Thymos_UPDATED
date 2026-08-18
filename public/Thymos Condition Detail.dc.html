@@ -62,8 +62,11 @@
   </nav>
 
   <main style="flex:1; max-width:900px; margin:0 auto; padding:60px 20px;">
-    <div style="margin-top:10px; margin-bottom:20px;">
+    <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; margin-top:10px; margin-bottom:20px;">
       <a href="Thymos Conditions Treated.dc.html" style="color:#0077cc; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">← Back to all conditions</a>
+      <sc-if value="{{ hasNewJourney }}" hint-placeholder-val="{{ false }}">
+        <a href="{{ newJourneyHref }}" style="color:#0077cc; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">{{ newJourneyLabel }} →</a>
+      </sc-if>
     </div>
 
     <section style="text-align:center; margin-bottom:40px;">
@@ -130,6 +133,27 @@ class Component extends DCLogic {
     "hashimotos-thyroiditis": "Patient Journey - Hashimotos Thyroiditis.html"
   };
 
+  // Newer patient-journey pages (treatment-step walkthroughs), separate from
+  // the `journeys` map above/its "View the patient journey" box — this
+  // powers only the "Your [Condition] Journey →" link next to the back link.
+  newJourneys = {
+    "crohns-disease": "patient-journey_crohns-disease.html",
+    "alopecia-areata": "patient-journey_alopecia-areata.html",
+    "ankylosing-spondylitis": "patient-journey_ankylosing-spondylitis.html",
+    "autoimmune-hepatitis": "patient-journey_hepatitis.html",
+    "dermatomyositis": "patient-journey_myositis.html",
+    "polymyositis": "patient-journey_myositis.html",
+    "hashimotos-thyroiditis": "patient-journey_hashimotos-thyroiditis.html",
+    "multiple-sclerosis": "patient-journey_multiple-sclerosis.html",
+    "systemic-lupus-erythematosus": "patient-journey_lupus.html",
+    "rheumatoid-arthritis": "patient-journey_rheumatoid-arthritis.html",
+    "myasthenia-gravis": "patient-journey_myasthenia-gravis.html",
+    "ulcerative-colitis": "patient-journey_ulcerative-colitis.html",
+    "sjogren-syndrome": "patient-journey_sjogrens-syndrome.html",
+    "psoriasis": "patient-journey_psoriasis.html",
+    "guillain-barre-syndrome": "patient-journey_guillain-barre-syndrome.html"
+  };
+
   componentDidMount() {
     const slug = new URLSearchParams(location.search).get("slug");
     fetch("all_diseases.json")
@@ -149,12 +173,14 @@ class Component extends DCLogic {
   renderVals() {
     const d = this.state.disease;
     const href = d ? this.journeys[d.slug] : null;
+    const newHref = d ? this.newJourneys[d.slug] : null;
+    const title = d ? this.titleCase(d.name) : (this.state.loaded ? "Condition not found" : "Loading…");
     const research = d ? (d.research || []).filter(r => r.link) : [];
 
     return {
       menuOpen: this.state.menuOpen,
       toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
-      title: d ? this.titleCase(d.name) : (this.state.loaded ? "Condition not found" : "Loading…"),
+      title: title,
       description: d ? d.description : "",
       sections: d ? Object.keys(d.details || {}).map(k => ({
         heading: k,
@@ -162,6 +188,9 @@ class Component extends DCLogic {
       })) : [],
       hasJourney: !!href,
       journeyHref: href || "#",
+      hasNewJourney: !!newHref,
+      newJourneyHref: newHref || "#",
+      newJourneyLabel: "Your " + title + " Journey",
       hasResearch: research.length > 0,
       research: research.map(r => ({
         link: r.link,
