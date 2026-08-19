@@ -34,6 +34,69 @@
     .tj-column-thymos { order: 1 !important; }
     .tj-vs { order: 2 !important; width: auto !important; height: auto !important; border-radius: 999px !important; padding: 6px 18px !important; margin: 4px auto !important; }
   }
+
+  /* ─── Partner audiences section (drop-in, "aud-" scoped) ────── */
+  .aud-section, .aud-section * { box-sizing: border-box; }
+  .aud-section {
+    --aud-teal:   #034152;
+    --aud-teal-m: #3ab7a0;
+    --aud-coral:  #EA6047;
+    --aud-beige:  #F8F5F0;
+    --aud-white:  #FFFFFF;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--aud-teal);
+    color: var(--aud-white);
+    padding: 72px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .aud-section::before {
+    content: ''; position: absolute; top: -90px; left: -90px; width: 300px; height: 300px;
+    border-radius: 50%; background: radial-gradient(circle, rgba(234,96,71,0.14) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .aud-inner { max-width: 1080px; margin: 0 auto; position: relative; z-index: 1; }
+  .aud-head { text-align: center; max-width: 640px; margin: 0 auto 48px; }
+  .aud-eyebrow {
+    font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--aud-coral); margin-bottom: 14px;
+  }
+  .aud-h2 {
+    font-size: clamp(26px, 4.5vw, 34px); font-weight: 800; letter-spacing: -0.3px;
+    line-height: 1.2; margin: 0 0 14px;
+  }
+  .aud-sub { font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.75); margin: 0; }
+  .aud-grid { display: flex; flex-direction: column; gap: 20px; }
+  .aud-card {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 18px; padding: 32px 28px; display: flex; flex-direction: column;
+  }
+  .aud-card-title { font-size: 22px; font-weight: 800; letter-spacing: -0.2px; margin-bottom: 4px; }
+  .aud-card-subtitle {
+    font-family: 'DM Mono', 'SFMono-Regular', Menlo, monospace; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--aud-teal-m); margin-bottom: 18px;
+  }
+  .aud-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 26px; flex: 1; }
+  .aud-item { display: flex; gap: 9px; align-items: flex-start; font-size: 14.5px; line-height: 1.5; }
+  .aud-check {
+    flex: 0 0 auto; width: 18px; height: 18px; border-radius: 50%;
+    background: rgba(234,96,71,0.18); color: var(--aud-coral);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 800; margin-top: 2px;
+  }
+  .aud-item span.txt { color: rgba(255,255,255,0.9); }
+  .aud-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    background: var(--aud-coral); color: var(--aud-white); text-decoration: none;
+    font-size: 14px; font-weight: 700; padding: 13px 22px; border-radius: 100px;
+    transition: opacity 0.15s ease; width: 100%;
+  }
+  .aud-btn:hover { opacity: 0.9; }
+  @media (min-width: 860px) {
+    .aud-section { padding: 96px 40px; }
+    .aud-grid { flex-direction: row; align-items: stretch; }
+    .aud-card { flex: 1; }
+  }
 </style>
 </helmet>
 
@@ -317,6 +380,57 @@
       </div>
     </div>
     <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="display:block; width:fit-content; padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:16px; font-weight:500; margin:24px auto 0; text-decoration:none;" style-hover="background:#c14930; color:#fff;">Join The Waitlist</a>
+  </section>
+
+  <section class="aud-section" id="who-we-work-with">
+    <div class="aud-inner">
+
+      <div class="aud-head">
+        <div class="aud-eyebrow">Partner With Thymos</div>
+        <h2 class="aud-h2">Thymos works alongside the people already caring for autoimmune patients</h2>
+        <p class="aud-sub">Whether you're managing a workforce, running a health system, or referring a patient who hasn't gotten a straight answer — there's a path built for you.</p>
+      </div>
+
+      <div class="aud-grid">
+
+        <!-- Employers -->
+        <div class="aud-card">
+          <div class="aud-card-title">Employers</div>
+          <div class="aud-card-subtitle">Real Impact on Members</div>
+          <div class="aud-list">
+            <div class="aud-item"><div class="aud-check">✓</div><span class="txt">$500 to save $1,000–$25,000 PMPM, indefinitely</span></div>
+            <div class="aud-item"><div class="aud-check">✓</div><span class="txt">Real clinical relief, not just cost control</span></div>
+            <div class="aud-item"><div class="aud-check">✓</div><span class="txt">Layers onto your existing plan — no disruption</span></div>
+          </div>
+          <a href="Thymos For Employers.dc.html" class="aud-btn">Learn More →</a>
+        </div>
+
+        <!-- Health Systems -->
+        <div class="aud-card">
+          <div class="aud-card-title">Health Systems</div>
+          <div class="aud-card-subtitle">Unlock Capacity, Access, and Revenue</div>
+          <div class="aud-list">
+            <div class="aud-item"><div class="aud-check">✓</div><span class="txt">More patients per specialist — zero new hires</span></div>
+            <div class="aud-item"><div class="aud-check">✓</div><span class="txt">Lower cost to manage your autoimmune population</span></div>
+            <div class="aud-item"><div class="aud-check">✓</div><span class="txt">Appropriate escalation keeps care in-network</span></div>
+          </div>
+          <a href="Thymos Health Systems.dc.html" class="aud-btn">Learn More →</a>
+        </div>
+
+        <!-- Providers -->
+        <div class="aud-card">
+          <div class="aud-card-title">Providers</div>
+          <div class="aud-card-subtitle">Co-manage the most complex patients</div>
+          <div class="aud-list">
+            <div class="aud-item"><div class="aud-check">✓</div><span class="txt">Root-cause multi-specialty answers for the most complex cases</span></div>
+            <div class="aud-item"><div class="aud-check">✓</div><span class="txt">34% of autoimmune patients have multiple diseases Thymos addresses</span></div>
+            <div class="aud-item"><div class="aud-check">✓</div><span class="txt">Extend your care without disrupting patient relationships</span></div>
+          </div>
+          <a href="#" class="aud-btn">Learn More →</a>
+        </div>
+
+      </div>
+    </div>
   </section>
 
   <footer style="background:#02302d; color:#fff; padding:40px; text-align:center;">
