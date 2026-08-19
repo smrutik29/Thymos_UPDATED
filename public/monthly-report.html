@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monthly Report</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep:   #1a0a2e;
+    --teal:   #1d9e75;
+    --teal-m: #5dcaa5;
+    --teal-l: #eaf7f2;
+    --coral:  #d85a30;
+    --off:    #f5f2eb;
+    --rule:   #ddd6c8;
+    --muted:  #888780;
+    --white:  #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    min-height: 100%;
+    background: var(--off);
+    color: var(--deep);
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding: 40px 24px 56px;
+  }
+
+  /* ── Page ── */
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: 4px;
+    box-shadow:
+      0 2px 4px rgba(26,10,46,0.06),
+      0 8px 24px rgba(26,10,46,0.10),
+      0 24px 64px rgba(26,10,46,0.08);
+    padding: 44px 52px 40px;
+  }
+  .page + .page { margin-top: 28px; }
+
+  /* ── Letterhead ── */
+  .letterhead {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand-mark {
+    width: 22px; height: 22px;
+    border: 1.5px solid var(--deep);
+    border-radius: 50%;
+    position: relative; flex-shrink: 0;
+  }
+  .brand-mark::after {
+    content: ''; position: absolute; inset: 5px;
+    background: var(--teal); border-radius: 50%;
+  }
+  .brand-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05rem; color: var(--deep);
+  }
+  .report-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--muted);
+    text-align: right; line-height: 1.9;
+  }
+  .rule { height: 1px; background: var(--rule); margin-bottom: 20px; }
+
+  /* ── Report title ── */
+  .report-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem; line-height: 1.15;
+    color: var(--deep); margin-bottom: 4px;
+  }
+  .report-title em { font-style: italic; color: var(--teal); }
+  .report-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  /* ── Section headers ── */
+  .section-hdr {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 14px; padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.12em;
+    color: var(--teal); background: var(--teal-l);
+    padding: 2px 8px; border-radius: 3px;
+  }
+  .section-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--deep);
+  }
+
+  /* ── KPI row ── */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr 1fr;
+    gap: 10px; margin-bottom: 14px;
+  }
+  .kpi-card {
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 13px 14px;
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .kpi-accent {
+    width: 3px; align-self: stretch;
+    border-radius: 2px; background: var(--teal); flex-shrink: 0;
+  }
+  .kpi-accent.coral { background: var(--coral); }
+  .kpi-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 2px;
+  }
+  .kpi-val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.75rem; line-height: 1; color: var(--teal);
+  }
+  .kpi-val.coral { color: var(--coral); }
+  .kpi-delta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; color: var(--muted); margin-top: 3px;
+  }
+  .kpi-delta.up { color: var(--teal); }
+  .kpi-breakdown {
+    margin-top: 6px; border-top: 1px dashed #e5e0d5;
+    padding-top: 5px; display: flex; flex-direction: column; gap: 3px;
+  }
+  .kpi-brow {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--muted);
+  }
+  .kpi-bval { color: var(--deep); }
+
+  /* ── Bar chart ── */
+  .chart-section {
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 14px 16px 12px;
+    margin-bottom: 26px;
+  }
+  .chart-hdr {
+    display: flex; justify-content: space-between;
+    align-items: center; margin-bottom: 12px;
+  }
+  .chart-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.09em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; }
+  .leg-item {
+    display: flex; align-items: center; gap: 5px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; color: var(--muted);
+  }
+  .leg-dot { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
+  .bar-area {
+    display: flex; align-items: flex-end;
+    gap: 8px; height: 130px; margin-bottom: 6px;
+  }
+  .bar-col {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; height: 100%;
+    justify-content: flex-end; gap: 4px;
+  }
+  .bar-pair { display: flex; gap: 3px; align-items: flex-end; }
+  .b { width: 12px; border-radius: 2px 2px 0 0; }
+  .b.cost   { background: var(--coral); opacity: 0.65; }
+  .b.saved  { background: var(--teal-m); }
+  .b.before { background: #d6cfc5; }
+  .bar-col.now .b.saved { background: var(--teal); }
+  .bar-lbl {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem; color: var(--muted);
+  }
+  .bar-col.now .bar-lbl { color: var(--deep); font-weight: 600; }
+  .chart-note {
+    margin-top: 10px; padding: 8px 12px;
+    background: var(--teal-l);
+    border-left: 3px solid var(--teal);
+    border-radius: 3px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .chart-fn {
+    margin-top: 5px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem; color: var(--muted);
+    letter-spacing: 0.03em; line-height: 1.5;
+  }
+  .cn-val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem; color: var(--teal); white-space: nowrap;
+  }
+  .cn-sub { font-size: 0.72rem; color: var(--muted); line-height: 1.4; }
+
+  /* ── Population funnel ── */
+  .funnel { display: flex; flex-direction: column; gap: 0; margin-bottom: 14px; }
+  .funnel-tier { display: flex; align-items: stretch; gap: 16px; }
+  .funnel-bar-col { flex: 1; position: relative; }
+  .funnel-bar {
+    height: 36px; border-radius: 5px;
+    display: flex; align-items: center; padding: 0 14px;
+  }
+  .funnel-bar.t1 { width: 100%; background: #ede8de; }
+  .funnel-bar.t2 { width: 54%; background: #cceadf; }
+  .funnel-bar.t3 { width: 22%; background: var(--teal); }
+  .funnel-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05rem; color: var(--deep);
+  }
+  .funnel-bar.t3 .funnel-num { color: var(--white); }
+  .funnel-meta {
+    width: 180px; flex-shrink: 0;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .funnel-lbl {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); line-height: 1.45;
+  }
+  .funnel-connector { height: 10px; display: flex; align-items: stretch; gap: 16px; }
+  .funnel-con-bar { flex: 1; position: relative; }
+  .funnel-con-line {
+    position: absolute; left: 14px; top: 0; bottom: 0;
+    width: 1px; background: var(--rule);
+  }
+  .funnel-con-meta { width: 180px; flex-shrink: 0; }
+
+  /* ── Stage cards ── */
+  .stage-row {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 10px; margin-bottom: 26px;
+  }
+  .stage-card {
+    border: 1px solid var(--rule); border-radius: 6px;
+    padding: 14px 12px 12px; text-align: center; position: relative;
+  }
+  .stage-card + .stage-card::before {
+    content: '→'; position: absolute;
+    left: -9px; top: 50%; transform: translateY(-50%);
+    font-size: 0.75rem; color: var(--rule);
+  }
+  .stage-n {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem; line-height: 1; color: var(--teal); margin-bottom: 5px;
+  }
+  .stage-lbl {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); line-height: 1.5;
+  }
+  .stage-pip {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--teal-m); margin: 6px auto 0;
+  }
+
+  /* ── Therapy table ── */
+  .table-wrap {
+    border: 1px solid var(--rule); border-radius: 6px;
+    overflow: hidden; margin-bottom: 18px;
+  }
+  table.dt { width: 100%; border-collapse: collapse; }
+  table.dt thead th {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted);
+    font-weight: 400; padding: 10px 16px;
+    border-bottom: 1px solid var(--rule); background: #faf8f4;
+  }
+  table.dt thead th.c { text-align: center; }
+  table.dt thead th.r { text-align: right; }
+  table.dt tbody td {
+    padding: 12px 16px; border-bottom: 1px solid #f0ebe0;
+    font-size: 0.88rem; color: var(--deep); vertical-align: middle;
+  }
+  table.dt tbody tr:last-child td { border-bottom: none; }
+  table.dt td.c { text-align: center; }
+  table.dt td.pos { text-align: right; color: var(--teal); font-weight: 700; }
+  table.dt td.dim { text-align: right; color: #bbb; }
+  .skip-n { font-weight: 700; color: var(--teal); }
+  .skip-z { color: #bbb; }
+  .prog-row { display: flex; align-items: center; gap: 10px; }
+  .prog-track { flex: 1; height: 5px; background: #ede8e0; border-radius: 3px; overflow: hidden; }
+  .prog-fill { height: 100%; border-radius: 3px; background: var(--teal-m); }
+  .prog-pct {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; color: var(--teal);
+    width: 32px; text-align: right; flex-shrink: 0;
+  }
+  .prog-pct.zero { color: var(--muted); }
+  table.dt tfoot td {
+    padding: 12px 16px; font-weight: 700; font-size: 0.88rem;
+    background: #faf8f4; border-top: 1.5px solid var(--rule);
+    color: var(--deep); vertical-align: middle;
+  }
+  table.dt tfoot td.c { text-align: center; }
+  table.dt tfoot td.pos { text-align: right; color: var(--teal); }
+  .table-footnote {
+    padding: 8px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; color: var(--muted);
+    letter-spacing: 0.04em; line-height: 1.6;
+    border-top: 1px solid var(--rule); background: #faf8f4;
+  }
+
+  /* ── Footer ── */
+  .doc-footer {
+    display: flex; justify-content: space-between;
+    align-items: center; padding-top: 16px;
+    border-top: 1px solid var(--rule);
+  }
+  .foot-txt {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; color: var(--muted);
+    letter-spacing: 0.05em; line-height: 1.7;
+  }
+  .foot-txt.r { text-align: right; }
+
+  /* ════════════════════════════════════════
+     PAGE 2 — Internal reference styles
+  ════════════════════════════════════════ */
+
+  .int-banner {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 4px;
+    padding: 9px 16px;
+    margin-bottom: 22px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .int-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: #d97706; color: var(--white);
+    padding: 3px 9px; border-radius: 3px; flex-shrink: 0;
+  }
+  .int-desc {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem; color: #92400e; letter-spacing: 0.05em;
+  }
+
+  /* Patient blocks */
+  .patient-block {
+    border: 1px solid var(--rule);
+    border-radius: 6px; overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .patient-hdr {
+    background: #faf8f4;
+    padding: 11px 16px;
+    display: flex; align-items: flex-start;
+    justify-content: space-between; gap: 20px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .ph-left { flex: 1; }
+  .ph-right { text-align: right; flex-shrink: 0; }
+  .p-id {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--teal); margin-bottom: 1px;
+  }
+  .p-condition {
+    font-size: 0.9rem; font-weight: 500; color: var(--deep);
+  }
+  .p-drug {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem; color: var(--muted);
+    letter-spacing: 0.06em; margin-top: 2px;
+  }
+  .p-awp-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 1px;
+  }
+  .p-awp-val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem; color: var(--coral);
+  }
+  .p-awp-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem; color: var(--muted);
+  }
+  .p-prog {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem; color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* Stage journey */
+  .stage-journey {
+    display: flex; align-items: flex-start; margin-top: 8px;
+  }
+  .sj-step { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .sj-dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    border: 1.5px solid #ccc; background: var(--white); flex-shrink: 0;
+  }
+  .sj-step.done .sj-dot { background: var(--teal-l); border-color: var(--teal-m); }
+  .sj-step.active .sj-dot { background: var(--teal); border-color: var(--teal); }
+  .sj-lbl {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.48rem; letter-spacing: 0.05em;
+    text-transform: uppercase; color: #ccc; white-space: nowrap;
+  }
+  .sj-step.done .sj-lbl { color: var(--teal-m); }
+  .sj-step.active .sj-lbl { color: var(--teal); }
+  .sj-line {
+    height: 1.5px; width: 28px; background: #ddd;
+    flex-shrink: 0; margin-top: 4px;
+  }
+  .sj-line.done { background: var(--teal-m); }
+
+  /* Patient mini-table */
+  table.pt { width: 100%; border-collapse: collapse; }
+  table.pt thead th {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted);
+    font-weight: 400; padding: 7px 16px;
+    border-bottom: 1px solid #f0ebe0; background: var(--white);
+    text-align: left;
+  }
+  table.pt thead th.c { text-align: center; }
+  table.pt thead th.r { text-align: right; }
+  table.pt tbody td {
+    padding: 8px 16px; font-size: 0.82rem;
+    color: var(--deep); border-bottom: 1px solid #f8f4ee;
+    vertical-align: middle;
+  }
+  table.pt tbody tr:last-child td { border-bottom: none; }
+  table.pt td.c { text-align: center; }
+  table.pt td.dim { color: #bbb; text-align: center; }
+  table.pt td.pos { text-align: right; color: var(--teal); font-weight: 600; }
+  table.pt td.zero { text-align: right; color: #ccc; }
+  table.pt td.na { text-align: center; color: #ccc; }
+  .current-mo td { background: var(--teal-l); }
+  .current-mo td:first-child { font-weight: 600; }
+  .not-enrolled td { color: #ccc; }
+
+  /* ── Population horizontal bars (Section 02) ── */
+  .pop-wrap { margin-bottom: 14px; }
+  .pop-section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.0rem; color: var(--deep); margin-bottom: 3px;
+  }
+  .pop-section-sub {
+    font-size: 0.78rem; color: var(--muted); margin-bottom: 18px; line-height: 1.5;
+  }
+  .pop-bars { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+  .pop-row { display: flex; align-items: center; gap: 14px; }
+  .pop-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem; color: var(--deep);
+    width: 56px; flex-shrink: 0; text-align: right;
+  }
+  .pop-bar-track {
+    flex: 1; height: 28px; background: #ebe7de; border-radius: 4px; overflow: hidden;
+  }
+  .pop-bar { height: 100%; border-radius: 4px; }
+  .pop-meta { width: 210px; flex-shrink: 0; padding-left: 6px; }
+  .pop-meta-lbl {
+    font-size: 0.82rem; font-weight: 500; color: var(--deep); line-height: 1.3;
+  }
+  .pop-meta-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem; letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--muted); line-height: 1.5; margin-top: 1px;
+  }
+
+  /* ── Stage cards with colored top border ── */
+  .stage-row-new {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 10px; margin-bottom: 26px;
+  }
+  .stage-card-new {
+    border: 1px solid var(--rule);
+    border-top: 3px solid #ccc;
+    border-radius: 6px;
+    padding: 14px 12px 12px;
+    text-align: center;
+  }
+
+  /* ── Therapy table additions ── */
+  .class-dot {
+    display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    margin-right: 7px; vertical-align: middle; flex-shrink: 0;
+  }
+  .skip-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem; padding: 2px 8px;
+    border-radius: 3px; font-weight: 500;
+  }
+  .skip-badge.low  { background: #eee9de; color: #7a7670; }
+  .skip-badge.mid  { background: #fef3c7; color: #92400e; }
+  .skip-badge.high { background: #d1fae5; color: #065f46; }
+  .net-impact-note {
+    padding: 10px 16px;
+    border-top: 1.5px solid var(--teal-l);
+    background: #f7fdf9;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem; color: var(--muted);
+    letter-spacing: 0.03em; line-height: 1.7;
+  }
+  .net-impact-note .nia { color: var(--teal); font-weight: 600; }
+
+  /* ── Month toggle nav ── */
+  .month-nav {
+    max-width: 860px; margin: 0 auto 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .month-nav-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); margin-right: 4px;
+  }
+  .month-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 6px 16px; border: 1px solid var(--rule); border-radius: 20px;
+    background: transparent; color: var(--muted); cursor: pointer; transition: all 0.15s;
+  }
+  .month-btn:hover:not(.active) { border-color: var(--teal); color: var(--teal); }
+  .month-btn.active { background: var(--deep); border-color: var(--deep); color: var(--white); }
+
+  /* ── Dense bar chart (24 bars) ── */
+  .bar-area-dense { gap: 4px; }
+  .bar-area-dense .b { width: 6px; }
+  .bar-area-dense .bar-pair { gap: 2px; }
+  .bar-area-dense .bar-lbl { font-size: 0.48rem; }
+</style>
+</head>
+<body>
+
+<nav class="month-nav">
+  <span class="month-nav-label">Report period:</span>
+  <button class="month-btn" data-view="m1" onclick="showView('m1')">Month 1</button>
+  <button class="month-btn active" data-view="m9" onclick="showView('m9')">Month 9 · Current</button>
+  <button class="month-btn" data-view="m24" onclick="showView('m24')">Month 24</button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════
+     VIEW M1 · OCTOBER 2025
+═══════════════════════════════════════════════════ -->
+<div class="page" id="view-m1" style="display:none;">
+
+  <div class="letterhead">
+    <div class="brand"><div class="brand-mark"></div><div class="brand-name">Thymos Health</div></div>
+    <div class="report-meta">EMP-1001 · Your Group<br>Confidential · De-identified<br>November 3, 2025</div>
+  </div>
+  <div class="rule"></div>
+  <div class="report-title">October 2025 — <em>Month 1</em> of 24</div>
+  <div class="report-sub">Monthly Employer Report &nbsp;·&nbsp; Therapeutic Class Breakdown &nbsp;·&nbsp; AWP Avoided</div>
+
+  <div class="section-hdr"><span class="section-num">01</span><span class="section-title">Program ROI</span></div>
+
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-accent coral"></div>
+      <div style="flex:1; min-width:0;">
+        <div class="kpi-label">Amount Spent · Cumulative</div>
+        <div class="kpi-val coral">$5K</div>
+        <div class="kpi-breakdown">
+          <div class="kpi-brow"><span>Program Spend</span><span class="kpi-bval">$5K</span></div>
+          <div class="kpi-brow"><span>AWP Fills Funded</span><span class="kpi-bval">$0</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-accent"></div>
+      <div>
+        <div class="kpi-label">Amount Saved</div>
+        <div class="kpi-val">$0</div>
+        <div class="kpi-delta">AWP avoided · cumulative</div>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-accent coral"></div>
+      <div>
+        <div class="kpi-label">Net Gain</div>
+        <div class="kpi-val coral">−$5K</div>
+        <div class="kpi-delta">Investment phase · expected in M1</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-section">
+    <div class="chart-hdr">
+      <div class="chart-title">Program cost vs. AWP avoided · Month 1</div>
+      <div class="legend">
+        <div class="leg-item"><div class="leg-dot" style="background:#d6cfc5;"></div>AWP before taper</div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--teal-m);"></div>AWP avoided</div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--coral);opacity:.65;"></div>Program cost</div>
+      </div>
+    </div>
+    <div class="bar-area" style="height:130px;">
+      <div class="bar-col now"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M1 ←</div></div>
+    </div>
+    <div class="chart-note">
+      <div class="cn-val" style="color:var(--coral);">−$5K net</div>
+      <div class="cn-sub">Program just launched — no fills have been tapered yet. Full program cost ($5K) with $0 in avoided drug spend. Savings begin as trust is established in M2–M3.</div>
+    </div>
+    <div class="chart-fn">† Program fee ($500/pt/month) only. Diagnostic costs billed separately at $225/patient/quarter — approximately $750/month for this 10-patient group.</div>
+  </div>
+
+  <div style="display:flex; gap:10px; max-width:560px; margin-bottom:26px;">
+    <div class="kpi-card" style="flex:1;">
+      <div class="kpi-accent"></div>
+      <div>
+        <div class="kpi-label">Admin PMPM · Total Population</div>
+        <div class="kpi-val">$5</div>
+        <div class="kpi-delta">$500 × 10 treated ÷ 1,000 lives · excl. $225/pt/qtr diagnostic fees</div>
+      </div>
+    </div>
+    <div class="kpi-card" style="flex:1;">
+      <div class="kpi-accent"></div>
+      <div>
+        <div class="kpi-label">Drug Cost Avoided PMPM</div>
+        <div class="kpi-val">$0</div>
+        <div class="kpi-delta">Early adopters cross into tapering M4–6 · most members M9 · conservative M12+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-hdr"><span class="section-num">02</span><span class="section-title">Population</span></div>
+
+  <div class="pop-wrap">
+    <div class="pop-section-title">Population funnel · October 2025</div>
+    <div class="pop-section-sub">From total covered population to active program participants — where each patient is in the Thymos journey.</div>
+    <div class="pop-bars">
+      <div class="pop-row">
+        <div class="pop-num">1,000</div>
+        <div class="pop-bar-track"><div class="pop-bar" style="width:97%; background:#c8c2b6;"></div></div>
+        <div class="pop-meta"><div class="pop-meta-lbl">Covered Lives</div><div class="pop-meta-sub">TOTAL PLAN ENROLLMENT</div></div>
+      </div>
+      <div class="pop-row">
+        <div class="pop-num">~80</div>
+        <div class="pop-bar-track"><div class="pop-bar" style="width:30%; background:#b5a870;"></div></div>
+        <div class="pop-meta"><div class="pop-meta-lbl">With Autoimmune Conditions</div><div class="pop-meta-sub">IDENTIFIED VIA CLAIMS ANALYSIS · ~8% OF COVERED LIVES</div></div>
+      </div>
+      <div class="pop-row">
+        <div class="pop-num">10</div>
+        <div class="pop-bar-track"><div class="pop-bar" style="width:11%; background:#2d6e55;"></div></div>
+        <div class="pop-meta"><div class="pop-meta-lbl">In Active Program</div><div class="pop-meta-sub">ENROLLED WITH THYMOS · MONTH 1 OF 24</div></div>
+      </div>
+    </div>
+    <div class="stage-row-new">
+      <div class="stage-card-new" style="border-top-color:#d85a30;"><div class="stage-n">8</div><div class="stage-lbl">Onboarding</div></div>
+      <div class="stage-card-new" style="border-top-color:#d97706;"><div class="stage-n">2</div><div class="stage-lbl">Building<br>Trust</div></div>
+      <div class="stage-card-new" style="border-top-color:#6b7c45;"><div class="stage-n">0</div><div class="stage-lbl">Tapering<br>Therapy</div></div>
+      <div class="stage-card-new" style="border-top-color:#1d9e75;"><div class="stage-n">0</div><div class="stage-lbl">New<br>Normal</div></div>
+    </div>
+  </div>
+
+  <div class="section-hdr"><span class="section-num">03</span><span class="section-title">Therapy Detail · October 2025</span></div>
+
+  <div class="table-wrap">
+    <table class="dt">
+      <thead>
+        <tr><th>Therapeutic Class</th><th class="c">Patients</th><th class="c">Exp. Fills</th><th class="c">Filled</th><th class="c">Missed</th><th class="c">Deferred</th><th class="c">Abandoned</th><th class="c">Gap Rate</th><th class="r">AWP Avoided</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="class-dot" style="background:#d85a30;"></span>TNF-α Inhibitors</td><td class="c">4</td><td class="c">6</td><td class="c">6</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="c"><span class="skip-badge low">0%</span></td><td class="dim">—</td></tr>
+        <tr><td><span class="class-dot" style="background:#d97706;"></span>IL-17 Inhibitors</td><td class="c">2</td><td class="c">2</td><td class="c">2</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="c"><span class="skip-badge low">0%</span></td><td class="dim">—</td></tr>
+        <tr><td><span class="class-dot" style="background:#6b7c45;"></span>IL-23 Inhibitors</td><td class="c">2</td><td class="c">2</td><td class="c">2</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="c"><span class="skip-badge low">0%</span></td><td class="dim">—</td></tr>
+        <tr><td><span class="class-dot" style="background:#1d9e75;"></span>IL-6 Inhibitors</td><td class="c">1</td><td class="c">2</td><td class="c">2</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="c"><span class="skip-badge low">0%</span></td><td class="dim">—</td></tr>
+        <tr><td><span class="class-dot" style="background:#5dcaa5;"></span>Other Biologics &amp; Specialty</td><td class="c">1</td><td class="c">1</td><td class="c">1</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="c"><span class="skip-badge low">0%</span></td><td class="dim">—</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td>Total · This Month</td><td class="c">10</td><td class="c">13</td><td class="c">13</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="c"><span class="skip-badge low">0%</span></td><td class="dim">—</td></tr>
+      </tfoot>
+    </table>
+    <div class="net-impact-note">
+      Net monthly impact = Σ (skipped fills × AWP per fill) − (active patients × $500). &nbsp;·&nbsp; This month: <span class="nia" style="color:var(--muted);">$0 AWP avoided</span> − $5,000 program cost = <span class="nia" style="color:var(--coral);">−$5,000 (baseline month — no tapering yet)</span>.
+    </div>
+    <div class="table-footnote">AWP figures are published list price (NDC-level) at time of expected fill. &nbsp;·&nbsp; Program enrollment complete — tapering protocols begin M2.</div>
+  </div>
+
+  <div class="doc-footer">
+    <div class="foot-txt">No names, diagnoses, or PHI included in this report.<br>De-identified per HIPAA Safe Harbor.</div>
+    <div class="foot-txt r">Thymos Health · EMP-1001<br>Next report: December 1, 2025</div>
+  </div>
+
+</div><!-- /view-m1 -->
+
+<!-- ═══════════════════════════════════════════════════
+     VIEW M9 · JUNE 2026 (CURRENT)
+═══════════════════════════════════════════════════ -->
+<div class="page" id="view-m9">
+
+  <div class="letterhead">
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <div class="brand-name">Thymos Health</div>
+    </div>
+    <div class="report-meta">
+      EMP-1001 · Your Group<br>
+      Confidential · De-identified<br>
+      July 1, 2026
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <div class="report-title">June 2026 — <em>Month 9</em> of 24</div>
+  <div class="report-sub">Monthly Employer Report &nbsp;·&nbsp; Therapeutic Class Breakdown &nbsp;·&nbsp; AWP Avoided</div>
+
+
+  <!-- 01 · PROGRAM ROI -->
+  <div class="section-hdr">
+    <span class="section-num">01</span>
+    <span class="section-title">Program ROI</span>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-accent coral"></div>
+      <div style="flex:1; min-width:0;">
+        <div class="kpi-label">Amount Spent · Cumulative</div>
+        <div class="kpi-val coral">$81K</div>
+        <div class="kpi-breakdown">
+          <div class="kpi-brow">
+            <span>Program Spend</span>
+            <span class="kpi-bval">$45K</span>
+          </div>
+          <div class="kpi-brow">
+            <span>AWP Fills Funded</span>
+            <span class="kpi-bval">$36K</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-accent"></div>
+      <div>
+        <div class="kpi-label">Amount Saved</div>
+        <div class="kpi-val">$196K</div>
+        <div class="kpi-delta">AWP avoided · cumulative</div>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-accent"></div>
+      <div>
+        <div class="kpi-label">Net Gain</div>
+        <div class="kpi-val">+$115K</div>
+        <div class="kpi-delta up">↑ $61K vs. last month</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SVG chart M1–M9 -->
+  <div class="chart-section">
+    <div class="chart-hdr">
+      <div>
+        <div class="chart-title">Monthly drug spend · before vs. with Thymos</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px;">Gray = what you'd spend on drugs without intervention. Teal = actual drug fills + $500/pt/mo fee. Teal area = savings.</div>
+      </div>
+      <div class="legend">
+        <div class="leg-item"><div style="width:22px;height:2px;border-top:2px dashed #888780;"></div>&nbsp;Without Thymos</div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--teal);"></div>With Thymos</div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--teal-m);opacity:.5;"></div>Savings</div>
+      </div>
+    </div>
+    <svg viewBox="0 0 800 190" width="100%" style="display:block;overflow:visible;" preserveAspectRatio="xMidYMid meet">
+
+      <!-- Grid (dashed horizontal) -->
+      <line x1="64" y1="131" x2="720" y2="131" stroke="rgba(26,10,46,0.07)" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="64" y1="91"  x2="720" y2="91"  stroke="rgba(26,10,46,0.07)" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="64" y1="52"  x2="720" y2="52"  stroke="rgba(26,10,46,0.07)" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="64" y1="12"  x2="720" y2="12"  stroke="rgba(26,10,46,0.07)" stroke-width="1" stroke-dasharray="4,4"/>
+
+      <!-- Savings area (teal) — break-even M4 through M9 -->
+      <polygon fill="#1d9e75" fill-opacity="0.13"
+        points="275,36 319,40 392,52 465,67 538,83 611,102 684,132 684,36"/>
+
+      <!-- Investment overpay (coral) — M1–M3 -->
+      <polygon fill="#d85a30" fill-opacity="0.13"
+        points="100,36 100,28 173,29 246,33 275,36"/>
+
+      <!-- "Without Thymos" flat line -->
+      <line x1="64" y1="36" x2="720" y2="36" stroke="#888780" stroke-width="2" stroke-dasharray="7,4"/>
+
+      <!-- "With Thymos" — coral segment M1–M3 (investment phase) -->
+      <polyline fill="none" stroke="#d85a30" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="0.7"
+        points="100,28 173,29 246,33 275,36"/>
+      <!-- "With Thymos" — teal segment M4–M9 (savings phase) -->
+      <polyline fill="none" stroke="#1d9e75" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+        points="275,36 319,40 392,52 465,67 538,83 611,102 684,132"/>
+
+      <!-- "Without Thymos" label -->
+      <rect x="390" y="22" width="136" height="16" rx="2" fill="#f5f2eb" opacity="0.92"/>
+      <text x="396" y="34" font-family="'DM Mono',monospace" font-size="8.5" fill="#888780" letter-spacing="0.06em">$85K/MO WITHOUT PROGRAM</text>
+
+      <!-- Break-even dot + label -->
+      <circle cx="275" cy="36" r="4.5" fill="#1a0a2e" opacity="0.65"/>
+      <line x1="275" y1="40" x2="275" y2="70" stroke="#1a0a2e" stroke-width="1" stroke-dasharray="3,3" opacity="0.3"/>
+      <rect x="222" y="70" width="106" height="17" rx="2" fill="#f5f2eb" stroke="rgba(26,10,46,0.25)" stroke-width="1"/>
+      <text x="275" y="82" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="#1a0a2e" letter-spacing="0.09em">BREAK-EVEN · M4</text>
+
+      <!-- M9 current endpoint -->
+      <circle cx="684" cy="132" r="5" fill="#1d9e75"/>
+      <text x="684" y="150" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="#1d9e75" font-weight="600" letter-spacing="0.04em">NOW</text>
+
+      <!-- Before / After bracket at M9 -->
+      <line x1="700" y1="36" x2="700" y2="132" stroke="#1d9e75" stroke-width="1" stroke-dasharray="3,2" opacity="0.45"/>
+      <line x1="696" y1="36"  x2="704" y2="36"  stroke="#888780" stroke-width="1.5"/>
+      <line x1="696" y1="132" x2="704" y2="132" stroke="#1d9e75" stroke-width="1.5"/>
+      <text x="708" y="40"  font-family="'DM Mono',monospace" font-size="8.5" fill="#888780">$85K/mo</text>
+      <text x="708" y="83"  font-family="'DM Mono',monospace" font-size="10"  fill="#1d9e75" font-weight="600" letter-spacing="0.02em">−$61K</text>
+      <text x="708" y="96"  font-family="'DM Mono',monospace" font-size="8.5" fill="#888780">saved/mo</text>
+      <text x="708" y="136" font-family="'DM Mono',monospace" font-size="8.5" fill="#1d9e75">$24K/mo</text>
+
+      <!-- Y labels -->
+      <text x="58" y="174" text-anchor="end" font-family="'DM Mono',monospace" font-size="9" fill="#888780">$0</text>
+      <text x="58" y="135" text-anchor="end" font-family="'DM Mono',monospace" font-size="9" fill="#888780">$25K</text>
+      <text x="58" y="95"  text-anchor="end" font-family="'DM Mono',monospace" font-size="9" fill="#888780">$50K</text>
+      <text x="58" y="56"  text-anchor="end" font-family="'DM Mono',monospace" font-size="9" fill="#888780">$75K</text>
+      <text x="58" y="16"  text-anchor="end" font-family="'DM Mono',monospace" font-size="9" fill="#888780">$100K</text>
+
+      <!-- X axis baseline -->
+      <line x1="64" y1="170" x2="720" y2="170" stroke="#1a0a2e" stroke-width="1.5" opacity="0.25"/>
+
+      <!-- X labels -->
+      <text x="100" y="183" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="#888780">M1</text>
+      <text x="319" y="183" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="#888780">M4</text>
+      <text x="538" y="183" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="#888780">M7</text>
+      <text x="684" y="183" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="#1a0a2e" font-weight="600">M9 ←</text>
+
+    </svg>
+    <div class="chart-note">
+      <div class="cn-val">$85K → $24K/mo</div>
+      <div class="cn-sub">Without Thymos: ~$85K/month in drug spend. With Thymos at M9: $19K in remaining fills + $5K program fee = $24K/month total. Saving $61K/month now — and cumulative savings ($196K AWP avoided) already exceed total program investment ($81K) by +$115K.</div>
+    </div>
+    <div class="chart-fn">† Program fee ($500/pt/month) only. Diagnostic costs billed separately at $225/patient/quarter — approximately $750/month for this 10-patient group.</div>
+  </div>
+
+
+  <div style="display:flex; gap:10px; max-width:560px; margin-bottom:26px;">
+    <div class="kpi-card" style="flex:1;">
+      <div class="kpi-accent"></div>
+      <div>
+        <div class="kpi-label">Admin PMPM · Total Population</div>
+        <div class="kpi-val">$5</div>
+        <div class="kpi-delta">$500 × 10 treated ÷ 1,000 lives · excl. $225/pt/qtr diagnostic fees</div>
+      </div>
+    </div>
+    <div class="kpi-card" style="flex:1;">
+      <div class="kpi-accent"></div>
+      <div>
+        <div class="kpi-label">Drug Cost Avoided PMPM</div>
+        <div class="kpi-val">$66</div>
+        <div class="kpi-delta">$66,479 M9 avoided ÷ 1,000 lives</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 · POPULATION -->
+  <div class="section-hdr">
+    <span class="section-num">02</span>
+    <span class="section-title">Population</span>
+  </div>
+
+  <div class="pop-wrap">
+    <div class="pop-section-title">Population funnel · June 2026</div>
+    <div class="pop-section-sub">From total covered population to active program participants — where each patient is in the Thymos journey.</div>
+
+    <div class="pop-bars">
+      <div class="pop-row">
+        <div class="pop-num">1,000</div>
+        <div class="pop-bar-track"><div class="pop-bar" style="width:97%; background:#c8c2b6;"></div></div>
+        <div class="pop-meta">
+          <div class="pop-meta-lbl">Covered Lives</div>
+          <div class="pop-meta-sub">TOTAL PLAN ENROLLMENT</div>
+        </div>
+      </div>
+      <div class="pop-row">
+        <div class="pop-num">~80</div>
+        <div class="pop-bar-track"><div class="pop-bar" style="width:30%; background:#b5a870;"></div></div>
+        <div class="pop-meta">
+          <div class="pop-meta-lbl">With Autoimmune Conditions</div>
+          <div class="pop-meta-sub">IDENTIFIED VIA CLAIMS ANALYSIS · ~8% OF COVERED LIVES</div>
+        </div>
+      </div>
+      <div class="pop-row">
+        <div class="pop-num">10</div>
+        <div class="pop-bar-track"><div class="pop-bar" style="width:11%; background:#2d6e55;"></div></div>
+        <div class="pop-meta">
+          <div class="pop-meta-lbl">In Active Program</div>
+          <div class="pop-meta-sub">ENROLLED WITH THYMOS · MONTH 9 OF 24</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage-row-new">
+      <div class="stage-card-new" style="border-top-color:#d85a30;">
+        <div class="stage-n">1</div>
+        <div class="stage-lbl">Onboarding</div>
+      </div>
+      <div class="stage-card-new" style="border-top-color:#d97706;">
+        <div class="stage-n">2</div>
+        <div class="stage-lbl">Building<br>Trust</div>
+      </div>
+      <div class="stage-card-new" style="border-top-color:#6b7c45;">
+        <div class="stage-n">5</div>
+        <div class="stage-lbl">Tapering<br>Therapy</div>
+      </div>
+      <div class="stage-card-new" style="border-top-color:#1d9e75;">
+        <div class="stage-n">2</div>
+        <div class="stage-lbl">New<br>Normal</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 03 · THERAPY DETAIL -->
+  <div class="section-hdr">
+    <span class="section-num">03</span>
+    <span class="section-title">Therapy Detail · June 2026</span>
+  </div>
+
+  <div class="table-wrap">
+    <table class="dt">
+      <thead>
+        <tr><th>Therapeutic Class</th><th class="c">Patients</th><th class="c">Exp. Fills</th><th class="c">Filled</th><th class="c">Missed</th><th class="c">Deferred</th><th class="c">Abandoned</th><th class="c">Gap Rate</th><th class="r">AWP Avoided</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="class-dot" style="background:#d85a30;"></span>TNF-α Inhibitors</td><td class="c">4</td><td class="c">6</td><td class="c">3</td><td class="dim">—</td><td class="c"><span class="skip-n">2</span></td><td class="c"><span class="skip-n">1</span></td><td class="c"><span class="skip-badge mid">50%</span></td><td class="pos">$6,724</td></tr>
+        <tr><td><span class="class-dot" style="background:#d97706;"></span>IL-17 Inhibitors</td><td class="c">2</td><td class="c">2</td><td class="c">0</td><td class="dim">—</td><td class="c"><span class="skip-n">2</span></td><td class="dim">—</td><td class="c"><span class="skip-badge high">100%</span></td><td class="pos">$18,949</td></tr>
+        <tr><td><span class="class-dot" style="background:#6b7c45;"></span>IL-23 Inhibitors</td><td class="c">2</td><td class="c">2</td><td class="c">1</td><td class="dim">—</td><td class="c"><span class="skip-n">1</span></td><td class="dim">—</td><td class="c"><span class="skip-badge mid">50%</span></td><td class="pos">$28,606</td></tr>
+        <tr><td><span class="class-dot" style="background:#1d9e75;"></span>IL-6 Inhibitors</td><td class="c">1</td><td class="c">2</td><td class="c">0</td><td class="dim">—</td><td class="c"><span class="skip-n">1</span></td><td class="c"><span class="skip-n">1</span></td><td class="c"><span class="skip-badge high">100%</span></td><td class="pos">$5,000</td></tr>
+        <tr><td><span class="class-dot" style="background:#5dcaa5;"></span>Other Biologics &amp; Specialty</td><td class="c">1</td><td class="c">1</td><td class="c">0</td><td class="dim">—</td><td class="dim">—</td><td class="c"><span class="skip-n">1</span></td><td class="c"><span class="skip-badge high">100%</span></td><td class="pos">$7,200</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td>Total · This Month</td><td class="c">10</td><td class="c">13</td><td class="c">4</td><td class="dim">—</td><td class="c">6</td><td class="c">3</td><td class="c"><span class="skip-badge mid">69%</span></td><td class="pos">$66,479</td></tr>
+      </tfoot>
+    </table>
+    <div class="net-impact-note">
+      Net monthly impact = Σ (deferred + abandoned fills × AWP per fill) − (active patients × $500). &nbsp;·&nbsp; This month: <span class="nia">$66,479 AWP avoided</span> − $5,000 program cost = <span class="nia">+$61,479 net savings</span>.
+    </div>
+    <div class="table-footnote">
+      AWP figures are published list price (NDC-level) at time of expected fill. &nbsp;·&nbsp; Members may appear in multiple classes if on more than one biologic. &nbsp;·&nbsp; Fills Funded = 4 dispenses totaling $36K cumulative.
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <div class="foot-txt">
+      No names, diagnoses, or PHI included in this report.<br>
+      De-identified per HIPAA Safe Harbor.
+    </div>
+    <div class="foot-txt r">
+      Thymos Health · EMP-1001<br>
+      Next report: August 3, 2026
+    </div>
+  </div>
+
+</div><!-- /view-m9 -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     VIEW M24 · SEPTEMBER 2027
+═══════════════════════════════════════════════════ -->
+<div class="page" id="view-m24" style="display:none;">
+
+  <div class="letterhead">
+    <div class="brand"><div class="brand-mark"></div><div class="brand-name">Thymos Health</div></div>
+    <div class="report-meta">EMP-1001 · Your Group<br>Confidential · De-identified<br>October 1, 2027</div>
+  </div>
+  <div class="rule"></div>
+  <div class="report-title">September 2027 — <em>Month 24</em> of 24</div>
+  <div class="report-sub">Monthly Employer Report &nbsp;·&nbsp; Therapeutic Class Breakdown &nbsp;·&nbsp; AWP Avoided</div>
+
+  <div class="section-hdr"><span class="section-num">01</span><span class="section-title">Program ROI</span></div>
+
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-accent coral"></div>
+      <div style="flex:1; min-width:0;">
+        <div class="kpi-label">Amount Spent · Cumulative</div>
+        <div class="kpi-val coral">$165K</div>
+        <div class="kpi-breakdown">
+          <div class="kpi-brow"><span>Program Spend</span><span class="kpi-bval">$120K</span></div>
+          <div class="kpi-brow"><span>AWP Fills Funded</span><span class="kpi-bval">$45K</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-accent"></div>
+      <div>
+        <div class="kpi-label">Amount Saved</div>
+        <div class="kpi-val">$780K</div>
+        <div class="kpi-delta">AWP avoided · cumulative</div>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-accent"></div>
+      <div>
+        <div class="kpi-label">Net Gain</div>
+        <div class="kpi-val">+$615K</div>
+        <div class="kpi-delta up">↑ $75K vs. last month</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-section">
+    <div class="chart-hdr">
+      <div>
+        <div class="chart-title">Monthly drug spend · before vs. with Thymos</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px;">Gray = what you'd spend on drugs without intervention. Teal = actual drug fills + $500/pt/mo fee. Teal area = savings.</div>
+      </div>
+      <div class="legend">
+        <div class="leg-item"><div style="width:22px;height:2px;border-top:2px dashed #888780;"></div>&nbsp;Without Thymos</div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--teal);"></div>With Thymos</div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--teal-m);opacity:.5;"></div>Savings</div>
+      </div>
+    </div>
+    <svg viewBox="0 0 800 190" width="100%" style="display:block;overflow:visible;" preserveAspectRatio="xMidYMid meet">
+
+      <!-- Grid (dashed horizontal) -->
+      <line x1="64" y1="131" x2="720" y2="131" stroke="rgba(26,10,46,0.07)" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="64" y1="91"  x2="720" y2="91"  stroke="rgba(26,10,46,0.07)" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="64" y1="52"  x2="720" y2="52"  stroke="rgba(26,10,46,0.07)" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="64" y1="12"  x2="720" y2="12"  stroke="rgba(26,10,46,0.07)" stroke-width="1" stroke-dasharray="4,4"/>
+
+      <!-- Savings area (teal) — from break-even M4 to M24 -->
+      <polygon fill="#1d9e75" fill-opacity="0.13"
+        points="143,36 160,40 187,52 214,67 242,83 269,102 296,132 324,137 351,142 378,145 406,148 433,150 460,151 488,153 515,153 542,153 570,153 597,153 624,154 652,154 679,154 706,154 706,36"/>
+
+      <!-- Investment overpay (coral) — M1–M3 where program cost > drug savings -->
+      <polygon fill="#d85a30" fill-opacity="0.13"
+        points="78,36 78,28 105,29 132,33 143,36"/>
+
+      <!-- "Without Thymos" flat line -->
+      <line x1="64" y1="36" x2="720" y2="36" stroke="#888780" stroke-width="2" stroke-dasharray="7,4"/>
+
+      <!-- "With Thymos" curve: coral for investment phase, teal for ROI phase -->
+      <polyline fill="none" stroke="#d85a30" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="0.7"
+        points="78,28 105,29 132,33 143,36"/>
+      <polyline fill="none" stroke="#1d9e75" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+        points="143,36 160,40 187,52 214,67 242,83 269,102 296,132 324,137 351,142 378,145 406,148 433,150 460,151 488,153 515,153 542,153 570,153 597,153 624,154 652,154 679,154 706,154"/>
+
+      <!-- "Without Thymos" label (inline on the line) -->
+      <rect x="520" y="22" width="136" height="16" rx="2" fill="#f5f2eb" opacity="0.92"/>
+      <text x="526" y="34" font-family="'DM Mono',monospace" font-size="8.5" fill="#888780" letter-spacing="0.06em">$85K/MO WITHOUT PROGRAM</text>
+
+      <!-- Break-even dot + label -->
+      <circle cx="143" cy="36" r="4.5" fill="#1a0a2e" opacity="0.65"/>
+      <line x1="143" y1="40" x2="143" y2="70" stroke="#1a0a2e" stroke-width="1" stroke-dasharray="3,3" opacity="0.3"/>
+      <rect x="90" y="70" width="106" height="17" rx="2" fill="#f5f2eb" stroke="rgba(26,10,46,0.25)" stroke-width="1"/>
+      <text x="143" y="82" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="#1a0a2e" letter-spacing="0.09em">BREAK-EVEN · M4</text>
+
+      <!-- M9 dot + label -->
+      <circle cx="296" cy="132" r="4" fill="#1d9e75"/>
+      <line x1="296" y1="120" x2="296" y2="128" stroke="#1d9e75" stroke-width="1.5" opacity="0.7"/>
+      <rect x="250" y="103" width="92" height="17" rx="2" fill="#f5f2eb" stroke="#1d9e75" stroke-width="0.75" opacity="0.9"/>
+      <text x="296" y="115" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="#1d9e75" letter-spacing="0.06em">M9 · $24K/mo</text>
+
+      <!-- M24 endpoint dot -->
+      <circle cx="706" cy="154" r="4.5" fill="#1d9e75"/>
+
+      <!-- Before / After bracket at M24 -->
+      <line x1="718" y1="36" x2="718" y2="154" stroke="#1d9e75" stroke-width="1" stroke-dasharray="3,2" opacity="0.45"/>
+      <line x1="714" y1="36"  x2="722" y2="36"  stroke="#888780" stroke-width="1.5"/>
+      <line x1="714" y1="154" x2="722" y2="154" stroke="#1d9e75" stroke-width="1.5"/>
+      <text x="728" y="40"  font-family="'DM Mono',monospace" font-size="8.5" fill="#888780">$85K/mo</text>
+      <text x="728" y="94"  font-family="'DM Mono',monospace" font-size="10"  fill="#1d9e75" font-weight="600" letter-spacing="0.02em">−$75K</text>
+      <text x="728" y="107" font-family="'DM Mono',monospace" font-size="8.5" fill="#888780">saved/mo</text>
+      <text x="728" y="158" font-family="'DM Mono',monospace" font-size="8.5" fill="#1d9e75">$10K/mo</text>
+
+      <!-- Y labels -->
+      <text x="58" y="174" text-anchor="end" font-family="'DM Mono',monospace" font-size="9" fill="#888780">$0</text>
+      <text x="58" y="135" text-anchor="end" font-family="'DM Mono',monospace" font-size="9" fill="#888780">$25K</text>
+      <text x="58" y="95"  text-anchor="end" font-family="'DM Mono',monospace" font-size="9" fill="#888780">$50K</text>
+      <text x="58" y="56"  text-anchor="end" font-family="'DM Mono',monospace" font-size="9" fill="#888780">$75K</text>
+      <text x="58" y="16"  text-anchor="end" font-family="'DM Mono',monospace" font-size="9" fill="#888780">$100K</text>
+
+      <!-- X axis baseline -->
+      <line x1="64" y1="170" x2="720" y2="170" stroke="#1a0a2e" stroke-width="1.5" opacity="0.25"/>
+
+      <!-- X labels -->
+      <text x="78"  y="183" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="#888780">M1</text>
+      <text x="160" y="183" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="#888780">M4</text>
+      <text x="242" y="183" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="#888780">M7</text>
+      <text x="296" y="183" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="#1a0a2e" font-weight="600">M9</text>
+      <text x="378" y="183" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="#888780">M12</text>
+      <text x="542" y="183" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="#888780">M18</text>
+      <text x="706" y="183" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="#1a0a2e" font-weight="600">M24</text>
+
+    </svg>
+    <div style="display:none;" class="bar-area bar-area-dense" style="height:130px;">
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:3px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M1</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:8px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M2</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:18px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M3</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:30px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M4</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:44px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M5</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:57px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M6</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:68px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M7</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:80px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M8</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:92px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M9</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:96px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M10</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:100px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M11</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:102px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M12</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:104px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M13</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:106px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M14</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:107px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M15</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:107px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M16</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:108px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M17</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:109px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M18</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:108px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M19</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:107px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M20</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:106px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M21</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:105px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M22</div></div>
+      <div class="bar-col"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:103px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M23</div></div>
+      <div class="bar-col now"><div class="bar-pair"><div class="b before" style="height:110px;"></div><div class="b saved" style="height:102px;"></div><div class="b cost" style="height:10px;"></div></div><div class="bar-lbl">M24 ←</div></div>
+    </div>
+    <div class="chart-note">
+      <div class="cn-val">$85K → $10K/mo</div>
+      <div class="cn-sub">Without Thymos: ~$85K/month in drug spend, every month, indefinitely. With Thymos at M24: $5K in remaining fills + $5K program fee = $10K total monthly cost. That's $75K saved per month — and cumulative savings ($780K AWP avoided) exceed total program investment ($165K) by +$615K.</div>
+    </div>
+    <div class="chart-fn">† Program fee ($500/pt/month) only. Diagnostic costs billed separately at $225/patient/quarter — approximately $750/month for this 10-patient group.</div>
+  </div>
+
+  <div style="display:flex; gap:10px; max-width:560px; margin-bottom:26px;">
+    <div class="kpi-card" style="flex:1;">
+      <div class="kpi-accent"></div>
+      <div>
+        <div class="kpi-label">Admin PMPM · Total Population</div>
+        <div class="kpi-val">$5</div>
+        <div class="kpi-delta">$500 × 10 treated ÷ 1,000 lives · excl. $225/pt/qtr diagnostic fees</div>
+      </div>
+    </div>
+    <div class="kpi-card" style="flex:1;">
+      <div class="kpi-accent"></div>
+      <div>
+        <div class="kpi-label">Drug Cost Avoided PMPM</div>
+        <div class="kpi-val">$80</div>
+        <div class="kpi-delta">$80,256 M24 avoided ÷ 1,000 lives</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-hdr"><span class="section-num">02</span><span class="section-title">Population</span></div>
+
+  <div class="pop-wrap">
+    <div class="pop-section-title">Population funnel · September 2027</div>
+    <div class="pop-section-sub">From total covered population to active program participants — where each patient is in the Thymos journey.</div>
+    <div class="pop-bars">
+      <div class="pop-row">
+        <div class="pop-num">1,000</div>
+        <div class="pop-bar-track"><div class="pop-bar" style="width:97%; background:#c8c2b6;"></div></div>
+        <div class="pop-meta"><div class="pop-meta-lbl">Covered Lives</div><div class="pop-meta-sub">TOTAL PLAN ENROLLMENT</div></div>
+      </div>
+      <div class="pop-row">
+        <div class="pop-num">~80</div>
+        <div class="pop-bar-track"><div class="pop-bar" style="width:30%; background:#b5a870;"></div></div>
+        <div class="pop-meta"><div class="pop-meta-lbl">With Autoimmune Conditions</div><div class="pop-meta-sub">IDENTIFIED VIA CLAIMS ANALYSIS · ~8% OF COVERED LIVES</div></div>
+      </div>
+      <div class="pop-row">
+        <div class="pop-num">10</div>
+        <div class="pop-bar-track"><div class="pop-bar" style="width:11%; background:#2d6e55;"></div></div>
+        <div class="pop-meta"><div class="pop-meta-lbl">In Active Program</div><div class="pop-meta-sub">ENROLLED WITH THYMOS · MONTH 24 OF 24</div></div>
+      </div>
+    </div>
+    <div class="stage-row-new">
+      <div class="stage-card-new" style="border-top-color:#d85a30;"><div class="stage-n">0</div><div class="stage-lbl">Onboarding</div></div>
+      <div class="stage-card-new" style="border-top-color:#d97706;"><div class="stage-n">0</div><div class="stage-lbl">Building<br>Trust</div></div>
+      <div class="stage-card-new" style="border-top-color:#6b7c45;"><div class="stage-n">3</div><div class="stage-lbl">Tapering<br>Therapy</div></div>
+      <div class="stage-card-new" style="border-top-color:#1d9e75;"><div class="stage-n">7</div><div class="stage-lbl">New<br>Normal</div></div>
+    </div>
+  </div>
+
+  <div class="section-hdr"><span class="section-num">03</span><span class="section-title">Therapy Detail · September 2027</span></div>
+
+  <div class="table-wrap">
+    <table class="dt">
+      <thead>
+        <tr><th>Therapeutic Class</th><th class="c">Patients</th><th class="c">Exp. Fills</th><th class="c">Filled</th><th class="c">Missed</th><th class="c">Deferred</th><th class="c">Abandoned</th><th class="c">Gap Rate</th><th class="r">AWP Avoided</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="class-dot" style="background:#d85a30;"></span>TNF-α Inhibitors</td><td class="c">4</td><td class="c">3</td><td class="c">1</td><td class="dim">—</td><td class="dim">—</td><td class="c"><span class="skip-n">2</span></td><td class="c"><span class="skip-badge mid">67%</span></td><td class="pos">$4,647</td></tr>
+        <tr><td><span class="class-dot" style="background:#d97706;"></span>IL-17 Inhibitors</td><td class="c">2</td><td class="c">2</td><td class="c">0</td><td class="dim">—</td><td class="dim">—</td><td class="c"><span class="skip-n">2</span></td><td class="c"><span class="skip-badge high">100%</span></td><td class="pos">$18,949</td></tr>
+        <tr><td><span class="class-dot" style="background:#6b7c45;"></span>IL-23 Inhibitors</td><td class="c">2</td><td class="c">2</td><td class="c">0</td><td class="dim">—</td><td class="dim">—</td><td class="c"><span class="skip-n">2</span></td><td class="c"><span class="skip-badge high">100%</span></td><td class="pos">$46,960</td></tr>
+        <tr><td><span class="class-dot" style="background:#1d9e75;"></span>IL-6 Inhibitors</td><td class="c">1</td><td class="c">1</td><td class="c">0</td><td class="dim">—</td><td class="dim">—</td><td class="c"><span class="skip-n">1</span></td><td class="c"><span class="skip-badge high">100%</span></td><td class="pos">$2,500</td></tr>
+        <tr><td><span class="class-dot" style="background:#5dcaa5;"></span>Other Biologics &amp; Specialty</td><td class="c">1</td><td class="c">1</td><td class="c">0</td><td class="dim">—</td><td class="dim">—</td><td class="c"><span class="skip-n">1</span></td><td class="c"><span class="skip-badge high">100%</span></td><td class="pos">$7,200</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td>Total · This Month</td><td class="c">10</td><td class="c">9</td><td class="c">1</td><td class="dim">—</td><td class="dim">—</td><td class="c">8</td><td class="c"><span class="skip-badge high">89%</span></td><td class="pos">$80,256</td></tr>
+      </tfoot>
+    </table>
+    <div class="net-impact-note">
+      Net monthly impact = Σ (abandoned fills × AWP per fill) − (active patients × $500). &nbsp;·&nbsp; This month: <span class="nia">$80,256 AWP avoided</span> − $5,000 program cost = <span class="nia">+$75,256 net savings</span>.
+    </div>
+    <div class="table-footnote">AWP figures are published list price (NDC-level) at time of expected fill. &nbsp;·&nbsp; 7 of 10 members now in New Normal — minimal fills required. &nbsp;·&nbsp; Program concludes this month.</div>
+  </div>
+
+  <div class="doc-footer">
+    <div class="foot-txt">No names, diagnoses, or PHI included in this report.<br>De-identified per HIPAA Safe Harbor.</div>
+    <div class="foot-txt r">Thymos Health · EMP-1001<br>Program complete · Final report</div>
+  </div>
+
+</div><!-- /view-m24 -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE 2 · INTERNAL REFERENCE — NOT FOR DISTRIBUTION
+═══════════════════════════════════════════════════ -->
+<div class="page">
+
+  <div class="letterhead">
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <div class="brand-name">Thymos Health</div>
+    </div>
+    <div class="report-meta">
+      EMP-1001 · Your Group<br>
+      Internal Reference Only<br>
+      July 1, 2026
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <div class="int-banner">
+    <div class="int-badge">Internal · Not for distribution</div>
+    <div class="int-desc">This page is for employer trust-building only — it will not be included in the delivered report. All data is de-identified per HIPAA Safe Harbor. No names, diagnoses, or direct identifiers appear below.</div>
+  </div>
+
+  <div class="report-title">Patient Claim Detail — <em>Month 9</em></div>
+  <div class="report-sub">De-identified · AWP list price estimates · M7–M9 claim window shown · Program stage per member</div>
+
+
+  <!-- ── P-001 ── -->
+  <div class="patient-block">
+    <div class="patient-hdr">
+      <div class="ph-left">
+        <div class="p-id">P-001 &nbsp;·&nbsp; Rheumatoid Arthritis</div>
+        <div class="p-condition">Adalimumab</div>
+        <div class="p-drug">Humira &nbsp;·&nbsp; TNF-α Inhibitor</div>
+        <div class="stage-journey">
+          <div class="sj-step done"><div class="sj-dot"></div><div class="sj-lbl">Onboarding</div></div>
+          <div class="sj-line done"></div>
+          <div class="sj-step done"><div class="sj-dot"></div><div class="sj-lbl">Building Trust</div></div>
+          <div class="sj-line done"></div>
+          <div class="sj-step active"><div class="sj-dot"></div><div class="sj-lbl">Tapering</div></div>
+          <div class="sj-line"></div>
+          <div class="sj-step"><div class="sj-dot"></div><div class="sj-lbl">New Normal</div></div>
+        </div>
+      </div>
+      <div class="ph-right">
+        <div class="p-awp-label">AWP List Price</div>
+        <div class="p-awp-val">$2,077 <span class="p-awp-note">/ fill</span></div>
+        <div class="p-prog">Month 9 of 24 in program</div>
+      </div>
+    </div>
+    <table class="pt">
+      <thead><tr><th>Month</th><th class="c">Fills Expected</th><th class="c">Fills Dispensed</th><th class="c">Fills Skipped</th><th class="r">AWP Avoided</th></tr></thead>
+      <tbody>
+        <tr><td>M7 · April 2026</td><td class="c">2</td><td class="c">1</td><td class="c">1</td><td class="pos">$2,077</td></tr>
+        <tr><td>M8 · May 2026</td><td class="c">2</td><td class="c">0</td><td class="c">2</td><td class="pos">$4,154</td></tr>
+        <tr class="current-mo"><td>M9 · June 2026 ←</td><td class="c">2</td><td class="c">0</td><td class="c">2</td><td class="pos">$4,154</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── P-002 ── -->
+  <div class="patient-block">
+    <div class="patient-hdr">
+      <div class="ph-left">
+        <div class="p-id">P-002 &nbsp;·&nbsp; Ankylosing Spondylitis</div>
+        <div class="p-condition">Etanercept</div>
+        <div class="p-drug">Enbrel &nbsp;·&nbsp; TNF-α Inhibitor</div>
+        <div class="stage-journey">
+          <div class="sj-step done"><div class="sj-dot"></div><div class="sj-lbl">Onboarding</div></div>
+          <div class="sj-line done"></div>
+          <div class="sj-step done"><div class="sj-dot"></div><div class="sj-lbl">Building Trust</div></div>
+          <div class="sj-line done"></div>
+          <div class="sj-step active"><div class="sj-dot"></div><div class="sj-lbl">Tapering</div></div>
+          <div class="sj-line"></div>
+          <div class="sj-step"><div class="sj-dot"></div><div class="sj-lbl">New Normal</div></div>
+        </div>
+      </div>
+      <div class="ph-right">
+        <div class="p-awp-label">AWP List Price</div>
+        <div class="p-awp-val">$2,570 <span class="p-awp-note">/ fill</span></div>
+        <div class="p-prog">Month 9 of 24 in program</div>
+      </div>
+    </div>
+    <table class="pt">
+      <thead><tr><th>Month</th><th class="c">Fills Expected</th><th class="c">Fills Dispensed</th><th class="c">Fills Skipped</th><th class="r">AWP Avoided</th></tr></thead>
+      <tbody>
+        <tr><td>M7 · April 2026</td><td class="c">2</td><td class="c">2</td><td class="c">0</td><td class="zero">—</td></tr>
+        <tr><td>M8 · May 2026</td><td class="c">2</td><td class="c">1</td><td class="c">1</td><td class="pos">$2,570</td></tr>
+        <tr class="current-mo"><td>M9 · June 2026 ←</td><td class="c">2</td><td class="c">1</td><td class="c">1</td><td class="pos">$2,570</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── P-003 ── -->
+  <div class="patient-block">
+    <div class="patient-hdr">
+      <div class="ph-left">
+        <div class="p-id">P-003 &nbsp;·&nbsp; Psoriatic Arthritis</div>
+        <div class="p-condition">Certolizumab</div>
+        <div class="p-drug">Cimzia &nbsp;·&nbsp; TNF-α Inhibitor</div>
+        <div class="stage-journey">
+          <div class="sj-step done"><div class="sj-dot"></div><div class="sj-lbl">Onboarding</div></div>
+          <div class="sj-line done"></div>
+          <div class="sj-step active"><div class="sj-dot"></div><div class="sj-lbl">Building Trust</div></div>
+          <div class="sj-line"></div>
+          <div class="sj-step"><div class="sj-dot"></div><div class="sj-lbl">Tapering</div></div>
+          <div class="sj-line"></div>
+          <div class="sj-step"><div class="sj-dot"></div><div class="sj-lbl">New Normal</div></div>
+        </div>
+      </div>
+      <div class="ph-right">
+        <div class="p-awp-label">AWP List Price</div>
+        <div class="p-awp-val">$7,559 <span class="p-awp-note">/ fill</span></div>
+        <div class="p-prog">Month 5 of 24 in program</div>
+      </div>
+    </div>
+    <table class="pt">
+      <thead><tr><th>Month</th><th class="c">Fills Expected</th><th class="c">Fills Dispensed</th><th class="c">Fills Skipped</th><th class="r">AWP Avoided</th></tr></thead>
+      <tbody>
+        <tr><td>M7 · April 2026</td><td class="c">1</td><td class="c">1</td><td class="c">0</td><td class="zero">—</td></tr>
+        <tr><td>M8 · May 2026</td><td class="c">1</td><td class="c">1</td><td class="c">0</td><td class="zero">—</td></tr>
+        <tr class="current-mo"><td>M9 · June 2026 ←</td><td class="c">1</td><td class="c">1</td><td class="c">0</td><td class="zero">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── P-004 ── -->
+  <div class="patient-block">
+    <div class="patient-hdr">
+      <div class="ph-left">
+        <div class="p-id">P-004 &nbsp;·&nbsp; Crohn's Disease</div>
+        <div class="p-condition">Infliximab</div>
+        <div class="p-drug">Remicade &nbsp;·&nbsp; TNF-α Inhibitor</div>
+        <div class="stage-journey">
+          <div class="sj-step done"><div class="sj-dot"></div><div class="sj-lbl">Onboarding</div></div>
+          <div class="sj-line done"></div>
+          <div class="sj-step active"><div class="sj-dot"></div><div class="sj-lbl">Building Trust</div></div>
+          <div class="sj-line"></div>
+          <div class="sj-step"><div class="sj-dot"></div><div class="sj-lbl">Tapering</div></div>
+          <div class="sj-line"></div>
+          <div class="sj-step"><div class="sj-dot"></div><div class="sj-lbl">New Normal</div></div>
+        </div>
+      </div>
+      <div class="ph-right">
+        <div class="p-awp-label">AWP List Price</div>
+        <div class="p-awp-val">$5,605 <span class="p-awp-note">/ fill</span></div>
+        <div class="p-prog">Month 5 of 24 in program</div>
+      </div>
+    </div>
+    <table class="pt">
+      <thead><tr><th>Month</th><th class="c">Fills Expected</th><th class="c">Fills Dispensed</th><th class="c">Fills Skipped</th><th class="r">AWP Avoided</th></tr></thead>
+      <tbody>
+        <tr><td>M7 · April 2026</td><td class="c">1</td><td class="c">1</td><td class="c">0</td><td class="zero">—</td></tr>
+        <tr><td>M8 · May 2026</td><td class="c">1</td><td class="c">1</td><td class="c">0</td><td class="zero">—</td></tr>
+        <tr class="current-mo"><td>M9 · June 2026 ←</td><td class="c">1</td><td class="c">1</td><td class="c">0</td><td class="zero">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── P-005 ── -->
+  <div class="patient-block">
+    <div class="patient-hdr">
+      <div class="ph-left">
+        <div class="p-id">P-005 &nbsp;·&nbsp; Plaque Psoriasis</div>
+        <div class="p-condition">Secukinumab</div>
+        <div class="p-drug">Cosentyx &nbsp;·&nbsp; IL-17 Inhibitor</div>
+        <div class="stage-journey">
+          <div class="sj-step done"><div class="sj-dot"></div><div class="sj-lbl">Onboarding</div></div>
+          <div class="sj-line done"></div>
+          <div class="sj-step done"><div class="sj-dot"></div><div class="sj-lbl">Building Trust</div></div>
+          <div class="sj-line done"></div>
+          <div class="sj-step active"><div class="sj-dot"></div><div class="sj-lbl">Tapering</div></div>
+          <div class="sj-line"></div>
+          <div class="sj-step"><div class="sj-dot"></div><div class="sj-lbl">New Normal</div></div>
+        </div>
+      </div>
+      <div class="ph-right">
+        <div class="p-awp-label">AWP List Price</div>
+        <div class="p-awp-val">$9,799 <span class="p-awp-note">/ fill</span></div>
+        <div class="p-prog">Month 9 of 24 in program</div>
+      </div>
+    </div>
+    <table class="pt">
+      <thead><tr><th>Month</th><th class="c">Fills Expected</th><th class="c">Fills Dispensed</th><th class="c">Fills Skipped</th><th class="r">AWP Avoided</th></tr></thead>
+      <tbody>
+        <tr><td>M7 · April 2026</td><td class="c">1</td><td class="c">1</td><td class="c">0</td><td class="zero">—</td></tr>
+        <tr><td>M8 · May 2026</td><td class="c">1</td><td class="c">0</td><td class="c">1</td><td class="pos">$9,799</td></tr>
+        <tr class="current-mo"><td>M9 · June 2026 ←</td><td class="c">1</td><td class="c">0</td><td class="c">1</td><td class="pos">$9,799</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── P-006 ── -->
+  <div class="patient-block">
+    <div class="patient-hdr">
+      <div class="ph-left">
+        <div class="p-id">P-006 &nbsp;·&nbsp; Ankylosing Spondylitis</div>
+        <div class="p-condition">Ixekizumab</div>
+        <div class="p-drug">Taltz &nbsp;·&nbsp; IL-17 Inhibitor</div>
+        <div class="stage-journey">
+          <div class="sj-step done"><div class="sj-dot"></div><div class="sj-lbl">Onboarding</div></div>
+          <div class="sj-line done"></div>
+          <div class="sj-step done"><div class="sj-dot"></div><div class="sj-lbl">Building Trust</div></div>
+          <div class="sj-line done"></div>
+          <div class="sj-step active"><div class="sj-dot"></div><div class="sj-lbl">Tapering</div></div>
+          <div class="sj-line"></div>
+          <div class="sj-step"><div class="sj-dot"></div><div class="sj-lbl">New Normal</div></div>
+        </div>
+      </div>
+      <div class="ph-right">
+        <div class="p-awp-label">AWP List Price</div>
+        <div class="p-awp-val">$9,150 <span class="p-awp-note">/ fill</span></div>
+        <div class="p-prog">Month 9 of 24 in program</div>
+      </div>
+    </div>
+    <table class="pt">
+      <thead><tr><th>Month</th><th class="c">Fills Expected</th><th class="c">Fills Dispensed</th><th class="c">Fills Skipped</th><th class="r">AWP Avoided</th></tr></thead>
+      <tbody>
+        <tr><td>M7 · April 2026</td><td class="c">1</td><td class="c">1</td><td class="c">0</td><td class="zero">—</td></tr>
+        <tr><td>M8 · May 2026</td><td class="c">1</td><td class="c">0</td><td class="c">1</td><td class="pos">$9,150</td></tr>
+        <tr class="current-mo"><td>M9 · June 2026 ←</td><td class="c">1</td><td class="c">0</td><td class="c">1</td><td class="pos">$9,150</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── P-007 ── -->
+  <div class="patient-block">
+    <div class="patient-hdr">
+      <div class="ph-left">
+        <div class="p-id">P-007 &nbsp;·&nbsp; Plaque Psoriasis</div>
+        <div class="p-condition">Risankizumab</div>
+        <div class="p-drug">Skyrizi &nbsp;·&nbsp; IL-23 Inhibitor</div>
+        <div class="stage-journey">
+          <div class="sj-step done"><div class="sj-dot"></div><div class="sj-lbl">Onboarding</div></div>
+          <div class="sj-line done"></div>
+          <div class="sj-step done"><div class="sj-dot"></div><div class="sj-lbl">Building Trust</div></div>
+          <div class="sj-line done"></div>
+          <div class="sj-step active"><div class="sj-dot"></div><div class="sj-lbl">Tapering</div></div>
+          <div class="sj-line"></div>
+          <div class="sj-step"><div class="sj-dot"></div><div class="sj-lbl">New Normal</div></div>
+        </div>
+      </div>
+      <div class="ph-right">
+        <div class="p-awp-label">AWP List Price</div>
+        <div class="p-awp-val">$28,606 <span class="p-awp-note">/ fill</span></div>
+        <div class="p-prog">Month 7 of 24 in program</div>
+      </div>
+    </div>
+    <table class="pt">
+      <thead><tr><th>Month</th><th class="c">Fills Expected</th><th class="c">Fills Dispensed</th><th class="c">Fills Skipped</th><th class="r">AWP Avoided</th></tr></thead>
+      <tbody>
+        <tr><td>M7 · April 2026</td><td class="c">1</td><td class="c">1</td><td class="c">0</td><td class="zero">—</td></tr>
+        <tr><td>M8 · May 2026</td><td class="c">1</td><td class="c">0</td><td class="c">1</td><td class="pos">$28,606</td></tr>
+        <tr class="current-mo"><td>M9 · June 2026 ←</td><td class="c">1</td><td class="c">0</td><td class="c">1</td><td class="pos">$28,606</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── P-008 ── -->
+  <div class="patient-block">
+    <div class="patient-hdr">
+      <div class="ph-left">
+        <div class="p-id">P-008 &nbsp;·&nbsp; Plaque Psoriasis</div>
+        <div class="p-condition">Guselkumab</div>
+        <div class="p-drug">Tremfya &nbsp;·&nbsp; IL-23 Inhibitor</div>
+        <div class="stage-journey">
+          <div class="sj-step active"><div class="sj-dot"></div><div class="sj-lbl">Onboarding</div></div>
+          <div class="sj-line"></div>
+          <div class="sj-step"><div class="sj-dot"></div><div class="sj-lbl">Building Trust</div></div>
+          <div class="sj-line"></div>
+          <div class="sj-step"><div class="sj-dot"></div><div class="sj-lbl">Tapering</div></div>
+          <div class="sj-line"></div>
+          <div class="sj-step"><div class="sj-dot"></div><div class="sj-lbl">New Normal</div></div>
+        </div>
+      </div>
+      <div class="ph-right">
+        <div class="p-awp-label">AWP List Price</div>
+        <div class="p-awp-val">$18,354 <span class="p-awp-note">/ fill</span></div>
+        <div class="p-prog">Month 2 of 24 in program</div>
+      </div>
+    </div>
+    <table class="pt">
+      <thead><tr><th>Month</th><th class="c">Fills Expected</th><th class="c">Fills Dispensed</th><th class="c">Fills Skipped</th><th class="r">AWP Avoided</th></tr></thead>
+      <tbody>
+        <tr class="not-enrolled"><td>M7 · April 2026</td><td class="na">—</td><td class="na">—</td><td class="na">—</td><td class="zero">Not yet enrolled</td></tr>
+        <tr><td>M8 · May 2026</td><td class="c">1</td><td class="c">1</td><td class="c">0</td><td class="zero">—</td></tr>
+        <tr class="current-mo"><td>M9 · June 2026 ←</td><td class="c">1</td><td class="c">1</td><td class="c">0</td><td class="zero">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── P-009 ── -->
+  <div class="patient-block">
+    <div class="patient-hdr">
+      <div class="ph-left">
+        <div class="p-id">P-009 &nbsp;·&nbsp; Ulcerative Colitis</div>
+        <div class="p-condition">Vedolizumab</div>
+        <div class="p-drug">Entyvio &nbsp;·&nbsp; Integrin Inhibitor</div>
+        <div class="stage-journey">
+          <div class="sj-step done"><div class="sj-dot"></div><div class="sj-lbl">Onboarding</div></div>
+          <div class="sj-line done"></div>
+          <div class="sj-step done"><div class="sj-dot"></div><div class="sj-lbl">Building Trust</div></div>
+          <div class="sj-line done"></div>
+          <div class="sj-step done"><div class="sj-dot"></div><div class="sj-lbl">Tapering</div></div>
+          <div class="sj-line done"></div>
+          <div class="sj-step active"><div class="sj-dot"></div><div class="sj-lbl">New Normal</div></div>
+        </div>
+      </div>
+      <div class="ph-right">
+        <div class="p-awp-label">AWP List Price</div>
+        <div class="p-awp-val">~$7,200 <span class="p-awp-note">/ fill · est.</span></div>
+        <div class="p-prog">Month 9 of 24 in program</div>
+      </div>
+    </div>
+    <table class="pt">
+      <thead><tr><th>Month</th><th class="c">Fills Expected</th><th class="c">Fills Dispensed</th><th class="c">Fills Skipped</th><th class="r">AWP Avoided</th></tr></thead>
+      <tbody>
+        <tr><td>M7 · April 2026</td><td class="c">1</td><td class="c">0</td><td class="c">1</td><td class="pos">~$7,200</td></tr>
+        <tr><td>M8 · May 2026</td><td class="c">1</td><td class="c">0</td><td class="c">1</td><td class="pos">~$7,200</td></tr>
+        <tr class="current-mo"><td>M9 · June 2026 ←</td><td class="c">1</td><td class="c">0</td><td class="c">1</td><td class="pos">~$7,200</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── P-010 ── -->
+  <div class="patient-block">
+    <div class="patient-hdr">
+      <div class="ph-left">
+        <div class="p-id">P-010 &nbsp;·&nbsp; Rheumatoid Arthritis</div>
+        <div class="p-condition">Tocilizumab</div>
+        <div class="p-drug">Actemra &nbsp;·&nbsp; IL-6 Inhibitor</div>
+        <div class="stage-journey">
+          <div class="sj-step done"><div class="sj-dot"></div><div class="sj-lbl">Onboarding</div></div>
+          <div class="sj-line done"></div>
+          <div class="sj-step done"><div class="sj-dot"></div><div class="sj-lbl">Building Trust</div></div>
+          <div class="sj-line done"></div>
+          <div class="sj-step done"><div class="sj-dot"></div><div class="sj-lbl">Tapering</div></div>
+          <div class="sj-line done"></div>
+          <div class="sj-step active"><div class="sj-dot"></div><div class="sj-lbl">New Normal</div></div>
+        </div>
+      </div>
+      <div class="ph-right">
+        <div class="p-awp-label">AWP List Price</div>
+        <div class="p-awp-val">~$2,500 <span class="p-awp-note">/ fill · est.</span></div>
+        <div class="p-prog">Month 9 of 24 in program</div>
+      </div>
+    </div>
+    <table class="pt">
+      <thead><tr><th>Month</th><th class="c">Fills Expected</th><th class="c">Fills Dispensed</th><th class="c">Fills Skipped</th><th class="r">AWP Avoided</th></tr></thead>
+      <tbody>
+        <tr><td>M7 · April 2026</td><td class="c">2</td><td class="c">0</td><td class="c">2</td><td class="pos">~$5,000</td></tr>
+        <tr><td>M8 · May 2026</td><td class="c">2</td><td class="c">0</td><td class="c">2</td><td class="pos">~$5,000</td></tr>
+        <tr class="current-mo"><td>M9 · June 2026 ←</td><td class="c">2</td><td class="c">0</td><td class="c">2</td><td class="pos">~$5,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="doc-footer" style="margin-top:8px;">
+    <div class="foot-txt">
+      Internal reference · Not for employer distribution.<br>
+      AWP sourced from Thymos NDC drug database · Entyvio and Actemra marked ~est. (not in file) · De-identified per HIPAA Safe Harbor.
+    </div>
+    <div class="foot-txt r">
+      Thymos Health · EMP-1001<br>
+      Generated July 1, 2026
+    </div>
+  </div>
+
+</div><!-- /page 2 -->
+
+<script>
+function showView(v) {
+  ['m1','m9','m24'].forEach(function(id) {
+    var el = document.getElementById('view-'+id);
+    if (el) el.style.display = 'none';
+  });
+  document.querySelectorAll('.month-btn').forEach(function(b) { b.classList.remove('active'); });
+  var target = document.getElementById('view-'+v);
+  if (target) target.style.display = 'block';
+  var btn = document.querySelector('[data-view="'+v+'"]');
+  if (btn) btn.classList.add('active');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For Employers | Thymos Health</title>
+<meta name="description" content="8% of your workforce has an autoimmune condition, often on biologics indefinitely. See the clinical and financial model behind Thymos Health's employer program.">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', sans-serif; font-size: 18px; line-height: 1.6; color: #212121; background: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+  a { color: #ea6047; text-decoration: none; }
+  a:hover { color: #c14930; }
+  nav a { white-space: nowrap; }
+  .nav-burger { display: none; }
+  @media (max-width: 1080px) {
+    .nav-desktop { display: none !important; }
+    .nav-burger { display: flex !important; }
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     Employer page — ported from employer-landing.html,
+     scoped to #emp-root so it doesn't leak into the shared
+     nav/footer above/below it (see the h1/h2/em/section
+     selectors below — none of those tags appear in the site
+     nav/footer, so they're safe to leave unscoped; body/html
+     stay untouched to keep the header/footer on Montserrat).
+  ═══════════════════════════════════════════════════════ */
+  /* rem units below are always relative to <html>, not #emp-root, no matter
+     where font-size is declared — so the base scale has to live on html
+     itself. Safe here: this whole document is its own page (each .dc.html
+     is independent), and the shared nav/footer above/below #emp-root are
+     entirely px-sized, so they're unaffected by the html font-size change. */
+  html { font-size: 20px; }
+  #emp-root {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--deep);
+    line-height: 1.7;
+    --deep:     #034152;
+    --plum:     #065d76;
+    --mid-plum: #076459;
+    --teal:     #25a08c;
+    --teal-m:   #3ab7a0;
+    --teal-l:   #e1f5ee;
+    --coral:    #f25630;
+    --coral-l:  #fde8e2;
+    --amber:    #f79820;
+    --off:      #f6f6f6;
+    --pale:     #f0ede8;
+    --white:    #ffffff;
+    --gray:     #474747;
+    --lgray:    #e8e4e0;
+    --curve-bg: #f9f6f1;
+  }
+  #emp-root section { padding: 72px 24px; }
+  #emp-root .inner { max-width: 680px; margin: 0 auto; }
+  #emp-root .bg-dark  { background: var(--deep);  color: var(--white); }
+  #emp-root .bg-light { background: var(--off);   color: var(--deep);  }
+  #emp-root .bg-white { background: var(--white); color: var(--deep);  }
+  #emp-root #exposure { background: linear-gradient(180deg, #fbfaf8 0%, var(--off) 100%); }
+
+  #emp-root .eyebrow {
+    font-family: 'DM Mono', monospace; font-size: 0.58rem; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 18px;
+    display: flex; align-items: center; gap: 10px; opacity: 0.6;
+  }
+  #emp-root .eyebrow::before { content: ''; width: 22px; height: 1.5px; background: currentColor; flex-shrink: 0; opacity: 1; }
+
+  #emp-root h1, #emp-root h2 { font-family: 'DM Serif Display', serif; font-weight: 400; line-height: 1.07; letter-spacing: -0.015em; }
+  #emp-root h1 { font-size: clamp(2.4rem, 10vw, 4rem); margin-bottom: 22px; }
+  #emp-root h2 { font-size: clamp(1.75rem, 6.5vw, 2.8rem); margin-bottom: 18px; }
+  #emp-root em { font-style: italic; }
+
+  #emp-root .lede { font-size: clamp(0.92rem, 3.2vw, 1.05rem); line-height: 1.7; max-width: 540px; }
+  #emp-root .lede.muted { opacity: 0.72; }
+
+  #emp-root .divider { height: 1px; background: rgba(255,255,255,0.1); margin: 28px 0; }
+  #emp-root .bg-light .divider, #emp-root .bg-white .divider { background: rgba(3,65,82,0.1); }
+
+  #emp-root .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 800; letter-spacing: 0.05em;
+    text-transform: uppercase; text-decoration: none; border: none; cursor: pointer;
+    border-radius: 50px; padding: 16px 28px; min-height: 54px;
+    transition: background 0.2s, transform 0.1s; -webkit-tap-highlight-color: transparent;
+  }
+  #emp-root .btn:active { transform: scale(0.98); }
+  #emp-root .btn-teal { background: var(--teal); color: white; }
+  #emp-root .btn-teal:hover { background: var(--teal-m); color: white; }
+  #emp-root .btn-outline { background: transparent; color: white; border: 1.5px solid rgba(255,255,255,0.35); }
+  #emp-root .btn-outline:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.6); color: white; }
+  #emp-root .btn-white { background: white; color: var(--mid-plum); }
+  #emp-root .btn-white:hover { background: var(--off); color: var(--mid-plum); }
+
+  #emp-root .hero { background: var(--deep); color: var(--white); padding: 64px 24px 80px; position: relative; overflow: hidden; }
+  #emp-root .hero::after {
+    content: ''; position: absolute; bottom: -80px; right: -60px; width: 280px; height: 280px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(37,160,140,0.14) 0%, transparent 70%); pointer-events: none;
+  }
+  #emp-root .hero-brand { font-family: 'DM Mono', monospace; font-size: 0.56rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.45; margin-bottom: 28px; }
+  #emp-root .hero h1 em { color: var(--teal-m); }
+  #emp-root .hero .lede { opacity: 0.72; margin-bottom: 32px; }
+  #emp-root .hero-kpi { display: flex; align-items: flex-start; gap: 14px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 20px 22px; margin-bottom: 32px; }
+  #emp-root .hero-kpi-n { font-family: 'DM Serif Display', serif; font-size: clamp(2.2rem, 9vw, 3.2rem); line-height: 1; color: var(--teal-m); flex-shrink: 0; }
+  #emp-root .hero-kpi-text { display: flex; flex-direction: column; justify-content: center; gap: 3px; }
+  #emp-root .hero-kpi-title { font-weight: 700; font-size: 0.92rem; color: white; line-height: 1.3; }
+  #emp-root .hero-kpi-sub { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.08em; opacity: 0.5; text-transform: uppercase; }
+  #emp-root .hero-ctas { display: flex; flex-direction: column; gap: 12px; }
+  #emp-root .hero-flex { display: flex; flex-direction: column; gap: 44px; }
+  #emp-root .hero-copy { min-width: 0; }
+  #emp-root .hero-media { position: relative; width: 100%; max-width: 320px; aspect-ratio: 3 / 4; margin: 0 auto; flex-shrink: 0; }
+  #emp-root .hero-media-frame { position: absolute; width: 60%; aspect-ratio: 1 / 1; border-radius: 16px; overflow: hidden; background: var(--deep); border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 16px 40px rgba(0,0,0,0.32); }
+  #emp-root .hero-media-frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  #emp-root .hero-media-frame.frame-1 { top: 0; left: 0; z-index: 1; }
+  #emp-root .hero-media-frame.frame-2 { top: 34%; left: 45%; z-index: 2; border-color: rgba(37,160,140,0.4); box-shadow: 0 20px 44px rgba(0,0,0,0.4); }
+
+  #emp-root .stat-grid { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+  #emp-root .stat-card { padding: 26px 24px; border-radius: 16px; background: var(--curve-bg); border: 1px solid rgba(3,65,82,0.09); box-shadow: 0 2px 16px rgba(3,65,82,0.05); }
+  #emp-root .bg-dark .stat-card, #emp-root .bg-plum .stat-card { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.1); box-shadow: none; }
+  #emp-root .stat-n { font-family: 'DM Serif Display', serif; font-size: clamp(2.6rem, 10vw, 4rem); line-height: 1; color: var(--teal); margin-bottom: 6px; letter-spacing: -0.02em; }
+  #emp-root .stat-n.alert { color: var(--coral); }
+  #emp-root .stat-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.5; margin-bottom: 8px; }
+  #emp-root .stat-desc { font-size: 0.85rem; line-height: 1.55; opacity: 0.72; }
+
+  #emp-root .pull-quote { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(1.15rem, 4vw, 1.5rem); line-height: 1.45; color: var(--teal); border-left: 3px solid var(--teal); padding-left: 20px; margin: 36px 0 0; max-width: 520px; }
+
+  #emp-root .cost-bar { display: flex; height: 76px; border-radius: 12px; overflow: hidden; margin: 32px 0 8px; }
+  #emp-root .cost-thymos { background: var(--teal); display: flex; flex-direction: column; justify-content: center; padding: 0 16px; min-width: 96px; flex-shrink: 0; }
+  #emp-root .cost-drug { flex: 1; background: rgba(242,86,48,0.72); display: flex; flex-direction: column; justify-content: center; align-items: flex-end; padding: 0 18px; }
+  #emp-root .cost-val { font-family: 'DM Serif Display', serif; font-size: clamp(1.1rem, 4vw, 1.4rem); line-height: 1.1; color: white; }
+  #emp-root .cost-sublabel { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-top: 2px; }
+  #emp-root .cost-caption { text-align: center; font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.4; margin-bottom: 22px; }
+  #emp-root .cost-net { background: rgba(37,160,140,0.1); border: 1px solid rgba(37,160,140,0.25); border-radius: 10px; padding: 18px 20px; font-size: 0.9rem; line-height: 1.65; opacity: 0.85; }
+  #emp-root .cost-net strong { color: var(--teal-m); font-weight: 700; opacity: 1; }
+
+  #emp-root .timeline { position: relative; margin-top: 36px; }
+  #emp-root .timeline::before { content: ''; position: absolute; left: 19px; top: 12px; bottom: 12px; width: 2px; background: linear-gradient(to bottom, var(--amber), var(--teal)); opacity: 0.35; border-radius: 2px; z-index: 0; }
+  #emp-root .tl-item { display: flex; gap: 20px; margin-bottom: 28px; align-items: flex-start; }
+  #emp-root .tl-item:last-child { margin-bottom: 0; }
+  #emp-root .tl-dot { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 0.62rem; font-weight: 700; flex-shrink: 0; position: relative; z-index: 1; color: white; letter-spacing: 0.01em; }
+  #emp-root .tl-body { flex: 1; padding-top: 7px; }
+  #emp-root .tl-title { font-weight: 700; font-size: 0.93rem; margin-bottom: 3px; line-height: 1.3; }
+  #emp-root .tl-sub { font-size: 0.82rem; line-height: 1.55; opacity: 0.62; }
+
+  #emp-root .numbers-table { margin-top: 32px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(3,65,82,0.1); }
+  #emp-root .numbers-row { display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 19px 22px; gap: 12px; background: var(--white); border-bottom: 1px solid rgba(3,65,82,0.08); }
+  #emp-root .numbers-row:last-child { border-bottom: none; }
+  #emp-root .numbers-row.total { background: var(--teal-l); border-top: 2px solid var(--teal); }
+  #emp-root .numbers-key { font-size: 0.88rem; opacity: 0.72; line-height: 1.4; }
+  #emp-root .numbers-row.total .numbers-key { font-weight: 700; opacity: 1; }
+  #emp-root .numbers-val { font-family: 'DM Mono', monospace; font-size: 0.95rem; font-weight: 600; text-align: right; white-space: nowrap; }
+  #emp-root .numbers-val.neg { color: var(--coral); }
+  #emp-root .numbers-val.pos { color: var(--teal); }
+  #emp-root .numbers-row.total .numbers-val { font-family: 'DM Serif Display', serif; font-size: 1.5rem; font-weight: 400; color: var(--mid-plum); letter-spacing: -0.01em; }
+
+  #emp-root .steps-list { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; position: relative; }
+  #emp-root .step-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 20px 20px 20px 16px; display: flex; gap: 16px; align-items: flex-start; position: relative; }
+  #emp-root .step-num { width: 38px; height: 38px; border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.85rem; flex-shrink: 0; margin-top: 1px; }
+  #emp-root .step-card:nth-child(1) .step-num { background: var(--teal); }
+  #emp-root .step-card:nth-child(2) .step-num { background: var(--amber); color: var(--deep); }
+  #emp-root .step-card:nth-child(3) .step-num { background: var(--coral); }
+  #emp-root .step-card:nth-child(4) .step-num { background: var(--mid-plum); }
+  #emp-root .step-title { font-weight: 700; font-size: 0.93rem; margin-bottom: 4px; line-height: 1.3; }
+  #emp-root .step-sub { font-size: 0.82rem; opacity: 0.62; line-height: 1.55; }
+
+  #emp-root .cta-section { background: linear-gradient(145deg, var(--mid-plum) 0%, var(--teal) 100%); color: white; padding: 80px 24px; text-align: center; position: relative; overflow: hidden; }
+  #emp-root .cta-section::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500' preserveAspectRatio='none'%3E%3Cpath d='M0,480 C150,480 350,420 800,40' stroke='%235ec4a7' stroke-width='2' fill='none' opacity='0.12'/%3E%3Cpath d='M0,490 C200,490 400,450 800,110' stroke='%235ec4a7' stroke-width='2' fill='none' opacity='0.1'/%3E%3Cpath d='M0,495 C250,495 450,470 800,190' stroke='%235ec4a7' stroke-width='2' fill='none' opacity='0.09'/%3E%3Cpath d='M0,498 C300,498 500,485 800,270' stroke='%235ec4a7' stroke-width='2' fill='none' opacity='0.07'/%3E%3Cpath d='M0,499 C350,499 550,494 800,350' stroke='%235ec4a7' stroke-width='2' fill='none' opacity='0.05'/%3E%3C/svg%3E");
+    background-size: 100% 100%; background-position: center top; background-repeat: no-repeat; z-index: 0;
+  }
+  #emp-root .cta-section .inner { position: relative; z-index: 1; }
+  #emp-root .cta-section h2 { color: white; margin-bottom: 16px; }
+  #emp-root .cta-section .lede { opacity: 0.85; margin: 0 auto 36px; }
+  #emp-root .cta-buttons { display: flex; flex-direction: column; gap: 14px; max-width: 400px; margin: 0 auto; }
+  #emp-root .cta-fine { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.45; margin-top: 28px; line-height: 2.2; }
+
+  #emp-root .footnote { font-family: 'DM Mono', monospace; font-size: 0.62rem; opacity: 0.42; margin-top: 16px; line-height: 1.7; }
+  #emp-root .text-link { display: inline-flex; align-items: center; gap: 6px; color: var(--teal); font-weight: 700; font-size: 0.88rem; text-decoration: none; margin-top: 24px; }
+  #emp-root .text-link:hover { opacity: 0.8; color: var(--teal); }
+
+  #emp-root .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  #emp-root .reveal.in { opacity: 1; transform: none; }
+
+  @media (min-width: 600px) {
+    html { font-size: 19px; }
+    #emp-root section { padding: 88px 48px; }
+    #emp-root .hero { padding: 88px 48px 96px; }
+    #emp-root .hero-ctas { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+    #emp-root .hero-ctas .btn { flex: 0 1 auto; min-width: 200px; }
+    #emp-root #disease-modal-sheet { max-width: 700px; max-height: 80vh; border-radius: 16px; }
+  }
+
+  #emp-root .pj-flex { display: flex; flex-direction: column; }
+  #emp-root .pj-timeline-col { flex: 1; min-width: 0; }
+  #emp-root .vj-media { display: none; position: relative; flex-direction: column; padding-right: 22px; }
+  #emp-root .vj-media-frame { border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 12px 28px rgba(0,0,0,0.3); position: relative; }
+  #emp-root .vj-media-frame:not(:first-child) { margin-top: -22px; }
+  #emp-root .vj-media-frame:nth-child(1) { z-index: 1; }
+  #emp-root .vj-media-frame:nth-child(2) { z-index: 2; }
+  #emp-root .vj-media-frame:nth-child(3) { z-index: 3; }
+  #emp-root .vj-media-frame:nth-child(4) { z-index: 4; }
+  #emp-root .vj-media-frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  #emp-root .vj-media-line { position: absolute; top: 8px; bottom: 8px; right: 8px; width: 2px; background: rgba(255,255,255,0.1); }
+
+  @media (min-width: 860px) {
+    html { font-size: 18px; }
+    #emp-root section { padding: 100px 64px; }
+    #emp-root .inner { max-width: 800px; }
+    #emp-root .hero { padding: 100px 64px 112px; }
+    #emp-root .hero .inner { max-width: 1080px; }
+    #emp-root .hero-flex { flex-direction: row; align-items: center; gap: 56px; }
+    #emp-root .hero-copy { flex: 1 1 560px; }
+    #emp-root .hero-media { flex: 0 0 400px; max-width: 400px; margin: 0; }
+    #emp-root .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    #emp-root #patient-journey .inner { max-width: 1000px; }
+    #emp-root .pj-flex { flex-direction: row; align-items: stretch; gap: 40px; }
+    #emp-root .vj-media { display: flex; flex: 0 0 200px; width: 200px; }
+    #emp-root .vj-media-frame { flex: 1; }
+    #emp-root .steps-list { max-width: 640px; }
+  }
+
+  #emp-root .disease-trigger {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 20px; background: transparent; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 700; color: var(--teal); padding: 0;
+    text-decoration: underline; text-decoration-color: transparent; transition: text-decoration-color 0.15s;
+  }
+  #emp-root .disease-trigger:hover { text-decoration-color: var(--teal); }
+  #emp-root .disease-trigger .trigger-chip { font-family: 'DM Mono', monospace; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.08em; background: var(--teal-l); color: var(--teal); padding: 3px 8px; border-radius: 50px; white-space: nowrap; }
+
+  #disease-modal-scrim { position: fixed; inset: 0; z-index: 2000; background: rgba(3,65,82,0.65); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+  #disease-modal-sheet {
+    position: fixed; z-index: 2001; left: 0; right: 0; bottom: 0; margin: 0 auto; background: var(--white, #fff);
+    width: 100%; max-height: 82vh; border-radius: 20px 20px 0 0; overflow: hidden; display: flex; flex-direction: column;
+    font-family: 'DM Sans', sans-serif; color: var(--deep, #034152);
+  }
+  #emp-root .modal-head { padding: 20px 24px 16px; border-bottom: 1px solid #e8e4e0; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+  #emp-root .modal-title { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--deep); line-height: 1.2; }
+  #emp-root .modal-close { width: 34px; height: 34px; border-radius: 50%; border: none; background: var(--off); color: var(--deep); font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  #emp-root .modal-close:hover { background: var(--lgray); }
+  #emp-root .modal-body { overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 20px 24px 32px; }
+  #emp-root .modal-sub { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 16px; }
+  #emp-root .disease-groups { display: flex; flex-direction: column; gap: 18px; }
+  #emp-root .disease-group-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); font-weight: 700; margin-bottom: 8px; }
+  #emp-root .disease-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  #emp-root .disease-tag { font-size: 0.78rem; color: var(--deep); background: var(--off); border: 1px solid rgba(3,65,82,0.14); border-radius: 20px; padding: 3px 11px; line-height: 1.5; }
+  #emp-root .disease-more { font-size: 0.78rem; color: var(--teal); font-weight: 600; font-style: italic; padding: 4px 2px; }
+
+  @media (min-width: 600px) {
+    #disease-modal-scrim, #disease-modal-sheet { }
+    #disease-modal-sheet { top: 50%; left: 50%; right: auto; bottom: auto; transform: translate(-50%,-50%); margin: 0; border-radius: 16px; max-width: 700px; max-height: 80vh; }
+  }
+
+  #emp-root .vjourney { margin-top: 36px; max-width: 560px; }
+  #emp-root .vj-item { display: flex; gap: 20px; padding-bottom: 28px; }
+  #emp-root .vj-item:last-child { padding-bottom: 0; }
+  #emp-root .vj-spine { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; width: 16px; }
+  #emp-root .vj-dot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.65); flex-shrink: 0; }
+  #emp-root .vj-line { flex: 1; width: 2px; min-height: 20px; margin-top: 5px; background: rgba(255,255,255,0.1); }
+  #emp-root .vj-body { flex: 1; padding-top: 0; }
+  #emp-root .vj-time { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.12em; opacity: 0.45; margin-bottom: 4px; }
+  #emp-root .vj-title { font-weight: 700; font-size: 1rem; line-height: 1.2; margin-bottom: 10px; }
+  #emp-root .vj-pct { font-family: 'DM Serif Display', serif; font-size: 2.2rem; line-height: 1; margin-bottom: 3px; }
+  #emp-root .vj-pct-label { font-family: 'DM Mono', monospace; font-size: 0.54rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.5; margin-bottom: 8px; }
+  #emp-root .vj-bar-track { height: 5px; background: rgba(255,255,255,0.12); border-radius: 3px; overflow: hidden; max-width: 200px; margin-bottom: 10px; }
+  #emp-root .vj-bar-fill { height: 100%; border-radius: 3px; width: 0%; transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
+  #emp-root .vj-desc { font-size: 0.8rem; opacity: 0.6; line-height: 1.55; }
+
+  #emp-root .monitoring-block { margin-top: 24px; background: rgba(37,160,140,0.1); border: 1px solid rgba(37,160,140,0.22); border-radius: 12px; padding: 16px 18px; display: flex; align-items: flex-start; gap: 12px; }
+  #emp-root .monitoring-icon { font-family: 'DM Mono', monospace; font-size: 0.58rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; background: var(--teal); color: white; padding: 4px 8px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+  #emp-root .monitoring-text { font-size: 0.82rem; line-height: 1.55; opacity: 0.8; }
+  #emp-root .monitoring-text strong { opacity: 1; font-weight: 700; }
+
+  #emp-root .pp-wrap { margin-top: 32px; background: white; border: 1px solid rgba(3,65,82,0.1); border-radius: 14px; overflow: hidden; }
+  #emp-root .pp-header { padding: 14px 18px 12px; border-bottom: 1px solid #e8e4e0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  #emp-root .pp-header-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--mid-plum); font-weight: 700; }
+  #emp-root .pp-drugs { display: flex; gap: 6px; flex-wrap: wrap; }
+  #emp-root .pp-drug-btn { font-family: 'DM Sans', sans-serif; font-size: 0.7rem; padding: 4px 13px; border-radius: 20px; border: 1px solid rgba(3,65,82,0.2); background: none; color: #474747; cursor: pointer; transition: all 0.15s; line-height: 1.5; }
+  #emp-root .pp-drug-btn.active, #emp-root .pp-drug-btn:hover { background: var(--teal); color: white; border-color: var(--teal); }
+  #emp-root .pp-legend { padding: 7px 18px; display: flex; gap: 16px; font-size: 0.65rem; color: #888; border-bottom: 1px solid #e8e4e0; flex-wrap: wrap; }
+  #emp-root .pp-legend-item { display: flex; align-items: center; gap: 6px; }
+  #emp-root .pp-legend-dash { width: 18px; height: 2px; background: repeating-linear-gradient(to right,#aaa 0,#aaa 4px,transparent 4px,transparent 8px); }
+  #emp-root .pp-legend-line { width: 18px; height: 2.5px; background: var(--teal); border-radius: 2px; }
+  #emp-root .pp-legend-swatch { width: 12px; height: 12px; background: rgba(37,160,140,0.2); border-radius: 2px; }
+  #emp-root .pp-svg-wrap { padding: 0 14px; }
+  #emp-root .pp-svg-wrap svg { width: 100%; display: block; }
+  #emp-root .pp-callout { margin: 4px 16px 16px; background: #f0faf7; border: 1px solid rgba(37,160,140,0.25); border-radius: 8px; padding: 11px 16px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  #emp-root .pp-callout-math { font-family: 'DM Mono', monospace; font-size: 0.95rem; font-weight: 700; color: var(--teal); white-space: nowrap; }
+  #emp-root .pp-callout-text { font-size: 0.78rem; color: #474747; line-height: 1.55; }
+  #emp-root .pp-callout-text strong { color: var(--deep); }
+
+  #emp-root .emp-footer { background: var(--deep, #034152); color: white; padding: 40px 24px 52px; font-family: 'DM Sans', sans-serif; }
+  #emp-root .emp-footer-brand { font-family: 'DM Serif Display', serif; font-size: 1.15rem; margin-bottom: 10px; }
+  #emp-root .emp-footer-meta { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.07em; text-transform: uppercase; opacity: 0.4; line-height: 2; }
+</style>
+</helmet>
+
+<div style="width:100%; min-height:100vh; display:flex; flex-direction:column; font-family:'Montserrat',sans-serif; color:#212121;">
+
+  <nav style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:20px clamp(16px,3vw,40px); background:#fff; border-bottom:1px solid #ddd; position:sticky; top:0; z-index:1000; gap:20px;">
+    <a href="Thymos Homepage.dc.html" style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:20px; color:#1a1a1a; white-space:nowrap; text-decoration:none;">
+      <img src="img/thymos-logo-flames.png" alt="Thymos Logo" style="height:52px; width:auto;" />
+      <span>Thymos Health</span>
+    </a>
+    <div class="nav-desktop" style="display:flex; gap:20px; font-size:16px;">
+      <a href="Thymos How We Work.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">How We Work</a>
+      <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">Proven Approach</a>
+      <a href="Thymos Conditions Treated.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">Conditions Treated</a>
+      <a href="Thymos For Employers.dc.html" style="color:#ea6047; font-weight:600; text-decoration:none;">For Employers</a>
+      <a href="Thymos About Us.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">About</a>
+    </div>
+    <div class="nav-desktop" style="display:flex; align-items:center; gap:16px;">
+      <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="color:#333; text-decoration:none; font-size:16px;" style-hover="color:#ea6047; text-decoration:underline;">Sign In</a>
+      <a href="/quiz" style="padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:15px; font-weight:500; text-decoration:none;" style-hover="background:#c14930; color:#fff;">Get Started</a>
+    </div>
+    <button class="nav-burger" onClick="{{ toggleMenu }}" aria-label="Menu" style="flex-direction:column; justify-content:center; gap:5px; width:32px; height:28px; background:none; border:none; cursor:pointer; padding:0;">
+      <span style="width:24px; height:3px; background:#333; border-radius:2px;"></span>
+      <span style="width:24px; height:3px; background:#333; border-radius:2px;"></span>
+      <span style="width:24px; height:3px; background:#333; border-radius:2px;"></span>
+    </button>
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="flex-basis:100%; display:flex; flex-direction:column; gap:14px; padding-top:8px; font-size:16px;">
+        <a href="Thymos How We Work.dc.html" style="color:#333; text-decoration:none;">How We Work</a>
+        <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;">Proven Approach</a>
+        <a href="Thymos Conditions Treated.dc.html" style="color:#333; text-decoration:none;">Conditions Treated</a>
+        <a href="Thymos For Employers.dc.html" style="color:#ea6047; font-weight:600; text-decoration:none;">For Employers</a>
+        <a href="Thymos About Us.dc.html" style="color:#333; text-decoration:none;">About</a>
+        <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="color:#333; text-decoration:none;">Sign In</a>
+        <a href="/quiz" style="align-self:flex-start; padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:15px; font-weight:500; text-decoration:none;">Get Started</a>
+      </div>
+    </sc-if>
+  </nav>
+
+  <main id="emp-root" style="flex:1;">
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="inner">
+        <div class="hero-flex">
+          <div class="hero-copy">
+            <div class="hero-brand">Thymos Health · Employer Benefits</div>
+            <h1>Your drug bill<br>has an <em>off switch</em>.</h1>
+            <p class="lede" style="margin-bottom:14px;">8% of your workforce has an autoimmune condition. Most are on biologics indefinitely — many getting no meaningful relief.</p>
+            <p class="lede">Thymos Health's physician-led program gives members and your plan a path out.</p>
+
+            <div class="hero-kpi">
+              <div class="hero-kpi-n">$480K</div>
+              <div class="hero-kpi-text">
+                <div class="hero-kpi-title">Net gain · 2 years · 10 participants</div>
+                <div class="hero-kpi-sub">Conservative · $5K/mo avg biologic AWP</div>
+              </div>
+            </div>
+
+            <div class="hero-ctas">
+              <a href="#the-math" class="btn btn-teal">See the numbers ↓</a>
+              <button class="btn btn-outline" onClick="{{ shareThisPage }}">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                Forward this
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-media">
+            <div class="hero-media-frame frame-1">
+              <img src="img/thymos-employer-telehealth-physician.jpg" alt="Thymos physician meeting with a patient over telehealth">
+            </div>
+            <div class="hero-media-frame frame-2">
+              <img src="img/thymos-employer-telehealth-patient.jpg" alt="Patient connecting with a Thymos physician over telehealth">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE EXPOSURE -->
+    <section class="bg-light" id="exposure">
+      <div class="inner">
+        <div class="eyebrow" style="color:var(--coral);">The Exposure</div>
+        <h2>For every 1,000 covered lives,<br>80 members are on an <em>exponentially rising cost curve.</em></h2>
+        <p class="lede muted">By the time a patient appears on your biologic spend report, they've been accumulating disease burden for years — fragmented care, failed treatments, and rising healthcare costs that often continue well beyond the drug cost itself.</p>
+
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-label">Share of covered members</div>
+            <div class="stat-n">8%</div>
+            <div class="stat-desc">have an autoimmune condition — most undiagnosed for 4+ years before appearing on a specialty claim.</div>
+            <button class="disease-trigger" onClick="{{ openDiseaseModal }}" aria-label="See which autoimmune conditions Thymos treats">
+              <span class="trigger-chip">100+ conditions</span>
+              Which ones? →
+            </button>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Annual biologic cost · per patient</div>
+            <div class="stat-n alert" style="font-size:clamp(1.8rem, 7vw, 3rem);">$12K–<br>$300K</div>
+            <div class="stat-desc">In prescription costs alone. Every year. By default. Until something changes.</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Getting no meaningful relief</div>
+            <div class="stat-n alert">65%</div>
+            <div class="stat-desc">Still filling every month. Nobody has told them there might be another path.</div>
+          </div>
+        </div>
+
+        <blockquote class="pull-quote">
+          "Most patients have never been told that there's another more effective path."
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- CLINICAL JOURNEY -->
+    <section class="bg-dark" id="patient-journey">
+      <div class="inner">
+        <div class="eyebrow" style="color:var(--teal-m);">The Thymos Patient Experience</div>
+        <h2>What your members<br><em>actually feel</em>.</h2>
+        <p class="lede muted">Thymos drives measurable clinical improvement at every step, guided by 24/7 data monitoring between every consult. This builds trust, optimizes treatment adherence, reduces unnecessary tests and specialist overutilization, and opens the taper window.</p>
+
+        <div class="pj-flex">
+        <div class="pj-timeline-col">
+        <div class="vjourney">
+
+          <div class="vj-item">
+            <div class="vj-spine">
+              <div class="vj-dot" style="background:#b0aba4; border-color:rgba(255,255,255,0.35);"></div>
+              <div class="vj-line"></div>
+            </div>
+            <div class="vj-body">
+              <div class="vj-time">Day 1</div>
+              <div class="vj-title">Onboarding</div>
+              <div class="vj-desc">Comprehensive medical assessment — physical, mental, emotional, and social health captured holistically. Baseline labs ordered.</div>
+            </div>
+          </div>
+
+          <div class="vj-item">
+            <div class="vj-spine">
+              <div class="vj-dot" style="background:#f79820;"></div>
+              <div class="vj-line"></div>
+            </div>
+            <div class="vj-body">
+              <div class="vj-time">Week 0 · 1st Consult</div>
+              <div class="vj-title">Diagnosis &amp; Care Plan</div>
+              <div class="vj-desc">Precise diagnoses and root causes identified. Tailored care plan co-created with the patient. Treatment begins the same day.</div>
+            </div>
+          </div>
+
+          <div class="vj-item">
+            <div class="vj-spine">
+              <div class="vj-dot" style="background:#f8c835;"></div>
+              <div class="vj-line"></div>
+            </div>
+            <div class="vj-body">
+              <div class="vj-time">+4 Weeks · 2nd Consult</div>
+              <div class="vj-title">Early Relief</div>
+              <div class="vj-pct" style="color:#f8c835;">10%</div>
+              <div class="vj-pct-label">symptom reduction</div>
+              <div class="vj-bar-track"><div class="vj-bar-fill" style="background:linear-gradient(to right,#f79820,#f8c835);" data-target="10"></div></div>
+              <div class="vj-desc">Rx adherence high. Patient beginning to trust the process.</div>
+            </div>
+          </div>
+
+          <div class="vj-item">
+            <div class="vj-spine">
+              <div class="vj-dot" style="background:#a8c84a;"></div>
+              <div class="vj-line"></div>
+            </div>
+            <div class="vj-body">
+              <div class="vj-time">+8 Weeks · 3rd Consult</div>
+              <div class="vj-title">Meaningful Improvement</div>
+              <div class="vj-pct" style="color:#a8c84a;">50%</div>
+              <div class="vj-pct-label">symptom reduction</div>
+              <div class="vj-bar-track"><div class="vj-bar-fill" style="background:linear-gradient(to right,#f8c835,#a8c84a);" data-target="50"></div></div>
+              <div class="vj-desc">Labs ordered. Adherence improving further.</div>
+            </div>
+          </div>
+
+          <div class="vj-item">
+            <div class="vj-spine">
+              <div class="vj-dot" style="background:#3ab7a0;"></div>
+              <div class="vj-line"></div>
+            </div>
+            <div class="vj-body">
+              <div class="vj-time">+12 Weeks · 4th Consult</div>
+              <div class="vj-title">Major Relief</div>
+              <div class="vj-pct" style="color:#3ab7a0;">80%</div>
+              <div class="vj-pct-label">symptom reduction</div>
+              <div class="vj-bar-track"><div class="vj-bar-fill" style="background:linear-gradient(to right,#a8c84a,#3ab7a0);" data-target="80"></div></div>
+              <div class="vj-desc">Taper window assessment begins. This is where the savings start.</div>
+            </div>
+          </div>
+
+          <div class="vj-item">
+            <div class="vj-spine">
+              <div class="vj-dot" style="background:#25a08c;"></div>
+              <div class="vj-line"></div>
+            </div>
+            <div class="vj-body">
+              <div class="vj-time">Month 6 · Labs</div>
+              <div class="vj-title">Lab Improvement</div>
+              <div class="vj-pct" style="color:#25a08c;">+8%</div>
+              <div class="vj-pct-label">lab markers improved</div>
+              <div class="vj-bar-track"><div class="vj-bar-fill" style="background:#25a08c;" data-target="8"></div></div>
+            </div>
+          </div>
+
+          <div class="vj-item">
+            <div class="vj-spine">
+              <div class="vj-dot" style="background:#076459;"></div>
+            </div>
+            <div class="vj-body">
+              <div class="vj-time">Month 12 · Labs</div>
+              <div class="vj-title">Sustained Progress</div>
+              <div class="vj-pct" style="color:#3ab7a0;">+20%</div>
+              <div class="vj-pct-label">lab markers improved</div>
+              <div class="vj-bar-track"><div class="vj-bar-fill" style="background:linear-gradient(to right,#25a08c,#076459);" data-target="20"></div></div>
+            </div>
+          </div>
+
+        </div>
+        </div>
+
+        <div class="vj-media">
+          <div class="vj-media-line"></div>
+          <div class="vj-media-frame">
+            <img src="img/thymos-employer-journey-month1.jpg" alt="Member at month 1 of their Thymos journey">
+          </div>
+          <div class="vj-media-frame">
+            <img src="img/thymos-employer-journey-month3.jpg" alt="Member at month 3 of their Thymos journey">
+          </div>
+          <div class="vj-media-frame">
+            <img src="img/thymos-employer-journey-month6.jpg" alt="Member at month 6 of their Thymos journey">
+          </div>
+          <div class="vj-media-frame">
+            <img src="img/thymos-employer-journey-month9.jpg" alt="Member at month 9 of their Thymos journey">
+          </div>
+        </div>
+        </div>
+
+        <div class="monitoring-block" style="max-width:560px;">
+          <span class="monitoring-icon">24 / 7</span>
+          <div class="monitoring-text">
+            <strong>Continuous support, data monitoring and care plan adjustments</strong> meet patients where they are — optimizing disease regression and actively advancing them toward medication tapering.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE ECONOMICS -->
+    <section class="bg-dark" id="economics">
+      <div class="inner">
+        <div class="eyebrow" style="color:var(--teal-m);">The Economics</div>
+        <h2>$500 to save<br><em>$1,000–$25,000 PMPM, indefinitely</em>.</h2>
+        <p class="lede muted">Every month a patient advances through the program, the cost asymmetry compounds. The Thymos fee stays flat. The drug cost disappears.</p>
+
+        <div class="cost-bar">
+          <div class="cost-thymos">
+            <div class="cost-val">$500</div>
+            <div class="cost-sublabel">Thymos</div>
+          </div>
+          <div class="cost-drug">
+            <div class="cost-val">$1,000–$25,000</div>
+            <div class="cost-sublabel">Biologic AWP</div>
+          </div>
+        </div>
+        <div class="cost-caption">per patient · per month</div>
+
+        <div class="cost-net">
+          Once the patient is off the biologic, <strong>$500–$24,500 net savings</strong> every month thereafter – even while the patient remains enrolled in Thymos.
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE TO PAYBACK -->
+    <section class="bg-light" id="timeline">
+      <div class="inner">
+        <div class="eyebrow" style="color:var(--mid-plum);">Timeline to Payback</div>
+        <h2>Patience is the<br>only <em>input</em>.</h2>
+        <p class="lede muted">Tapering takes months, not weeks. But every engaged patient pays back their full program cost — and then some.</p>
+
+        <div class="timeline">
+
+          <div class="tl-item">
+            <div class="tl-dot" style="background:var(--plum);">M0</div>
+            <div class="tl-body">
+              <div class="tl-title">Enrollment begins</div>
+              <div class="tl-sub">Members receive outreach, opt in, and begin working with a Thymos clinician. Zero burden on HR.</div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot" style="background:var(--amber); color:var(--deep);">M4</div>
+            <div class="tl-body">
+              <div class="tl-title" style="color:var(--amber);">First fills skipped</div>
+              <div class="tl-sub">Early adopters begin tapering. First measurable savings appear on your monthly report.</div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot" style="background:var(--teal);">M9</div>
+            <div class="tl-body">
+              <div class="tl-title" style="color:var(--teal);">Most patients taper here</div>
+              <div class="tl-sub">Typical taper window. Drug spend begins declining in real claims data. Program is paying for itself.</div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot" style="background:var(--mid-plum);">M14</div>
+            <div class="tl-body">
+              <div class="tl-title">Cohort break-even</div>
+              <div class="tl-sub">Cumulative savings surpass cumulative program cost. Every month after this is net positive.</div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot" style="background:var(--teal);">M24</div>
+            <div class="tl-body">
+              <div class="tl-title" style="color:var(--teal);">Full payback confirmed</div>
+              <div class="tl-sub">9 out of 10 patients net-positive. Savings continue indefinitely as long as they remain off biologics.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="pp-wrap" id="pp-wrap">
+          <div class="pp-header">
+            <div class="pp-header-label">Monthly drug spend · per patient</div>
+            <div class="pp-drugs">
+              <button class="{{ drugHumira }}" onClick="{{ selectDrugHumira }}">Humira</button>
+              <button class="{{ drugStelara }}" onClick="{{ selectDrugStelara }}">Stelara</button>
+              <button class="{{ drugCosentyx }}" onClick="{{ selectDrugCosentyx }}">Cosentyx</button>
+              <button class="{{ drugSkyrizi }}" onClick="{{ selectDrugSkyrizi }}">Skyrizi</button>
+            </div>
+          </div>
+          <div class="pp-legend">
+            <span class="pp-legend-item"><span class="pp-legend-dash"></span>Without Thymos</span>
+            <span class="pp-legend-item"><span class="pp-legend-line"></span>With Thymos</span>
+            <span class="pp-legend-item"><span class="pp-legend-swatch"></span>Savings</span>
+          </div>
+          <div class="pp-svg-wrap">
+            <svg id="pp-svg" viewBox="0 0 520 180" preserveAspectRatio="xMidYMid meet"></svg>
+          </div>
+          <div class="pp-callout">
+            <span class="pp-callout-math" id="pp-math"></span>
+            <span class="pp-callout-text" id="pp-text"></span>
+          </div>
+        </div>
+
+        <p class="footnote">Based on 3-archetype engagement model: early adopter (M6), mid-cycle (M12), slow adopter (M18–M19).</p>
+      </div>
+    </section>
+
+    <!-- THE 2-YEAR MODEL -->
+    <section class="bg-white" id="the-math">
+      <div class="inner">
+        <div class="eyebrow" style="color:var(--coral);">The 2-Year Model</div>
+        <h2>10 participants.<br><em>$480K</em> net gain.</h2>
+        <p class="lede muted">Conservative estimate using a $5K/month average biologic AWP. Even slow adopters who taper at month 18 generate net gain within the 24-month window.</p>
+
+        <div class="numbers-table">
+          <div class="numbers-row">
+            <div class="numbers-key">Eligible members (8% of 1,000 covered lives)</div>
+            <div class="numbers-val" style="color:var(--deep);">~80</div>
+          </div>
+          <div class="numbers-row">
+            <div class="numbers-key">Program participants · Year 1</div>
+            <div class="numbers-val" style="color:var(--deep);">10</div>
+          </div>
+          <div class="numbers-row">
+            <div class="numbers-key">Program cost · 24 months · 10 participants</div>
+            <div class="numbers-val neg">−$120K</div>
+          </div>
+          <div class="numbers-row">
+            <div class="numbers-key">Biologic fills avoided · conservative</div>
+            <div class="numbers-val pos">+$600K</div>
+          </div>
+          <div class="numbers-row total">
+            <div class="numbers-key">2-Year Net Gain</div>
+            <div class="numbers-val pos">+$480K</div>
+          </div>
+        </div>
+
+        <p class="footnote">Assumes avg biologic AWP $5K/mo · mixed engagement cohort · program fee $500/participant/month. Actual PBM data will sharpen these numbers.</p>
+
+        <a href="savings-calculator.html" target="_blank" class="text-link">
+          Build your own model — pick a drug, pick a timing →
+        </a>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="bg-dark" id="how-it-works">
+      <div class="inner">
+        <div class="eyebrow" style="color:var(--teal-m);">How It Works</div>
+        <h2>Four steps.<br><em>No disruption</em> to HR.</h2>
+        <p class="lede muted">No new clinical workflows. No burden on your benefits team. Thymos does the clinical work — you see the results in a monthly report, first week of every month.</p>
+
+        <div class="steps-list">
+
+          <div class="step-card">
+            <div class="step-num">1</div>
+            <div>
+              <div class="step-title">Believe the ROI</div>
+              <div class="step-sub">An 18–24 month investment appetite. The only gate is deciding the math makes sense for your plan.</div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <div>
+              <div class="step-title">Size your population</div>
+              <div class="step-sub">One email to your PBM. Thymos tells you exactly what to ask for — no PHI, just a count of eligible members.</div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <div>
+              <div class="step-title">Introduce Thymos to members</div>
+              <div class="step-sub">Personalized letters go to eligible members. Participation is voluntary. Thymos follows up directly — zero burden on your team.</div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">4</div>
+            <div>
+              <div class="step-title">See the savings</div>
+              <div class="step-sub">Monthly report: fills skipped, AWP avoided, net gain by therapeutic class. Every month, de-identified.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="get-started">
+      <div class="inner">
+        <div class="eyebrow" style="color:rgba(255,255,255,0.55); justify-content:center;">Next Step</div>
+        <h2>Start with<br>your real numbers.</h2>
+        <p class="lede" style="opacity:0.85; margin:0 auto 32px;">The model above uses industry averages. One ask to your health plan or PBM gives you an actual count of eligible members — and a real ROI projection built from your own claims data.</p>
+
+        <div class="cta-buttons">
+          <a href="mailto:hello@thymoshealth.com?subject=PBM%20Data%20Pull%20Request&body=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20sizing%20our%20population%20for%20the%20Thymos%20program." class="btn btn-white">
+            Request a PBM data pull →
+          </a>
+          <a href="employer-pitch.html" target="_blank" class="btn btn-outline">
+            View full interactive pitch →
+          </a>
+          <button class="btn btn-outline" onClick="{{ shareThisPage }}">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+            Forward to your benefits team
+          </button>
+        </div>
+
+        <div class="cta-fine">
+          $500 / participant / month · 24-month commitment<br>
+          De-identified monthly reporting · Minimum viable cohort: 10 eligible members
+        </div>
+      </div>
+    </section>
+
+    <footer class="emp-footer">
+      <div class="inner">
+        <div class="emp-footer-brand">Thymos Health</div>
+        <div class="emp-footer-meta">
+          Founded by Dr. Payal Bhandari, MD · Integrative functional medicine<br>
+          5,000+ autoimmune patients treated · Virtual care · Clinician-led taper programs
+        </div>
+      </div>
+    </footer>
+
+    <sc-if value="{{ diseaseModalOpen }}" hint-placeholder-val="{{ false }}">
+      <div id="disease-modal-scrim" onClick="{{ closeDiseaseModal }}"></div>
+      <div id="disease-modal-sheet" role="dialog" aria-modal="true" aria-label="Autoimmune conditions treated by Thymos">
+        <div class="modal-head">
+          <div class="modal-title">Autoimmune Conditions Thymos Treats</div>
+          <button class="modal-close" onClick="{{ closeDiseaseModal }}" aria-label="Close">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-sub">100+ autoimmune conditions treated</div>
+          <div class="disease-groups">
+
+            <div class="disease-group">
+              <div class="disease-group-label">Joints &amp; Connective Tissue</div>
+              <div class="disease-tags">
+                <span class="disease-tag">Rheumatoid arthritis</span>
+                <span class="disease-tag">Lupus (SLE)</span>
+                <span class="disease-tag">Sjögren's syndrome</span>
+                <span class="disease-tag">Scleroderma</span>
+                <span class="disease-tag">Ankylosing spondylitis</span>
+                <span class="disease-tag">Polymyositis / dermatomyositis</span>
+                <span class="disease-tag">Antiphospholipid syndrome</span>
+                <span class="disease-tag">Mixed connective tissue disease</span>
+                <span class="disease-tag">Behçet's disease</span>
+              </div>
+            </div>
+
+            <div class="disease-group">
+              <div class="disease-group-label">Thyroid, Hormones &amp; Metabolism</div>
+              <div class="disease-tags">
+                <span class="disease-tag">Hashimoto's thyroiditis</span>
+                <span class="disease-tag">Graves' disease</span>
+                <span class="disease-tag">PCOS</span>
+                <span class="disease-tag">Type 1 diabetes</span>
+              </div>
+            </div>
+
+            <div class="disease-group">
+              <div class="disease-group-label">Skin &amp; Hair</div>
+              <div class="disease-tags">
+                <span class="disease-tag">Psoriasis &amp; PsA</span>
+                <span class="disease-tag">Vitiligo</span>
+                <span class="disease-tag">Alopecia areata</span>
+                <span class="disease-tag">Hidradenitis suppurativa</span>
+              </div>
+            </div>
+
+            <div class="disease-group">
+              <div class="disease-group-label">Digestive &amp; Gut</div>
+              <div class="disease-tags">
+                <span class="disease-tag">Celiac disease</span>
+                <span class="disease-tag">Crohn's disease</span>
+                <span class="disease-tag">IBS &amp; UC</span>
+                <span class="disease-tag">Autoimmune gastritis</span>
+                <span class="disease-tag">Autoimmune pancreatitis</span>
+                <span class="disease-tag">Autoimmune hepatitis</span>
+              </div>
+            </div>
+
+            <div class="disease-group">
+              <div class="disease-group-label">Neurological</div>
+              <div class="disease-tags">
+                <span class="disease-tag">Multiple sclerosis</span>
+                <span class="disease-tag">Myasthenia gravis</span>
+                <span class="disease-tag">Anti-NMDA encephalitis</span>
+                <span class="disease-tag">Fibromyalgia</span>
+              </div>
+            </div>
+
+            <div class="disease-group">
+              <div class="disease-group-label">Vascular &amp; Blood</div>
+              <div class="disease-tags">
+                <span class="disease-tag">Raynaud's syndrome</span>
+                <span class="disease-tag">Giant cell arteritis</span>
+                <span class="disease-tag">Wegener's granulomatosis</span>
+                <span class="disease-tag">Pernicious anemia</span>
+              </div>
+            </div>
+
+            <div class="disease-group">
+              <div class="disease-group-label">Other</div>
+              <div class="disease-tags">
+                <span class="disease-tag">Sarcoidosis</span>
+                <span class="disease-tag">Autoimmune myocarditis</span>
+                <span class="disease-tag">Lyme disease</span>
+                <span class="disease-more">+ 80 more conditions</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+  </main>
+
+  <footer style="background:#02302d; color:#fff; padding:40px; text-align:center;">
+    <p>© 2025 Thymos Health. All rights reserved.</p>
+    <nav style="margin-top:12px; display:flex; justify-content:center; align-items:center; gap:12px;">
+      <a href="Thymos About Us.dc.html" style="color:#ea6047; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">About Us</a>
+      <span style="color:#aaa; font-weight:400;">|</span>
+      <a href="Thymos Privacy Policy.dc.html" style="color:#ea6047; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">Privacy Policy</a>
+      <span style="color:#aaa; font-weight:400;">|</span>
+      <a href="Thymos Terms of Service.dc.html" style="color:#ea6047; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">Terms of Service</a>
+    </nav>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { menuOpen: false, diseaseModalOpen: false, selectedAwp: 7150 };
+
+  componentDidMount() {
+    this.renderChart(this.state.selectedAwp);
+    this.setupReveal();
+    this.escapeHandler = (e) => { if (e.key === "Escape") this.setState({ diseaseModalOpen: false }); };
+    document.addEventListener("keydown", this.escapeHandler);
+  }
+
+  componentDidUpdate() {
+    this.renderChart(this.state.selectedAwp);
+  }
+
+  componentWillUnmount() {
+    if (this.escapeHandler) document.removeEventListener("keydown", this.escapeHandler);
+    if (this.revealObserver) this.revealObserver.disconnect();
+  }
+
+  setupReveal() {
+    const animateBars = (container) => {
+      container.querySelectorAll(".vj-bar-fill[data-target]").forEach((bar) => {
+        const target = parseInt(bar.dataset.target, 10);
+        setTimeout(() => { bar.style.width = target + "%"; }, 150);
+      });
+    };
+    const els = document.querySelectorAll("#emp-root .stat-grid, #emp-root .pull-quote, #emp-root .vjourney, #emp-root .cost-bar, #emp-root .cost-net, #emp-root .timeline, #emp-root .pp-wrap, #emp-root .numbers-table, #emp-root .steps-list");
+    if (!("IntersectionObserver" in window)) {
+      els.forEach((el) => { el.classList.add("reveal", "in"); animateBars(el); });
+      return;
+    }
+    els.forEach((el) => el.classList.add("reveal"));
+    this.revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          animateBars(entry.target);
+          this.revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    els.forEach((el) => this.revealObserver.observe(el));
+  }
+
+  fmt(v) {
+    return v >= 1000 ? "$" + Math.round(v / 1000) + "K" : "$" + v;
+  }
+
+  fmtAxis(v, useDecimal) {
+    if (v < 1000) return "$" + v;
+    const k = v / 1000;
+    return "$" + (useDecimal ? k.toFixed(1) : Math.round(k)) + "K";
+  }
+
+  renderChart(awp) {
+    const svg = document.getElementById("pp-svg");
+    if (!svg) return;
+    const TAPER = 9, FEE = 500, MAXM = 24;
+    const W = 520, H = 180;
+    const P = { t: 22, r: 78, b: 32, l: 58 };
+    const cW = W - P.l - P.r, cH = H - P.t - P.b;
+    const maxY = Math.ceil((awp * 1.12) / 2000) * 2000;
+
+    const xS = (m) => P.l + (m / MAXM) * cW;
+    const yS = (v) => P.t + (1 - v / maxY) * cH;
+
+    const tx = xS(TAPER), ex = xS(MAXM);
+    const awpY = yS(awp), feeY = yS(FEE);
+
+    const yTicks = [0, 1, 2, 3, 4].map((i) => (maxY * i) / 4);
+    const yNeedsDecimal = yTicks.some((v) => Math.abs(v / 1000 - Math.round(v / 1000)) > 0.001);
+    const xTicks = [0, 4, 9, 14, 18, 24];
+
+    const beM = TAPER + Math.ceil((TAPER * FEE) / (awp - FEE));
+    const net24 = (MAXM - TAPER) * awp - MAXM * FEE;
+
+    svg.innerHTML = `
+      ${yTicks.map((v) => `
+        <line x1="${P.l}" y1="${yS(v).toFixed(1)}" x2="${W - P.r}" y2="${yS(v).toFixed(1)}" stroke="#ebe8e5" stroke-width="1"/>
+        <text x="${P.l - 5}" y="${(yS(v) + 3.5).toFixed(1)}" text-anchor="end" font-family="DM Mono,monospace" font-size="9" fill="#bbb">${this.fmtAxis(v, yNeedsDecimal)}</text>
+      `).join("")}
+      <polygon points="${tx.toFixed(1)},${awpY.toFixed(1)} ${ex.toFixed(1)},${awpY.toFixed(1)} ${ex.toFixed(1)},${feeY.toFixed(1)} ${tx.toFixed(1)},${feeY.toFixed(1)}" fill="#25a08c" opacity="0.15"/>
+      <line x1="${xS(0).toFixed(1)}" y1="${awpY.toFixed(1)}" x2="${ex.toFixed(1)}" y2="${awpY.toFixed(1)}" stroke="#bbb" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <text x="${ex + 5}" y="${(awpY + 4).toFixed(1)}" font-family="DM Mono,monospace" font-size="9" fill="#bbb">${this.fmt(awp)}/mo</text>
+      <line x1="${xS(0).toFixed(1)}" y1="${awpY.toFixed(1)}" x2="${tx.toFixed(1)}" y2="${awpY.toFixed(1)}" stroke="#25a08c" stroke-width="2.5"/>
+      <line x1="${tx.toFixed(1)}" y1="${awpY.toFixed(1)}" x2="${tx.toFixed(1)}" y2="${feeY.toFixed(1)}" stroke="#25a08c" stroke-width="2.5"/>
+      <line x1="${tx.toFixed(1)}" y1="${feeY.toFixed(1)}" x2="${ex.toFixed(1)}" y2="${feeY.toFixed(1)}" stroke="#25a08c" stroke-width="2.5"/>
+      <text x="${ex + 5}" y="${(feeY + 4).toFixed(1)}" font-family="DM Mono,monospace" font-size="9" fill="#25a08c">$500/mo</text>
+      <circle cx="${tx.toFixed(1)}" cy="${awpY.toFixed(1)}" r="4.5" fill="#25a08c" stroke="white" stroke-width="1.5"/>
+      <circle cx="${tx.toFixed(1)}" cy="${feeY.toFixed(1)}" r="4.5" fill="#25a08c" stroke="white" stroke-width="1.5"/>
+      <line x1="${tx.toFixed(1)}" y1="${P.t - 2}" x2="${tx.toFixed(1)}" y2="${awpY.toFixed(1)}" stroke="#25a08c" stroke-width="1" stroke-dasharray="3,2" opacity="0.4"/>
+      <text x="${tx.toFixed(1)}" y="${P.t - 5}" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" font-weight="700" fill="#25a08c">TAPER</text>
+      <text x="${((tx + ex) / 2).toFixed(1)}" y="${((awpY + feeY) / 2 + 5).toFixed(1)}" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#25a08c" font-weight="600" opacity="0.7">−${this.fmt(awp - FEE)}/mo</text>
+      ${beM <= MAXM ? `
+        <line x1="${xS(beM).toFixed(1)}" y1="${P.t}" x2="${xS(beM).toFixed(1)}" y2="${H - P.b}" stroke="#f79820" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <circle cx="${xS(beM).toFixed(1)}" cy="${awpY.toFixed(1)}" r="3.5" fill="#f79820" stroke="white" stroke-width="1"/>
+        <rect x="${(xS(beM) > W * 0.6 ? xS(beM) - 102 : xS(beM) + 8).toFixed(1)}" y="${P.t + 3}" width="94" height="15" rx="3" fill="rgba(255,255,255,0.95)" stroke="#f79820" stroke-width="0.75"/>
+        <text x="${(xS(beM) > W * 0.6 ? xS(beM) - 55 : xS(beM) + 55).toFixed(1)}" y="${P.t + 13}" text-anchor="middle" font-family="DM Mono,monospace" font-size="8.5" font-weight="600" fill="#f79820">Break-even M${beM}</text>
+      ` : ""}
+      ${xTicks.map((m) => `
+        <text x="${xS(m).toFixed(1)}" y="${H - 4}" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#bbb">M${m}</text>
+      `).join("")}
+    `;
+
+    const mathEl = document.getElementById("pp-math");
+    const textEl = document.getElementById("pp-text");
+    if (mathEl) mathEl.textContent = this.fmt(awp) + " → $500/mo";
+    if (textEl) {
+      textEl.innerHTML = `Saving <strong>${this.fmt(awp - FEE)}/mo</strong> after taper &nbsp;·&nbsp; break-even M${beM} &nbsp;·&nbsp; <strong>+${this.fmt(net24)}</strong> net by M24`;
+    }
+  }
+
+  shareThisPage() {
+    const data = {
+      title: "Thymos Health — Your drug bill has an off switch",
+      text: "8% of your workforce may be on biologics that aren't working. $480K net gain in 2 years for 10 participants. Worth a look.",
+      url: window.location.href
+    };
+    if (navigator.share && (!navigator.canShare || navigator.canShare(data))) {
+      navigator.share(data).catch(() => {});
+    } else {
+      const s = encodeURIComponent("Thymos Health — worth a look");
+      const b = encodeURIComponent(
+        "Thought this was worth sending along:\n\n" + window.location.href + "\n\n" +
+        "A few numbers that stood out:\n" +
+        "  · 8% of covered employees have autoimmune disease\n" +
+        "  · $12K–$300K per person per year in biologics alone\n" +
+        "  · 65% get no meaningful relief — but keep filling\n" +
+        "  · Thymos: $500/mo in, up to $25K/mo saved per patient\n" +
+        "  · 10 participants · 2 years · $480K net gain\n"
+      );
+      window.open("mailto:?subject=" + s + "&body=" + b, "_self");
+    }
+  }
+
+  renderVals() {
+    const awp = this.state.selectedAwp;
+    return {
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
+      diseaseModalOpen: this.state.diseaseModalOpen,
+      openDiseaseModal: () => { document.body.style.overflow = "hidden"; this.setState({ diseaseModalOpen: true }); },
+      closeDiseaseModal: () => { document.body.style.overflow = ""; this.setState({ diseaseModalOpen: false }); },
+      shareThisPage: () => this.shareThisPage(),
+      drugHumira: "pp-drug-btn" + (awp === 7150 ? " active" : ""),
+      drugStelara: "pp-drug-btn" + (awp === 14200 ? " active" : ""),
+      drugCosentyx: "pp-drug-btn" + (awp === 5800 ? " active" : ""),
+      drugSkyrizi: "pp-drug-btn" + (awp === 9500 ? " active" : ""),
+      selectDrugHumira: () => this.setState({ selectedAwp: 7150 }),
+      selectDrugStelara: () => this.setState({ selectedAwp: 14200 }),
+      selectDrugCosentyx: () => this.setState({ selectedAwp: 5800 }),
+      selectDrugSkyrizi: () => this.setState({ selectedAwp: 9500 })
+    };
+  }
+}
+</script>
+</body>
+</html>

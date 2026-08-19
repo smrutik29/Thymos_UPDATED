@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claims Pull</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --deep:   #1a0a2e;
+      --teal:   #1d9e75;
+      --teal-m: #5dcaa5;
+      --coral:  #d85a30;
+      --off:    #f5f2eb;
+      --rule:   #ddd6c8;
+      --muted:  #888780;
+
+      /* Gmail-ish neutrals */
+      --gmail-chrome:   #f1f3f4;
+      --gmail-border:   #e0e0e0;
+      --gmail-sidebar:  #f6f8fc;
+      --gmail-hover:    #e8eaed;
+      --gmail-text:     #202124;
+      --gmail-subtext:  #5f6368;
+      --gmail-blue:     #1a73e8;
+    }
+
+    html, body {
+      min-height: 100%;
+      font-family: 'Syne', sans-serif;
+      background: var(--gmail-chrome);
+      color: var(--gmail-text);
+    }
+
+    /* ─── OUTER SHELL ─────────────────────────────────────────── */
+    .shell {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      height: 100vh;
+      width: 100%;
+    }
+
+    /* ─── CSV SECTION (below shell) ──────────────────────────── */
+    .csv-section {
+      max-width: 900px;
+      margin: 40px auto 60px;
+      padding: 0 32px;
+    }
+    .csv-section-hdr {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .csv-section-chip-icon {
+      width: 30px; height: 30px; border-radius: 4px;
+      background: #0f9d58;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .csv-section-chip-icon svg { width: 16px; height: 16px; }
+    .csv-section-filename {
+      font-family: 'Syne', sans-serif; font-size: 14px;
+      font-weight: 600; color: var(--gmail-text);
+    }
+    .csv-section-note {
+      font-family: 'DM Mono', monospace; font-size: 10.5px;
+      color: var(--gmail-subtext); letter-spacing: 0.05em;
+      margin-left: auto;
+    }
+
+    /* ─── TOP CHROME BAR ──────────────────────────────────────── */
+    .chrome-bar {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 16px;
+      height: 56px;
+      background: #fff;
+      border-bottom: 1px solid var(--gmail-border);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    .chrome-bar .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: var(--deep);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .brand-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      color: var(--deep);
+      letter-spacing: -0.3px;
+    }
+
+    .chrome-divider {
+      width: 1px;
+      height: 28px;
+      background: var(--gmail-border);
+      margin: 0 4px;
+    }
+
+    .compose-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--off);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 3px 8px;
+    }
+
+    .chrome-spacer { flex: 1; }
+
+    .chrome-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .chrome-dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+    }
+    .chrome-dot.close  { background: #ff5f57; }
+    .chrome-dot.min    { background: #febc2e; }
+    .chrome-dot.expand { background: #28c840; }
+
+    /* ─── BODY SPLIT ──────────────────────────────────────────── */
+    .body-split {
+      flex: 1 1 0;
+      display: flex;
+      overflow: hidden;
+    }
+
+    /* ─── LEFT SIDEBAR ────────────────────────────────────────── */
+    .sidebar {
+      flex: 0 0 220px;
+      background: var(--gmail-sidebar);
+      border-right: 1px solid var(--gmail-border);
+      padding: 12px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      overflow: hidden;
+    }
+
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 7px 12px;
+      border-radius: 24px;
+      font-family: 'Syne', sans-serif;
+      font-size: 13.5px;
+      color: var(--gmail-subtext);
+      cursor: default;
+    }
+
+    .sidebar-item.active {
+      background: #d3e3fd;
+      color: #041e49;
+      font-weight: 600;
+    }
+
+    .sidebar-item svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-count {
+      margin-left: auto;
+      font-family: 'DM Mono', monospace;
+      font-size: 11.5px;
+      font-weight: 500;
+    }
+
+    .sidebar-section {
+      margin: 10px 0 4px 12px;
+      font-family: 'DM Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ─── EMAIL PANE ──────────────────────────────────────────── */
+    .email-pane {
+      flex: 1 1 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    /* Subject bar */
+    .email-subject-bar {
+      flex: 0 0 auto;
+      padding: 16px 24px 12px;
+      border-bottom: 1px solid var(--gmail-border);
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .subject-text {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--gmail-text);
+      flex: 1;
+    }
+
+    .tag-pill {
+      font-family: 'DM Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 2px 9px;
+      border-radius: 12px;
+      border: 1px solid var(--rule);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .tag-pill.teal {
+      background: #e6f7f2;
+      border-color: var(--teal-m);
+      color: var(--teal);
+    }
+
+    /* Email header rows */
+    .email-header {
+      flex: 0 0 auto;
+      padding: 0 24px;
+      border-bottom: 1px solid var(--gmail-border);
+    }
+
+    .header-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--gmail-border);
+    }
+
+    .header-row:last-child { border-bottom: none; }
+
+    .header-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      width: 46px;
+      flex-shrink: 0;
+    }
+
+    .header-value {
+      font-family: 'Syne', sans-serif;
+      font-size: 13.5px;
+      color: var(--gmail-text);
+      flex: 1;
+    }
+
+    .header-value .addr-name {
+      color: var(--gmail-text);
+      font-weight: 500;
+    }
+
+    .header-value .addr-email {
+      color: var(--gmail-subtext);
+      font-size: 12.5px;
+    }
+
+    .header-value .addr-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--gmail-hover);
+      border-radius: 14px;
+      padding: 1px 9px 1px 6px;
+      margin-right: 4px;
+      font-size: 13px;
+    }
+
+    .addr-chip .dot-avatar {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .av-blue   { background: var(--gmail-blue); }
+    .av-teal   { background: var(--teal); }
+    .av-coral  { background: var(--coral); }
+    .av-muted  { background: var(--muted); }
+
+    .header-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 11.5px;
+      color: var(--muted);
+      white-space: nowrap;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    /* Email body scroll region */
+    .email-body-scroll {
+      flex: 1 1 0;
+      overflow-y: auto;
+      padding: 20px 56px 20px 56px;
+    }
+
+    /* Custom scrollbar */
+    .email-body-scroll::-webkit-scrollbar { width: 6px; }
+    .email-body-scroll::-webkit-scrollbar-track { background: transparent; }
+    .email-body-scroll::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+
+    /* Email body content */
+    .email-body {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #2d2d2d;
+      max-width: 680px;
+    }
+
+    .email-body p {
+      margin-bottom: 14px;
+    }
+
+    .email-body ol {
+      margin: 6px 0 14px 20px;
+    }
+
+    .email-body ol li {
+      margin-bottom: 6px;
+    }
+
+    /* GPI Table */
+    .gpi-wrapper {
+      margin: 16px 0 18px;
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .gpi-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'DM Mono', monospace;
+      font-size: 11.5px;
+    }
+
+    .gpi-table thead tr {
+      background: var(--deep);
+    }
+
+    .gpi-table thead th {
+      padding: 8px 12px;
+      text-align: left;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 10px;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .gpi-table tbody tr {
+      border-bottom: 1px solid var(--rule);
+      transition: background 0.1s;
+    }
+
+    .gpi-table tbody tr:last-child { border-bottom: none; }
+
+    .gpi-table tbody tr:nth-child(even) {
+      background: #faf9f7;
+    }
+
+    .gpi-table tbody tr:nth-child(odd) {
+      background: #fff;
+    }
+
+    .gpi-table tbody td {
+      padding: 9px 12px;
+      vertical-align: top;
+      line-height: 1.45;
+    }
+
+    .td-class {
+      font-weight: 500;
+      color: var(--deep);
+      white-space: nowrap;
+      width: 180px;
+    }
+
+    .td-gpi {
+      color: var(--teal);
+      white-space: nowrap;
+      width: 170px;
+    }
+
+    .td-drugs {
+      color: var(--gmail-subtext);
+      font-size: 11px;
+    }
+
+    /* Summary line below table */
+    .gpi-summary {
+      margin: 0 0 14px;
+      padding: 9px 14px;
+      background: #e6f7f2;
+      border: 1px solid var(--teal-m);
+      border-radius: 6px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .gpi-summary svg {
+      flex-shrink: 0;
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Fill-in cells */
+    .td-fill {
+      background: #fffdf5;
+      border-left: 1px dashed var(--rule) !important;
+      color: var(--muted);
+      font-style: italic;
+      font-size: 10.5px;
+      text-align: right;
+      white-space: nowrap;
+      min-width: 90px;
+    }
+
+    .gpi-table tfoot tr {
+      background: var(--deep) !important;
+    }
+
+    .gpi-table tfoot td {
+      padding: 10px 12px;
+      color: rgba(255,255,255,0.75);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .gpi-table tfoot .td-fill {
+      background: rgba(255,255,255,0.07);
+      border-left: 1px dashed rgba(255,255,255,0.2) !important;
+      color: rgba(255,255,255,0.4);
+      font-style: italic;
+    }
+
+    /* Signature block */
+    .sig-block {
+      margin-top: 22px;
+      padding-top: 14px;
+      border-top: 1px solid var(--rule);
+      font-family: 'Syne', sans-serif;
+      font-size: 13.5px;
+      color: var(--gmail-subtext);
+      line-height: 1.6;
+    }
+
+    .sig-block .sig-name {
+      font-weight: 600;
+      color: var(--gmail-text);
+    }
+
+    /* Thymos footer */
+    .thymos-footer {
+      margin-top: 24px;
+      padding: 10px 14px;
+      border-top: 2px solid var(--teal-m);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .thymos-footer .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      background: var(--deep);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .footer-icon svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    .footer-text {
+      font-family: 'DM Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+
+    .footer-text a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+
+    /* Attachment chip */
+    .attachment-wrap { margin: 14px 0 4px; }
+    .attachment-chip {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 8px 16px 8px 10px;
+      border: 1px solid var(--gmail-border); border-radius: 8px;
+      background: #fff; cursor: default;
+    }
+    .attachment-chip-icon {
+      width: 32px; height: 32px; border-radius: 4px;
+      background: #0f9d58;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .attachment-chip-icon svg { width: 18px; height: 18px; }
+    .attachment-name {
+      font-family: 'Syne', sans-serif; font-size: 13px;
+      font-weight: 500; color: var(--gmail-text);
+    }
+    .attachment-meta {
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      color: var(--gmail-subtext); letter-spacing: 0.04em;
+    }
+
+    /* CSV preview */
+    .csv-preview {
+      margin: 12px 0 16px;
+      border: 1px solid var(--gmail-border); border-radius: 8px; overflow: hidden;
+    }
+    .csv-preview-hdr {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 7px 14px; background: var(--gmail-chrome);
+      border-bottom: 1px solid var(--gmail-border);
+      font-family: 'DM Mono', monospace; font-size: 10.5px;
+      color: var(--gmail-subtext); letter-spacing: 0.06em;
+    }
+    .csv-preview .gpi-wrapper { margin: 0; border: none; border-radius: 0; }
+
+    /* Group header rows inside table */
+    .gpi-table .group-hdr td {
+      background: #f1f3f4; color: var(--muted);
+      font-size: 9.5px; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 5px 12px; font-weight: 600; border-bottom: 1px solid var(--rule);
+    }
+
+    /* Reply toolbar at bottom */
+    .reply-toolbar {
+      flex: 0 0 auto;
+      border-top: 1px solid var(--gmail-border);
+      background: #fff;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .reply-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 4px;
+      border: 1px solid var(--gmail-border);
+      background: #fff;
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      color: var(--gmail-text);
+      cursor: default;
+    }
+
+    .reply-btn svg { width: 15px; height: 15px; }
+
+    .reply-btn.primary {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: #fff;
+    }
+
+    .reply-forward {
+      margin-left: 4px;
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      color: var(--gmail-subtext);
+      cursor: default;
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ── TOP CHROME BAR ───────────────────────────────────────── -->
+  <div class="chrome-bar">
+    <div class="chrome-actions">
+      <div class="chrome-dot close"></div>
+      <div class="chrome-dot min"></div>
+      <div class="chrome-dot expand"></div>
+    </div>
+    <div class="chrome-divider"></div>
+    <a class="brand-mark" href="#">
+      <div class="brand-icon">
+        <!-- Thymos mark: stylised T -->
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="3" width="16" height="2.5" rx="1.25" fill="#1d9e75"/>
+          <rect x="8.75" y="5.5" width="2.5" height="12" rx="1.25" fill="#fff"/>
+        </svg>
+      </div>
+      <span class="brand-name">Thymos</span>
+    </a>
+    <span class="compose-label">Compose</span>
+    <div class="chrome-spacer"></div>
+  </div>
+
+  <!-- ── BODY SPLIT ────────────────────────────────────────────── -->
+  <div class="body-split">
+
+    <!-- ── LEFT SIDEBAR ────────────────────────────────────────── -->
+    <nav class="sidebar">
+      <div class="sidebar-item">
+        <!-- Pencil icon -->
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm2.92 1.08H5v-.92l9.06-9.06.92.92L5.92 18.33zM20.71 5.63l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83a1 1 0 0 0 0-1.41z"/></svg>
+        Compose
+      </div>
+      <div class="sidebar-item active">
+        <!-- Inbox icon -->
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 16H5v-4h3.5c.7 1.2 2 2 3.5 2s2.8-.8 3.5-2H19v4zm0-6h-4.5c0 1.1-.9 2-2 2s-2-.9-2-2H5V5h14v8z"/></svg>
+        Inbox
+        <span class="sidebar-count">3</span>
+      </div>
+      <div class="sidebar-item">
+        <!-- Star icon -->
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        Starred
+      </div>
+      <div class="sidebar-item">
+        <!-- Clock icon -->
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+        Snoozed
+      </div>
+      <div class="sidebar-item">
+        <!-- Send icon -->
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        Sent
+      </div>
+      <div class="sidebar-item">
+        <!-- Draft icon -->
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+        Drafts
+        <span class="sidebar-count">1</span>
+      </div>
+      <div class="sidebar-section">Labels</div>
+      <div class="sidebar-item">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="color:#1d9e75"><path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/></svg>
+        Benefits Programs
+      </div>
+      <div class="sidebar-item">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="color:#d85a30"><path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/></svg>
+        Vendor Requests
+      </div>
+    </nav>
+
+    <!-- ── EMAIL PANE ───────────────────────────────────────────── -->
+    <div class="email-pane">
+
+      <!-- Subject bar -->
+      <div class="email-subject-bar">
+        <span class="subject-text">Data Pull Request — Autoimmune Biologic Member Count</span>
+        <span class="tag-pill teal">Claims · Specialty Rx</span>
+        <span class="tag-pill">No PHI</span>
+      </div>
+
+      <!-- Header rows -->
+      <div class="email-header">
+        <div class="header-row">
+          <span class="header-label">From</span>
+          <span class="header-value">
+            <span class="addr-chip">
+              <span class="dot-avatar av-blue">BA</span>
+              <span class="addr-name">Benefits Administration</span>
+            </span>
+            <span class="addr-email">benefits@employer.com</span>
+          </span>
+          <span class="header-date">Sat, May 9, 2026, 9:14 AM</span>
+        </div>
+        <div class="header-row">
+          <span class="header-label">To</span>
+          <span class="header-value">
+            <span class="addr-chip">
+              <span class="dot-avatar av-muted">HP</span>
+              <span class="addr-name">Member Data Services</span>
+            </span>
+            <span class="addr-email">memberdata@healthplan.com</span>
+          </span>
+        </div>
+        <div class="header-row">
+          <span class="header-label">CC</span>
+          <span class="header-value">
+            <span class="addr-chip">
+              <span class="dot-avatar av-teal" style="background:var(--deep)">TH</span>
+              <span class="addr-name">Thymos Health</span>
+            </span>
+            <span class="addr-email">data@thymos.com</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Email body -->
+      <div class="email-body-scroll">
+        <div class="email-body">
+
+          <p>Hi Sarah,</p>
+
+          <p>Per our conversation, we are evaluating a clinical program for members on specialty biologics for autoimmune conditions. To size the eligible population, we need a summary report from claims data — no PHI required.</p>
+
+          <p>Please provide:</p>
+          <ol>
+            <li>A unique count of members with ≥ 1 fill of any drug matching the GPI codes listed below, over the past 12 months (May 2025–April 2026).</li>
+            <li>A count of fills per therapeutic class (members may appear in multiple classes).</li>
+          </ol>
+
+          <p><strong>Output format:</strong> aggregate counts only. No member names, dates of birth, or other identifiers.</p>
+
+          <p><strong>Requested GPI list:</strong></p>
+
+          <div class="gpi-wrapper">
+            <table class="gpi-table">
+              <thead>
+                <tr>
+                  <th>Therapeutic Class</th>
+                  <th>GPI Level 6</th>
+                  <th>Example Agents</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="td-class">TNF-α Inhibitors</td>
+                  <td class="td-gpi">6610001010</td>
+                  <td class="td-drugs">Adalimumab, Etanercept, Infliximab, Golimumab, Certolizumab + biosimilars</td>
+                </tr>
+                <tr>
+                  <td class="td-class">IL-17 / IL-23 Inhibitors</td>
+                  <td class="td-gpi">6640004000, 6640005000</td>
+                  <td class="td-drugs">Secukinumab, Ixekizumab, Ustekinumab, Guselkumab, Risankizumab</td>
+                </tr>
+                <tr>
+                  <td class="td-class">IL-6 Inhibitors</td>
+                  <td class="td-gpi">6640006000</td>
+                  <td class="td-drugs">Tocilizumab, Sarilumab</td>
+                </tr>
+                <tr>
+                  <td class="td-class">JAK Inhibitors</td>
+                  <td class="td-gpi">5735001010</td>
+                  <td class="td-drugs">Tofacitinib, Upadacitinib, Baricitinib</td>
+                </tr>
+                <tr>
+                  <td class="td-class">Other Targeted Biologics</td>
+                  <td class="td-gpi">6640007000</td>
+                  <td class="td-drugs">Abatacept, Vedolizumab, Belimumab</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="attachment-wrap">
+            <div class="attachment-chip">
+              <div class="attachment-chip-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="3" width="18" height="18" rx="2" fill="rgba(255,255,255,0.15)"/>
+                  <path d="M3 8h18M3 13h18M3 18h18M8 3v18M13 3v18" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <div class="attachment-name">thymos-pbm-data-request.csv</div>
+                <div class="attachment-meta">CSV · 34 rows · 7 columns — please complete and return</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="gpi-summary">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm.75 10.5h-1.5v-4.5h1.5v4.5zm0-6h-1.5v-1.5h1.5v1.5z"/></svg>
+            Please include a <strong>&nbsp;UNIQUE member count&nbsp;</strong> (deduplicated across all classes) as a summary line in your output.
+          </div>
+
+          <p><strong>Timeline:</strong> We'd appreciate this within 5 business days if possible.</p>
+
+          <p>Thank you,</p>
+
+          <div class="sig-block">
+            <div class="sig-name">Jennifer Hollis</div>
+            <div>Benefits Administration</div>
+            <div>Meridian Industrial Group</div>
+            <div style="margin-top:4px; font-size:12.5px;">benefits@employer.com &nbsp;·&nbsp; ext. 4402</div>
+          </div>
+
+          <div class="thymos-footer">
+            <div class="footer-brand">
+              <div class="footer-icon">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="3" width="16" height="2.5" rx="1.25" fill="#1d9e75"/>
+                  <rect x="8.75" y="5.5" width="2.5" height="12" rx="1.25" fill="#fff"/>
+                </svg>
+              </div>
+            </div>
+            <span class="footer-text">
+              This request was prepared with support from <strong>Thymos Health</strong> &nbsp;·&nbsp; <a href="https://thymos.com">thymos.com</a>
+            </span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Reply toolbar -->
+      <div class="reply-toolbar">
+        <button class="reply-btn primary">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 9V5l-7 7 7 7v-4.1c5 0 8.5 1.6 11 5.1-1-5-4-10-11-11z"/></svg>
+          Reply
+        </button>
+        <button class="reply-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 8V5l-7 7 7 7v-3l-4-4 4-4zm6 1V5l7 7-7 7v-3.1c-5 0-8.5 1.6-11 5.1 1-5 4-10 11-11z"/></svg>
+          Reply All
+        </button>
+        <button class="reply-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8V5l7 7-7 7v-3.1c-5 0-8.5 1.6-11 5.1 1-5 4-10 11-11z"/></svg>
+          Forward
+        </button>
+        <span class="reply-forward" style="margin-left:auto; font-size:12px; color:var(--muted)">
+          Ref: BEN-2026-0509-AR
+        </span>
+      </div>
+
+    </div><!-- /.email-pane -->
+  </div><!-- /.body-split -->
+</div><!-- /.shell -->
+
+<!-- ── CSV ATTACHMENT TABLE ─────────────────────────────────── -->
+<div class="csv-section">
+
+  <div class="csv-section-hdr">
+    <div class="csv-section-chip-icon">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="3" y="3" width="18" height="18" rx="2" fill="rgba(255,255,255,0.15)"/>
+        <path d="M3 8h18M3 13h18M3 18h18M8 3v18M13 3v18" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span class="csv-section-filename">thymos-pbm-data-request.csv</span>
+    <span class="csv-section-note">Aggregate counts by GPI — no member-level data or PHI needed</span>
+  </div>
+
+  <div class="gpi-wrapper" style="margin:0 0 40px;">
+    <table class="gpi-table">
+      <thead>
+        <tr>
+          <th style="width:140px;">GPI #</th>
+          <th>GPI Name</th>
+          <th style="width:90px; text-align:right;"># Patients</th>
+          <th style="width:104px; text-align:right;"># Paid Claims</th>
+          <th style="width:120px; text-align:right;">Total Plan Paid</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-gpi">6610001010</td>
+          <td class="td-class">TNF-α Inhibitor</td>
+          <td class="td-fill">___</td><td class="td-fill">___</td><td class="td-fill">$___</td>
+        </tr>
+        <tr>
+          <td class="td-gpi">6640004000</td>
+          <td class="td-class">IL-17 Inhibitor</td>
+          <td class="td-fill">___</td><td class="td-fill">___</td><td class="td-fill">$___</td>
+        </tr>
+        <tr>
+          <td class="td-gpi">6640005000</td>
+          <td class="td-class">IL-23 Inhibitor</td>
+          <td class="td-fill">___</td><td class="td-fill">___</td><td class="td-fill">$___</td>
+        </tr>
+        <tr>
+          <td class="td-gpi">6640006000</td>
+          <td class="td-class">IL-6 Inhibitor</td>
+          <td class="td-fill">___</td><td class="td-fill">___</td><td class="td-fill">$___</td>
+        </tr>
+        <tr>
+          <td class="td-gpi">5735001010</td>
+          <td class="td-class">JAK Inhibitor</td>
+          <td class="td-fill">___</td><td class="td-fill">___</td><td class="td-fill">$___</td>
+        </tr>
+        <tr>
+          <td class="td-gpi">6640007000</td>
+          <td class="td-class">Other Targeted Biologic</td>
+          <td class="td-fill">___</td><td class="td-fill">___</td><td class="td-fill">$___</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2">TOTAL &nbsp;·&nbsp; <span style="opacity:0.55; font-weight:400; text-transform:none; letter-spacing:0;">unique members, deduplicated across all classes</span></td>
+          <td class="td-fill">___</td>
+          <td class="td-fill">___</td>
+          <td class="td-fill">$___</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <!-- GPI + NDC reference -->
+  <div class="csv-section-hdr" style="margin-top:0;">
+    <div class="csv-section-chip-icon" style="background:var(--gmail-subtext);">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="11" cy="11" r="7" stroke="#fff" stroke-width="1.8"/>
+        <path d="M11 8v3l2 2" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M16.5 16.5L21 21" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span class="csv-section-filename">GPI &amp; NDC Reference</span>
+    <span class="csv-section-note">Including but not limited to — for data team use only, do not return data at NDC level</span>
+  </div>
+
+  <div class="gpi-wrapper" style="margin:0;">
+    <table class="gpi-table">
+      <thead>
+        <tr>
+          <th style="width:140px;">GPI #</th>
+          <th style="width:200px;">GPI Name</th>
+          <th style="width:160px;">NDC</th>
+          <th>Drug Name (Generic / Brand)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-gpi">6610001010</td><td class="td-class">TNF-α Inhibitor</td><td class="td-gpi">00074-9374-02</td><td class="td-drugs">Adalimumab / Humira</td></tr>
+        <tr><td class="td-gpi">6610001010</td><td class="td-class">TNF-α Inhibitor</td><td class="td-gpi">00074-9374-26</td><td class="td-drugs">Adalimumab / Humira</td></tr>
+        <tr><td class="td-gpi">6610001010</td><td class="td-class">TNF-α Inhibitor</td><td class="td-gpi">00310-6001-01</td><td class="td-drugs">Adalimumab / Hadlima</td></tr>
+        <tr><td class="td-gpi">6610001010</td><td class="td-class">TNF-α Inhibitor</td><td class="td-gpi">00069-0188-01</td><td class="td-drugs">Adalimumab / Hyrimoz</td></tr>
+        <tr><td class="td-gpi">6610001010</td><td class="td-class">TNF-α Inhibitor</td><td class="td-gpi">58406-0455-02</td><td class="td-drugs">Etanercept / Enbrel</td></tr>
+        <tr><td class="td-gpi">6610001010</td><td class="td-class">TNF-α Inhibitor</td><td class="td-gpi">58406-0025-04</td><td class="td-drugs">Etanercept / Enbrel</td></tr>
+        <tr><td class="td-gpi">6610001010</td><td class="td-class">TNF-α Inhibitor</td><td class="td-gpi">66658-0010-01</td><td class="td-drugs">Etanercept / Eticovo</td></tr>
+        <tr><td class="td-gpi">6610001010</td><td class="td-class">TNF-α Inhibitor</td><td class="td-gpi">57894-0030-01</td><td class="td-drugs">Infliximab / Remicade</td></tr>
+        <tr><td class="td-gpi">6610001010</td><td class="td-class">TNF-α Inhibitor</td><td class="td-gpi">59148-0049-02</td><td class="td-drugs">Infliximab / Inflectra</td></tr>
+        <tr><td class="td-gpi">6610001010</td><td class="td-class">TNF-α Inhibitor</td><td class="td-gpi">00069-0186-01</td><td class="td-drugs">Infliximab / Ixifi</td></tr>
+        <tr><td class="td-gpi">6610001010</td><td class="td-class">TNF-α Inhibitor</td><td class="td-gpi">57894-0060-01</td><td class="td-drugs">Golimumab / Simponi</td></tr>
+        <tr><td class="td-gpi">6610001010</td><td class="td-class">TNF-α Inhibitor</td><td class="td-gpi">57894-0060-12</td><td class="td-drugs">Golimumab / Simponi</td></tr>
+        <tr><td class="td-gpi">6610001010</td><td class="td-class">TNF-α Inhibitor</td><td class="td-gpi">57894-0061-01</td><td class="td-drugs">Golimumab / Simponi Aria</td></tr>
+        <tr><td class="td-gpi">6610001010</td><td class="td-class">TNF-α Inhibitor</td><td class="td-gpi">46435-0922-02</td><td class="td-drugs">Certolizumab / Cimzia</td></tr>
+        <tr><td class="td-gpi">6610001010</td><td class="td-class">TNF-α Inhibitor</td><td class="td-gpi">46435-0921-02</td><td class="td-drugs">Certolizumab / Cimzia</td></tr>
+        <tr><td class="td-gpi">6640004000</td><td class="td-class">IL-17 Inhibitor</td><td class="td-gpi">00078-0650-61</td><td class="td-drugs">Secukinumab / Cosentyx</td></tr>
+        <tr><td class="td-gpi">6640004000</td><td class="td-class">IL-17 Inhibitor</td><td class="td-gpi">00078-0650-15</td><td class="td-drugs">Secukinumab / Cosentyx</td></tr>
+        <tr><td class="td-gpi">6640004000</td><td class="td-class">IL-17 Inhibitor</td><td class="td-gpi">00002-1490-11</td><td class="td-drugs">Ixekizumab / Taltz</td></tr>
+        <tr><td class="td-gpi">6640004000</td><td class="td-class">IL-17 Inhibitor</td><td class="td-gpi">00002-1499-11</td><td class="td-drugs">Ixekizumab / Taltz</td></tr>
+        <tr><td class="td-gpi">6640005000</td><td class="td-class">IL-23 Inhibitor</td><td class="td-gpi">57894-0070-01</td><td class="td-drugs">Ustekinumab / Stelara</td></tr>
+        <tr><td class="td-gpi">6640005000</td><td class="td-class">IL-23 Inhibitor</td><td class="td-gpi">57894-0070-02</td><td class="td-drugs">Ustekinumab / Stelara</td></tr>
+        <tr><td class="td-gpi">6640005000</td><td class="td-class">IL-23 Inhibitor</td><td class="td-gpi">57894-0114-01</td><td class="td-drugs">Guselkumab / Tremfya</td></tr>
+        <tr><td class="td-gpi">6640005000</td><td class="td-class">IL-23 Inhibitor</td><td class="td-gpi">00074-1261-01</td><td class="td-drugs">Risankizumab / Skyrizi</td></tr>
+        <tr><td class="td-gpi">6640006000</td><td class="td-class">IL-6 Inhibitor</td><td class="td-gpi">50242-0135-01</td><td class="td-drugs">Tocilizumab / Actemra</td></tr>
+        <tr><td class="td-gpi">6640006000</td><td class="td-class">IL-6 Inhibitor</td><td class="td-gpi">50242-0137-01</td><td class="td-drugs">Tocilizumab / Actemra</td></tr>
+        <tr><td class="td-gpi">6640006000</td><td class="td-class">IL-6 Inhibitor</td><td class="td-gpi">49083-0049-01</td><td class="td-drugs">Sarilumab / Kevzara</td></tr>
+        <tr><td class="td-gpi">5735001010</td><td class="td-class">JAK Inhibitor</td><td class="td-gpi">00069-0013-30</td><td class="td-drugs">Tofacitinib / Xeljanz</td></tr>
+        <tr><td class="td-gpi">5735001010</td><td class="td-class">JAK Inhibitor</td><td class="td-gpi">00069-0017-30</td><td class="td-drugs">Tofacitinib / Xeljanz XR</td></tr>
+        <tr><td class="td-gpi">5735001010</td><td class="td-class">JAK Inhibitor</td><td class="td-gpi">00074-2306-30</td><td class="td-drugs">Upadacitinib / Rinvoq</td></tr>
+        <tr><td class="td-gpi">5735001010</td><td class="td-class">JAK Inhibitor</td><td class="td-gpi">00002-1655-60</td><td class="td-drugs">Baricitinib / Olumiant</td></tr>
+        <tr><td class="td-gpi">6640007000</td><td class="td-class">Other Targeted Biologic</td><td class="td-gpi">00003-2187-11</td><td class="td-drugs">Abatacept / Orencia SC</td></tr>
+        <tr><td class="td-gpi">6640007000</td><td class="td-class">Other Targeted Biologic</td><td class="td-gpi">00003-2188-10</td><td class="td-drugs">Abatacept / Orencia IV</td></tr>
+        <tr><td class="td-gpi">6640007000</td><td class="td-class">Other Targeted Biologic</td><td class="td-gpi">64764-0100-01</td><td class="td-drugs">Vedolizumab / Entyvio</td></tr>
+        <tr><td class="td-gpi">6640007000</td><td class="td-class">Other Targeted Biologic</td><td class="td-gpi">00173-0834-01</td><td class="td-drugs">Belimumab / Benlysta</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!-- /.csv-section -->
+
+</body>
+</html>

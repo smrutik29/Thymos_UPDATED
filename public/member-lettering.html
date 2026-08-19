@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Letters — Thymos Health</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --deep:   #1a0a2e;
+      --teal:   #1d9e75;
+      --teal-m: #5dcaa5;
+      --teal-bg:#eaf7f2;
+      --coral:  #d85a30;
+      --off:    #f5f2eb;
+      --rule:   #ddd6c8;
+      --muted:  #888780;
+      --white:  #ffffff;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--off);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Syne', sans-serif;
+      padding: 32px 16px 56px;
+    }
+
+    /* ── Toggle nav ── */
+    .letter-nav {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .letter-nav-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-right: 4px;
+      white-space: nowrap;
+    }
+
+    .letter-btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border: 1px solid var(--rule);
+      border-radius: 20px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .letter-btn:hover:not(.active) { border-color: var(--teal); color: var(--teal); }
+    .letter-btn.active { background: var(--deep); border-color: var(--deep); color: var(--white); }
+
+    /* ── Letter shell ── */
+    .letter {
+      background: #ffffff;
+      width: 100%;
+      max-width: 600px;
+      border-radius: 3px;
+      box-shadow:
+        0 2px 4px rgba(26,10,46,.06),
+        0 8px 24px rgba(26,10,46,.10),
+        0 24px 48px rgba(26,10,46,.07);
+      display: flex;
+      flex-direction: column;
+      padding: 40px 48px 32px;
+    }
+
+    /* ── Letterhead ── */
+    .letterhead {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-mark-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--teal);
+    }
+
+    .brand-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      color: var(--deep);
+      letter-spacing: 0.01em;
+      line-height: 1;
+    }
+
+    .letterhead-meta {
+      text-align: right;
+    }
+
+    .letterhead-meta .date {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      line-height: 1.6;
+    }
+
+    .letterhead-meta .ref {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── Rule ── */
+    .rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 20px 0 22px;
+      flex-shrink: 0;
+    }
+
+    /* ── New-benefit banner (HR letter only) ── */
+    .benefit-banner {
+      background: var(--teal-bg);
+      border-bottom: 1px solid #b8e4d4;
+      margin: -22px -48px 24px;
+      padding: 10px 48px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .benefit-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #ffffff;
+      background: var(--teal);
+      padding: 3px 9px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .benefit-banner-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    /* ── Body copy ── */
+    .salutation {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      color: var(--deep);
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+
+    .paragraphs {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    p {
+      font-family: 'Syne', sans-serif;
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: #2e2a38;
+    }
+
+    p strong {
+      font-weight: 600;
+      color: var(--deep);
+    }
+
+    /* ── Highlight list (HR letter) ── */
+    .highlight-box {
+      border: 1px solid #b8e4d4;
+      border-left: 4px solid var(--teal);
+      border-radius: 4px;
+      background: var(--teal-bg);
+      padding: 18px 22px;
+    }
+
+    .highlight-box-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+
+    .highlight-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .highlight-list li {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #2e2a38;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .highlight-list li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    /* ── Eligibility tables ── */
+    .elig-section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .elig-table-wrap {
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .elig-table-caption {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 8px 14px;
+      background: #f3f1ec;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* Conditions 3-col grid — no internal row borders, just spacing */
+    .cond-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 8px 4px;
+    }
+
+    .cond-cell {
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      color: #2e2a38;
+      padding: 6px 12px;
+      line-height: 1.35;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .cond-cell::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--teal-m);
+      flex-shrink: 0;
+    }
+
+    /* Drug table */
+    .drug-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .drug-table thead th {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      padding: 9px 13px 7px;
+      text-align: left;
+      border-bottom: 1.5px solid var(--rule);
+      border-right: 1px solid var(--rule);
+      background: #faf9f7;
+      white-space: nowrap;
+    }
+
+    .drug-table thead th:last-child { border-right: none; }
+
+    .drug-table tbody td {
+      padding: 5px 13px;
+      vertical-align: top;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid rgba(0,0,0,0.045);
+    }
+
+    .drug-table tbody td:last-child { border-right: none; }
+    .drug-table tbody tr:first-child td { padding-top: 10px; }
+    .drug-table tbody tr:last-child td { padding-bottom: 10px; border-bottom: none; }
+
+    .d-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 13.5px;
+      color: var(--deep);
+      display: block;
+      line-height: 1.2;
+    }
+
+    .d-generic {
+      font-family: 'DM Mono', monospace;
+      font-size: 8.5px;
+      color: var(--muted);
+      display: block;
+      letter-spacing: 0.01em;
+      line-height: 1.5;
+    }
+
+    .elig-more {
+      font-family: 'DM Mono', monospace;
+      font-size: 8.5px;
+      color: var(--muted);
+      font-style: italic;
+      padding: 7px 14px;
+      border-top: 1px dashed var(--rule);
+      background: #faf9f7;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── CTA box ── */
+    .cta-block {
+      border: 1.5px solid var(--teal);
+      border-radius: 4px;
+      padding: 13px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      background: #f7fdfb;
+      flex-wrap: wrap;
+      row-gap: 6px;
+    }
+
+    .cta-block span {
+      font-family: 'DM Mono', monospace;
+      font-size: 12.5px;
+      color: var(--teal);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .cta-block .sep {
+      color: var(--teal-m);
+      margin: 0 10px;
+      font-weight: 300;
+    }
+
+    .cta-block .hours {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    /* ── Closing ── */
+    .closing {
+      margin-top: 16px;
+    }
+
+    .closing-warmly {
+      font-family: 'Syne', sans-serif;
+      font-size: 13.5px;
+      color: #2e2a38;
+      margin-bottom: 10px;
+    }
+
+    .sig-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 15.5px;
+      color: var(--deep);
+      line-height: 1.3;
+    }
+
+    .sig-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-top: 2px;
+    }
+
+    /* ── Footer ── */
+    .letter-footer {
+      flex-shrink: 0;
+      border-top: 1px solid var(--rule);
+      margin-top: 18px;
+      padding-top: 12px;
+    }
+
+    .letter-footer p {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      line-height: 1.55;
+      letter-spacing: 0.02em;
+      text-align: center;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Toggle nav ── -->
+  <nav class="letter-nav">
+    <span class="letter-nav-label">From:</span>
+    <button class="letter-btn active" data-view="pbm" onclick="showView('pbm')">PBM / Clinical</button>
+    <button class="letter-btn" data-view="hr" onclick="showView('hr')">HR / Benefits</button>
+  </nav>
+
+
+  <!-- ══════════════════════════════════════
+       VIEW 1 · PBM / Clinical letter
+  ══════════════════════════════════════ -->
+  <div id="view-pbm">
+    <article class="letter" role="main">
+
+      <header class="letterhead">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <div class="brand-mark-dot"></div>
+          </div>
+          <span class="brand-name">Thymos Health</span>
+        </div>
+        <div class="letterhead-meta">
+          <div class="date">May 9, 2026</div>
+          <div class="ref">Ref: TH-2026-0051</div>
+        </div>
+      </header>
+
+      <hr class="rule">
+
+      <div class="salutation">Dear Jordan,</div>
+
+      <div class="paragraphs">
+        <p>Your employer has made a new benefit available to you through Thymos Health — a clinical program designed to help people managing autoimmune conditions feel better and, where possible, gradually reduce their reliance on specialty medications over time.</p>
+
+        <p>Many people living with conditions like yours are on biologic therapies that were essential when first prescribed. What's often missing is clinical support for the next question: could you safely need less? That's exactly what Thymos is built to answer — with your clinician, at your pace.</p>
+
+        <p>Participation is completely voluntary and has no impact on your current coverage, medications, or relationship with your doctor. If you choose to engage, a Thymos clinician will learn your history and help you and your prescribing physician explore whether a gradual taper is right for you.</p>
+
+        <p>There is no cost to you.</p>
+
+        <p>To learn more or schedule a no-obligation call:</p>
+
+        <div class="cta-block" role="complementary" aria-label="Contact information">
+          <span>thymos.com/start</span>
+          <span class="sep">&middot;</span>
+          <span>1-800-555-0192</span>
+          <span class="sep">&middot;</span>
+          <span class="hours">Mon&ndash;Fri, 8am&ndash;6pm ET</span>
+        </div>
+      </div>
+
+      <div class="closing">
+        <p class="closing-warmly">Warmly,</p>
+        <div class="sig-name">Dr. M. Adler, MD</div>
+        <div class="sig-title">Medical Director, Thymos Health</div>
+      </div>
+
+      <footer class="letter-footer">
+        <p>This letter was sent on behalf of your employer's benefits program. Your participation is voluntary and confidential.</p>
+      </footer>
+
+    </article>
+  </div><!-- /view-pbm -->
+
+
+  <!-- ══════════════════════════════════════
+       VIEW 2 · HR / Benefits announcement
+  ══════════════════════════════════════ -->
+  <div id="view-hr" style="display:none;">
+    <article class="letter" role="main">
+
+      <header class="letterhead">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <div class="brand-mark-dot"></div>
+          </div>
+          <span class="brand-name">Thymos Health</span>
+        </div>
+        <div class="letterhead-meta">
+          <div class="date">May 2026</div>
+          <div class="ref">Benefits Notice</div>
+        </div>
+      </header>
+
+      <hr class="rule" style="margin-bottom: 0;">
+
+      <div class="benefit-banner" aria-label="New benefit announcement">
+        <span class="benefit-badge">New</span>
+        <span class="benefit-banner-label">Benefit available to you &amp; your covered dependents</span>
+      </div>
+
+      <div class="salutation">Dear Team Member,</div>
+
+      <div class="paragraphs">
+
+        <p>We're pleased to let you know about a new voluntary benefit now available through your health plan: <strong>Thymos Health</strong>, a clinical program for employees and covered dependents managing autoimmune conditions.</p>
+
+        <p>This benefit may be right for you if you or a covered dependent is currently managing an autoimmune condition with a specialty biologic or immunosuppressant. Common qualifying conditions and medications include:</p>
+
+        <div class="elig-section" role="complementary" aria-label="Qualifying conditions and medications">
+
+          <!-- Conditions table -->
+          <div class="elig-table-wrap">
+            <div class="elig-table-caption">Covered Conditions</div>
+            <div class="cond-grid">
+              <div class="cond-cell">Rheumatoid Arthritis</div>
+              <div class="cond-cell">Crohn's Disease</div>
+              <div class="cond-cell">Lupus (SLE)</div>
+              <div class="cond-cell">Psoriatic Arthritis</div>
+              <div class="cond-cell">Ulcerative Colitis</div>
+              <div class="cond-cell">Atopic Dermatitis</div>
+              <div class="cond-cell">Ankylosing Spondylitis</div>
+              <div class="cond-cell">Multiple Sclerosis</div>
+              <div class="cond-cell">Uveitis</div>
+              <div class="cond-cell">Plaque Psoriasis</div>
+              <div class="cond-cell">Hidradenitis Suppurativa</div>
+            </div>
+          </div>
+
+          <!-- Drug table -->
+          <div class="elig-table-wrap">
+            <div class="elig-table-caption">Specialty Medications</div>
+            <table class="drug-table">
+              <thead>
+                <tr>
+                  <th>TNF Inhibitors</th>
+                  <th>IL-17 / IL-23</th>
+                  <th>JAK Inhibitors</th>
+                  <th>Other Biologics</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="d-brand">Humira</span><span class="d-generic">adalimumab</span></td>
+                  <td><span class="d-brand">Cosentyx</span><span class="d-generic">secukinumab</span></td>
+                  <td><span class="d-brand">Rinvoq</span><span class="d-generic">upadacitinib</span></td>
+                  <td><span class="d-brand">Dupixent</span><span class="d-generic">dupilumab</span></td>
+                </tr>
+                <tr>
+                  <td><span class="d-brand">Enbrel</span><span class="d-generic">etanercept</span></td>
+                  <td><span class="d-brand">Taltz</span><span class="d-generic">ixekizumab</span></td>
+                  <td><span class="d-brand">Xeljanz</span><span class="d-generic">tofacitinib</span></td>
+                  <td><span class="d-brand">Entyvio</span><span class="d-generic">vedolizumab</span></td>
+                </tr>
+                <tr>
+                  <td><span class="d-brand">Remicade</span><span class="d-generic">infliximab</span></td>
+                  <td><span class="d-brand">Stelara</span><span class="d-generic">ustekinumab</span></td>
+                  <td><span class="d-brand">Olumiant</span><span class="d-generic">baricitinib</span></td>
+                  <td><span class="d-brand">Actemra</span><span class="d-generic">tocilizumab</span></td>
+                </tr>
+                <tr>
+                  <td><span class="d-brand">Simponi</span><span class="d-generic">golimumab</span></td>
+                  <td><span class="d-brand">Skyrizi</span><span class="d-generic">risankizumab</span></td>
+                  <td></td>
+                  <td><span class="d-brand">Orencia</span><span class="d-generic">abatacept</span></td>
+                </tr>
+                <tr>
+                  <td><span class="d-brand">Cimzia</span><span class="d-generic">certolizumab pegol</span></td>
+                  <td><span class="d-brand">Tremfya</span><span class="d-generic">guselkumab</span></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="elig-more">+ other specialty biologics &amp; immunosuppressants — contact Thymos if your medication is not listed</div>
+          </div>
+
+        </div>
+
+        <p><strong>If you recognize your condition or medication above,</strong> Thymos provides dedicated clinical support to explore questions your doctor may not have time to address.</p>
+
+        <div class="highlight-box" role="complementary" aria-label="What Thymos includes">
+          <div class="highlight-box-label">What the program includes</div>
+          <ul class="highlight-list">
+            <li>A licensed Thymos clinician who learns your full history and works alongside your existing care team</li>
+            <li>Personalized support for exploring a medically supervised medication taper — only if appropriate for you</li>
+            <li>Ongoing check-ins, symptom tracking, and clinical guidance throughout your journey</li>
+            <li>No change to your current prescriptions, coverage, or relationship with your doctor</li>
+            <li><strong>No cost to you.</strong> Covered entirely by your benefits program.</li>
+          </ul>
+        </div>
+
+        <p>Participation is completely voluntary. All clinical interactions with Thymos are confidential and have no impact on your employment, your existing coverage, or your access to your current medications.</p>
+
+        <p>To learn more, request an information packet, or schedule a no-obligation call with a Thymos clinician:</p>
+
+        <div class="cta-block" role="complementary" aria-label="Contact information">
+          <span>thymos.com/start</span>
+          <span class="sep">&middot;</span>
+          <span>1-800-555-0192</span>
+          <span class="sep">&middot;</span>
+          <span class="hours">Mon&ndash;Fri, 8am&ndash;6pm ET</span>
+        </div>
+
+      </div>
+
+      <div class="closing">
+        <p class="closing-warmly">Sincerely,</p>
+        <div class="sig-name">Sarah Okonkwo</div>
+        <div class="sig-title">Director of Benefits &amp; Employee Wellbeing</div>
+      </div>
+
+      <footer class="letter-footer">
+        <p>This notice is being sent to all employees enrolled in a company-sponsored health plan.<br>
+        Participation in the Thymos Health program is voluntary and does not affect your employment status or existing benefits.<br>
+        Questions about your coverage? Contact HR at benefits@[yourcompany].com.</p>
+      </footer>
+
+    </article>
+  </div><!-- /view-hr -->
+
+
+  <script>
+    function showView(v) {
+      ['pbm', 'hr'].forEach(function(id) {
+        var el = document.getElementById('view-' + id);
+        if (el) el.style.display = 'none';
+      });
+      document.querySelectorAll('.letter-btn').forEach(function(b) {
+        b.classList.remove('active');
+      });
+      var target = document.getElementById('view-' + v);
+      if (target) target.style.display = 'block';
+      var btn = document.querySelector('[data-view="' + v + '"]');
+      if (btn) btn.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

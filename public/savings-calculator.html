@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thymos Health · Savings Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&display=swap" rel="stylesheet">
+<style>
+
+/* ─── Variables ─────────────────────── */
+:root {
+  --deep:    #034152;
+  --plum:    #065d76;
+  --mid:     #076459;
+  --teal:    #25a08c;
+  --teal-m:  #3ab7a0;
+  --teal-l:  #e1f5ee;
+  --coral:   #f25630;
+  --coral-l: #fde8e2;
+  --amber:   #f79820;
+  --off:     #f6f6f6;
+  --white:   #ffffff;
+  --gray:    #474747;
+  --lgray:   #e8e4e0;
+  --prog:    500; /* Thymos program fee */
+}
+
+/* ─── Reset ─────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 18px; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--off);
+  color: var(--deep);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Header ────────────────────────── */
+.page-header {
+  background: var(--deep);
+  color: white;
+  padding: 22px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header-brand {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.1rem;
+  color: white;
+  text-decoration: none;
+}
+
+.header-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+/* ─── Page layout ───────────────────── */
+.page-body {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: calc(100vh - 62px);
+}
+
+@media (min-width: 900px) {
+  .page-body {
+    grid-template-columns: 340px 1fr;
+    align-items: start;
+  }
+}
+
+/* ─── Inputs panel ──────────────────── */
+.inputs-panel {
+  background: var(--white);
+  padding: 28px;
+  border-right: 1px solid var(--lgray);
+}
+
+@media (min-width: 900px) {
+  .inputs-panel {
+    position: sticky;
+    top: 0;
+    height: calc(100vh - 62px);
+    overflow-y: auto;
+  }
+}
+
+.panel-section { margin-bottom: 28px; }
+.panel-section:last-child { margin-bottom: 0; }
+
+.panel-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.panel-label::before {
+  content: '';
+  width: 18px; height: 1.5px;
+  background: var(--teal);
+  flex-shrink: 0;
+}
+
+/* Drug grid */
+.drug-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+
+.drug-btn {
+  background: var(--off);
+  border: 1.5px solid var(--lgray);
+  border-radius: 8px;
+  padding: 9px 10px 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+.drug-btn:hover { border-color: var(--teal); background: var(--teal-l); }
+.drug-btn.active {
+  border-color: var(--teal);
+  background: var(--teal-l);
+}
+.drug-btn.active::after {
+  content: '✓';
+  position: absolute;
+  top: 6px; right: 8px;
+  font-size: 0.62rem;
+  color: var(--teal);
+  font-weight: 900;
+}
+
+.drug-name {
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--deep);
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+
+.drug-generic {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.56rem;
+  color: var(--gray);
+  opacity: 0.6;
+  letter-spacing: 0.03em;
+  margin-bottom: 4px;
+}
+
+.drug-awp {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--coral);
+}
+
+.drug-cat {
+  font-size: 0.56rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.45;
+  margin-bottom: 2px;
+  font-family: 'DM Mono', monospace;
+}
+
+/* Custom AWP input */
+.custom-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--off);
+  border: 1.5px solid var(--lgray);
+  border-radius: 8px;
+  padding: 10px 12px;
+  transition: border-color 0.15s;
+}
+.custom-row:focus-within { border-color: var(--teal); background: var(--teal-l); }
+
+.custom-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--deep);
+  white-space: nowrap;
+  opacity: 0.7;
+}
+
+.custom-prefix {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--coral);
+}
+
+.custom-input {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--coral);
+  border: none;
+  background: transparent;
+  width: 80px;
+  outline: none;
+  -moz-appearance: textfield;
+}
+.custom-input::-webkit-inner-spin-button,
+.custom-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+.custom-suffix {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--gray);
+  opacity: 0.5;
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Timing buttons */
+.timing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+
+.timing-btn {
+  background: var(--off);
+  border: 1.5px solid var(--lgray);
+  border-radius: 8px;
+  padding: 12px 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.15s, background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.timing-btn:hover { border-color: var(--teal); background: var(--teal-l); }
+.timing-btn.active {
+  border-color: var(--teal);
+  background: var(--teal-l);
+}
+
+.timing-month {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.4rem;
+  color: var(--deep);
+  line-height: 1;
+  margin-bottom: 2px;
+}
+.timing-btn.active .timing-month { color: var(--teal); }
+
+.timing-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--deep);
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+
+.timing-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.56rem;
+  opacity: 0.5;
+  letter-spacing: 0.05em;
+}
+
+/* Patient count */
+.count-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.count-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--lgray);
+  background: var(--off);
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--deep);
+  transition: border-color 0.15s, background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.count-btn:hover { border-color: var(--teal); background: var(--teal-l); }
+
+.count-display {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.8rem;
+  color: var(--deep);
+  line-height: 1;
+  min-width: 32px;
+  text-align: center;
+}
+
+.count-note {
+  font-size: 0.72rem;
+  opacity: 0.55;
+  line-height: 1.4;
+  flex: 1;
+}
+
+/* ─── Results panel ─────────────────── */
+.results-panel {
+  background: var(--deep);
+  color: white;
+  padding: 28px;
+  min-height: 100%;
+}
+
+.results-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--teal-m);
+  margin-bottom: 6px;
+}
+
+.results-headline {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.3rem, 4vw, 2rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 24px;
+  min-height: 2.4em;
+  transition: opacity 0.3s;
+}
+
+.results-headline em { font-style: italic; color: var(--teal-m); }
+
+/* KPI cards */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.kpi-card {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 16px 14px;
+  transition: opacity 0.3s;
+}
+
+.kpi-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.54rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.kpi-value {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.3rem, 4.5vw, 1.9rem);
+  line-height: 1;
+  color: var(--teal-m);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+.kpi-value.warn { color: #f0856a; }
+
+.kpi-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.56rem;
+  opacity: 0.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+/* Chart */
+.chart-wrap {
+  background: white;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.chart-head {
+  padding: 11px 16px 9px;
+  border-bottom: 1px solid #e8e4e0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chart-head-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #076459;
+  font-weight: 700;
+}
+
+.chart-legend {
+  display: flex;
+  gap: 12px;
+  font-size: 0.6rem;
+  color: #999;
+}
+
+.chart-leg-item { display: flex; align-items: center; gap: 5px; }
+.chart-leg-dash {
+  width: 16px; height: 2px;
+  background: repeating-linear-gradient(to right,#bbb 0,#bbb 4px,transparent 4px,transparent 7px);
+}
+.chart-leg-line { width: 16px; height: 2.5px; background: #25a08c; border-radius: 2px; }
+.chart-leg-swatch { width: 10px; height: 10px; background: rgba(37,160,140,0.2); border-radius: 2px; }
+
+.chart-svg {
+  width: 100%;
+  display: block;
+  padding: 0 4px;
+}
+
+/* Forever callout */
+.forever-block {
+  background: rgba(37,160,140,0.12);
+  border: 1px solid rgba(37,160,140,0.25);
+  border-radius: 10px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 20px;
+  transition: opacity 0.3s;
+}
+
+.forever-icon {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 1.6rem;
+  color: var(--teal-m);
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.forever-body { flex: 1; }
+
+.forever-val {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+  color: var(--teal-m);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.forever-desc {
+  font-size: 0.78rem;
+  opacity: 0.65;
+  line-height: 1.5;
+}
+
+/* Cohort note */
+.cohort-note {
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  opacity: 0.7;
+  margin-bottom: 20px;
+  display: none;
+}
+.cohort-note.show { display: block; }
+.cohort-note strong { color: var(--teal-m); opacity: 1; font-size: 1rem; }
+
+/* Action links */
+.actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 50px;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  color: white;
+  cursor: pointer;
+  background: transparent;
+  transition: border-color 0.15s, background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  font-family: 'DM Sans', sans-serif;
+}
+.action-link:hover { border-color: var(--teal-m); background: rgba(37,160,140,0.1); }
+.action-link.primary { background: var(--teal); border-color: var(--teal); }
+.action-link.primary:hover { background: var(--teal-m); border-color: var(--teal-m); }
+
+/* Footnote */
+.fn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  opacity: 0.35;
+  letter-spacing: 0.05em;
+  line-height: 1.8;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+/* ─── Loading states ────────────────── */
+.fading { opacity: 0.4; pointer-events: none; }
+
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <a href="employer-landing.html" class="header-brand">Thymos Health</a>
+  <div class="header-label">Savings Calculator · Per Patient</div>
+</header>
+
+<div class="page-body">
+
+  <!-- ══════════════════════════════════
+       INPUTS
+  ═══════════════════════════════════ -->
+  <aside class="inputs-panel">
+
+    <!-- DRUG SELECTOR -->
+    <div class="panel-section">
+      <div class="panel-label">1 · Select the medication</div>
+
+      <div class="drug-grid" id="drug-grid">
+        <!-- injected by JS -->
+      </div>
+
+      <div class="custom-row" id="custom-row">
+        <span class="custom-label">Enter AWP</span>
+        <span class="custom-prefix">$</span>
+        <input class="custom-input" id="custom-awp" type="number" min="500" max="60000" step="100" placeholder="0" title="Monthly AWP in dollars">
+        <span class="custom-suffix">/ mo</span>
+      </div>
+    </div>
+
+    <!-- TIMING SELECTOR -->
+    <div class="panel-section">
+      <div class="panel-label">2 · When do they engage?</div>
+      <div class="timing-grid" id="timing-grid">
+        <!-- injected by JS -->
+      </div>
+    </div>
+
+    <!-- PATIENT COUNT -->
+    <div class="panel-section">
+      <div class="panel-label">3 · How many patients?</div>
+      <div class="count-row">
+        <button class="count-btn" id="count-minus" aria-label="Decrease count">−</button>
+        <div class="count-display" id="count-display">1</div>
+        <button class="count-btn" id="count-plus" aria-label="Increase count">+</button>
+        <div class="count-note">Multiply savings across a cohort</div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ══════════════════════════════════
+       RESULTS
+  ═══════════════════════════════════ -->
+  <main class="results-panel">
+    <div class="results-eyebrow">Projected Savings</div>
+    <div class="results-headline" id="results-headline">Loading…</div>
+
+    <div class="kpi-row">
+      <div class="kpi-card">
+        <div class="kpi-label">Break-even</div>
+        <div class="kpi-value" id="kpi-be">—</div>
+        <div class="kpi-sub" id="kpi-be-sub">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Net at<br>Month 24</div>
+        <div class="kpi-value" id="kpi-m24">—</div>
+        <div class="kpi-sub" id="kpi-m24-sub">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Year 3+<br>savings</div>
+        <div class="kpi-value" id="kpi-yr">—</div>
+        <div class="kpi-sub">per year · ongoing</div>
+      </div>
+    </div>
+
+    <div class="chart-wrap">
+      <div class="chart-head">
+        <span class="chart-head-label">Monthly drug spend · before vs. with Thymos</span>
+        <div class="chart-legend">
+          <span class="chart-leg-item"><span class="chart-leg-dash"></span>Without Thymos</span>
+          <span class="chart-leg-item"><span class="chart-leg-line"></span>With Thymos</span>
+          <span class="chart-leg-item"><span class="chart-leg-swatch"></span>Savings</span>
+        </div>
+      </div>
+      <svg class="chart-svg" id="chart-svg" viewBox="0 0 520 195" aria-label="Monthly drug spend: before vs. with Thymos"></svg>
+    </div>
+
+    <div class="forever-block" id="forever-block">
+      <div class="forever-icon">∞</div>
+      <div class="forever-body">
+        <div class="forever-val" id="forever-val">—</div>
+        <div class="forever-desc" id="forever-desc">Once off the biologic, savings recur every month with no end date. The 24-month window only shows the beginning.</div>
+      </div>
+    </div>
+
+    <div class="cohort-note" id="cohort-note"></div>
+
+    <div class="actions">
+      <a href="employer-pitch.html" target="_blank" class="action-link primary">View full pitch deck →</a>
+      <button class="action-link" onclick="shareCalc()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        Forward this
+      </button>
+      <a href="employer-landing.html" class="action-link">← Back to overview</a>
+    </div>
+
+    <div class="fn" id="fn-text">
+      AWP estimates are approximate and sourced from published drug pricing data. Actual costs depend on your PBM contract and formulary.
+      Program fee: $500/participant/month. 24-month commitment assumed. Break-even and net gain figures reflect cumulative employer plan savings vs. status quo (no program).
+    </div>
+  </main>
+
+</div>
+
+<script>
+
+/* ══════════════════════════════════════
+   DATA
+══════════════════════════════════════ */
+const PROG_FEE = 500;
+const CHART_MONTHS = 36;
+
+const DRUGS = [
+  { id: 'humira',    name: 'Humira',    generic: 'adalimumab',    cat: 'TNF-α',    awp: 7150,  note: 'biweekly 40mg · brand' },
+  { id: 'enbrel',    name: 'Enbrel',    generic: 'etanercept',     cat: 'TNF-α',    awp: 5200,  note: 'weekly 50mg · brand' },
+  { id: 'remicade',  name: 'Remicade',  generic: 'infliximab',     cat: 'TNF-α',    awp: 5500,  note: 'IV infusion · avg/mo' },
+  { id: 'cosentyx',  name: 'Cosentyx',  generic: 'secukinumab',    cat: 'IL-17',    awp: 5800,  note: 'monthly maintenance' },
+  { id: 'taltz',     name: 'Taltz',     generic: 'ixekizumab',     cat: 'IL-17',    awp: 5400,  note: 'every 4 weeks' },
+  { id: 'stelara',   name: 'Stelara',   generic: 'ustekinumab',    cat: 'IL-23',    awp: 14200, note: 'quarterly · avg/mo' },
+  { id: 'skyrizi',   name: 'Skyrizi',   generic: 'risankizumab',   cat: 'IL-23',    awp: 9500,  note: 'quarterly · avg/mo' },
+  { id: 'tremfya',   name: 'Tremfya',   generic: 'guselkumab',     cat: 'IL-23',    awp: 8200,  note: 'every 8 weeks · avg/mo' },
+  { id: 'rinvoq',    name: 'Rinvoq',    generic: 'upadacitinib',   cat: 'JAK',      awp: 5100,  note: 'daily oral' },
+  { id: 'xeljanz',   name: 'Xeljanz',   generic: 'tofacitinib',    cat: 'JAK',      awp: 3400,  note: 'daily oral' },
+  { id: 'dupixent',  name: 'Dupixent',  generic: 'dupilumab',      cat: 'IL-4/13',  awp: 3700,  note: 'biweekly injection' },
+  { id: 'entyvio',   name: 'Entyvio',   generic: 'vedolizumab',    cat: 'Integrin', awp: 7200,  note: 'IV infusion · avg/mo' },
+];
+
+const TIMINGS = [
+  { id: 't6',  label: 'Early adopter', month: 6,  sub: 'Fastest path' },
+  { id: 't9',  label: 'Typical',       month: 9,  sub: 'Most common' },
+  { id: 't12', label: 'Mid-cycle',     month: 12, sub: 'Still net positive' },
+  { id: 't18', label: 'Laggard',       month: 18, sub: 'Breaks even at M24' },
+];
+
+/* ══════════════════════════════════════
+   STATE
+══════════════════════════════════════ */
+let state = {
+  drugId:     'humira',
+  awp:        7150,
+  taperMonth: 9,
+  count:      1,
+};
+
+/* ══════════════════════════════════════
+   MATH
+══════════════════════════════════════ */
+function cumSavings(m, awp, taperMonth, n) {
+  const drugSaved  = Math.max(0, m - taperMonth) * awp;
+  const programCost = m * PROG_FEE;
+  return n * (drugSaved - programCost);
+}
+
+function breakEven(awp, taperMonth) {
+  if (awp <= PROG_FEE) return null;
+  return Math.ceil(awp * taperMonth / (awp - PROG_FEE));
+}
+
+function annualSavings(awp, n) {
+  return n * (awp - PROG_FEE) * 12;
+}
+
+function fmt(n, compact) {
+  const abs = Math.abs(n);
+  const sign = n < 0 ? '−' : '+';
+  if (compact && abs >= 1000000) return sign + '$' + (abs / 1000000).toFixed(1) + 'M';
+  if (abs >= 1000) return sign + '$' + Math.round(abs / 1000) + 'K';
+  return sign + '$' + Math.round(abs);
+}
+
+function fmtYear(n) {
+  const abs = Math.abs(n);
+  if (abs >= 1000000) return '$' + (abs / 1000000).toFixed(1) + 'M';
+  if (abs >= 1000) return '$' + Math.round(abs / 1000) + 'K';
+  return '$' + Math.round(abs);
+}
+
+/* ══════════════════════════════════════
+   CHART (SVG) — monthly spend view
+══════════════════════════════════════ */
+function buildChart(awp, taperMonth, n) {
+  const svg = document.getElementById('chart-svg');
+  svg.innerHTML = '';
+
+  const MAXM = 36;
+  const withoutMo = awp * n;
+  const postMo    = PROG_FEE * n;
+
+  const VW = 520, VH = 195;
+  const PL = 64, PR = 80, PT = 24, PB = 30;
+  const PW = VW - PL - PR, PH = VH - PT - PB;
+
+  // Round maxY to a clean tick
+  const rawMax = withoutMo * 1.14;
+  const mag    = Math.pow(10, Math.floor(Math.log10(rawMax)));
+  const maxY   = Math.ceil(rawMax / mag) * mag;
+
+  const xS = m => PL + (m / MAXM) * PW;
+  const yS = v => PT + (1 - v / maxY) * PH;
+
+  function mk(tag, attrs, parent) {
+    const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+
+  function fmtY(v) {
+    if (v >= 1e6) return '$' + (v / 1e6).toFixed(1) + 'M';
+    if (v >= 1000) return '$' + Math.round(v / 1000) + 'K';
+    return '$' + v;
+  }
+
+  // Defs
+  const defs = mk('defs', {}, svg);
+  const grad = mk('linearGradient', { id: 'csG', x1: '0', y1: '0', x2: '0', y2: '1' }, defs);
+  mk('stop', { offset: '0%',   'stop-color': '#25a08c', 'stop-opacity': '0.22' }, grad);
+  mk('stop', { offset: '100%', 'stop-color': '#25a08c', 'stop-opacity': '0.04' }, grad);
+
+  // Grid lines + Y labels
+  for (let i = 0; i <= 4; i++) {
+    const v  = (maxY / 4) * i;
+    const yy = yS(v).toFixed(1);
+    mk('line', { x1: PL, y1: yy, x2: VW - PR, y2: yy, stroke: '#ebe8e5', 'stroke-width': '1' }, svg);
+    const t = mk('text', { x: PL - 5, y: (parseFloat(yy) + 3.5).toFixed(1), 'text-anchor': 'end', 'font-family': 'DM Mono,monospace', 'font-size': '9', fill: '#bbb' }, svg);
+    t.textContent = fmtY(v);
+  }
+
+  // Key y-coordinates
+  const tx       = xS(taperMonth).toFixed(1);
+  const ex       = xS(MAXM).toFixed(1);
+  const withoutY = yS(withoutMo).toFixed(1);
+  const postY    = yS(postMo).toFixed(1);
+
+  // Savings fill rectangle
+  mk('polygon', {
+    points: `${tx},${withoutY} ${ex},${withoutY} ${ex},${postY} ${tx},${postY}`,
+    fill: 'url(#csG)',
+  }, svg);
+
+  // Without Thymos — flat dashed gray line
+  mk('line', { x1: xS(0).toFixed(1), y1: withoutY, x2: ex, y2: withoutY, stroke: '#bbb', 'stroke-width': '1.5', 'stroke-dasharray': '5,4' }, svg);
+  const t1 = mk('text', { x: parseFloat(ex) + 5, y: parseFloat(withoutY) + 4, 'font-family': 'DM Mono,monospace', 'font-size': '9', fill: '#bbb' }, svg);
+  t1.textContent = fmtY(withoutMo) + '/mo';
+
+  // With Thymos — pre-taper (same level as without)
+  mk('line', { x1: xS(0).toFixed(1), y1: withoutY, x2: tx, y2: withoutY, stroke: '#25a08c', 'stroke-width': '2.5', 'stroke-linecap': 'round' }, svg);
+  // Vertical drop at taper
+  mk('line', { x1: tx, y1: withoutY, x2: tx, y2: postY, stroke: '#25a08c', 'stroke-width': '2.5' }, svg);
+  // Post-taper flat (animated draw)
+  const postLen = parseFloat(ex) - parseFloat(tx);
+  const postLine = mk('line', { x1: tx, y1: postY, x2: ex, y2: postY, stroke: '#25a08c', 'stroke-width': '2.5', 'stroke-linecap': 'round' }, svg);
+  postLine.style.strokeDasharray = postLen;
+  postLine.style.strokeDashoffset = postLen;
+  postLine.style.transition = 'stroke-dashoffset 0.9s cubic-bezier(0.4,0,0.2,1)';
+  requestAnimationFrame(() => { postLine.style.strokeDashoffset = '0'; });
+
+  // Post-taper right label
+  const t2 = mk('text', { x: parseFloat(ex) + 5, y: parseFloat(postY) + 4, 'font-family': 'DM Mono,monospace', 'font-size': '9', fill: '#25a08c' }, svg);
+  t2.textContent = fmtY(postMo) + '/mo';
+
+  // Taper dots
+  mk('circle', { cx: tx, cy: withoutY, r: '4.5', fill: '#25a08c', stroke: 'white', 'stroke-width': '1.5' }, svg);
+  mk('circle', { cx: tx, cy: postY,    r: '4.5', fill: '#25a08c', stroke: 'white', 'stroke-width': '1.5' }, svg);
+
+  // Taper label + guide
+  mk('line', { x1: tx, y1: PT - 2, x2: tx, y2: withoutY, stroke: '#25a08c', 'stroke-width': '1', 'stroke-dasharray': '3,2', opacity: '0.4' }, svg);
+  const taperT = mk('text', { x: tx, y: PT - 6, 'text-anchor': 'middle', 'font-family': 'DM Mono,monospace', 'font-size': '9', 'font-weight': '700', fill: '#25a08c' }, svg);
+  taperT.textContent = `M${taperMonth} TAPER`;
+
+  // Savings label in fill area
+  const savMo = withoutMo - postMo;
+  const savX   = ((parseFloat(tx) + parseFloat(ex)) / 2).toFixed(1);
+  const savY   = ((parseFloat(withoutY) + parseFloat(postY)) / 2 + 5).toFixed(1);
+  const savT = mk('text', { x: savX, y: savY, 'text-anchor': 'middle', 'font-family': 'DM Sans,sans-serif', 'font-size': '13', fill: '#25a08c', 'font-weight': '600', opacity: '0.72' }, svg);
+  savT.textContent = '−' + fmtY(savMo) + '/mo';
+
+  // Break-even marker (cumulative, amber dashed vertical)
+  const be = breakEven(awp, taperMonth);
+  if (be !== null && be > 0 && be <= MAXM) {
+    const xbe = xS(be).toFixed(1);
+    mk('line', { x1: xbe, y1: PT, x2: xbe, y2: VH - PB, stroke: '#f79820', 'stroke-width': '1.5', 'stroke-dasharray': '4,3' }, svg);
+    mk('circle', { cx: xbe, cy: withoutY, r: '3.5', fill: '#f79820', stroke: 'white', 'stroke-width': '1' }, svg);
+    const onRight = parseFloat(xbe) > VW * 0.62;
+    const bgX     = onRight ? parseFloat(xbe) - 72 : parseFloat(xbe) + 4;
+    mk('rect', { x: bgX.toFixed(1), y: PT + 3, width: 68, height: 15, rx: 3, fill: 'rgba(255,255,255,0.95)', stroke: '#f79820', 'stroke-width': '0.75' }, svg);
+    const beT = mk('text', { x: (bgX + 34).toFixed(1), y: (PT + 13).toFixed(1), 'text-anchor': 'middle', 'font-family': 'DM Mono,monospace', 'font-size': '8.5', 'font-weight': '600', fill: '#f79820' }, svg);
+    beT.textContent = `Break-even M${be}`;
+  }
+
+  // X-axis labels
+  [0, 6, 12, 18, 24, 30, 36].forEach(m => {
+    const xt = mk('text', { x: xS(m).toFixed(1), y: VH - PB + 14, 'text-anchor': 'middle', 'font-family': 'DM Mono,monospace', 'font-size': '9', fill: '#bbb' }, svg);
+    xt.textContent = `M${m}`;
+  });
+}
+
+/* ══════════════════════════════════════
+   UI UPDATE
+══════════════════════════════════════ */
+function update() {
+  const { awp, taperMonth, count } = state;
+  const be    = breakEven(awp, taperMonth);
+  const m24   = cumSavings(24, awp, taperMonth, count);
+  const annSav = annualSavings(awp, count);
+  const drug  = DRUGS.find(d => d.id === state.drugId);
+  const drugName = drug ? drug.name : 'Custom drug';
+
+  // Headline
+  const hl = document.getElementById('results-headline');
+  const countLabel = count === 1 ? 'one patient' : `${count} patients`;
+  if (be !== null && be <= 24) {
+    hl.innerHTML = `<em>${drugName}</em> · ${countLabel} · break-even at month&nbsp;${be}.`;
+  } else if (be !== null) {
+    hl.innerHTML = `<em>${drugName}</em> · ${countLabel} · break-even at month&nbsp;${be}.`;
+  } else {
+    hl.innerHTML = `<em>${drugName}</em> · drug cost too low to break even within the window.`;
+  }
+
+  // KPI: break-even
+  const beEl    = document.getElementById('kpi-be');
+  const beSubEl = document.getElementById('kpi-be-sub');
+  if (be !== null && be <= 36) {
+    beEl.textContent    = `Month ${be}`;
+    beEl.className      = 'kpi-value';
+    beSubEl.textContent = be <= 14 ? 'ahead of schedule' : be <= 24 ? 'within 24mo' : 'within 36mo';
+  } else {
+    beEl.textContent    = 'M36+';
+    beEl.className      = 'kpi-value warn';
+    beSubEl.textContent = 'low-cost drug tier';
+  }
+
+  // KPI: M24
+  const m24El    = document.getElementById('kpi-m24');
+  const m24SubEl = document.getElementById('kpi-m24-sub');
+  m24El.textContent    = fmt(m24, true);
+  m24El.className      = m24 >= 0 ? 'kpi-value' : 'kpi-value warn';
+  m24SubEl.textContent = m24 >= 0 ? 'net gain' : 'still investing';
+
+  // KPI: annual
+  document.getElementById('kpi-yr').textContent = fmtYear(annSav);
+
+  // Forever block
+  const foreverVal  = document.getElementById('forever-val');
+  const foreverDesc = document.getElementById('forever-desc');
+  const mo = count * (awp - PROG_FEE);
+  foreverVal.textContent  = `${fmtYear(mo)}/month · ${fmtYear(annSav)}/year · forever`;
+  foreverDesc.textContent = `Once off the biologic${count > 1 ? ` (all ${count} patients)` : ''}, savings recur every month with no end date. The 24-month window only shows the beginning.`;
+
+  // Cohort note
+  const cohortEl = document.getElementById('cohort-note');
+  if (count > 1) {
+    cohortEl.classList.add('show');
+    const totalM24 = fmt(m24, false);
+    cohortEl.innerHTML = `For a cohort of <strong>${count} patients</strong> like this: <strong>${totalM24}</strong> net at month 24 · <strong>${fmtYear(annSav)}/year</strong> ongoing.`;
+  } else {
+    cohortEl.classList.remove('show');
+  }
+
+  // Chart
+  buildChart(awp, taperMonth, count);
+
+  // Footnote drug note
+  if (drug) {
+    document.getElementById('fn-text').textContent =
+      `${drug.name} (${drug.generic}) · ${drug.note} · approximate AWP $${drug.awp.toLocaleString()}/mo. ` +
+      'AWP estimates are approximate and vary by PBM contract and formulary. ' +
+      'Program fee: $500/participant/month. Break-even and net figures reflect cumulative employer plan savings vs. status quo.';
+  }
+}
+
+/* ══════════════════════════════════════
+   RENDER INPUTS
+══════════════════════════════════════ */
+function renderDrugs() {
+  const grid = document.getElementById('drug-grid');
+  grid.innerHTML = '';
+
+  DRUGS.forEach(drug => {
+    const btn = document.createElement('button');
+    btn.className = 'drug-btn' + (drug.id === state.drugId ? ' active' : '');
+    btn.setAttribute('aria-pressed', drug.id === state.drugId);
+    btn.innerHTML = `
+      <div class="drug-cat">${drug.cat}</div>
+      <div class="drug-name">${drug.name}</div>
+      <div class="drug-generic">${drug.generic}</div>
+      <div class="drug-awp">~$${drug.awp.toLocaleString()}/mo</div>
+    `;
+    btn.addEventListener('click', () => {
+      state.drugId = drug.id;
+      state.awp    = drug.awp;
+      document.getElementById('custom-awp').value = '';
+      document.getElementById('custom-row').style.borderColor = '';
+      renderDrugs();
+      update();
+    });
+    grid.appendChild(btn);
+  });
+}
+
+function renderTimings() {
+  const grid = document.getElementById('timing-grid');
+  grid.innerHTML = '';
+
+  TIMINGS.forEach(t => {
+    const btn = document.createElement('button');
+    btn.className = 'timing-btn' + (t.month === state.taperMonth ? ' active' : '');
+    btn.setAttribute('aria-pressed', t.month === state.taperMonth);
+    btn.innerHTML = `
+      <div class="timing-month">M${t.month}</div>
+      <div class="timing-label">${t.label}</div>
+      <div class="timing-sub">${t.sub}</div>
+    `;
+    btn.addEventListener('click', () => {
+      state.taperMonth = t.month;
+      renderTimings();
+      update();
+    });
+    grid.appendChild(btn);
+  });
+}
+
+/* ══════════════════════════════════════
+   CUSTOM AWP
+══════════════════════════════════════ */
+document.getElementById('custom-awp').addEventListener('input', function() {
+  const v = parseInt(this.value, 10);
+  if (v && v >= 500) {
+    state.drugId = 'custom';
+    state.awp    = v;
+    // Deselect all drug buttons
+    document.querySelectorAll('.drug-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    document.getElementById('custom-row').style.borderColor = '#25a08c';
+    update();
+  }
+});
+
+/* ══════════════════════════════════════
+   PATIENT COUNT
+══════════════════════════════════════ */
+document.getElementById('count-minus').addEventListener('click', () => {
+  if (state.count > 1) { state.count--; document.getElementById('count-display').textContent = state.count; update(); }
+});
+document.getElementById('count-plus').addEventListener('click', () => {
+  if (state.count < 50) { state.count++; document.getElementById('count-display').textContent = state.count; update(); }
+});
+
+/* ══════════════════════════════════════
+   SHARE
+══════════════════════════════════════ */
+function shareCalc() {
+  const { awp, taperMonth, count } = state;
+  const be   = breakEven(awp, taperMonth);
+  const m24  = cumSavings(24, awp, taperMonth, count);
+  const ann  = annualSavings(awp, count);
+  const drug = DRUGS.find(d => d.id === state.drugId);
+  const dName = drug ? drug.name : 'custom drug';
+
+  const shareData = {
+    title: `Thymos Health · ${dName} savings model`,
+    text:  `${count > 1 ? count + ' patients on ' : ''}${dName} ($${awp.toLocaleString()}/mo) · M${taperMonth} taper · Break-even M${be || '?'} · Net M24: ${fmt(m24,false)} · ${fmtYear(ann)}/yr ongoing`,
+    url:   window.location.href,
+  };
+
+  if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+    navigator.share(shareData).catch(() => {});
+  } else {
+    const s = encodeURIComponent(`Thymos Health · ${dName} savings model`);
+    const b = encodeURIComponent(
+      `Here's the Thymos savings calculator for ${count > 1 ? count + ' patients on ' : ''}${dName}:\n\n` +
+      `Drug: ${dName} · $${awp.toLocaleString()}/mo AWP\n` +
+      `Taper timing: Month ${taperMonth}\n` +
+      `Break-even: Month ${be || '36+'}\n` +
+      `Net at Month 24: ${fmt(m24, false)}\n` +
+      `Ongoing savings: ${fmtYear(ann)}/year · indefinitely\n\n` +
+      window.location.href
+    );
+    window.open('mailto:?subject=' + s + '&body=' + b, '_self');
+  }
+}
+
+/* ══════════════════════════════════════
+   INIT
+══════════════════════════════════════ */
+renderDrugs();
+renderTimings();
+update();
+
+</script>
+</body>
+</html>
