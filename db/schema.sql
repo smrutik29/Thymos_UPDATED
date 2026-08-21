@@ -41,3 +41,22 @@ CREATE TABLE IF NOT EXISTS quiz_submissions (
 
 CREATE INDEX IF NOT EXISTS idx_quiz_submissions_created_at ON quiz_submissions (created_at);
 CREATE INDEX IF NOT EXISTS idx_quiz_submissions_email ON quiz_submissions (email);
+
+-- Marketing-site footer "Join #ThymosHealth Community" newsletter signups.
+CREATE TABLE IF NOT EXISTS newsletter_signups (
+    id                  UUID PRIMARY KEY,
+    created_at          TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+    email               TEXT NOT NULL,
+    -- Which marketing page the footer form was submitted from, e.g.
+    -- "Thymos Homepage.dc.html" — informational only, not used for routing.
+    source_page         TEXT,
+
+    ip_hash             TEXT,
+    user_agent          TEXT
+);
+
+-- Case-insensitive uniqueness so re-submitting the same address is a no-op
+-- (ON CONFLICT DO NOTHING in the app) rather than a duplicate row.
+CREATE UNIQUE INDEX IF NOT EXISTS idx_newsletter_signups_email_lower
+    ON newsletter_signups (lower(email));

@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Refer a Patient | Thymos Health for Providers</title>
+<meta name="description" content="Refer a patient to Thymos Health if they have been diagnosed with autoimmune disorder(s) or if autoimmunity is suspected.">
+<script src="./support.js"></script>
+<script src="./site-search.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', sans-serif; font-size: 18px; line-height: 1.6; color: #212121; background: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+  a { color: #ea6047; text-decoration: none; }
+  a:hover { color: #c14930; }
+  nav a { white-space: nowrap; }
+  .nav-burger { display: none; }
+  @media (max-width: 1080px) {
+    .nav-desktop { display: none !important; }
+    .nav-burger { display: flex !important; }
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     Refer a Patient page — ported from refer-a-patient.html,
+     scoped to #rap-root so it doesn't leak into the shared
+     nav/footer above/below it (same technique/rationale as
+     the Employer, Health Systems, and Providers pages).
+  ═══════════════════════════════════════════════════════ */
+  html { font-size: 20px; }
+  #rap-root {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--deep);
+    line-height: 1.7;
+    --deep:     #034152;
+    --plum:     #065d76;
+    --mid-plum: #076459;
+    --curve-bg: #f9f6f1;
+    --teal:     #25a08c;
+    --teal-m:   #3ab7a0;
+    --teal-l:   #e1f5ee;
+    --coral:    #f25630;
+    --coral-l:  #fde8e2;
+    --amber:    #f79820;
+    --off:      rgba(248,245,240,0.5);
+    --pale:     #f0ede8;
+    --white:    #ffffff;
+    --gray:     #474747;
+    --lgray:    #e8e4e0;
+  }
+  #rap-root section { padding: 56px 18px 72px; }
+  #rap-root .inner { max-width: 720px; margin: 0 auto; }
+
+  #rap-root .bg-dark  { background: var(--deep);  color: var(--white); }
+  #rap-root .bg-light { background: var(--off);   color: var(--deep);  }
+  #rap-root .bg-white { background: var(--white); color: var(--deep);  }
+
+  #rap-root .back-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'DM Mono', monospace; font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-m);
+    text-decoration: none; margin-bottom: 28px;
+  }
+  #rap-root .back-link:hover { color: var(--teal); }
+
+  #rap-root .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.6;
+  }
+  #rap-root .eyebrow::before { content: ''; width: 22px; height: 1.5px; background: currentColor; flex-shrink: 0; opacity: 1; }
+
+  #rap-root h1, #rap-root h2 {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+  }
+  #rap-root h1 { font-size: clamp(2rem, 8vw, 3rem); margin-bottom: 22px; }
+  #rap-root h2 { font-size: clamp(1.4rem, 5vw, 1.8rem); margin-bottom: 16px; }
+  #rap-root h3 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 1.1rem; line-height: 1.3; margin-bottom: 6px; }
+
+  #rap-root em { font-style: italic; }
+
+  #rap-root .lede { font-size: clamp(0.92rem, 3.2vw, 1.05rem); line-height: 1.7; max-width: 620px; }
+  #rap-root .lede.muted { opacity: 0.72; }
+  #rap-root .lede + .lede { margin-top: 14px; }
+  #rap-root .lede a { color: var(--teal-m); text-decoration: underline; }
+
+  #rap-root .divider { height: 1px; background: rgba(3,65,82,0.1); margin: 32px 0; }
+
+  /* ─── Buttons ───────────────────────────────────── */
+  #rap-root .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 800;
+    letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none;
+    border: none; cursor: pointer; border-radius: 50px; padding: 16px 28px;
+    min-height: 54px; transition: background 0.2s, transform 0.1s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  #rap-root .btn:active { transform: scale(0.98); }
+  #rap-root .btn-teal { background: #EA6047; color: white; }
+  #rap-root .btn-teal:hover { background: #d94f37; }
+  #rap-root .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+  /* ─── Form ──────────────────────────────────────── */
+  #rap-root .form-card {
+    background: var(--white); border: 1px solid rgba(3,65,82,0.08);
+    box-shadow: 0 2px 10px rgba(3,65,82,0.05); border-radius: 18px;
+    padding: 32px 24px; margin-top: 8px;
+  }
+  #rap-root .form-section + .form-section { margin-top: 34px; padding-top: 30px; border-top: 1px solid rgba(3,65,82,0.08); }
+  #rap-root .form-section-title {
+    font-family: 'DM Mono', monospace; font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal);
+    margin-bottom: 4px;
+  }
+  #rap-root .form-section-sub { font-size: 0.82rem; opacity: 0.62; margin-bottom: 20px; }
+
+  #rap-root .field-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 620px) {
+    #rap-root .field-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+  }
+
+  #rap-root .field { display: flex; flex-direction: column; gap: 6px; }
+  #rap-root .field label {
+    font-size: 0.78rem; font-weight: 700; color: var(--deep);
+  }
+  #rap-root .field .optional { font-weight: 400; opacity: 0.5; text-transform: none; letter-spacing: 0; }
+  #rap-root .field input[type="text"],
+  #rap-root .field input[type="email"],
+  #rap-root .field input[type="tel"],
+  #rap-root .field input[type="date"],
+  #rap-root .field select,
+  #rap-root .field textarea {
+    font-family: 'DM Sans', sans-serif; font-size: 0.92rem; color: var(--deep);
+    background: var(--off); border: 1.5px solid rgba(3,65,82,0.12);
+    border-radius: 10px; padding: 12px 14px; width: 100%;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  #rap-root .field input:focus, #rap-root .field select:focus, #rap-root .field textarea:focus {
+    outline: none; border-color: var(--teal); background: var(--white);
+  }
+  #rap-root .field textarea { resize: vertical; min-height: 88px; line-height: 1.5; }
+
+  /* ─── State combobox (searchable dropdown) ───────── */
+  #rap-root .combo-field { position: relative; }
+  #rap-root .combo-list {
+    list-style: none; position: absolute; z-index: 20; top: calc(100% + 4px); left: 0; right: 0;
+    background: var(--white); border: 1.5px solid rgba(3,65,82,0.15); border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(3,65,82,0.12); max-height: 220px; overflow-y: auto;
+    padding: 6px;
+  }
+  #rap-root .combo-option {
+    padding: 9px 10px; border-radius: 7px; font-size: 0.88rem; color: var(--deep);
+    cursor: pointer;
+  }
+  #rap-root .combo-option:hover { background: var(--teal-l); }
+  #rap-root .combo-empty { padding: 9px 10px; font-size: 0.85rem; color: var(--gray); opacity: 0.65; }
+
+  #rap-root .form-footer { margin-top: 34px; padding-top: 26px; border-top: 1px solid rgba(3,65,82,0.08); text-align: center; }
+  #rap-root .form-fine, #rap-root .confirm-banner, #rap-root .error-banner { text-align: left; }
+  #rap-root .form-fine {
+    font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.03em;
+    opacity: 0.5; line-height: 1.7; margin-top: 16px; max-width: 520px;
+  }
+
+  #rap-root .confirm-banner {
+    margin-top: 20px; padding: 16px 18px; border-radius: 12px;
+    background: var(--teal-l); border: 1px solid rgba(37,160,140,0.25);
+    font-size: 0.86rem; color: var(--mid-plum); line-height: 1.55;
+  }
+  #rap-root .confirm-banner strong { color: var(--deep); }
+
+  #rap-root .error-banner {
+    margin-top: 20px; padding: 16px 18px; border-radius: 12px;
+    background: var(--coral-l); border: 1px solid rgba(242,86,48,0.25);
+    font-size: 0.86rem; color: var(--coral);
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     SITE FOOTER — shared across every marketing page.
+     Fully scoped under .site-footer (every selector below is
+     prefixed with it) so it can never bleed into this page's
+     own styles, and vice versa. Sizes are plain px (not the
+     source file's rem) so this drops in safely regardless of
+     whether this page sets a custom root font-size.
+  ═══════════════════════════════════════════════════════ */
+  .site-footer {
+    --sf-dark:     #182220;
+    --sf-dark-2:   #1f2b28;
+    --sf-teal:     #25a08c;
+    --sf-teal-m:   #3ab7a0;
+    --sf-white:    #ffffff;
+    --sf-line:     rgba(255,255,255,0.1);
+    --sf-muted:    rgba(255,255,255,0.68);
+
+    background: var(--sf-dark);
+    color: var(--sf-muted);
+    padding: 64px 24px 40px;
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .site-footer .footer-inner { max-width: 1240px; margin: 0 auto; }
+  .site-footer .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px; }
+
+  .site-footer .footer-col-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12.4px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sf-teal-m);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .site-footer .footer-col-label::before { content: ''; width: 18px; height: 1.5px; background: currentColor; flex-shrink: 0; }
+
+  .site-footer .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .site-footer .footer-links a { color: var(--sf-white); text-decoration: none; font-size: 18.4px; opacity: 0.85; transition: opacity 0.15s, color 0.15s; }
+  .site-footer .footer-links a:hover { opacity: 1; color: var(--sf-teal-m); }
+
+  .site-footer .footer-spacer { height: 30px; }
+
+  .site-footer .app-tagline { font-size: 17px; color: var(--sf-muted); margin-bottom: 20px; }
+  .site-footer .app-mockup { display: flex; justify-content: flex-start; padding: 20px 0 8px; margin-bottom: 4px; }
+  .site-footer .iphone-frame {
+    position: relative; width: 168px; aspect-ratio: 9 / 19.5;
+    background: linear-gradient(160deg, #4a4a4c, #2b2b2d 55%, #1c1c1e);
+    border-radius: 38px; padding: 7px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset, 0 1px 0 rgba(255,255,255,0.15) inset, 0 18px 40px rgba(0,0,0,0.55);
+  }
+  .site-footer .iphone-screen { position: relative; width: 100%; height: 100%; border-radius: 31px; overflow: hidden; background: #000; }
+  .site-footer .iphone-screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .site-footer .iphone-island { position: absolute; top: 9px; left: 50%; transform: translateX(-50%); width: 32%; height: 7px; background: #000; border-radius: 5px; z-index: 2; }
+  .site-footer .iphone-btn { position: absolute; background: #2b2b2d; box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset; }
+  .site-footer .iphone-btn.action  { left: -2.5px; top: 21%; width: 2.5px; height: 22px; border-radius: 2px 0 0 2px; }
+  .site-footer .iphone-btn.vol-up   { left: -2.5px; top: 31%; width: 2.5px; height: 30px; border-radius: 2px 0 0 2px; }
+  .site-footer .iphone-btn.vol-down { left: -2.5px; top: 41.5%; width: 2.5px; height: 30px; border-radius: 2px 0 0 2px; }
+  .site-footer .iphone-btn.power    { right: -2.5px; top: 30%; width: 2.5px; height: 46px; border-radius: 0 2px 2px 0; }
+
+  .site-footer .footer-legal-row {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px;
+    margin-top: 56px; padding-top: 26px; border-top: 1px solid var(--sf-line); text-align: center;
+  }
+  .site-footer .footer-legal-row a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 15.6px; transition: color 0.15s; }
+  .site-footer .footer-legal-row a:hover { color: var(--sf-teal-m); }
+  .site-footer .footer-legal-sep { color: rgba(255,255,255,0.25); font-size: 15.6px; }
+  .site-footer .footer-legal-copyright { font-size: 15.6px; color: rgba(255,255,255,0.4); }
+  @media (max-width: 560px) {
+    .site-footer .footer-legal-row { gap: 8px 10px; }
+    .site-footer .footer-legal-sep { display: none; }
+    .site-footer .footer-legal-row a, .site-footer .footer-legal-copyright { width: 100%; }
+  }
+
+  .site-footer .subheading { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 19px; color: var(--sf-white); margin-bottom: 14px; }
+  .site-footer .footer-form { display: flex; flex-direction: column; gap: 10px; }
+  .site-footer .footer-form input[type="email"],
+  .site-footer .footer-form input[type="search"] {
+    font-family: 'DM Sans', sans-serif; font-size: 17.6px; color: var(--sf-white);
+    background: var(--sf-dark-2); border: 1.5px solid var(--sf-line); border-radius: 10px;
+    padding: 12px 14px; width: 100%; transition: border-color 0.15s;
+  }
+  .site-footer .footer-form input::placeholder { color: rgba(255,255,255,0.4); }
+  .site-footer .footer-form input:focus { outline: none; border-color: var(--sf-teal); }
+
+  .site-footer .search-input-wrap { position: relative; }
+  .site-footer .search-input-wrap input[type="search"] { padding-left: 40px; }
+  .site-footer .search-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: rgba(255,255,255,0.45); pointer-events: none; }
+
+  .site-footer .footer-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 16.4px; font-weight: 800;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    background: var(--sf-teal); color: white; border: none; cursor: pointer;
+    border-radius: 50px; padding: 12px 20px; transition: background 0.15s, transform 0.1s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .site-footer .footer-btn:hover { background: var(--sf-teal-m); }
+  .site-footer .footer-btn:active { transform: scale(0.98); }
+  .site-footer .footer-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+  .site-footer .form-note { display: none; font-size: 15.6px; color: var(--sf-teal-m); margin-top: 2px; line-height: 1.5; }
+  .site-footer .form-note.error { color: #ff8a75; }
+  .site-footer .form-note.visible { display: block; }
+
+  .site-footer .social-row { display: flex; gap: 12px; margin-top: 4px; }
+  .site-footer .social-icon {
+    display: flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--sf-teal); border: 1px solid var(--sf-teal);
+    color: var(--sf-white); transition: background 0.15s, border-color 0.15s;
+  }
+  .site-footer .social-icon:hover { background: var(--sf-teal-m); border-color: var(--sf-teal-m); }
+  .site-footer .social-icon svg { width: 18px; height: 18px; }
+
+  @media (max-width: 980px) {
+    .site-footer .footer-grid { grid-template-columns: repeat(2, 1fr); row-gap: 48px; }
+  }
+  @media (max-width: 560px) {
+    .site-footer .footer-grid { grid-template-columns: 1fr; }
+    .site-footer { padding: 48px 20px 32px; }
+  }
+</style>
+</helmet>
+
+<div style="width:100%; min-height:100vh; display:flex; flex-direction:column; font-family:'Montserrat',sans-serif; color:#212121;">
+
+  <nav style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:20px clamp(16px,3vw,40px); background:#fff; border-bottom:1px solid #ddd; position:sticky; top:0; z-index:1000; gap:20px;">
+    <a href="Thymos Homepage.dc.html" style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:20px; color:#1a1a1a; white-space:nowrap; text-decoration:none;">
+      <img src="img/thymos-logo-flames.png" alt="Thymos Logo" style="height:52px; width:auto;" />
+      <span>Thymos Health</span>
+    </a>
+    <div class="nav-desktop" style="display:flex; gap:20px; font-size:16px;">
+      <a href="Thymos How We Work.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">How We Work</a>
+      <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">Proven Approach</a>
+      <a href="Thymos Conditions Treated.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">Conditions Treated</a>
+      <a href="Thymos For Employers.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">For Employers</a>
+      <a href="Thymos About Us.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">About</a>
+    </div>
+    <div class="nav-desktop" style="display:flex; align-items:center; gap:16px;">
+      <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="color:#333; text-decoration:none; font-size:16px;" style-hover="color:#ea6047; text-decoration:underline;">Sign In</a>
+      <a href="/quiz" style="padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:15px; font-weight:500; text-decoration:none;" style-hover="background:#c14930; color:#fff;">Get Started</a>
+    </div>
+    <button class="nav-burger" onClick="{{ toggleMenu }}" aria-label="Menu" style="flex-direction:column; justify-content:center; gap:5px; width:32px; height:28px; background:none; border:none; cursor:pointer; padding:0;">
+      <span style="width:24px; height:3px; background:#333; border-radius:2px;"></span>
+      <span style="width:24px; height:3px; background:#333; border-radius:2px;"></span>
+      <span style="width:24px; height:3px; background:#333; border-radius:2px;"></span>
+    </button>
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="flex-basis:100%; display:flex; flex-direction:column; gap:14px; padding-top:8px; font-size:16px;">
+        <a href="Thymos How We Work.dc.html" style="color:#333; text-decoration:none;">How We Work</a>
+        <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;">Proven Approach</a>
+        <a href="Thymos Conditions Treated.dc.html" style="color:#333; text-decoration:none;">Conditions Treated</a>
+        <a href="Thymos For Employers.dc.html" style="color:#333; text-decoration:none;">For Employers</a>
+        <a href="Thymos About Us.dc.html" style="color:#333; text-decoration:none;">About</a>
+        <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="color:#333; text-decoration:none;">Sign In</a>
+        <a href="/quiz" style="align-self:flex-start; padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:15px; font-weight:500; text-decoration:none;">Get Started</a>
+      </div>
+    </sc-if>
+  </nav>
+
+  <main id="rap-root" style="flex:1;">
+
+    <!-- HEADER -->
+    <section class="bg-light">
+      <div class="inner">
+        <a href="Thymos Providers.dc.html" class="back-link">&larr; Back to Thymos Health for Providers</a>
+        <div class="eyebrow" style="color:#EA6047;">For Providers</div>
+        <h1>Refer a patient</h1>
+        <p class="lede muted">Use this form to refer a patient to Thymos Health if they have been diagnosed with autoimmune disorder(s) or if autoimmunity is suspected.</p>
+        <p class="lede muted">After receiving your referral, our team verifies eligibility and contacts the patient directly to complete enrollment and better understand their needs.</p>
+        <p class="lede muted">We'll notify your team once they're enrolled or if we have any questions. For questions or referral updates, contact us at <a href="mailto:referrals@thymoshealth.com">referrals@thymoshealth.com</a>.</p>
+      </div>
+    </section>
+
+    <!-- REFERRAL FORM -->
+    <section class="bg-light" style="padding-top:0;">
+      <div class="inner">
+        <form class="form-card" onSubmit="{{ handleReferralSubmit }}" novalidate="{{ true }}">
+
+          <!-- Referring Provider -->
+          <div class="form-section">
+            <div class="form-section-title">Referring Provider</div>
+            <div class="form-section-sub">Tell us how to reach you and where you practice.</div>
+            <div class="field-grid cols-2">
+              <div class="field">
+                <label for="providerName">Full name</label>
+                <input type="text" id="providerName" name="providerName" required="{{ true }}" autoComplete="name">
+              </div>
+              <div class="field">
+                <label for="practiceName">Practice / organization name</label>
+                <input type="text" id="practiceName" name="practiceName" required="{{ true }}" autoComplete="organization">
+              </div>
+              <div class="field">
+                <label for="providerPhone">Practice phone</label>
+                <input type="tel" id="providerPhone" name="providerPhone" required="{{ true }}" autoComplete="tel">
+              </div>
+              <div class="field">
+                <label for="providerFax">Practice fax <span class="optional">(optional)</span></label>
+                <input type="tel" id="providerFax" name="providerFax">
+              </div>
+              <div class="field">
+                <label for="providerEmail">Email</label>
+                <input type="email" id="providerEmail" name="providerEmail" required="{{ true }}" autoComplete="email">
+              </div>
+            </div>
+          </div>
+
+          <!-- Patient Information -->
+          <div class="form-section">
+            <div class="form-section-title">Patient Information</div>
+            <div class="form-section-sub">Basic contact details so our team can reach the patient directly.</div>
+            <div class="field-grid cols-2">
+              <div class="field">
+                <label for="patientFirstName">Individual's First Name</label>
+                <input type="text" id="patientFirstName" name="patientFirstName" required="{{ true }}" autoComplete="off">
+              </div>
+              <div class="field">
+                <label for="patientLastName">Individual's Last Name</label>
+                <input type="text" id="patientLastName" name="patientLastName" required="{{ true }}" autoComplete="off">
+              </div>
+              <div class="field">
+                <label for="patientDob">Date of birth</label>
+                <input type="date" id="patientDob" name="patientDob" required="{{ true }}">
+              </div>
+              <div class="field">
+                <label for="patientPhone">Phone number</label>
+                <input type="tel" id="patientPhone" name="patientPhone" required="{{ true }}">
+              </div>
+              <div class="field">
+                <label for="patientEmail">Email</label>
+                <input type="email" id="patientEmail" name="patientEmail" required="{{ true }}">
+              </div>
+              <div class="field">
+                <label for="patientLanguage">Preferred language <span class="optional">(optional)</span></label>
+                <input type="text" id="patientLanguage" name="patientLanguage" placeholder="English">
+              </div>
+            </div>
+
+            <div class="field-grid" style="margin-top:16px;">
+              <div class="field">
+                <label for="addressLine1">Address line 1</label>
+                <input type="text" id="addressLine1" name="addressLine1" required="{{ true }}" autoComplete="address-line1">
+              </div>
+              <div class="field">
+                <label for="addressLine2">Address line 2 <span class="optional">(optional)</span></label>
+                <input type="text" id="addressLine2" name="addressLine2" autoComplete="address-line2">
+              </div>
+            </div>
+            <div class="field-grid cols-2" style="margin-top:16px;">
+              <div class="field">
+                <label for="addressCity">City</label>
+                <input type="text" id="addressCity" name="addressCity" required="{{ true }}" autoComplete="address-level2">
+              </div>
+              <div class="field combo-field">
+                <label for="addressState">State</label>
+                <input type="text" id="addressState" name="addressState" value="{{ addressState }}" onChange="{{ onAddressStateInput }}" onFocus="{{ onAddressStateFocus }}" onBlur="{{ onAddressStateBlur }}" onKeyDown="{{ onAddressStateKeyDown }}" required="{{ true }}" autoComplete="off" role="combobox" aria-expanded="{{ addressStateOpen }}" placeholder="Start typing a state...">
+                <sc-if value="{{ addressStateOpen }}" hint-placeholder-val="{{ false }}">
+                  <ul class="combo-list" role="listbox">
+                    <sc-for list="{{ addressStateMatches }}" as="opt" hint-placeholder-count="5">
+                      <li class="combo-option" role="option" onMouseDown="{{ opt.onSelect }}">{{ opt.label }}</li>
+                    </sc-for>
+                    <sc-if value="{{ !addressStateHasMatches }}" hint-placeholder-val="{{ false }}">
+                      <li class="combo-empty">No matching state or territory</li>
+                    </sc-if>
+                  </ul>
+                </sc-if>
+              </div>
+              <div class="field">
+                <label for="addressZip">Zip code</label>
+                <input type="text" id="addressZip" name="addressZip" required="{{ true }}" inputMode="numeric" autoComplete="postal-code">
+              </div>
+              <div class="field combo-field">
+                <label for="stateOfResidence">State of residence</label>
+                <input type="text" id="stateOfResidence" name="stateOfResidence" value="{{ stateOfResidence }}" onChange="{{ onStateOfResidenceInput }}" onFocus="{{ onStateOfResidenceFocus }}" onBlur="{{ onStateOfResidenceBlur }}" onKeyDown="{{ onStateOfResidenceKeyDown }}" required="{{ true }}" autoComplete="off" role="combobox" aria-expanded="{{ stateOfResidenceOpen }}" placeholder="Start typing a state...">
+                <sc-if value="{{ stateOfResidenceOpen }}" hint-placeholder-val="{{ false }}">
+                  <ul class="combo-list" role="listbox">
+                    <sc-for list="{{ stateOfResidenceMatches }}" as="opt" hint-placeholder-count="5">
+                      <li class="combo-option" role="option" onMouseDown="{{ opt.onSelect }}">{{ opt.label }}</li>
+                    </sc-for>
+                    <sc-if value="{{ !stateOfResidenceHasMatches }}" hint-placeholder-val="{{ false }}">
+                      <li class="combo-empty">No matching state or territory</li>
+                    </sc-if>
+                  </ul>
+                </sc-if>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-footer">
+            <button type="submit" class="btn btn-teal">Submit Referral</button>
+            <div class="form-fine">HIPAA-compliant intake · You remain the doctor of record</div>
+            <sc-if value="{{ confirmVisible }}" hint-placeholder-val="{{ false }}">
+              <div class="confirm-banner"><strong>Thanks — your referral is ready to send.</strong> Your email client should open with the referral details addressed to referrals@thymoshealth.com. If it doesn't open automatically, you can email us directly at that address.</div>
+            </sc-if>
+            <sc-if value="{{ errorVisible }}" hint-placeholder-val="{{ false }}">
+              <div class="error-banner">Please fill in all required fields before submitting.</div>
+            </sc-if>
+          </div>
+
+        </form>
+
+        <a href="Thymos Providers.dc.html" class="back-link" style="margin-top:28px; margin-bottom:0;">&larr; Back to Thymos Health for Providers</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+
+        <!-- Column 1: App download -->
+        <div class="footer-col">
+          <div class="footer-col-label">Start Today</div>
+          <div class="app-tagline">Total Care. Totally Different.<br>Download Thymos App.</div>
+
+          <div class="app-mockup">
+            <div class="iphone-frame">
+              <div class="iphone-screen">
+                <img src="img/thymos-footer-app-mockup.jpg" alt="Thymos Health app screen">
+                <div class="iphone-island"></div>
+              </div>
+              <div class="iphone-btn action"></div>
+              <div class="iphone-btn vol-up"></div>
+              <div class="iphone-btn vol-down"></div>
+              <div class="iphone-btn power"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2: Explore + newsletter -->
+        <div class="footer-col">
+          <div class="footer-col-label">Explore</div>
+          <ul class="footer-links">
+            <li><a href="Thymos How We Work.dc.html">Thymos Journey</a></li>
+            <li><a href="Thymos Proven Approach.dc.html">Proven Approach</a></li>
+            <li><a href="Thymos Conditions Treated.dc.html">150+ Diseases Treated</a></li>
+          </ul>
+
+          <div class="footer-spacer"></div>
+          <div class="footer-spacer"></div>
+
+          <div class="subheading">Join #ThymosHealth Community!</div>
+          <form class="footer-form" onSubmit="{{ handleFooterNewsletterSubmit }}" novalidate="{{ true }}">
+            <input type="text" name="hp_field_9f3a" tabIndex="{{ -1 }}" autoComplete="off" aria-hidden="{{ true }}" style="position:absolute; left:-9999px; height:0; width:0; opacity:0;">
+            <input type="email" id="newsletterEmail" name="email" placeholder="Email address" required="{{ true }}" autoComplete="email">
+            <button type="submit" class="footer-btn" disabled="{{ footerNewsletterSubmitting }}">{{ footerNewsletterBtnLabel }}</button>
+            <sc-if value="{{ footerNewsletterSubmitted }}" hint-placeholder-val="{{ false }}">
+              <div class="form-note visible">Thanks for joining — keep an eye on your inbox.</div>
+            </sc-if>
+            <sc-if value="{{ footerNewsletterError }}" hint-placeholder-val="{{ false }}">
+              <div class="form-note error visible">Something went wrong — please try again.</div>
+            </sc-if>
+          </form>
+        </div>
+
+        <!-- Column 3: About + search -->
+        <div class="footer-col">
+          <div class="footer-col-label">About Thymos</div>
+          <ul class="footer-links">
+            <li><a href="Thymos About Us.dc.html">Our Story</a></li>
+            <li><a href="Thymos How We Work.dc.html#faq">Help Center</a></li>
+            <li><a href="/quiz">Contact Us</a></li>
+          </ul>
+
+          <div class="footer-spacer"></div>
+          <div class="footer-spacer"></div>
+
+          <div class="subheading">Search our site.</div>
+          <form class="footer-form" onSubmit="{{ handleFooterSearchSubmit }}">
+            <div class="search-input-wrap">
+              <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <circle cx="11" cy="11" r="7"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="search" id="siteSearch" name="q" placeholder="Search" required="{{ true }}">
+            </div>
+            <button type="submit" class="footer-btn">Search</button>
+          </form>
+        </div>
+
+        <!-- Column 4: Partner + social -->
+        <div class="footer-col">
+          <div class="footer-col-label">Partner with Thymos</div>
+          <ul class="footer-links">
+            <li><a href="Thymos For Employers.dc.html">For Employers</a></li>
+            <li><a href="Thymos Health Systems.dc.html">For Health Systems</a></li>
+            <li><a href="Thymos Providers.dc.html">For Providers</a></li>
+          </ul>
+
+          <div class="footer-spacer"></div>
+          <div class="footer-spacer"></div>
+
+          <div class="subheading">Follow Us:</div>
+          <div class="social-row">
+            <a class="social-icon" href="https://www.instagram.com/payal.bhandarimd/" target="_blank" rel="noopener" aria-label="Thymos Health on Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                <circle cx="12" cy="12" r="4"></circle>
+                <circle cx="17.2" cy="6.8" r="1"></circle>
+              </svg>
+            </a>
+            <a class="social-icon" href="https://www.facebook.com/doctorpbhandari/" target="_blank" rel="noopener" aria-label="Thymos Health on Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 3h-2a5 5 0 0 0-5 5v3H6v4h2v6h4v-6h3l1-4h-4V8a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a class="social-icon" href="https://www.linkedin.com/company/108459671/admin/page-posts/published/" target="_blank" rel="noopener" aria-label="Thymos Health on LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+                <line x1="7.5" y1="9.5" x2="7.5" y2="16.5"></line>
+                <circle cx="7.5" cy="6.7" r="1"></circle>
+                <path d="M11.5 16.5v-4a2.3 2.3 0 0 1 4.6 0v4"></path>
+                <line x1="11.5" y1="10" x2="11.5" y2="16.5"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-legal-row">
+        <a href="Thymos Privacy Policy.dc.html">Privacy Policy</a>
+        <span class="footer-legal-sep">|</span>
+        <a href="Thymos Terms of Service.dc.html">Terms &amp; Conditions</a>
+        <span class="footer-legal-sep">|</span>
+        <a href="Thymos Privacy Policy.dc.html">Your Privacy Choices</a>
+        <span class="footer-legal-sep">|</span>
+        <span class="footer-legal-copyright">&copy; 2026 Thymos Health. All rights reserved.</span>
+      </div>
+
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const US_STATES = [
+  ['Alabama','AL'],['Alaska','AK'],['Arizona','AZ'],['Arkansas','AR'],['California','CA'],
+  ['Colorado','CO'],['Connecticut','CT'],['Delaware','DE'],['District of Columbia','DC'],
+  ['Florida','FL'],['Georgia','GA'],['Hawaii','HI'],['Idaho','ID'],['Illinois','IL'],
+  ['Indiana','IN'],['Iowa','IA'],['Kansas','KS'],['Kentucky','KY'],['Louisiana','LA'],
+  ['Maine','ME'],['Maryland','MD'],['Massachusetts','MA'],['Michigan','MI'],['Minnesota','MN'],
+  ['Mississippi','MS'],['Missouri','MO'],['Montana','MT'],['Nebraska','NE'],['Nevada','NV'],
+  ['New Hampshire','NH'],['New Jersey','NJ'],['New Mexico','NM'],['New York','NY'],
+  ['North Carolina','NC'],['North Dakota','ND'],['Ohio','OH'],['Oklahoma','OK'],['Oregon','OR'],
+  ['Pennsylvania','PA'],['Rhode Island','RI'],['South Carolina','SC'],['South Dakota','SD'],
+  ['Tennessee','TN'],['Texas','TX'],['Utah','UT'],['Vermont','VT'],['Virginia','VA'],
+  ['Washington','WA'],['West Virginia','WV'],['Wisconsin','WI'],['Wyoming','WY'],
+  ['American Samoa','AS'],['Guam','GU'],['Northern Mariana Islands','MP'],
+  ['Puerto Rico','PR'],['U.S. Virgin Islands','VI']
+];
+
+function filterStates(query) {
+  const q = (query || "").toString().trim().toLowerCase();
+  if (!q) return US_STATES.slice();
+  return US_STATES.filter(([name, code]) => name.toLowerCase().includes(q) || code.toLowerCase().includes(q));
+}
+
+class Component extends DCLogic {
+  state = {
+    menuOpen: false,
+    addressState: "", addressStateOpen: false,
+    stateOfResidence: "", stateOfResidenceOpen: false,
+    confirmVisible: false, errorVisible: false,
+    footerNewsletterSubmitted: false, footerNewsletterSubmitting: false, footerNewsletterError: false
+  };
+
+  buildComboProps(fieldName, openFieldName) {
+    const query = this.state[fieldName];
+    const matches = filterStates(query);
+    return {
+      value: query,
+      open: this.state[openFieldName],
+      matches: matches.map(([name, code]) => ({
+        label: name + " (" + code + ")",
+        onSelect: () => this.setState({ [fieldName]: name + " (" + code + ")", [openFieldName]: false }),
+      })),
+      hasMatches: matches.length > 0,
+      onInput: (e) => this.setState({ [fieldName]: e.target.value, [openFieldName]: true }),
+      onFocus: () => this.setState({ [openFieldName]: true }),
+      onBlur: () => setTimeout(() => this.setState({ [openFieldName]: false }), 150),
+      onKeyDown: (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          const top = filterStates(this.state[fieldName])[0];
+          if (top) this.setState({ [fieldName]: top[0] + " (" + top[1] + ")", [openFieldName]: false });
+        } else if (e.key === "Escape") {
+          this.setState({ [openFieldName]: false });
+        }
+      },
+    };
+  }
+
+  renderVals() {
+    const addressCombo = this.buildComboProps("addressState", "addressStateOpen");
+    const residenceCombo = this.buildComboProps("stateOfResidence", "stateOfResidenceOpen");
+
+    return {
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+
+      addressState: addressCombo.value,
+      addressStateOpen: addressCombo.open,
+      addressStateMatches: addressCombo.matches,
+      addressStateHasMatches: addressCombo.hasMatches,
+      onAddressStateInput: addressCombo.onInput,
+      onAddressStateFocus: addressCombo.onFocus,
+      onAddressStateBlur: addressCombo.onBlur,
+      onAddressStateKeyDown: addressCombo.onKeyDown,
+
+      stateOfResidence: residenceCombo.value,
+      stateOfResidenceOpen: residenceCombo.open,
+      stateOfResidenceMatches: residenceCombo.matches,
+      stateOfResidenceHasMatches: residenceCombo.hasMatches,
+      onStateOfResidenceInput: residenceCombo.onInput,
+      onStateOfResidenceFocus: residenceCombo.onFocus,
+      onStateOfResidenceBlur: residenceCombo.onBlur,
+      onStateOfResidenceKeyDown: residenceCombo.onKeyDown,
+
+      confirmVisible: this.state.confirmVisible,
+      errorVisible: this.state.errorVisible,
+      handleReferralSubmit: (e) => {
+        e.preventDefault();
+        const form = e.target;
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          this.setState({ errorVisible: true, confirmVisible: false });
+          return;
+        }
+        this.setState({ errorVisible: false });
+
+        const data = new FormData(form);
+        const get = (k) => (data.get(k) || "").toString().trim();
+
+        const lines = [
+          "PROVIDER REFERRAL — THYMOS HEALTH",
+          "",
+          "REFERRING PROVIDER",
+          "Name: " + get("providerName"),
+          "Practice: " + get("practiceName"),
+          "Phone: " + get("providerPhone"),
+          "Fax: " + get("providerFax"),
+          "Email: " + get("providerEmail"),
+          "",
+          "PATIENT INFORMATION",
+          "First name: " + get("patientFirstName"),
+          "Last name: " + get("patientLastName"),
+          "Date of birth: " + get("patientDob"),
+          "Phone: " + get("patientPhone"),
+          "Email: " + get("patientEmail"),
+          "Preferred language: " + get("patientLanguage"),
+          "",
+          "ADDRESS",
+          "Address line 1: " + get("addressLine1"),
+          "Address line 2: " + get("addressLine2"),
+          "City: " + get("addressCity"),
+          "State: " + get("addressState"),
+          "Zip code: " + get("addressZip"),
+          "State of residence: " + get("stateOfResidence"),
+        ];
+
+        const subject = encodeURIComponent("Provider Referral: " + get("patientFirstName") + " " + get("patientLastName"));
+        const body = encodeURIComponent(lines.join("\n"));
+        const mailto = "mailto:referrals@thymoshealth.com?subject=" + subject + "&body=" + body;
+
+        window.location.href = mailto;
+        this.setState({ confirmVisible: true });
+      },
+
+      footerNewsletterSubmitted: this.state.footerNewsletterSubmitted,
+      footerNewsletterSubmitting: this.state.footerNewsletterSubmitting,
+      footerNewsletterError: this.state.footerNewsletterError,
+      footerNewsletterBtnLabel: this.state.footerNewsletterSubmitting ? "Sending…" : "Let's Work Together",
+      handleFooterNewsletterSubmit: (e) => {
+        e.preventDefault();
+        const form = e.target;
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+        if (form.hp_field_9f3a.value.trim() !== "") { return; }
+        const email = form.email.value;
+        this.setState({ footerNewsletterSubmitting: true, footerNewsletterError: false });
+        fetch("/api/newsletter-signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, sourcePage: document.title, companyWebsite: form.hp_field_9f3a.value }),
+        })
+          .then((res) => {
+            if (!res.ok) throw new Error("bad_status");
+            this.setState({ footerNewsletterSubmitting: false, footerNewsletterSubmitted: true });
+            form.reset();
+          })
+          .catch(() => {
+            this.setState({ footerNewsletterSubmitting: false, footerNewsletterError: true });
+          });
+      },
+      handleFooterSearchSubmit: (e) => {
+        e.preventDefault();
+        const query = e.target.q.value;
+        const result = window.thymosSiteSearch ? window.thymosSiteSearch(query) : null;
+        if (result && result.url) { window.location.href = result.url; }
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

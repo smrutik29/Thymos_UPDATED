@@ -6,6 +6,7 @@
 <title>Health Systems | Thymos Health</title>
 <meta name="description" content="Thymos expands specialist capacity and lowers the cost of autoimmune care for health systems, without adding specialist headcount.">
 <script src="./support.js"></script>
+<script src="./site-search.js"></script>
 </head>
 <body>
 <x-dc>
@@ -251,6 +252,132 @@
   #hs-root .hs-footer { background: var(--deep, #034152); color: white; padding: 40px 24px 52px; font-family: 'DM Sans', sans-serif; }
   #hs-root .hs-footer-brand { font-family: 'DM Serif Display', serif; font-size: 1.15rem; margin-bottom: 10px; }
   #hs-root .hs-footer-meta { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.07em; text-transform: uppercase; opacity: 0.4; line-height: 2; }
+  /* ═══════════════════════════════════════════════════════
+     SITE FOOTER — shared across every marketing page.
+     Fully scoped under .site-footer (every selector below is
+     prefixed with it) so it can never bleed into this page's
+     own styles, and vice versa. Sizes are plain px (not the
+     source file's rem) so this drops in safely regardless of
+     whether this page sets a custom root font-size.
+  ═══════════════════════════════════════════════════════ */
+  .site-footer {
+    --sf-dark:     #182220;
+    --sf-dark-2:   #1f2b28;
+    --sf-teal:     #25a08c;
+    --sf-teal-m:   #3ab7a0;
+    --sf-white:    #ffffff;
+    --sf-line:     rgba(255,255,255,0.1);
+    --sf-muted:    rgba(255,255,255,0.68);
+
+    background: var(--sf-dark);
+    color: var(--sf-muted);
+    padding: 64px 24px 40px;
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .site-footer .footer-inner { max-width: 1240px; margin: 0 auto; }
+  .site-footer .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px; }
+
+  .site-footer .footer-col-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12.4px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sf-teal-m);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .site-footer .footer-col-label::before { content: ''; width: 18px; height: 1.5px; background: currentColor; flex-shrink: 0; }
+
+  .site-footer .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .site-footer .footer-links a { color: var(--sf-white); text-decoration: none; font-size: 18.4px; opacity: 0.85; transition: opacity 0.15s, color 0.15s; }
+  .site-footer .footer-links a:hover { opacity: 1; color: var(--sf-teal-m); }
+
+  .site-footer .footer-spacer { height: 30px; }
+
+  .site-footer .app-tagline { font-size: 17px; color: var(--sf-muted); margin-bottom: 20px; }
+  .site-footer .app-mockup { display: flex; justify-content: flex-start; padding: 20px 0 8px; margin-bottom: 4px; }
+  .site-footer .iphone-frame {
+    position: relative; width: 168px; aspect-ratio: 9 / 19.5;
+    background: linear-gradient(160deg, #4a4a4c, #2b2b2d 55%, #1c1c1e);
+    border-radius: 38px; padding: 7px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset, 0 1px 0 rgba(255,255,255,0.15) inset, 0 18px 40px rgba(0,0,0,0.55);
+  }
+  .site-footer .iphone-screen { position: relative; width: 100%; height: 100%; border-radius: 31px; overflow: hidden; background: #000; }
+  .site-footer .iphone-screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .site-footer .iphone-island { position: absolute; top: 9px; left: 50%; transform: translateX(-50%); width: 32%; height: 7px; background: #000; border-radius: 5px; z-index: 2; }
+  .site-footer .iphone-btn { position: absolute; background: #2b2b2d; box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset; }
+  .site-footer .iphone-btn.action  { left: -2.5px; top: 21%; width: 2.5px; height: 22px; border-radius: 2px 0 0 2px; }
+  .site-footer .iphone-btn.vol-up   { left: -2.5px; top: 31%; width: 2.5px; height: 30px; border-radius: 2px 0 0 2px; }
+  .site-footer .iphone-btn.vol-down { left: -2.5px; top: 41.5%; width: 2.5px; height: 30px; border-radius: 2px 0 0 2px; }
+  .site-footer .iphone-btn.power    { right: -2.5px; top: 30%; width: 2.5px; height: 46px; border-radius: 0 2px 2px 0; }
+
+  .site-footer .footer-legal-row {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px;
+    margin-top: 56px; padding-top: 26px; border-top: 1px solid var(--sf-line); text-align: center;
+  }
+  .site-footer .footer-legal-row a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 15.6px; transition: color 0.15s; }
+  .site-footer .footer-legal-row a:hover { color: var(--sf-teal-m); }
+  .site-footer .footer-legal-sep { color: rgba(255,255,255,0.25); font-size: 15.6px; }
+  .site-footer .footer-legal-copyright { font-size: 15.6px; color: rgba(255,255,255,0.4); }
+  @media (max-width: 560px) {
+    .site-footer .footer-legal-row { gap: 8px 10px; }
+    .site-footer .footer-legal-sep { display: none; }
+    .site-footer .footer-legal-row a, .site-footer .footer-legal-copyright { width: 100%; }
+  }
+
+  .site-footer .subheading { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 19px; color: var(--sf-white); margin-bottom: 14px; }
+  .site-footer .footer-form { display: flex; flex-direction: column; gap: 10px; }
+  .site-footer .footer-form input[type="email"],
+  .site-footer .footer-form input[type="search"] {
+    font-family: 'DM Sans', sans-serif; font-size: 17.6px; color: var(--sf-white);
+    background: var(--sf-dark-2); border: 1.5px solid var(--sf-line); border-radius: 10px;
+    padding: 12px 14px; width: 100%; transition: border-color 0.15s;
+  }
+  .site-footer .footer-form input::placeholder { color: rgba(255,255,255,0.4); }
+  .site-footer .footer-form input:focus { outline: none; border-color: var(--sf-teal); }
+
+  .site-footer .search-input-wrap { position: relative; }
+  .site-footer .search-input-wrap input[type="search"] { padding-left: 40px; }
+  .site-footer .search-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: rgba(255,255,255,0.45); pointer-events: none; }
+
+  .site-footer .footer-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 16.4px; font-weight: 800;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    background: var(--sf-teal); color: white; border: none; cursor: pointer;
+    border-radius: 50px; padding: 12px 20px; transition: background 0.15s, transform 0.1s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .site-footer .footer-btn:hover { background: var(--sf-teal-m); }
+  .site-footer .footer-btn:active { transform: scale(0.98); }
+  .site-footer .footer-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+  .site-footer .form-note { display: none; font-size: 15.6px; color: var(--sf-teal-m); margin-top: 2px; line-height: 1.5; }
+  .site-footer .form-note.error { color: #ff8a75; }
+  .site-footer .form-note.visible { display: block; }
+
+  .site-footer .social-row { display: flex; gap: 12px; margin-top: 4px; }
+  .site-footer .social-icon {
+    display: flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--sf-teal); border: 1px solid var(--sf-teal);
+    color: var(--sf-white); transition: background 0.15s, border-color 0.15s;
+  }
+  .site-footer .social-icon:hover { background: var(--sf-teal-m); border-color: var(--sf-teal-m); }
+  .site-footer .social-icon svg { width: 18px; height: 18px; }
+
+  @media (max-width: 980px) {
+    .site-footer .footer-grid { grid-template-columns: repeat(2, 1fr); row-gap: 48px; }
+  }
+  @media (max-width: 560px) {
+    .site-footer .footer-grid { grid-template-columns: 1fr; }
+    .site-footer { padding: 48px 20px 32px; }
+  }
 </style>
 </helmet>
 
@@ -749,15 +876,131 @@
 
   </main>
 
-  <footer style="background:#02302d; color:#fff; padding:40px; text-align:center;">
-    <p>© 2025 Thymos Health. All rights reserved.</p>
-    <nav style="margin-top:12px; display:flex; justify-content:center; align-items:center; gap:12px;">
-      <a href="Thymos About Us.dc.html" style="color:#ea6047; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">About Us</a>
-      <span style="color:#aaa; font-weight:400;">|</span>
-      <a href="Thymos Privacy Policy.dc.html" style="color:#ea6047; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">Privacy Policy</a>
-      <span style="color:#aaa; font-weight:400;">|</span>
-      <a href="Thymos Terms of Service.dc.html" style="color:#ea6047; text-decoration:none; font-weight:500;" style-hover="text-decoration:underline;">Terms of Service</a>
-    </nav>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+
+        <!-- Column 1: App download -->
+        <div class="footer-col">
+          <div class="footer-col-label">Start Today</div>
+          <div class="app-tagline">Total Care. Totally Different.<br>Download Thymos App.</div>
+
+          <div class="app-mockup">
+            <div class="iphone-frame">
+              <div class="iphone-screen">
+                <img src="img/thymos-footer-app-mockup.jpg" alt="Thymos Health app screen">
+                <div class="iphone-island"></div>
+              </div>
+              <div class="iphone-btn action"></div>
+              <div class="iphone-btn vol-up"></div>
+              <div class="iphone-btn vol-down"></div>
+              <div class="iphone-btn power"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2: Explore + newsletter -->
+        <div class="footer-col">
+          <div class="footer-col-label">Explore</div>
+          <ul class="footer-links">
+            <li><a href="Thymos How We Work.dc.html">Thymos Journey</a></li>
+            <li><a href="Thymos Proven Approach.dc.html">Proven Approach</a></li>
+            <li><a href="Thymos Conditions Treated.dc.html">150+ Diseases Treated</a></li>
+          </ul>
+
+          <div class="footer-spacer"></div>
+          <div class="footer-spacer"></div>
+
+          <div class="subheading">Join #ThymosHealth Community!</div>
+          <form class="footer-form" onSubmit="{{ handleFooterNewsletterSubmit }}" novalidate="{{ true }}">
+            <input type="text" name="hp_field_9f3a" tabIndex="{{ -1 }}" autoComplete="off" aria-hidden="{{ true }}" style="position:absolute; left:-9999px; height:0; width:0; opacity:0;">
+            <input type="email" id="newsletterEmail" name="email" placeholder="Email address" required="{{ true }}" autoComplete="email">
+            <button type="submit" class="footer-btn" disabled="{{ footerNewsletterSubmitting }}">{{ footerNewsletterBtnLabel }}</button>
+            <sc-if value="{{ footerNewsletterSubmitted }}" hint-placeholder-val="{{ false }}">
+              <div class="form-note visible">Thanks for joining — keep an eye on your inbox.</div>
+            </sc-if>
+            <sc-if value="{{ footerNewsletterError }}" hint-placeholder-val="{{ false }}">
+              <div class="form-note error visible">Something went wrong — please try again.</div>
+            </sc-if>
+          </form>
+        </div>
+
+        <!-- Column 3: About + search -->
+        <div class="footer-col">
+          <div class="footer-col-label">About Thymos</div>
+          <ul class="footer-links">
+            <li><a href="Thymos About Us.dc.html">Our Story</a></li>
+            <li><a href="Thymos How We Work.dc.html#faq">Help Center</a></li>
+            <li><a href="/quiz">Contact Us</a></li>
+          </ul>
+
+          <div class="footer-spacer"></div>
+          <div class="footer-spacer"></div>
+
+          <div class="subheading">Search our site.</div>
+          <form class="footer-form" onSubmit="{{ handleFooterSearchSubmit }}">
+            <div class="search-input-wrap">
+              <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <circle cx="11" cy="11" r="7"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="search" id="siteSearch" name="q" placeholder="Search" required="{{ true }}">
+            </div>
+            <button type="submit" class="footer-btn">Search</button>
+          </form>
+        </div>
+
+        <!-- Column 4: Partner + social -->
+        <div class="footer-col">
+          <div class="footer-col-label">Partner with Thymos</div>
+          <ul class="footer-links">
+            <li><a href="Thymos For Employers.dc.html">For Employers</a></li>
+            <li><a href="Thymos Health Systems.dc.html">For Health Systems</a></li>
+            <li><a href="Thymos Providers.dc.html">For Providers</a></li>
+          </ul>
+
+          <div class="footer-spacer"></div>
+          <div class="footer-spacer"></div>
+
+          <div class="subheading">Follow Us:</div>
+          <div class="social-row">
+            <a class="social-icon" href="https://www.instagram.com/payal.bhandarimd/" target="_blank" rel="noopener" aria-label="Thymos Health on Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                <circle cx="12" cy="12" r="4"></circle>
+                <circle cx="17.2" cy="6.8" r="1"></circle>
+              </svg>
+            </a>
+            <a class="social-icon" href="https://www.facebook.com/doctorpbhandari/" target="_blank" rel="noopener" aria-label="Thymos Health on Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 3h-2a5 5 0 0 0-5 5v3H6v4h2v6h4v-6h3l1-4h-4V8a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a class="social-icon" href="https://www.linkedin.com/company/108459671/admin/page-posts/published/" target="_blank" rel="noopener" aria-label="Thymos Health on LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+                <line x1="7.5" y1="9.5" x2="7.5" y2="16.5"></line>
+                <circle cx="7.5" cy="6.7" r="1"></circle>
+                <path d="M11.5 16.5v-4a2.3 2.3 0 0 1 4.6 0v4"></path>
+                <line x1="11.5" y1="10" x2="11.5" y2="16.5"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-legal-row">
+        <a href="Thymos Privacy Policy.dc.html">Privacy Policy</a>
+        <span class="footer-legal-sep">|</span>
+        <a href="Thymos Terms of Service.dc.html">Terms &amp; Conditions</a>
+        <span class="footer-legal-sep">|</span>
+        <a href="Thymos Privacy Policy.dc.html">Your Privacy Choices</a>
+        <span class="footer-legal-sep">|</span>
+        <span class="footer-legal-copyright">&copy; 2026 Thymos Health. All rights reserved.</span>
+      </div>
+
+    </div>
   </footer>
 
 </div>
@@ -767,6 +1010,7 @@ class Component extends DCLogic {
   state = {
     menuOpen: false,
     activeDept: "rheum",
+    footerNewsletterSubmitted: false, footerNewsletterSubmitting: false, footerNewsletterError: false,
     patients: 1000,
     visitsPerYear: 4.5,
     costPerVisit: 260,
@@ -798,6 +1042,37 @@ class Component extends DCLogic {
     return {
       menuOpen: this.state.menuOpen,
       toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
+      footerNewsletterSubmitted: this.state.footerNewsletterSubmitted,
+      footerNewsletterSubmitting: this.state.footerNewsletterSubmitting,
+      footerNewsletterError: this.state.footerNewsletterError,
+      footerNewsletterBtnLabel: this.state.footerNewsletterSubmitting ? "Sending…" : "Let's Work Together",
+      handleFooterNewsletterSubmit: (e) => {
+        e.preventDefault();
+        const form = e.target;
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+        if (form.hp_field_9f3a.value.trim() !== "") { return; }
+        const email = form.email.value;
+        this.setState({ footerNewsletterSubmitting: true, footerNewsletterError: false });
+        fetch("/api/newsletter-signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, sourcePage: document.title, companyWebsite: form.hp_field_9f3a.value }),
+        })
+          .then((res) => {
+            if (!res.ok) throw new Error("bad_status");
+            this.setState({ footerNewsletterSubmitting: false, footerNewsletterSubmitted: true });
+            form.reset();
+          })
+          .catch(() => {
+            this.setState({ footerNewsletterSubmitting: false, footerNewsletterError: true });
+          });
+      },
+      handleFooterSearchSubmit: (e) => {
+        e.preventDefault();
+        const query = e.target.q.value;
+        const result = window.thymosSiteSearch ? window.thymosSiteSearch(query) : null;
+        if (result && result.url) { window.location.href = result.url; }
+      },
 
       patients: patients,
       visitsPerYear: visitsPerYear,
