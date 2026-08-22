@@ -182,6 +182,9 @@
   #emp-root .cta-section .lede { opacity: 0.85; margin: 0 auto 36px; }
   #emp-root .cta-buttons { display: flex; flex-direction: column; gap: 14px; max-width: 400px; margin: 0 auto; }
   #emp-root .cta-fine { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.45; margin-top: 28px; line-height: 2.2; }
+  #emp-root .pbm-status { font-size: 0.82rem; line-height: 1.55; opacity: 0.88; margin: 16px auto 0; max-width: 420px; }
+  #emp-root .pbm-status-error { opacity: 1; color: #ffd0c4; }
+  #emp-root .pbm-retry-link { color: inherit; text-decoration: underline; font-weight: 600; }
 
   #emp-root .footnote { font-family: 'DM Mono', monospace; font-size: 0.62rem; opacity: 0.42; margin-top: 16px; line-height: 1.7; }
   #emp-root .text-link { display: inline-flex; align-items: center; gap: 6px; color: var(--teal); font-weight: 700; font-size: 0.88rem; text-decoration: none; margin-top: 24px; }
@@ -872,7 +875,7 @@
         <p class="lede" style="opacity:0.85; margin:0 auto 32px;">The model above uses industry averages. One ask to your health plan or PBM gives you an actual count of eligible members — and a real ROI projection built from your own claims data.</p>
 
         <div class="cta-buttons">
-          <a href="mailto:?cc=data@thymoshealth.com&subject=PBM%20Data%20Pull%20Request&body=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20sizing%20our%20population%20for%20the%20Thymos%20program." class="btn btn-white">
+          <a href="mailto:?cc=data@thymoshealth.com&subject=PBM%20Data%20Pull%20Request&body=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20sizing%20our%20population%20for%20the%20Thymos%20program." class="btn btn-white" onClick="{{ handlePbmDataPull }}">
             Request a PBM data pull →
           </a>
           <a href="employer-pitch.html" target="_blank" class="btn btn-outline">
@@ -883,6 +886,16 @@
             Forward to your benefits team
           </button>
         </div>
+
+        <sc-if value="{{ pbmPreparing }}" hint-placeholder-val="{{ false }}">
+          <div class="pbm-status">Preparing your PBM data request…</div>
+        </sc-if>
+        <sc-if value="{{ pbmReady }}" hint-placeholder-val="{{ false }}">
+          <div class="pbm-status">Downloaded <strong>thymos-pbm-data-request.csv</strong> and opened an email draft. Your browser can't auto-attach files to a mail draft, so please attach the downloaded CSV before sending.</div>
+        </sc-if>
+        <sc-if value="{{ pbmErrorState }}" hint-placeholder-val="{{ false }}">
+          <div class="pbm-status pbm-status-error">Something went wrong preparing your request. <a href="mailto:?cc=data@thymoshealth.com&subject=PBM%20Data%20Pull%20Request&body=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20sizing%20our%20population%20for%20the%20Thymos%20program." class="pbm-retry-link" onClick="{{ handlePbmDataPull }}">Try again</a>.</div>
+        </sc-if>
 
         <div class="cta-fine">
           $500 / participant / month · 24-month commitment<br>
@@ -1126,8 +1139,107 @@
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
+// ─── PBM data-pull request: reference data + pure helpers ──────────────
+// Sourced from "pbm data request.html" (GPI & NDC Reference table, 34
+// rows). GPI/NDC codes and drug names are copied verbatim — not invented,
+// not modified. The 3 employer/PBM response columns are intentionally
+// left blank for the health plan's data team to complete.
+const PBM_GPI_REFERENCE = [
+  { gpi: "6610001010", gpiName: "TNF-α Inhibitor", ndc: "00074-9374-02", drug: "Adalimumab / Humira" },
+  { gpi: "6610001010", gpiName: "TNF-α Inhibitor", ndc: "00074-9374-26", drug: "Adalimumab / Humira" },
+  { gpi: "6610001010", gpiName: "TNF-α Inhibitor", ndc: "00310-6001-01", drug: "Adalimumab / Hadlima" },
+  { gpi: "6610001010", gpiName: "TNF-α Inhibitor", ndc: "00069-0188-01", drug: "Adalimumab / Hyrimoz" },
+  { gpi: "6610001010", gpiName: "TNF-α Inhibitor", ndc: "58406-0455-02", drug: "Etanercept / Enbrel" },
+  { gpi: "6610001010", gpiName: "TNF-α Inhibitor", ndc: "58406-0025-04", drug: "Etanercept / Enbrel" },
+  { gpi: "6610001010", gpiName: "TNF-α Inhibitor", ndc: "66658-0010-01", drug: "Etanercept / Eticovo" },
+  { gpi: "6610001010", gpiName: "TNF-α Inhibitor", ndc: "57894-0030-01", drug: "Infliximab / Remicade" },
+  { gpi: "6610001010", gpiName: "TNF-α Inhibitor", ndc: "59148-0049-02", drug: "Infliximab / Inflectra" },
+  { gpi: "6610001010", gpiName: "TNF-α Inhibitor", ndc: "00069-0186-01", drug: "Infliximab / Ixifi" },
+  { gpi: "6610001010", gpiName: "TNF-α Inhibitor", ndc: "57894-0060-01", drug: "Golimumab / Simponi" },
+  { gpi: "6610001010", gpiName: "TNF-α Inhibitor", ndc: "57894-0060-12", drug: "Golimumab / Simponi" },
+  { gpi: "6610001010", gpiName: "TNF-α Inhibitor", ndc: "57894-0061-01", drug: "Golimumab / Simponi Aria" },
+  { gpi: "6610001010", gpiName: "TNF-α Inhibitor", ndc: "46435-0922-02", drug: "Certolizumab / Cimzia" },
+  { gpi: "6610001010", gpiName: "TNF-α Inhibitor", ndc: "46435-0921-02", drug: "Certolizumab / Cimzia" },
+  { gpi: "6640004000", gpiName: "IL-17 Inhibitor", ndc: "00078-0650-61", drug: "Secukinumab / Cosentyx" },
+  { gpi: "6640004000", gpiName: "IL-17 Inhibitor", ndc: "00078-0650-15", drug: "Secukinumab / Cosentyx" },
+  { gpi: "6640004000", gpiName: "IL-17 Inhibitor", ndc: "00002-1490-11", drug: "Ixekizumab / Taltz" },
+  { gpi: "6640004000", gpiName: "IL-17 Inhibitor", ndc: "00002-1499-11", drug: "Ixekizumab / Taltz" },
+  { gpi: "6640005000", gpiName: "IL-23 Inhibitor", ndc: "57894-0070-01", drug: "Ustekinumab / Stelara" },
+  { gpi: "6640005000", gpiName: "IL-23 Inhibitor", ndc: "57894-0070-02", drug: "Ustekinumab / Stelara" },
+  { gpi: "6640005000", gpiName: "IL-23 Inhibitor", ndc: "57894-0114-01", drug: "Guselkumab / Tremfya" },
+  { gpi: "6640005000", gpiName: "IL-23 Inhibitor", ndc: "00074-1261-01", drug: "Risankizumab / Skyrizi" },
+  { gpi: "6640006000", gpiName: "IL-6 Inhibitor", ndc: "50242-0135-01", drug: "Tocilizumab / Actemra" },
+  { gpi: "6640006000", gpiName: "IL-6 Inhibitor", ndc: "50242-0137-01", drug: "Tocilizumab / Actemra" },
+  { gpi: "6640006000", gpiName: "IL-6 Inhibitor", ndc: "49083-0049-01", drug: "Sarilumab / Kevzara" },
+  { gpi: "5735001010", gpiName: "JAK Inhibitor", ndc: "00069-0013-30", drug: "Tofacitinib / Xeljanz" },
+  { gpi: "5735001010", gpiName: "JAK Inhibitor", ndc: "00069-0017-30", drug: "Tofacitinib / Xeljanz XR" },
+  { gpi: "5735001010", gpiName: "JAK Inhibitor", ndc: "00074-2306-30", drug: "Upadacitinib / Rinvoq" },
+  { gpi: "5735001010", gpiName: "JAK Inhibitor", ndc: "00002-1655-60", drug: "Baricitinib / Olumiant" },
+  { gpi: "6640007000", gpiName: "Other Targeted Biologic", ndc: "00003-2187-11", drug: "Abatacept / Orencia SC" },
+  { gpi: "6640007000", gpiName: "Other Targeted Biologic", ndc: "00003-2188-10", drug: "Abatacept / Orencia IV" },
+  { gpi: "6640007000", gpiName: "Other Targeted Biologic", ndc: "64764-0100-01", drug: "Vedolizumab / Entyvio" },
+  { gpi: "6640007000", gpiName: "Other Targeted Biologic", ndc: "00173-0834-01", drug: "Belimumab / Benlysta" }
+];
+
+// RFC 4180-style field escaping: quote only when the value contains a
+// comma, quote, or newline; double up any embedded quotes.
+function pbmCsvEscape(value) {
+  const s = value === null || value === undefined ? "" : String(value);
+  if (/[",\r\n]/.test(s)) {
+    return '"' + s.replace(/"/g, '""') + '"';
+  }
+  return s;
+}
+
+function generatePbmCsv() {
+  const header = ["GPI #", "GPI Name", "NDC", "Drug Name (Generic / Brand)", "# Patients", "# Paid Claims", "Total Plan Paid"];
+  const rows = PBM_GPI_REFERENCE.map((r) => [r.gpi, r.gpiName, r.ndc, r.drug, "", "", ""]);
+  return [header].concat(rows).map((row) => row.map(pbmCsvEscape).join(",")).join("\r\n") + "\r\n";
+}
+
+function buildPbmEmailBody() {
+  return [
+    "Hi,",
+    "",
+    "I'd like to learn more about sizing our population for the Thymos program.",
+    "",
+    "We are evaluating the Thymos clinical program for members using specialty biologics for autoimmune conditions. To estimate the eligible population, we would appreciate an aggregate summary from our claims data. No member-level data or PHI is required.",
+    "",
+    "Please provide:",
+    "",
+    "1. A unique count of members with at least one fill matching the GPI/NDC reference contained in the attached template during the requested claims period.",
+    "",
+    "2. The number of paid claims for the applicable drugs/classes.",
+    "",
+    "3. Total plan-paid amount for those claims.",
+    "",
+    "Please complete the attached thymos-pbm-data-request.csv and return the completed file.",
+    "",
+    "Please report aggregate counts only. No member names, dates of birth, or other member identifiers are required.",
+    "",
+    "Please also include a unique member count deduplicated across all included therapeutic classes.",
+    "",
+    "Thank you."
+  ].join("\n");
+}
+
+// Triggers a browser download of the generated CSV. Throws on failure
+// (e.g. Blob/URL APIs unavailable) so the caller can surface an error.
+function downloadPbmCsv() {
+  const csv = generatePbmCsv();
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "thymos-pbm-data-request.csv";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
 class Component extends DCLogic {
-  state = { menuOpen: false, footerNewsletterSubmitted: false, footerNewsletterSubmitting: false, footerNewsletterError: false, diseaseModalOpen: false, selectedAwp: 7150 };
+  state = { menuOpen: false, footerNewsletterSubmitted: false, footerNewsletterSubmitting: false, footerNewsletterError: false, diseaseModalOpen: false, selectedAwp: 7150, pbmStatus: "idle" };
 
   componentDidMount() {
     this.renderChart(this.state.selectedAwp);
@@ -1261,6 +1373,31 @@ class Component extends DCLogic {
     }
   }
 
+  // No authenticated email-provider integration exists in this project
+  // (no Gmail/Outlook OAuth, no backend draft API) — mailto: can't
+  // reliably attach a file, so the CSV is downloaded to the visitor's
+  // machine and a pre-filled mailto draft (blank To, CC, subject, body)
+  // is opened alongside it; the status note below the CTA tells the
+  // visitor to attach the downloaded file themselves before sending.
+  handlePbmDataPull(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    this.setState({ pbmStatus: "preparing" });
+    // Deferred one tick so the "preparing" state actually paints before
+    // the (near-instant) CSV generation + mailto navigation runs.
+    setTimeout(() => {
+      try {
+        downloadPbmCsv();
+        const subject = encodeURIComponent("PBM Data Pull Request");
+        const body = encodeURIComponent(buildPbmEmailBody());
+        window.location.href = "mailto:?cc=data@thymoshealth.com&subject=" + subject + "&body=" + body;
+        this.setState({ pbmStatus: "ready" });
+      } catch (err) {
+        console.error("[pbm-data-pull] failed to prepare PBM data request draft", err);
+        this.setState({ pbmStatus: "error" });
+      }
+    }, 0);
+  }
+
   renderVals() {
     const awp = this.state.selectedAwp;
     return {
@@ -1308,7 +1445,11 @@ class Component extends DCLogic {
       selectDrugHumira: () => this.setState({ selectedAwp: 7150 }),
       selectDrugStelara: () => this.setState({ selectedAwp: 14200 }),
       selectDrugCosentyx: () => this.setState({ selectedAwp: 5800 }),
-      selectDrugSkyrizi: () => this.setState({ selectedAwp: 9500 })
+      selectDrugSkyrizi: () => this.setState({ selectedAwp: 9500 }),
+      pbmPreparing: this.state.pbmStatus === "preparing",
+      pbmReady: this.state.pbmStatus === "ready",
+      pbmErrorState: this.state.pbmStatus === "error",
+      handlePbmDataPull: (e) => this.handlePbmDataPull(e)
     };
   }
 }
