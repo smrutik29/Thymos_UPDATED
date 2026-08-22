@@ -482,7 +482,7 @@
             <h4 style="margin:0 0 16px; font-size:26px; font-weight:700; letter-spacing:0.02em; color:#083763;">See a Typical Journey by Condition:</h4>
             <div style="display:flex; flex-wrap:wrap; gap:10px;">
               <sc-for list="{{ conditions }}" as="c" hint-placeholder-count="11">
-                <a href="{{ c.href }}" style="display:inline-flex; align-items:center; font-family:inherit; font-size:16.5px; font-weight:600; color:#073763; background:#ffffff; border:1px solid #E2E8F0; border-radius:999px; padding:8px 24px; text-decoration:none; cursor:pointer; white-space:nowrap;" style-hover="border-color:#980000; color:#980000; background:rgba(152,0,0,0.05); transform:translateY(-1px);">{{ c.name }}</a>
+                <a href="{{ c.href }}" style="display:inline-flex; align-items:center; font-family:inherit; font-size:16.5px; font-weight:600; color:#ffffff; background:#ea6047; border:1px solid #ea6047; border-radius:999px; padding:8px 24px; text-decoration:none; cursor:pointer; white-space:nowrap; transition:background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;" style-hover="background:#ffffff; color:#ea6047; border-color:#ea6047;">{{ c.name }}</a>
               </sc-for>
             </div>
           </div>
