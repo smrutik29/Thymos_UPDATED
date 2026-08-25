@@ -181,6 +181,245 @@
     .site-footer .footer-grid { grid-template-columns: 1fr; }
     .site-footer { padding: 48px 20px 32px; }
   }
+
+  /* ─── "Your Privacy Choices" modal (footer) ───────────────────────── */
+  :root {
+    --privacy-deep: #034152;
+    --privacy-teal: #25a08c;
+    --privacy-coral: #f25630;
+    --privacy-cream: #f8f5f0;
+    --privacy-card: #fbfaf6;
+    --privacy-border: rgba(3, 65, 82, 0.14);
+    --privacy-text-soft: rgba(3, 65, 82, 0.66);
+    --privacy-overlay: rgba(18, 28, 26, 0.55);
+  }
+  .privacy-choices-link {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8125rem;
+    color: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+    opacity: 0.85;
+    transition: opacity 0.15s ease;
+  }
+  .privacy-choices-link:hover,
+  .privacy-choices-link:focus-visible {
+    opacity: 1;
+  }
+  .privacy-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: var(--privacy-overlay);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+  .privacy-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+  .privacy-modal {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    background: var(--privacy-cream);
+    border-radius: 14px;
+    padding: 32px 32px 28px;
+    box-shadow: 0 24px 60px rgba(3, 65, 82, 0.28);
+    transform: translateY(10px) scale(0.97);
+    transition: transform 0.22s ease;
+  }
+  .privacy-overlay.is-open .privacy-modal {
+    transform: translateY(0) scale(1);
+  }
+  .privacy-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    border-radius: 8px;
+    color: var(--privacy-deep);
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .privacy-close svg {
+    width: 18px;
+    height: 18px;
+  }
+  .privacy-close:hover,
+  .privacy-close:focus-visible {
+    background: rgba(3, 65, 82, 0.08);
+  }
+  .privacy-title {
+    margin: 0 40px 12px 0;
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: var(--privacy-deep);
+  }
+  .privacy-desc {
+    margin: 0 0 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--privacy-text-soft);
+  }
+  .privacy-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .privacy-card {
+    border: 1px solid var(--privacy-border);
+    background: var(--privacy-card);
+    border-radius: 10px;
+    padding: 14px 18px;
+    transition: border-color 0.15s ease;
+  }
+  .privacy-card:focus-visible,
+  .privacy-card:hover {
+    border-color: var(--privacy-teal);
+    outline: none;
+  }
+  .privacy-card h3 {
+    margin: 0 0 4px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--privacy-deep);
+  }
+  .privacy-card p {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--privacy-text-soft);
+  }
+  .privacy-card--essential {
+    border: 2px solid var(--privacy-teal);
+    padding: 13px 17px;
+  }
+  .privacy-footer-row {
+    border-top: 1px solid var(--privacy-border);
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .privacy-toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .privacy-toggle-label {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: var(--privacy-deep);
+  }
+  .privacy-toggle {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+    border-radius: 999px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    background: #d8d3c8;
+    transition: background 0.2s ease;
+  }
+  .privacy-toggle[aria-checked="true"] {
+    background: var(--privacy-teal);
+  }
+  .privacy-toggle-knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--privacy-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.2s ease, background 0.2s ease;
+  }
+  .privacy-toggle-knob svg {
+    width: 10px;
+    height: 10px;
+  }
+  .privacy-toggle[aria-checked="true"] .privacy-toggle-knob {
+    left: 22px;
+    background: #ffffff;
+  }
+  .privacy-toggle[aria-checked="true"] .privacy-toggle-knob svg {
+    color: var(--privacy-teal);
+  }
+  .privacy-toggle:focus-visible {
+    outline: 2px solid var(--privacy-teal);
+    outline-offset: 3px;
+  }
+  .privacy-ok {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--privacy-deep);
+    background: transparent;
+    border: 1.5px solid var(--privacy-deep);
+    border-radius: 999px;
+    padding: 10px 40px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .privacy-ok:hover,
+  .privacy-ok:focus-visible {
+    background: var(--privacy-coral);
+    border-color: var(--privacy-coral);
+    color: #ffffff;
+  }
+  @media (max-width: 480px) {
+    .privacy-modal {
+      padding: 26px 20px 22px;
+    }
+    .privacy-toggle-row {
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .privacy-overlay,
+    .privacy-modal,
+    .privacy-toggle,
+    .privacy-toggle-knob,
+    .privacy-close,
+    .privacy-ok,
+    .privacy-card {
+      transition: none !important;
+    }
+  }
 </style>
 </helmet>
 
@@ -482,7 +721,7 @@
         <span class="footer-legal-sep">|</span>
         <a href="Thymos Terms of Service.dc.html">Terms &amp; Conditions</a>
         <span class="footer-legal-sep">|</span>
-        <a href="Thymos Privacy Policy.dc.html">Your Privacy Choices</a>
+        <a href="#" class="privacy-choices-link" id="privacyChoicesTrigger">Your Privacy Choices</a>
         <span class="footer-legal-sep">|</span>
         <span class="footer-legal-copyright">&copy; 2026 Thymos Health. All rights reserved.</span>
       </div>
@@ -549,6 +788,185 @@ class Component extends DCLogic {
     };
   }
 }
+</script>
+<div class="privacy-overlay" id="privacyOverlay" aria-hidden="true">
+  <div
+    class="privacy-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="privacyTitle"
+    aria-describedby="privacyDesc"
+  >
+    <button class="privacy-close" id="privacyClose" aria-label="Close privacy settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="5" y1="5" x2="19" y2="19"></line>
+        <line x1="19" y1="5" x2="5" y2="19"></line>
+      </svg>
+    </button>
+
+    <h2 id="privacyTitle" class="privacy-title">Privacy Settings</h2>
+    <p id="privacyDesc" class="privacy-desc">
+      Here you can find information about the categories of personal information we collect and the purposes for which information may be used.
+    </p>
+
+    <div class="privacy-categories">
+      <div class="privacy-card" tabindex="0">
+        <h3>Marketing</h3>
+        <p>These technologies are used by advertisers to serve ads that are relevant to your interests.</p>
+      </div>
+
+      <div class="privacy-card" tabindex="0">
+        <h3>Functional</h3>
+        <p>These technologies enable us to analyze usage behavior in order to measure and improve performance.</p>
+      </div>
+
+      <div class="privacy-card privacy-card--essential" tabindex="0">
+        <h3>Essential</h3>
+        <p>These technologies are required to activate the core functionality of our service.</p>
+      </div>
+    </div>
+
+    <div class="privacy-footer-row">
+      <div class="privacy-toggle-row">
+        <span class="privacy-toggle-label" id="privacyToggleLabel">Do not sell my personal information</span>
+        <button
+          class="privacy-toggle"
+          id="privacyToggle"
+          role="switch"
+          aria-checked="false"
+          aria-labelledby="privacyToggleLabel"
+        >
+          <span class="privacy-toggle-knob">
+            <svg class="privacy-toggle-icon-off" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round">
+              <line x1="5" y1="5" x2="19" y2="19"></line>
+              <line x1="19" y1="5" x2="5" y2="19"></line>
+            </svg>
+            <svg class="privacy-toggle-icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" style="display:none;">
+              <polyline points="4 12 9 17 20 6"></polyline>
+            </svg>
+          </span>
+        </button>
+      </div>
+
+      <button class="privacy-ok" id="privacyOk">OK</button>
+    </div>
+  </div>
+</div>
+<script>
+  (function () {
+    var overlay = document.getElementById('privacyOverlay');
+    var modal = overlay.querySelector('.privacy-modal');
+    var closeBtn = document.getElementById('privacyClose');
+    var okBtn = document.getElementById('privacyOk');
+    var toggle = document.getElementById('privacyToggle');
+    var toggleIconOff = toggle.querySelector('.privacy-toggle-icon-off');
+    var toggleIconOn = toggle.querySelector('.privacy-toggle-icon-on');
+    var lastFocused = null;
+    var STORAGE_KEY = 'thymos_do_not_sell';
+    var COOKIE_NAME = 'thymos_do_not_sell';
+    var COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
+
+    function readCookie(name) {
+      var match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+      return match ? decodeURIComponent(match[1]) : null;
+    }
+
+    function writeCookie(name, value) {
+      document.cookie = name + '=' + encodeURIComponent(value) + '; path=/; max-age=' + COOKIE_MAX_AGE + '; SameSite=Lax';
+    }
+
+    // Cookie is the source of truth other scripts on the site would check
+    // before firing marketing/analytics tags; localStorage is just a fallback
+    // for browsers/contexts where cookie writes are blocked.
+    function persistChoice(isOn) {
+      writeCookie(COOKIE_NAME, String(isOn));
+      try {
+        localStorage.setItem(STORAGE_KEY, String(isOn));
+      } catch (e) {
+        /* localStorage unavailable — cookie still carries the preference */
+      }
+    }
+
+    function setToggleState(isOn) {
+      toggle.setAttribute('aria-checked', isOn ? 'true' : 'false');
+      toggleIconOff.style.display = isOn ? 'none' : 'block';
+      toggleIconOn.style.display = isOn ? 'block' : 'none';
+    }
+
+    // Restore any saved preference on load
+    var saved = readCookie(COOKIE_NAME);
+    if (saved === null) {
+      try {
+        saved = localStorage.getItem(STORAGE_KEY);
+      } catch (e) {
+        saved = null;
+      }
+    }
+    setToggleState(saved === 'true');
+
+    function openModal(e) {
+      if (e) e.preventDefault();
+      lastFocused = document.activeElement;
+      overlay.classList.add('is-open');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+      document.addEventListener('keydown', onKeydown);
+    }
+
+    function closeModal() {
+      overlay.classList.remove('is-open');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onKeydown);
+      if (lastFocused) lastFocused.focus();
+    }
+
+    function onKeydown(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+        return;
+      }
+      // simple focus trap
+      if (e.key === 'Tab') {
+        var focusable = modal.querySelectorAll(
+          'button, [href], [tabindex]:not([tabindex="-1"])'
+        );
+        var first = focusable[0];
+        var last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+
+    // Delegated (not a direct reference) because the footer that
+    // contains the trigger is re-rendered by the page's component
+    // runtime, which would silently orphan a directly-bound listener.
+    document.addEventListener('click', function (e) {
+      var el = e.target.closest && e.target.closest('#privacyChoicesTrigger');
+      if (el) openModal(e);
+    });
+    closeBtn.addEventListener('click', closeModal);
+    okBtn.addEventListener('click', function () {
+      persistChoice(toggle.getAttribute('aria-checked') === 'true');
+      closeModal();
+    });
+
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeModal();
+    });
+
+    toggle.addEventListener('click', function () {
+      var next = toggle.getAttribute('aria-checked') !== 'true';
+      setToggleState(next);
+      persistChoice(next);
+    });
+  })();
 </script>
 </body>
 </html>
