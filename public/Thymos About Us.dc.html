@@ -216,7 +216,7 @@
     position: fixed;
     inset: 0;
     z-index: 9999;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     padding: 24px;
@@ -228,6 +228,7 @@
     transition: opacity 0.2s ease, visibility 0.2s ease;
   }
   .privacy-overlay.is-open {
+    display: flex;
     opacity: 1;
     visibility: visible;
   }
@@ -1052,9 +1053,17 @@ class Component extends DCLogic {
     }
     setToggleState(saved === 'true');
 
+    var closeTimer = null;
+
     function openModal(e) {
       if (e) e.preventDefault();
+      if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
       lastFocused = document.activeElement;
+      overlay.style.display = 'flex';
+      // Force layout so the browser registers the display change before the
+      // class toggle, otherwise opacity/visibility jump straight to their
+      // end state instead of transitioning (display:none can't animate).
+      overlay.offsetHeight;
       overlay.classList.add('is-open');
       overlay.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
@@ -1068,6 +1077,8 @@ class Component extends DCLogic {
       document.body.style.overflow = '';
       document.removeEventListener('keydown', onKeydown);
       if (lastFocused) lastFocused.focus();
+      if (closeTimer) clearTimeout(closeTimer);
+      closeTimer = setTimeout(function () { overlay.style.display = 'none'; }, 220);
     }
 
     function onKeydown(e) {
