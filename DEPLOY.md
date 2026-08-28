@@ -47,9 +47,23 @@ gcloud run deploy thymos-quiz-app \
   --region us-west2 \
   --service-account thymos-quiz-app@thymos-health.iam.gserviceaccount.com \
   --allow-unauthenticated \
-  --set-env-vars DB_NAME=thymos_quiz,DB_USER=quiz_app,INSTANCE_CONNECTION_NAME=thymos-health:us-west2:thymos-quiz-dev \
-  --set-secrets DB_PASSWORD=quiz-db-password:latest
+  --set-env-vars DB_NAME=thymos_quiz,DB_USER=quiz_app,INSTANCE_CONNECTION_NAME=thymos-health:us-west2:thymos-quiz-dev,WAITLIST_DB_NAME=thymos_waitlist,WAITLIST_DB_USER=waitlist_app,REFERRALS_DB_NAME=thymos_referrals,REFERRALS_DB_USER=referrals_app,HEALTH_SYSTEMS_DB_NAME=thymos_health_systems,HEALTH_SYSTEMS_DB_USER=health_systems_app \
+  --set-secrets DB_PASSWORD=quiz-db-password:latest,WAITLIST_DB_PASSWORD=waitlist-db-password:latest,REFERRALS_DB_PASSWORD=referrals-db-password:latest,HEALTH_SYSTEMS_DB_PASSWORD=health-systems-db-password:latest
 ```
+
+The waitlist, provider-referral, and health-system-analysis forms each store
+to their own isolated database (`thymos_waitlist`, `thymos_referrals`,
+`thymos_health_systems`) on the **same** Cloud SQL instance, each via a
+dedicated de-privileged user (`waitlist_app`, `referrals_app`,
+`health_systems_app`), so no extra `INSTANCE_CONNECTION_NAME` is needed —
+`src/lib/db/client.ts` reuses it. Provision each once with
+`db/provision-isolated-db.sh`, e.g.:
+`NEW_DB=thymos_health_systems NEW_USER=health_systems_app
+SCHEMA_FILE=db/health-systems-schema.sql QUIZ_APP_PASSWORD=… NEW_USER_PASSWORD=…
+bash db/provision-isolated-db.sh` (`db/provision-waitlist.sh` is the original
+waitlist-specific version). `thymos_referrals` holds patient PHI — Cloud SQL
+encrypts at rest and all connections are TLS, but formal HIPAA coverage also
+needs a signed Google Cloud BAA.
 
 `--source .` has Cloud Build build the `Dockerfile` and push it for you — no
 manual `docker build`/`push` needed. Re-running the same command redeploys a
@@ -66,6 +80,28 @@ gcloud secrets add-iam-policy-binding quiz-db-password \
   --project thymos-health \
   --member="serviceAccount:thymos-quiz-app@thymos-health.iam.gserviceaccount.com" \
   --role="roles/secretmanager.secretAccessor"
+
+# ...and the same for the waitlist + referrals DB passwords:
+printf '%s' 'THE_WAITLIST_APP_PASSWORD' | gcloud secrets create waitlist-db-password \
+  --project thymos-health --data-file=-
+gcloud secrets add-iam-policy-binding waitlist-db-password \
+  --project thymos-health \
+  --member="serviceAccount:thymos-quiz-app@thymos-health.iam.gserviceaccount.com" \
+  --role="roles/secretmanager.secretAccessor"
+
+printf '%s' 'THE_REFERRALS_APP_PASSWORD' | gcloud secrets create referrals-db-password \
+  --project thymos-health --data-file=-
+gcloud secrets add-iam-policy-binding referrals-db-password \
+  --project thymos-health \
+  --member="serviceAccount:thymos-quiz-app@thymos-health.iam.gserviceaccount.com" \
+  --role="roles/secretmanager.secretAccessor"
+
+printf '%s' 'THE_HEALTH_SYSTEMS_APP_PASSWORD' | gcloud secrets create health-systems-db-password \
+  --project thymos-health --data-file=-
+gcloud secrets add-iam-policy-binding health-systems-db-password \
+  --project thymos-health \
+  --member="serviceAccount:thymos-quiz-app@thymos-health.iam.gserviceaccount.com" \
+  --role="roles/secretmanager.secretAccessor"
 ```
 If you'd rather not set up Secret Manager right now, swap that line for
 `--set-env-vars ...,DB_PASSWORD=...` alongside the others — works, just means
@@ -78,7 +114,7 @@ describe`).
 | | Local (`npm run dev`) | Cloud Run |
 |---|---|---|
 | DB connection | TCP to Cloud SQL Auth Proxy on `127.0.0.1:5433` (see the "GCP DB local setup" project memory for starting the proxy) | `@google-cloud/cloud-sql-connector`, auto-selected via `K_SERVICE` |
-| Env vars needed | `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD` (in `.env.local`, gitignored) | `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `INSTANCE_CONNECTION_NAME` (`DB_HOST`/`DB_PORT` unused) |
+| Env vars needed | `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD` + `WAITLIST_DB_*` + `REFERRALS_DB_*` + `HEALTH_SYSTEMS_DB_*` (in `.env.local`, gitignored) | `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `INSTANCE_CONNECTION_NAME` + `WAITLIST_DB_*` + `REFERRALS_DB_*` + `HEALTH_SYSTEMS_DB_*` (name/user/password each; `DB_HOST`/`DB_PORT` unused; the extra DBs reuse `INSTANCE_CONNECTION_NAME`) |
 
 ## After deploying
 

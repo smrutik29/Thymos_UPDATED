@@ -611,7 +611,7 @@
       <a href="Thymos About Us.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">About</a>
     </div>
     <div class="nav-desktop" style="display:flex; align-items:center; gap:16px;">
-      <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="color:#333; text-decoration:none; font-size:16px;" style-hover="color:#ea6047; text-decoration:underline;">Sign In</a>
+      <a href="#" data-waitlist-trigger="1" style="color:#333; text-decoration:none; font-size:16px;" style-hover="color:#ea6047; text-decoration:underline;">Sign In</a>
       <a href="/quiz" style="padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:15px; font-weight:500; text-decoration:none;" style-hover="background:#c14930; color:#fff;">Take Quiz</a>
     </div>
     <button class="nav-burger" onClick="{{ toggleMenu }}" aria-label="Menu" style="flex-direction:column; justify-content:center; gap:5px; width:32px; height:28px; background:none; border:none; cursor:pointer; padding:0;">
@@ -645,7 +645,7 @@
           </div>
         </details>
         <a href="Thymos About Us.dc.html" style="color:#333; text-decoration:none;">About</a>
-        <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="color:#333; text-decoration:none;">Sign In</a>
+        <a href="#" data-waitlist-trigger="1" style="color:#333; text-decoration:none;">Sign In</a>
         <a href="/quiz" style="align-self:flex-start; padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:15px; font-weight:500; text-decoration:none;">Take Quiz</a>
       </div>
     </sc-if>
@@ -669,6 +669,7 @@
     <section class="bg-light" style="padding-top:0;">
       <div class="inner">
         <form class="form-card" onSubmit="{{ handleReferralSubmit }}" novalidate="{{ true }}">
+          <input type="text" name="companyWebsite" tabIndex="{{ -1 }}" autoComplete="off" aria-hidden="{{ true }}" style="position:absolute; left:-9999px; height:0; width:0; opacity:0;">
 
           <!-- Referring Provider -->
           <div class="form-section">
@@ -1027,6 +1028,26 @@ class Component extends DCLogic {
         const data = new FormData(form);
         const get = (k) => (data.get(k) || "").toString().trim();
 
+        // Persist the referral to the isolated thymos_referrals database.
+        // `keepalive` lets the POST finish even though we navigate to the
+        // mailto: link immediately after. A DB failure must never block the
+        // referral — the email draft still opens regardless.
+        const referralFields = [
+          "providerName","practiceName","providerPhone","providerFax","providerEmail",
+          "patientFirstName","patientLastName","patientDob","patientPhone","patientEmail","patientLanguage",
+          "addressLine1","addressLine2","addressCity","addressState","addressZip","stateOfResidence"
+        ];
+        const payload = { sourcePage: document.title, companyWebsite: get("companyWebsite") };
+        referralFields.forEach((k) => { payload[k] = get(k); });
+        try {
+          fetch("/api/referrals", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+            keepalive: true,
+          }).catch(() => {});
+        } catch (_) {}
+
         const lines = [
           "PROVIDER REFERRAL — THYMOS HEALTH",
           "",
@@ -1286,5 +1307,6 @@ class Component extends DCLogic {
     });
   })();
 </script>
+  <script src="waitlist-modal.js" defer></script>
 </body>
 </html>

@@ -455,7 +455,7 @@
       <a href="Thymos About Us.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">About</a>
     </div>
     <div class="nav-desktop" style="display:flex; align-items:center; gap:16px;">
-      <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="color:#333; text-decoration:none; font-size:16px;" style-hover="color:#ea6047; text-decoration:underline;">Sign In</a>
+      <a href="#" data-waitlist-trigger="1" style="color:#333; text-decoration:none; font-size:16px;" style-hover="color:#ea6047; text-decoration:underline;">Sign In</a>
       <a href="/quiz" style="padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:15px; font-weight:500; text-decoration:none;" style-hover="background:#c14930; color:#fff;">Take Quiz</a>
     </div>
     <button class="nav-burger" onClick="{{ toggleMenu }}" aria-label="Menu" style="flex-direction:column; justify-content:center; gap:5px; width:32px; height:28px; background:none; border:none; cursor:pointer; padding:0;">
@@ -489,7 +489,7 @@
           </div>
         </details>
         <a href="Thymos About Us.dc.html" style="color:#333; text-decoration:none;">About</a>
-        <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="color:#333; text-decoration:none;">Sign In</a>
+        <a href="#" data-waitlist-trigger="1" style="color:#333; text-decoration:none;">Sign In</a>
         <a href="/quiz" style="align-self:flex-start; padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:15px; font-weight:500; text-decoration:none;">Take Quiz</a>
       </div>
     </sc-if>
@@ -516,7 +516,7 @@
         <h2 style="font-weight:700; font-size:2.1rem; line-height:1.25; margin-bottom:16px; color:#034152; text-wrap:pretty;">You Did Everything Right. You Still Need Answers.</h2>
         <p style="font-size:1.05rem; line-height:1.7; color:#333; margin-bottom:28px; text-wrap:pretty;">Autoimmune disease rarely fits within one organ or specialty. Thymos pairs you with a specialist trained across the whole autoimmune spectrum, who investigates root cause across your entire body. Most patients feel a real difference in weeks, not years.</p>
         <div style="text-align:center;">
-          <a href="https://form.jotform.com/250676778229169" target="_blank" rel="noopener noreferrer" style="display:inline-block; background:#ea6047; color:#fff; padding:12px 24px; border-radius:40px; text-decoration:none; font-weight:600; font-size:1rem;" style-hover="background:#c14930; color:#fff;">Start Your Intake →</a>
+          <a href="#" data-waitlist-trigger="1" style="display:inline-block; background:#ea6047; color:#fff; padding:12px 24px; border-radius:40px; text-decoration:none; font-weight:600; font-size:1rem;" style-hover="background:#c14930; color:#fff;">Start Your Intake →</a>
         </div>
       </div>
       <div style="flex:0 0 260px; background:#034152; border-radius:16px; padding:32px 28px; text-align:center;">
@@ -1083,5 +1083,6 @@ class Component extends DCLogic {
     });
   })();
 </script>
+  <script src="waitlist-modal.js" defer></script>
 </body>
 </html>
