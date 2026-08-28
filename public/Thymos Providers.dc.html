@@ -135,7 +135,7 @@
 
   /* ─── HERO ──────────────────────────────────────── */
   #pr-root .hero {
-    background: var(--deep) url('img/thymos-providers-hero-bg.jpg') center center / cover no-repeat;
+    background: var(--deep) url('images/bg-hero.jpeg') right center / cover no-repeat;
     color: var(--white); padding: 64px 24px 80px; position: relative; overflow: hidden;
   }
   #pr-root .hero::before {
@@ -249,7 +249,7 @@
 
   /* ─── Value-based care section background image ──── */
   #pr-root #value-based-care {
-    background-image: url('img/thymos-providers-value-based-care-bg.jpg');
+    background-image: url('images/bg-exposure.jpeg');
     background-size: 100% 100%; background-position: center top; background-repeat: no-repeat;
   }
 
@@ -550,8 +550,8 @@
     color: var(--privacy-text-soft);
   }
   .privacy-card--essential {
-    border: 2px solid var(--privacy-teal);
-    padding: 13px 17px;
+    border: 1px solid var(--privacy-border);
+    padding: 14px 18px;
   }
   .privacy-footer-row {
     border-top: 1px solid var(--privacy-border);
@@ -665,12 +665,19 @@
       <span>Thymos Health</span>
     </a>
     <div class="nav-desktop" style="display:flex; gap:20px; font-size:16px;">
-      <a href="Thymos How We Work.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">How We Work</a>
+      <div class="nav-dropdown">
+        <a href="Thymos How We Work.dc.html" class="nav-dropdown-trigger" style="color:#333; text-decoration:none;">How We Work<svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav-dropdown-menu">
+          <a href="Thymos How We Work.dc.html" class="nav-dropdown-item">How We Work</a>
+          <a href="Thymos Membership.dc.html" class="nav-dropdown-item">Membership</a>
+        </div>
+      </div>
       <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">Proven Approach</a>
       <a href="Thymos Conditions Treated.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">Conditions Treated</a>
       <div class="nav-dropdown">
-        <a href="Thymos For Employers.dc.html" class="nav-dropdown-trigger" style="color:#333; text-decoration:none;">For Employers<svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="Thymos For Employers.dc.html" class="nav-dropdown-trigger" style="color:#333; text-decoration:none;">For Partners<svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <div class="nav-dropdown-menu">
+          <a href="Thymos For Employers.dc.html" class="nav-dropdown-item">Employers</a>
           <a href="Thymos Health Systems.dc.html" class="nav-dropdown-item">Health Systems</a>
           <a href="Thymos Providers.dc.html" class="nav-dropdown-item">Providers</a>
         </div>
@@ -688,16 +695,25 @@
     </button>
     <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
       <div style="flex-basis:100%; display:flex; flex-direction:column; gap:14px; padding-top:8px; font-size:16px;">
-        <a href="Thymos How We Work.dc.html" style="color:#333; text-decoration:none;">How We Work</a>
+        <details class="nav-dropdown-mobile">
+          <summary style="display:flex; align-items:center; justify-content:space-between; color:#333;">
+            <span>How We Work</span>
+            <svg class="nav-dropdown-mobile-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="nav-dropdown-mobile-menu">
+            <a href="Thymos How We Work.dc.html" style="color:#333; text-decoration:none;">How We Work</a>
+            <a href="Thymos Membership.dc.html" style="color:#333; text-decoration:none;">Membership</a>
+          </div>
+        </details>
         <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;">Proven Approach</a>
         <a href="Thymos Conditions Treated.dc.html" style="color:#333; text-decoration:none;">Conditions Treated</a>
         <details class="nav-dropdown-mobile">
           <summary style="display:flex; align-items:center; justify-content:space-between; color:#333;">
-            <span>For Employers</span>
+            <span>For Partners</span>
             <svg class="nav-dropdown-mobile-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </summary>
           <div class="nav-dropdown-mobile-menu">
-            <a href="Thymos For Employers.dc.html" style="color:#333; text-decoration:none;">For Employers</a>
+            <a href="Thymos For Employers.dc.html" style="color:#333; text-decoration:none;">Employers</a>
             <a href="Thymos Health Systems.dc.html" style="color:#333; text-decoration:none;">Health Systems</a>
             <a href="Thymos Providers.dc.html" style="color:#333; text-decoration:none;">Providers</a>
           </div>
@@ -717,7 +733,7 @@
         <div class="hero-brand">Thymos Health · For Referring Providers</div>
         <h1>A partner for the patients you can't quite <em>close the loop</em> on.</h1>
 
-        <p class="lede">Thymos Health exists for the patients with multi-system autoimmune symptoms and "unremarkable" labs that need expedited diagnosis and continuous care customized to their unique data.</p>
+        <p class="lede">Thymos Health exists for the patients with multi-system symptoms that need expedited diagnoses and continuous care customized to their unique data.</p>
         <p class="lede second"><strong>We'll handle the multi-specialty longitudinal autoimmune care</strong> and report back regularly.</p>
 
         <div class="hero-ctas">
@@ -727,16 +743,16 @@
 
         <div class="stat-grid">
           <div class="stat-card">
-            <div class="stat-num">34.4<span class="unit">%</span><sup class="ref">1</sup></div>
-            <div class="stat-label">Of autoimmune patients already have a second autoimmune disease — polyautoimmunity is the norm, not the exception</div>
+            <div class="stat-num">34.4<span class="unit">%</span></div>
+            <div class="stat-label">Of autoimmune patients have 2 or more autoimmune diseases<sup class="ref" style="color:inherit;">1</sup></div>
           </div>
           <div class="stat-card">
-            <div class="stat-num">2.5–7.5<span class="unit">yr</span><sup class="ref">2</sup></div>
-            <div class="stat-label">Typical diagnostic delay range across the autoimmune combinations we see most often</div>
+            <div class="stat-num">2.5–7.5<span class="unit">yrs</span></div>
+            <div class="stat-label">Average diagnosis delay with 75% misdiagnosed<sup class="ref" style="color:inherit;">2</sup></div>
           </div>
           <div class="stat-card">
-            <div class="stat-num">65<span class="unit">%</span><sup class="ref">3</sup></div>
-            <div class="stat-label">Of autoimmune patients never achieve meaningful relief — even while remaining on standard therapy</div>
+            <div class="stat-num">65<span class="unit">%</span></div>
+            <div class="stat-label">Of autoimmune patients never achieve meaningful relief on standard therapy<sup class="ref" style="color:inherit;">3</sup></div>
           </div>
         </div>
       </div>
@@ -747,36 +763,25 @@
       <div class="inner">
         <div class="eyebrow" style="color:var(--coral);">The Problem You Already Know</div>
         <h2>Getting a diagnosis doesn't mean getting better.</h2>
-        <p class="lede muted">Your patients with various symptoms that aren't explained by one diagnosis are normal. The research bears out what you already see: autoimmune disease is disproportionately a multi-system, multi-specialist, multi-year problem.</p>
+        <p class="lede muted">Your patients with various symptoms that aren't explained by one diagnosis are common. The research bears out what you already know: autoimmune diseases are a multi-system, multi-specialist, multi-year problem.</p>
 
         <div class="check-card">
+          <div class="step-title" style="margin-bottom:14px;">Why Autoimmune Disease Is So Complex</div>
           <div class="check-row">
             <div class="check-icon">⚕</div>
-            <div class="check-text"><strong>60%</strong> of Addison's disease patients needed input from 2+ providers before an accurate diagnosis was reached.<sup class="ref">4</sup></div>
+            <div class="check-text">60% of autoimmune diseases need input from 2+ providers before an accurate diagnosis is reached.<sup class="ref">4</sup></div>
           </div>
-          <div class="check-row">
-            <div class="check-icon">⟳</div>
-            <div class="check-text"><strong>Up to 40%</strong> of patients respond inadequately to their first-line biologic — due to primary non-response, secondary loss of response, or intolerance.<sup class="ref">5</sup></div>
-          </div>
-          <div class="check-row">
-            <div class="check-icon">↺</div>
-            <div class="check-text">Most patients taking a biologic stay on it indefinitely, despite never achieving meaningful relief.<sup class="ref">6</sup></div>
-          </div>
-        </div>
-
-        <div class="check-card" style="margin-top:24px;">
-          <div class="step-title" style="margin-bottom:14px;">Why Autoimmune Disease Is So Complex</div>
           <div class="check-row">
             <div class="check-icon">⏱</div>
             <div class="check-text">Symptoms and treatment response with autoimmune diseases often evolve between visits.</div>
           </div>
           <div class="check-row">
-            <div class="check-icon">⟷</div>
-            <div class="check-text">Thymos works alongside the prescribing physician, pairing patients with our board-certified autoimmune specialists, continuous monitoring, and 24/7 support.</div>
+            <div class="check-icon">⚡︎</div>
+            <div class="check-text">The majority of patients on immunotherapy never achieve meaningful relief.<sup class="ref">6</sup></div>
           </div>
           <div class="check-row">
-            <div class="check-icon">⚡</div>
-            <div class="check-text">Active, data-guided intervention between visits flags disease patterns early, with findings shared back with you continuously.<sup class="ref">6</sup></div>
+            <div class="check-icon">↺</div>
+            <div class="check-text">Most patients need multi-system medical management and continuous monitoring to prevent disease progression within a few years.</div>
           </div>
         </div>
       </div>
@@ -790,10 +795,10 @@
         <div class="referral-subheader">
           <div class="referral-subheader-text">
             <p class="lede muted"><strong style="color:var(--deep);">We help you do more for your patients and providers.</strong></p>
-            <p class="lede muted">We collaborate with independent medical practices and health systems to offer 24/7 between-visit support for patients with autoimmune and other complex diseases, acting as an extension of medical teams while enhancing patient outcomes and experience.</p>
+            <p class="lede muted">Thymos collaborates with prescribing clinicians, pairing patients with our board-certified autoimmune specialists, continuous monitoring, and 24/7 support. We are an extension of your medical team, enhancing patient outcomes.</p>
           </div>
           <div class="referral-subheader-img">
-            <img src="img/thymos-providers-referral-team.jpg" alt="Clinical team reviewing a patient case together">
+            <img src="images/patient-cases-consult.jpeg" alt="Thymos autoimmune specialist discussing a patient case over video consult with a referring physician" width="800" height="450" loading="lazy" decoding="async" />
           </div>
         </div>
 
@@ -801,18 +806,16 @@
           <div class="step-card">
             <div class="step-num">1</div>
             <div>
-              <div class="step-title">Refer patients who don't fit into one diagnosis — or those with a poorly controlled autoimmune condition</div>
-              <div class="step-sub">Lab patterns that are "technically normal" or various symptoms that do not fit into one diagnosis are exactly the referrals Thymos is built around.</div>
+              <div class="step-title">Refer patients whose symptoms don't fit into one diagnosis – or those poorly responsive to standard treatment</div>
             </div>
           </div>
           <div class="step-card">
             <div class="step-num">2</div>
             <div>
-              <div class="step-title">Our clinical team co-manages the complex inflammatory and autoimmune-specific care, longitudinally</div>
-              <div class="step-sub">Monthly consults, 24/7 messaging support, and remote monitoring flag disease patterns early and help Thymos clinicians fine-tune the care plan in real-time. The findings and treatment adjustments are shared with you on an ongoing basis.</div>
+              <div class="step-title">Thymos physicians co-manage autoimmune-specific care, 24/7 support, remote monitoring, and care coordination</div>
               <div class="aside-box">
                 <div class="aside-label">How our model works</div>
-                <div class="aside-text">Our validated clinical analysis model uses thousands of deterministic algorithms and hybrid AI to turn fragmented records, comprehensive medical history, and diagnostic results into one whole-person view. It structures biomarkers into one clean timeline and connects physical, psychological, emotional, and environmental factors to reveal the bigger picture. The findings and adjustments are shared back with you on an ongoing basis, not just once at intake. <a href="https://thymos-intake.vercel.app" target="_blank" rel="noopener">See how it works with a sample case.</a></div>
+                <div class="aside-text">Our validated clinical analysis model uses thousands of deterministic algorithms and hybrid AI to turn fragmented records, comprehensive medical history, and diagnostic results into one whole-person view. Active, data-guided intervention between visits flags disease patterns early and fine-tunes treatment in real-time.<sup class="ref">6</sup> <a href="patient-cases.html">See how it works with real patient cases.</a></div>
               </div>
             </div>
           </div>
@@ -820,7 +823,7 @@
             <div class="step-num">3</div>
             <div>
               <div class="step-title">Maintain continuous visibility of your patients</div>
-              <div class="step-sub">Referring to Thymos means remaining your patients' doctor of record. This allows you to better support your patients towards optimal health.</div>
+              <div class="step-sub">Thymos continuously shares findings with you to help you better support your patients towards optimal health.</div>
             </div>
           </div>
         </div>
@@ -832,27 +835,27 @@
       <div class="inner">
         <div class="eyebrow" style="color:var(--teal-m);">What Co-Management Means For You</div>
         <h2>Co-Management with Expertise, Coordination, and Support.</h2>
-        <p class="lede muted">Thymos takes on the high-frequency work of patient care for complex autoimmune disorders, in continuous coordination with you.</p>
+        <p class="lede muted">Gain a co-manager for your hardest autoimmune cases.</p>
 
         <div class="value4-grid">
           <div class="value4-card">
             <div class="value4-num">01 · Expertise</div>
             <div class="value4-title">One team, every specialty your patients need</div>
-            <div class="value4-sub">Thymos' autoimmune specialists are trained to manage polyautoimmunity across the whole system and tailor treatment around the root causes, not just symptoms.</div>
+            <div class="value4-sub">Thymos manages complex cases across the whole system and tailors treatments to the root causes, symptoms, and diagnoses.</div>
           </div>
           <div class="value4-card">
             <div class="value4-num">02 · Coordination</div>
-            <div class="value4-title">Easier than coordinating many specialists</div>
-            <div class="value4-sub">Thymos prioritizes cross-specialist coordination, keeping everyone in the loop. 1-on-1 monthly consults fine-tune treatment — helping you co-manage your patients towards better health.</div>
+            <div class="value4-title">One coordinated, whole-person view</div>
+            <div class="value4-sub">Thymos provides monthly consults and prioritizes cross-specialist coordination, keeping every physician in the loop.</div>
           </div>
           <div class="value4-card">
             <div class="value4-num">03 · 24/7 Support</div>
-            <div class="value4-title">Regular specialist consults, working for you</div>
-            <div class="value4-sub">24/7 clinical support and remote monitoring flag disease patterns early and fine-tune treatment.</div>
+            <div class="value4-title">Longitudinal medical management</div>
+            <div class="value4-sub">24/7 clinical support and remote monitoring flag disease patterns early and fine-tune treatment in real time.</div>
           </div>
         </div>
 
-        <div class="closing-line">Referring to Thymos doesn't mean losing the thread — it means <em>gaining a co-manager</em> on your hardest cases.</div>
+        <div class="closing-line">Referring to Thymos means <em>gaining a co-manager</em> on your hardest cases.</div>
       </div>
     </section>
 
@@ -888,7 +891,10 @@
       <div class="inner">
         <h2>Ready to co-manage your next complex case with us?</h2>
         <p class="lede">Refer a complex case, or send us a patient who's been on a biologic a little too long without anyone revisiting why.</p>
-        <a href="Thymos Refer A Patient.dc.html" class="btn btn-teal">Refer a Patient</a>
+        <div class="hero-ctas" style="flex-direction:row; flex-wrap:wrap; justify-content:center; align-items:center;">
+          <a href="Thymos Refer A Patient.dc.html" class="btn btn-teal">Refer a Patient</a>
+          <a href="patient-cases.html" class="btn btn-outline">See Complex Patient Cases</a>
+        </div>
         <div class="cta-fine">HIPAA-compliant intake · No EHR integration required to start · You remain the doctor of record</div>
       </div>
     </section>
@@ -903,12 +909,12 @@
         <div class="cite-item">
           <span class="cite-num">[1]</span>
           Rojas-Villarraga A, Amaya-Amaya J, Rodriguez-Rodriguez A, Mantilla RD, Anaya JM. Introducing Polyautoimmunity: Secondary Autoimmune Diseases No Longer Exist. <em>Autoimmune Diseases</em>, 2012. Of 1,083 patients with autoimmune disease, 373 (34.4%) had polyautoimmunity; autoimmune thyroid disease and Sjögren's syndrome were the most frequently encountered additional diseases.
-          <span class="cite-doi">PMC: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3290803/" target="_blank">PMC3290803</a></span>
+          <span class="cite-doi">PMC: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3290803/" target="_blank" rel="noopener noreferrer">PMC3290803</a></span>
         </div>
         <div class="cite-item">
           <span class="cite-num">[2]</span>
           Diagnostic Delay in Psoriatic Arthritis: A Population-based Study. <em>The Journal of Rheumatology</em>, 2021; and Increased Musculoskeletal Surgery Rates During Diagnostic Delay in Psoriatic Arthritis. Retrospective cohort. Median delay 2.5 years in a population-based cohort; mean delay 7.49 years in a separate real-world cohort, with 27.4% undergoing at least one musculoskeletal surgery during the delay period.
-          <span class="cite-doi">Source: <a href="https://www.jrheum.org/content/48/9/1410" target="_blank">jrheum.org</a> &nbsp;·&nbsp; PMC: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12071673/" target="_blank">PMC12071673</a></span>
+          <span class="cite-doi">Source: <a href="https://www.jrheum.org/content/48/9/1410" target="_blank" rel="noopener noreferrer">jrheum.org</a> &nbsp;·&nbsp; PMC: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12071673/" target="_blank" rel="noopener noreferrer">PMC12071673</a></span>
         </div>
         <div class="cite-item">
           <span class="cite-num">[3]</span>
@@ -918,12 +924,12 @@
         <div class="cite-item">
           <span class="cite-num">[4]</span>
           Addison's Disease: The Critical Role of Timely Diagnosis. ScienceDirect, 2026. Approximately 60% of diagnosed Addison's disease cases required input from 2 or more providers before arriving at the correct diagnosis.
-          <span class="cite-doi">Source: <a href="https://www.sciencedirect.com/science/article/abs/pii/S1555415525003526" target="_blank">sciencedirect.com</a></span>
+          <span class="cite-doi">Source: <a href="https://www.sciencedirect.com/science/article/abs/pii/S1555415525003526" target="_blank" rel="noopener noreferrer">sciencedirect.com</a></span>
         </div>
         <div class="cite-item">
           <span class="cite-num">[5]</span>
           Taylor PC, Matucci Cerinic M, Alten R, Avouac J, Westhovens R. Managing inadequate response to initial anti-TNF therapy in rheumatoid arthritis: optimising treatment outcomes. <em>Therapeutic Advances in Musculoskeletal Disease</em>, 2022. Up to 40% of patients respond inadequately to an initial anti-TNF (biologic) treatment due to primary non-response, secondary loss of response, or intolerance — consistent with multiple independent studies reporting a 20–40%+ inadequate-response range across biologic classes.
-          <span class="cite-doi">Source: <a href="https://journals.sagepub.com/doi/10.1177/1759720X221114101" target="_blank">journals.sagepub.com</a> &nbsp;·&nbsp; PMC: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9386864/" target="_blank">PMC9386864</a></span>
+          <span class="cite-doi">Source: <a href="https://journals.sagepub.com/doi/10.1177/1759720X221114101" target="_blank" rel="noopener noreferrer">journals.sagepub.com</a> &nbsp;·&nbsp; PMC: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9386864/" target="_blank" rel="noopener noreferrer">PMC9386864</a></span>
         </div>
         <div class="cite-item">
           <span class="cite-num">[6]</span>
@@ -932,7 +938,6 @@
         </div>
       </div>
     </div>
-
   </main>
 
   <footer class="site-footer">
@@ -963,6 +968,7 @@
           <div class="footer-col-label">Explore</div>
           <ul class="footer-links">
             <li><a href="Thymos How We Work.dc.html">Thymos Journey</a></li>
+            <li><a href="Thymos Membership.dc.html">Membership</a></li>
             <li><a href="Thymos Proven Approach.dc.html">Proven Approach</a></li>
             <li><a href="Thymos Conditions Treated.dc.html">150+ Diseases Treated</a></li>
           </ul>
@@ -1035,7 +1041,7 @@
                 <path d="M15 3h-2a5 5 0 0 0-5 5v3H6v4h2v6h4v-6h3l1-4h-4V8a1 1 0 0 1 1-1h3z"></path>
               </svg>
             </a>
-            <a class="social-icon" href="https://www.linkedin.com/company/108459671/admin/page-posts/published/" target="_blank" rel="noopener" aria-label="Thymos Health on LinkedIn">
+            <a class="social-icon" href="https://www.linkedin.com/company/thymos-health/" target="_blank" rel="noopener" aria-label="Thymos Health on LinkedIn">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="3"></rect>
                 <line x1="7.5" y1="9.5" x2="7.5" y2="16.5"></line>
