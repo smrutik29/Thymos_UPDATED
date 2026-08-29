@@ -1,24 +1,26 @@
 import type { NextConfig } from "next";
 
-// Applied to every response. Kept deliberately strict but framework-safe:
-// the marketing pages are self-contained (their own inline <style>/<script>
-// plus Google Fonts and the Cloudflare Turnstile widget), and the quiz is a
-// same-origin Next app, so no third-party script/style origins are needed
-// beyond those two.
+// Applied to every response.
+//
+// The marketing pages (public/*.dc.html) run a client-side template runtime
+// (public/support.js) that pulls React, ReactDOM and @babel/standalone UMD
+// builds from unpkg.com at load time and JSX-transpiles inline page scripts
+// via eval — hence 'unsafe-eval', 'unsafe-inline', and https://unpkg.com in
+// script-src. Tightening this means vendoring those three libs locally and
+// pre-compiling the page scripts (follow-up). Google Fonts + Cloudflare
+// Turnstile are the only other third-party origins.
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
-  // 'unsafe-inline' is required by the .dc.html pages (inline <script>/<style>)
-  // and Next's inline bootstrap; 'unsafe-eval' by the .dc.html template runtime
-  // in public/support.js. Scoped to script/style only.
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://challenges.cloudflare.com",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
   "img-src 'self' data: blob:",
-  "connect-src 'self' https://challenges.cloudflare.com",
+  "media-src 'self'",
+  "connect-src 'self' https://unpkg.com https://challenges.cloudflare.com",
   "frame-src https://challenges.cloudflare.com",
   "object-src 'none'",
   "base-uri 'self'",
-  "form-action 'self'",
+  "form-action 'self' mailto:",
   "frame-ancestors 'none'",
   "upgrade-insecure-requests",
 ].join("; ");
