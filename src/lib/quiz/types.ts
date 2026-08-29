@@ -50,6 +50,8 @@ export interface QuizState {
   finalChoice: FinalChoice | null;
   submitStatus: SubmitStatus;
   submissionId: string | null;
+  /** HMAC issued with the id; required to PATCH the submission later. */
+  submissionToken: string | null;
 }
 
 export type QuizAction =
@@ -70,4 +72,4 @@ export type QuizAction =
   | { type: "SUBMIT_START" }
   | { type: "SUBMIT_SUCCESS" }
   | { type: "SUBMIT_ERROR" }
-  | { type: "SET_SUBMISSION_ID"; id: string };
+  | { type: "SET_SUBMISSION_ID"; id: string; token?: string | null };

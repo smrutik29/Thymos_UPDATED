@@ -40,7 +40,11 @@ export function QuizApp() {
 
   const chrome = stepChrome(state.step);
 
-  async function handleContactSubmit(contact: ContactFormValues, honeypot: string) {
+  async function handleContactSubmit(
+    contact: ContactFormValues,
+    honeypot: string,
+    turnstileToken: string
+  ) {
     dispatch({ type: "SUBMIT_START" });
     try {
       const res = await fetch("/api/quiz-submissions", {
@@ -58,13 +62,18 @@ export function QuizApp() {
           contact,
           finalChoice: state.finalChoice,
           companyWebsite: honeypot,
+          turnstileToken,
           formRenderedAt: formRenderedAtRef.current,
         }),
       });
       if (res.ok) {
         const json = await res.json().catch(() => null);
         if (json?.id) {
-          dispatch({ type: "SET_SUBMISSION_ID", id: json.id });
+          dispatch({
+            type: "SET_SUBMISSION_ID",
+            id: json.id,
+            token: typeof json.token === "string" ? json.token : null,
+          });
         }
         dispatch({ type: "SUBMIT_SUCCESS" });
         // Only advance once the record is confirmed saved — a failed save
@@ -83,7 +92,12 @@ export function QuizApp() {
       try {
         await fetch(`/api/quiz-submissions/${state.submissionId}`, {
           method: "PATCH",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            ...(state.submissionToken
+              ? { "x-submission-token": state.submissionToken }
+              : {}),
+          },
           body: JSON.stringify({ finalChoice: choice }),
         });
       } catch {

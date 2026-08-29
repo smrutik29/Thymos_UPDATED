@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type Dispatch } from "react";
+import { useEffect, useState, type Dispatch } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ContactSchema, type ContactFormValues } from "@/lib/schemas/contact";
@@ -15,11 +15,31 @@ import type { QuizAction, QuizState } from "@/lib/quiz/types";
 interface ContactScreenProps {
   state: QuizState;
   dispatch: Dispatch<QuizAction>;
-  onSubmit: (contact: ContactFormValues, honeypot: string) => void;
+  onSubmit: (
+    contact: ContactFormValues,
+    honeypot: string,
+    turnstileToken: string
+  ) => void;
 }
+
+const TURNSTILE_SITE_KEY =
+  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA";
+const TURNSTILE_SRC =
+  "https://challenges.cloudflare.com/turnstile/v0/api.js";
 
 export function ContactScreen({ state, dispatch, onSubmit }: ContactScreenProps) {
   const [honeypot, setHoneypot] = useState("");
+  const [captchaError, setCaptchaError] = useState(false);
+
+  // Load the Turnstile script once; it auto-renders any .cf-turnstile div.
+  useEffect(() => {
+    if (document.querySelector(`script[src="${TURNSTILE_SRC}"]`)) return;
+    const s = document.createElement("script");
+    s.src = TURNSTILE_SRC;
+    s.async = true;
+    s.defer = true;
+    document.head.appendChild(s);
+  }, []);
   const {
     watch,
     setValue,
@@ -40,12 +60,21 @@ export function ContactScreen({ state, dispatch, onSubmit }: ContactScreenProps)
     !isSubmitting;
 
   const submit = handleSubmit((values) => {
+    const tokenEl = document.querySelector<HTMLInputElement>(
+      'input[name="cf-turnstile-response"]'
+    );
+    const turnstileToken = tokenEl?.value ?? "";
+    if (!turnstileToken) {
+      setCaptchaError(true);
+      return;
+    }
+    setCaptchaError(false);
     dispatch({ type: "SET_CONTACT_FIELD", field: "name", value: values.name });
     dispatch({ type: "SET_CONTACT_FIELD", field: "dob", value: values.dob });
     dispatch({ type: "SET_CONTACT_FIELD", field: "state", value: values.state });
     dispatch({ type: "SET_CONTACT_FIELD", field: "email", value: values.email });
     dispatch({ type: "SET_CONTACT_FIELD", field: "phone", value: values.phone });
-    onSubmit(values, honeypot);
+    onSubmit(values, honeypot, turnstileToken);
   });
 
   return (
@@ -114,6 +143,17 @@ export function ContactScreen({ state, dispatch, onSubmit }: ContactScreenProps)
         />
         {errors.phone && <span className="text-[12px] text-red-600">{errors.phone.message}</span>}
       </div>
+
+      <div
+        className="cf-turnstile"
+        data-sitekey={TURNSTILE_SITE_KEY}
+        data-theme="light"
+      />
+      {captchaError && (
+        <span className="text-[12px] text-red-600">
+          Please complete the verification challenge and try again.
+        </span>
+      )}
 
       {state.submitStatus === "error" && (
         <span className="text-[12px] text-red-600">

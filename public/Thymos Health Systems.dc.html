@@ -1,12 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Health Systems | Thymos Health</title>
 <meta name="description" content="Thymos expands specialist capacity and lowers the cost of autoimmune care for health systems, without adding specialist headcount.">
+<!-- seo:injected -->
+<link rel="canonical" href="https://www.thymoshealth.com/Thymos%20Health%20Systems.dc.html">
+<link rel="icon" type="image/png" href="/img/thymos-logo-flames.png">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Thymos Health">
+<meta property="og:title" content="Health Systems | Thymos Health">
+<meta property="og:description" content="Thymos expands specialist capacity and lowers the cost of autoimmune care for health systems, without adding specialist headcount.">
+<meta property="og:url" content="https://www.thymoshealth.com/Thymos%20Health%20Systems.dc.html">
+<meta property="og:image" content="https://www.thymoshealth.com/img/thymos-logo-flames.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Health Systems | Thymos Health">
+<meta name="twitter:description" content="Thymos expands specialist capacity and lowers the cost of autoimmune care for health systems, without adding specialist headcount.">
+<meta name="twitter:image" content="https://www.thymoshealth.com/img/thymos-logo-flames.png">
 <script src="./support.js"></script>
 <script src="./site-search.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 <x-dc>
@@ -1152,6 +1167,7 @@
 
                   <div class="form-disclaimer">Thymos Health needs your information to contact you about partnering for our services. You may unsubscribe from these communications at any time. For information on how to unsubscribe, as well as our privacy practices and commitment to protecting your privacy, please review our <a href="Thymos Privacy Policy.dc.html">Privacy Policy</a>.</div>
 
+                  <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" style="margin-bottom:16px;"></div>
                   <button type="submit" class="btn btn-teal form-submit" disabled="{{ formSubmitting }}">{{ formSubmitLabel }}</button>
                   <sc-if value="{{ formError }}" hint-placeholder-val="{{ false }}">
                     <div class="form-disclaimer" style="color:#ffb4a6; margin-top:12px;">Something went wrong submitting the form. Please try again in a moment.</div>
@@ -1431,6 +1447,9 @@ class Component extends DCLogic {
           this.setState({ formSubmitted: true });
           return;
         }
+        const tsField = form.querySelector('[name="cf-turnstile-response"]');
+        const tsToken = tsField ? tsField.value : "";
+        if (!tsToken) { this.setState({ formError: true }); return; }
         const payload = {
           firstName: form.firstName.value.trim(),
           lastName: form.lastName.value.trim(),
@@ -1439,6 +1458,7 @@ class Component extends DCLogic {
           phone: form.phone.value.trim(),
           jobTitle: form.jobTitle.value.trim(),
           sourcePage: document.title,
+          turnstileToken: tsToken,
           companyWebsite: ""
         };
         this.setState({ formSubmitting: true, formError: false });
@@ -1452,6 +1472,7 @@ class Component extends DCLogic {
             this.setState({ formSubmitting: false, formSubmitted: true });
           })
           .catch(() => {
+            if (window.turnstile) { try { window.turnstile.reset(); } catch (_) {} }
             this.setState({ formSubmitting: false, formError: true });
           });
       }

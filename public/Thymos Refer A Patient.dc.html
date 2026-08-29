@@ -1,12 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Refer a Patient | Thymos Health for Providers</title>
 <meta name="description" content="Refer a patient to Thymos Health if they have been diagnosed with autoimmune disorder(s) or if autoimmunity is suspected.">
+<!-- seo:injected -->
+<link rel="canonical" href="https://www.thymoshealth.com/Thymos%20Refer%20A%20Patient.dc.html">
+<link rel="icon" type="image/png" href="/img/thymos-logo-flames.png">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Thymos Health">
+<meta property="og:title" content="Refer a Patient | Thymos Health for Providers">
+<meta property="og:description" content="Refer a patient to Thymos Health if they have been diagnosed with autoimmune disorder(s) or if autoimmunity is suspected.">
+<meta property="og:url" content="https://www.thymoshealth.com/Thymos%20Refer%20A%20Patient.dc.html">
+<meta property="og:image" content="https://www.thymoshealth.com/img/thymos-logo-flames.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Refer a Patient | Thymos Health for Providers">
+<meta name="twitter:description" content="Refer a patient to Thymos Health if they have been diagnosed with autoimmune disorder(s) or if autoimmunity is suspected.">
+<meta name="twitter:image" content="https://www.thymoshealth.com/img/thymos-logo-flames.png">
 <script src="./support.js"></script>
 <script src="./site-search.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 <x-dc>
@@ -781,6 +796,7 @@
           </div>
 
           <div class="form-footer">
+            <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" style="margin:0 auto 18px; display:inline-block;"></div>
             <button type="submit" class="btn btn-teal">Submit Referral</button>
             <div class="form-fine">HIPAA-compliant intake · You remain the doctor of record</div>
             <sc-if value="{{ confirmVisible }}" hint-placeholder-val="{{ false }}">
@@ -1018,11 +1034,15 @@ class Component extends DCLogic {
       handleReferralSubmit: (e) => {
         e.preventDefault();
         const form = e.target;
+        // Re-entrancy guard — a fast double-click must not double-send.
+        if (this._referralSubmitting) return;
         if (!form.checkValidity()) {
           form.reportValidity();
           this.setState({ errorVisible: true, confirmVisible: false });
           return;
         }
+        this._referralSubmitting = true;
+        setTimeout(() => { this._referralSubmitting = false; }, 4000);
         this.setState({ errorVisible: false });
 
         const data = new FormData(form);
@@ -1037,7 +1057,11 @@ class Component extends DCLogic {
           "patientFirstName","patientLastName","patientDob","patientPhone","patientEmail","patientLanguage",
           "addressLine1","addressLine2","addressCity","addressState","addressZip","stateOfResidence"
         ];
-        const payload = { sourcePage: document.title, companyWebsite: get("companyWebsite") };
+        const payload = {
+          sourcePage: document.title,
+          companyWebsite: get("companyWebsite"),
+          turnstileToken: get("cf-turnstile-response"),
+        };
         referralFields.forEach((k) => { payload[k] = get(k); });
         try {
           fetch("/api/referrals", {

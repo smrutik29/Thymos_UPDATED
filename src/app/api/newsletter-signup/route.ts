@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { NewsletterSignupSchema } from "@/lib/schemas/newsletter";
 import { saveNewsletterSignup } from "@/lib/db/newsletter";
+import { verifyTurnstile } from "@/lib/security/turnstile";
 
 // Logs shape/outcome only — never the email address itself — so submitted
 // addresses never hit server logs.
@@ -24,6 +25,22 @@ export async function POST(req: NextRequest) {
   if (typeof body.companyWebsite === "string" && body.companyWebsite.trim() !== "") {
     logOutcome(200, "honeypot_discarded");
     return NextResponse.json({ ok: true }, { status: 200 });
+  }
+
+  // Verify only when the footer form actually sent a token — the newsletter
+  // widget isn't on every page yet, and honeypot + rate-limit still apply.
+  if (typeof body.turnstileToken === "string" && body.turnstileToken !== "") {
+    const captcha = await verifyTurnstile(
+      body.turnstileToken,
+      req.headers.get("x-forwarded-for") ?? undefined
+    );
+    if (!captcha.ok) {
+      logOutcome(403, `captcha_${captcha.reason}`);
+      return NextResponse.json(
+        { ok: false, error: "captcha_failed" },
+        { status: 403 }
+      );
+    }
   }
 
   const parsed = NewsletterSignupSchema.safeParse(body);

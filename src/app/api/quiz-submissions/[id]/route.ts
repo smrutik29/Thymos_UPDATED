@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { FinalChoiceUpdateSchema, SubmissionIdSchema } from "@/lib/schemas/submission";
 import { updateFinalChoice } from "@/lib/db/submissions";
+import { verifySubmissionToken } from "@/lib/security/submissionToken";
 
 // Logs shape/outcome only — finalChoice is one of a fixed enum, not PII, but
 // still keeps the same no-value-leak discipline as the POST route's logging.
@@ -37,6 +38,18 @@ export async function PATCH(
     return NextResponse.json(
       { ok: false, errors: parsed.error.flatten() },
       { status: 400 }
+    );
+  }
+
+  // The row id alone is not authorization — require the HMAC issued with it.
+  const token =
+    req.headers.get("x-submission-token") ??
+    (typeof body.token === "string" ? body.token : undefined);
+  if (!verifySubmissionToken(idResult.data, token)) {
+    logOutcome(403, "bad_token");
+    return NextResponse.json(
+      { ok: false, error: "forbidden" },
+      { status: 403 }
     );
   }
 

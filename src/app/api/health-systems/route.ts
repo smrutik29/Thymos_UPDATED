@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { HealthSystemRequestSchema } from "@/lib/schemas/healthSystem";
 import { saveHealthSystemRequest } from "@/lib/db/healthSystems";
+import { verifyTurnstile } from "@/lib/security/turnstile";
 
 // Logs shape/outcome only — never field values.
 function logOutcome(status: number, detail?: string) {
@@ -31,6 +32,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true }, { status: 200 });
   }
 
+  const ip = req.headers.get("x-forwarded-for") ?? undefined;
+
+  const captcha = await verifyTurnstile(body.turnstileToken, ip);
+  if (!captcha.ok) {
+    logOutcome(403, `captcha_${captcha.reason}`);
+    return NextResponse.json(
+      { ok: false, error: "captcha_failed" },
+      { status: 403 }
+    );
+  }
+
   const parsed = HealthSystemRequestSchema.safeParse(body);
   if (!parsed.success) {
     logOutcome(400, "validation_failed");
@@ -42,7 +54,7 @@ export async function POST(req: NextRequest) {
 
   try {
     await saveHealthSystemRequest(parsed.data, {
-      ip: req.headers.get("x-forwarded-for") ?? undefined,
+      ip,
       userAgent: req.headers.get("user-agent") ?? undefined,
     });
     logOutcome(201);

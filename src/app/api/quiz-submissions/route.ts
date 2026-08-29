@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { QuizSubmissionSchema } from "@/lib/schemas/submission";
 import { saveSubmission } from "@/lib/db/submissions";
+import { verifyTurnstile } from "@/lib/security/turnstile";
+import { signSubmissionId } from "@/lib/security/submissionToken";
 
 // Logs shape/outcome only — never field values (name, email, dob, phone,
 // symptom answers, etc.) — so quiz answers and PII never hit server logs.
@@ -28,6 +30,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true, id: "discarded" }, { status: 200 });
   }
 
+  const ip = req.headers.get("x-forwarded-for") ?? undefined;
+
+  const captcha = await verifyTurnstile(body.turnstileToken, ip);
+  if (!captcha.ok) {
+    logOutcome(403, fieldNames, `captcha_${captcha.reason}`);
+    return NextResponse.json(
+      { ok: false, error: "captcha_failed" },
+      { status: 403 }
+    );
+  }
+
   const parsed = QuizSubmissionSchema.safeParse(body);
   if (!parsed.success) {
     logOutcome(400, fieldNames, "validation_failed");
@@ -39,11 +52,15 @@ export async function POST(req: NextRequest) {
 
   try {
     const id = await saveSubmission(parsed.data, {
-      ip: req.headers.get("x-forwarded-for") ?? undefined,
+      ip,
       userAgent: req.headers.get("user-agent") ?? undefined,
     });
     logOutcome(201, fieldNames);
-    return NextResponse.json({ ok: true, id }, { status: 201 });
+    // `token` gates the later PATCH so a bare UUID isn't enough to mutate a row.
+    return NextResponse.json(
+      { ok: true, id, token: signSubmissionId(id) },
+      { status: 201 }
+    );
   } catch (err) {
     // err.message only — never err.detail, which for constraint violations
     // can echo back the offending row's values.

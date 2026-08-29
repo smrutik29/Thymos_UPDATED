@@ -19,6 +19,7 @@ export const initialState: QuizState = {
   finalChoice: null,
   submitStatus: "idle",
   submissionId: null,
+  submissionToken: null,
 };
 
 function goToOffset(state: QuizState, offset: number): QuizState {
@@ -81,7 +82,11 @@ export function quizReducer(state: QuizState, action: QuizAction): QuizState {
     case "SUBMIT_ERROR":
       return { ...state, submitStatus: "error" };
     case "SET_SUBMISSION_ID":
-      return { ...state, submissionId: action.id };
+      return {
+        ...state,
+        submissionId: action.id,
+        submissionToken: action.token ?? state.submissionToken,
+      };
     default:
       return state;
   }

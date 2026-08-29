@@ -43,6 +43,16 @@
 
   var PRIVACY_HREF = "Thymos Privacy Policy.dc.html";
 
+  // Cloudflare Turnstile. `1x00000000000000000000AA` is Cloudflare's
+  // always-passing TEST site key — replace with the real key before launch
+  // (and set TURNSTILE_SECRET_KEY on the server). A <meta name="turnstile-site-key">
+  // on the page wins if present, so the key can be set in one spot per page.
+  var TURNSTILE_SITE_KEY = (function () {
+    var m = document.querySelector('meta[name="turnstile-site-key"]');
+    return (m && m.content) || "1x00000000000000000000AA";
+  })();
+  var TURNSTILE_API = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+
   // ---- styles -------------------------------------------------------------
   var CSS = [
     "#twl-overlay{position:fixed;inset:0;z-index:100000;display:none;align-items:center;justify-content:center;padding:24px;",
@@ -141,6 +151,7 @@
           '<a href="' + PRIVACY_HREF + '" target="_blank" rel="noopener">Thymos Health Privacy Policy</a>'
         ) + "</span>" +
       "</label>" +
+      '<div class="cf-turnstile" data-sitekey="' + TURNSTILE_SITE_KEY + '" data-theme="light" style="margin-bottom:14px;"></div>' +
       '<button class="twl-submit" type="submit">Join the waitlist</button>' +
       '<p class="twl-error" hidden></p>' +
       '<p class="twl-safe">🔒 Your information is safe with us.</p>' +
@@ -157,11 +168,21 @@
   // ---- build + wire ----------------------------------------------------
   var overlay, modal, form, errorEl, submitBtn, lastFocused;
 
+  function loadTurnstileScript() {
+    if (document.querySelector('script[src^="' + TURNSTILE_API + '"]')) return;
+    var s = document.createElement("script");
+    s.src = TURNSTILE_API;
+    s.async = true;
+    s.defer = true;
+    document.head.appendChild(s);
+  }
+
   function build() {
     var style = document.createElement("style");
     style.id = "twl-styles";
     style.textContent = CSS;
     document.head.appendChild(style);
+    loadTurnstileScript();
 
     overlay = document.createElement("div");
     overlay.id = "twl-overlay";
@@ -222,6 +243,14 @@
       form.reportValidity();
       return;
     }
+
+    var tsField = form.querySelector('[name="cf-turnstile-response"]');
+    var tsToken = tsField ? tsField.value : "";
+    if (!tsToken) {
+      showError("Please complete the verification challenge and try again.");
+      return;
+    }
+
     // Honeypot filled -> silently pretend success.
     if (form.companyWebsite.value.trim() !== "") {
       modal.innerHTML = SUCCESS_HTML +
@@ -239,6 +268,7 @@
       questions: form.questions.value.trim(),
       consent: form.consent.checked,
       sourcePage: document.title,
+      turnstileToken: tsToken,
       companyWebsite: ""
     };
 
@@ -260,6 +290,10 @@
       .catch(function () {
         submitBtn.disabled = false;
         submitBtn.textContent = "Join the waitlist";
+        // Turnstile tokens are single-use — get a fresh one for the retry.
+        if (window.turnstile) {
+          try { window.turnstile.reset(); } catch (_) {}
+        }
         showError(
           "Something went wrong submitting the form. Please try again in a moment."
         );

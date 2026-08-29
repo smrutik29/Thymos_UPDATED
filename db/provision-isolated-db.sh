@@ -65,17 +65,22 @@ done
 echo "    proxy up (pid $PROXY_PID)"
 
 echo "==> 4/5  Bootstrap ownership + privileges"
-# 4a — as quiz_app (a cloudsqlsuperuser member): hand $NEW_DB to $NEW_USER and
-# strip the cloudsqlsuperuser group it was auto-granted, so it becomes a plain
-# least-privilege role. Reassigning DB ownership requires the caller to be a
-# member of the new owner, hence the transient GRANT.
+# 4a — connect as quiz_app and immediately SET ROLE cloudsqlsuperuser (quiz_app
+# is a member of it). quiz_app itself is a least-privilege runtime role now
+# (NOCREATEROLE NOCREATEDB), so the role/ownership DDL below has to run under
+# the superuser group. Hand $NEW_DB to $NEW_USER, strip the cloudsqlsuperuser
+# group it was auto-granted, and de-privilege it. Reassigning DB ownership
+# requires the caller to be a member of the new owner, hence the transient GRANT.
 PGPASSWORD="$QUIZ_APP_PASSWORD" psql \
   "host=127.0.0.1 port=$PROXY_PORT dbname=thymos_quiz user=quiz_app sslmode=disable" \
   -v ON_ERROR_STOP=1 -v nu="$NEW_USER" -v ndb="$NEW_DB" <<'SQL'
-GRANT :"nu" TO quiz_app;
+SET ROLE cloudsqlsuperuser;
+GRANT :"nu" TO cloudsqlsuperuser;
 ALTER DATABASE :"ndb" OWNER TO :"nu";
+ALTER ROLE :"nu" NOCREATEROLE NOCREATEDB;
 REVOKE cloudsqlsuperuser FROM :"nu";
-REVOKE :"nu" FROM quiz_app;
+REVOKE :"nu" FROM cloudsqlsuperuser;
+RESET ROLE;
 SQL
 # 4b — as $NEW_USER (now DB owner => implicitly pg_database_owner): take
 # explicit ownership of schema public and wall everyone else out.
