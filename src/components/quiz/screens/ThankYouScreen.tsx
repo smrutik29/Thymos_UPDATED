@@ -16,7 +16,7 @@ export function ThankYouScreen({ state }: ThankYouScreenProps) {
           {text}
         </h2>
       </div>
-      <a href="https://thymoshealth.com/" className="mt-4 block w-full" aria-label="Thymos Health">
+      <a href="/" className="mt-4 block w-full" aria-label="Thymos Health">
         <video autoPlay muted loop playsInline className="block w-full">
           <source src="/video/thank-you-celebration.webm" type="video/webm" />
           <source src="/video/thank-you-celebration.mp4" type="video/mp4" />
@@ -27,7 +27,7 @@ export function ThankYouScreen({ state }: ThankYouScreenProps) {
         style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 1.75rem)" }}
       >
         <a
-          href="https://thymoshealth.com/"
+          href="/"
           className="inline-block w-full rounded-pill bg-dark-cta-bg px-9 py-4 font-heading text-[17px] font-semibold text-dark-cta-text sm:w-auto"
         >
           Done

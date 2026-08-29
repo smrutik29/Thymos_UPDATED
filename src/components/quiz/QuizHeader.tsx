@@ -6,7 +6,7 @@ export function QuizHeader({ stepLabel }: QuizHeaderProps) {
   return (
     <div className="flex items-center justify-between gap-3.5">
       <a
-        href="https://thymoshealth.com/"
+        href="/"
         className="font-heading text-[20px] font-bold text-ink"
       >
         Thymos Health
