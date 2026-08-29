@@ -23,7 +23,7 @@ interface ContactScreenProps {
 }
 
 const TURNSTILE_SITE_KEY =
-  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA";
+  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "0x4AAAAAAEgd99jX8gK0sp_v";
 const TURNSTILE_SRC =
   "https://challenges.cloudflare.com/turnstile/v0/api.js";
 

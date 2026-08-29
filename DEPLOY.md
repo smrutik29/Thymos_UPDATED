@@ -76,7 +76,7 @@ gcloud run deploy thymos-quiz-app \
   --region us-west2 \
   --service-account thymos-quiz-app@thymos-health.iam.gserviceaccount.com \
   --allow-unauthenticated \
-  --set-env-vars DB_NAME=thymos_quiz,DB_USER=quiz_app,INSTANCE_CONNECTION_NAME=thymos-health:us-west2:thymos-quiz-dev,WAITLIST_DB_NAME=thymos_waitlist,WAITLIST_DB_USER=waitlist_app,REFERRALS_DB_NAME=thymos_referrals,REFERRALS_DB_USER=referrals_app,HEALTH_SYSTEMS_DB_NAME=thymos_health_systems,HEALTH_SYSTEMS_DB_USER=health_systems_app,NEXT_PUBLIC_TURNSTILE_SITE_KEY=<real-site-key> \
+  --set-env-vars DB_NAME=thymos_quiz,DB_USER=quiz_app,INSTANCE_CONNECTION_NAME=thymos-health:us-west2:thymos-quiz-dev,WAITLIST_DB_NAME=thymos_waitlist,WAITLIST_DB_USER=waitlist_app,REFERRALS_DB_NAME=thymos_referrals,REFERRALS_DB_USER=referrals_app,HEALTH_SYSTEMS_DB_NAME=thymos_health_systems,HEALTH_SYSTEMS_DB_USER=health_systems_app,NEXT_PUBLIC_TURNSTILE_SITE_KEY=0x4AAAAAAEgd99jX8gK0sp_v \
   --set-secrets DB_PASSWORD=quiz-db-password:latest,WAITLIST_DB_PASSWORD=waitlist-db-password:latest,REFERRALS_DB_PASSWORD=referrals-db-password:latest,HEALTH_SYSTEMS_DB_PASSWORD=health-systems-db-password:latest,TURNSTILE_SECRET_KEY=turnstile-secret-key:latest,SUBMISSION_TOKEN_SECRET=submission-token-secret:latest
 ```
 
@@ -98,11 +98,12 @@ done
 `NEXT_PUBLIC_TURNSTILE_SITE_KEY` is baked into the client bundle at build time,
 so it must be passed as a plain `--set-env-vars` value (above), not a secret,
 and the deploy that sets it must rebuild (`--source .` always does).
-Until `TURNSTILE_SECRET_KEY` is set, CAPTCHA verification is skipped (honeypot +
-rate-limit still apply); the `.dc.html` widgets ship with Cloudflare's
-always-pass **test** site key `1x00000000000000000000AA` — swap it for the real
-key in `public/waitlist-modal.js` and the `data-sitekey` on
-`public/Thymos Refer A Patient.dc.html` / `public/Thymos Health Systems.dc.html`.
+The real "Thymos forms" Turnstile **site key** `0x4AAAAAAEgd99jX8gK0sp_v` is
+already baked into `public/waitlist-modal.js`, the two form `.dc.html` pages,
+and `ContactScreen.tsx`; the **secret key** is in the `turnstile-secret-key`
+Secret Manager entry. Until `TURNSTILE_SECRET_KEY` reaches the running service,
+verification is skipped server-side (honeypot + rate-limit still apply) — the
+`--set-secrets` line above wires it in.
 
 The waitlist, provider-referral, and health-system-analysis forms each store
 to their own isolated database (`thymos_waitlist`, `thymos_referrals`,

@@ -43,13 +43,11 @@
 
   var PRIVACY_HREF = "Thymos Privacy Policy.dc.html";
 
-  // Cloudflare Turnstile. `1x00000000000000000000AA` is Cloudflare's
-  // always-passing TEST site key — replace with the real key before launch
-  // (and set TURNSTILE_SECRET_KEY on the server). A <meta name="turnstile-site-key">
-  // on the page wins if present, so the key can be set in one spot per page.
+  // Cloudflare Turnstile site key (public). A <meta name="turnstile-site-key">
+  // on the page overrides this if present.
   var TURNSTILE_SITE_KEY = (function () {
     var m = document.querySelector('meta[name="turnstile-site-key"]');
-    return (m && m.content) || "1x00000000000000000000AA";
+    return (m && m.content) || "0x4AAAAAAEgd99jX8gK0sp_v";
   })();
   var TURNSTILE_API = "https://challenges.cloudflare.com/turnstile/v0/api.js";
 
