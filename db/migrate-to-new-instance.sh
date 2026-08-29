@@ -39,12 +39,12 @@ MAP=(
   "thymos_referrals:referrals_app:db/referrals-schema.sql"
   "thymos_health_systems:health_systems_app:db/health-systems-schema.sql"
 )
-# db name : table (for the data copy)
+# db name : role : table (for the data copy)
 TABLES=(
-  "thymos_quiz:quiz_submissions"
-  "thymos_waitlist:waitlist_submissions"
-  "thymos_referrals:referral_submissions"
-  "thymos_health_systems:health_system_requests"
+  "thymos_quiz:quiz_app:quiz_submissions"
+  "thymos_waitlist:waitlist_app:waitlist_submissions"
+  "thymos_referrals:referrals_app:referral_submissions"
+  "thymos_health_systems:health_systems_app:health_system_requests"
 )
 
 echo "==> 1/6  Create the four app users on $NEW_INSTANCE"
@@ -131,16 +131,23 @@ else
   echo "    (a proxy is already listening on :$OLD_PORT — reusing it)"
 fi
 
+# Column-explicit CSV \copy (not pg_dump — a v16 client refuses a v18 server,
+# and the live quiz_submissions column order has drifted from db/schema.sql).
 for entry in "${TABLES[@]}"; do
-  db="${entry%%:*}"; tbl="${entry##*:}"
-  role="$(for m in "${MAP[@]}"; do [ "${m%%:*}" = "$db" ] && { r="${m#*:}"; echo "${r%%:*}"; }; done)"
+  db="${entry%%:*}"; rest="${entry#*:}"; role="${rest%%:*}"; tbl="${rest##*:}"
   src="host=127.0.0.1 port=$OLD_PORT dbname=$db user=$role sslmode=disable"
   dst="host=127.0.0.1 port=$NEW_PORT dbname=$db user=$role sslmode=disable"
   before=$(PGPASSWORD="$QUIZ_APP_PASSWORD" psql "$src" -Atc "select count(*) from $tbl")
-  PGPASSWORD="$QUIZ_APP_PASSWORD" pg_dump "$src" --data-only --no-owner \
-    --no-privileges --column-inserts --table="public.$tbl" \
-    | sed 's/^INSERT INTO/INSERT INTO/' \
-    | PGPASSWORD="$APP_PASSWORD" psql "$dst" -v ON_ERROR_STOP=1 -q
+  if [ "$before" -gt 0 ]; then
+    # NEW table's column order is canonical (matches the schema file).
+    cols=$(PGPASSWORD="$APP_PASSWORD" psql "$dst" -Atc \
+      "select string_agg(column_name, ', ' order by ordinal_position) \
+       from information_schema.columns where table_name='$tbl'")
+    PGPASSWORD="$QUIZ_APP_PASSWORD" psql "$src" \
+      -c "\copy (SELECT $cols FROM $tbl) TO STDOUT WITH (FORMAT csv)" \
+      | PGPASSWORD="$APP_PASSWORD" psql "$dst" -v ON_ERROR_STOP=1 \
+        -c "\copy $tbl ($cols) FROM STDIN WITH (FORMAT csv)"
+  fi
   after=$(PGPASSWORD="$APP_PASSWORD" psql "$dst" -Atc "select count(*) from $tbl")
   printf '    %-28s old=%s  new=%s  %s\n' "$db.$tbl" "$before" "$after" \
     "$([ "$before" = "$after" ] && echo OK || echo '!! MISMATCH')"

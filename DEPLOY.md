@@ -1,10 +1,17 @@
 # Deploying to Cloud Run
 
-> **Migrating off `thymos-quiz-dev` (required before launch).** That instance
-> is a permanently trial-flagged Cloud SQL "Free Trial Instance" — Google
-> refuses to enable automated backups / PITR / storage auto-increase on it and
-> it cannot be converted. Stand up a fresh instance and re-provision (there are
-> only ~5 rows of real data):
+> **Migrated off `thymos-quiz-dev` on 2026-08-29.** That instance was a
+> permanently trial-flagged Cloud SQL "Free Trial Instance" — Google refuses
+> to enable automated backups / PITR / storage auto-increase on it and it
+> cannot be converted. The live DB is now **`thymos-db`** (POSTGRES_18,
+> us-west2, same tier, with backups + PITR + `ssl-mode=ENCRYPTED_ONLY` +
+> deletion protection + storage auto-increase). 4 databases + 4 de-privileged
+> roles re-provisioned and the 3 real `quiz_submissions` rows copied.
+> `thymos-quiz-dev` is kept as a fallback — delete it once `thymos-db` is
+> proven in production (`gcloud sql instances patch thymos-quiz-dev
+> --no-deletion-protection && gcloud sql instances delete thymos-quiz-dev`).
+>
+> To redo this on another instance, the steps were:
 >
 > ```sh
 > # 1. Create the non-trial instance (root password lands in /tmp/thymos-db-rootpw)
@@ -76,7 +83,7 @@ gcloud run deploy thymos-quiz-app \
   --region us-west2 \
   --service-account thymos-quiz-app@thymos-health.iam.gserviceaccount.com \
   --allow-unauthenticated \
-  --set-env-vars DB_NAME=thymos_quiz,DB_USER=quiz_app,INSTANCE_CONNECTION_NAME=thymos-health:us-west2:thymos-quiz-dev,WAITLIST_DB_NAME=thymos_waitlist,WAITLIST_DB_USER=waitlist_app,REFERRALS_DB_NAME=thymos_referrals,REFERRALS_DB_USER=referrals_app,HEALTH_SYSTEMS_DB_NAME=thymos_health_systems,HEALTH_SYSTEMS_DB_USER=health_systems_app,NEXT_PUBLIC_TURNSTILE_SITE_KEY=0x4AAAAAAEgd99jX8gK0sp_v \
+  --set-env-vars DB_NAME=thymos_quiz,DB_USER=quiz_app,INSTANCE_CONNECTION_NAME=thymos-health:us-west2:thymos-db,WAITLIST_DB_NAME=thymos_waitlist,WAITLIST_DB_USER=waitlist_app,REFERRALS_DB_NAME=thymos_referrals,REFERRALS_DB_USER=referrals_app,HEALTH_SYSTEMS_DB_NAME=thymos_health_systems,HEALTH_SYSTEMS_DB_USER=health_systems_app,NEXT_PUBLIC_TURNSTILE_SITE_KEY=0x4AAAAAAEgd99jX8gK0sp_v \
   --set-secrets DB_PASSWORD=quiz-db-password:latest,WAITLIST_DB_PASSWORD=waitlist-db-password:latest,REFERRALS_DB_PASSWORD=referrals-db-password:latest,HEALTH_SYSTEMS_DB_PASSWORD=health-systems-db-password:latest,TURNSTILE_SECRET_KEY=turnstile-secret-key:latest,SUBMISSION_TOKEN_SECRET=submission-token-secret:latest
 ```
 
