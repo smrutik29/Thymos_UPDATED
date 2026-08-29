@@ -1,8 +1,37 @@
 # Deploying to Cloud Run
 
+> **Migrating off `thymos-quiz-dev` (required before launch).** That instance
+> is a permanently trial-flagged Cloud SQL "Free Trial Instance" — Google
+> refuses to enable automated backups / PITR / storage auto-increase on it and
+> it cannot be converted. Stand up a fresh instance and re-provision (there are
+> only ~5 rows of real data):
+>
+> ```sh
+> # 1. Create the non-trial instance (root password lands in /tmp/thymos-db-rootpw)
+> gcloud sql instances create thymos-db \
+>   --project=thymos-health --database-version=POSTGRES_18 --region=us-west2 \
+>   --edition=ENTERPRISE_PLUS --tier=db-perf-optimized-N-8 \
+>   --storage-type=SSD --storage-size=100 --storage-auto-increase \
+>   --availability-type=ZONAL \
+>   --backup-start-time=09:00 --enable-point-in-time-recovery --retained-transaction-log-days=7 \
+>   --database-flags=cloudsql.iam_authentication=on \
+>   --ssl-mode=ENCRYPTED_ONLY --deletion-protection \
+>   --root-password="$(openssl rand -base64 30 | tr -dc 'A-Za-z0-9' | head -c 32 | tee /tmp/thymos-db-rootpw)"
+>
+> # 2. Users + databases + isolation + schema + data copy
+> QUIZ_APP_PASSWORD='<old quiz_app pw>' APP_PASSWORD='<new pw for all *_app roles>' \
+>   bash db/migrate-to-new-instance.sh
+>
+> # 3. Repoint: set INSTANCE_CONNECTION_NAME=thymos-health:us-west2:thymos-db
+> #    in .env.local, .env.example, and the deploy command below.
+> # 4. After the new instance is proven in prod, delete the old one:
+> gcloud sql instances patch  thymos-quiz-dev --no-deletion-protection --project thymos-health
+> gcloud sql instances delete thymos-quiz-dev --project thymos-health
+> ```
+
 The app is one Next.js project that serves both the marketing website (`/`
-and its sub-pages) and the quiz (`/quiz`), backed by the `thymos-quiz-dev`
-Cloud SQL Postgres instance. It's already deployment-ready: `Dockerfile`
+and its sub-pages) and the quiz (`/quiz`), backed by a Cloud SQL Postgres
+instance (`thymos-quiz-dev` today; `thymos-db` after the migration above). It's already deployment-ready: `Dockerfile`
 builds a standalone production image, and `src/lib/db/client.ts` auto-detects
 Cloud Run (via the `K_SERVICE` env var Cloud Run sets automatically) and
 switches from the local TCP proxy connection to the
