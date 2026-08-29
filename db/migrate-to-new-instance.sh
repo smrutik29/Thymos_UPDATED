@@ -71,35 +71,40 @@ for entry in "${MAP[@]}"; do
 done
 
 echo "==> 3/6  Start Auth Proxy for $NEW_INSTANCE on :$NEW_PORT"
+NEW_PROXY=""; OLD_PROXY=""
+trap 'kill $NEW_PROXY $OLD_PROXY 2>/dev/null || true' EXIT
+# clear a stale proxy left by a previous failed run
+pkill -f "cloud-sql-proxy.*$NEW_INSTANCE" 2>/dev/null && sleep 2 || true
 ./cloud-sql-proxy --gcloud-auth --port "$NEW_PORT" \
   "$PROJECT:$REGION:$NEW_INSTANCE" &
 NEW_PROXY=$!
-trap 'kill $NEW_PROXY $OLD_PROXY 2>/dev/null || true' EXIT
 for _ in $(seq 1 40); do
   (echo > "/dev/tcp/127.0.0.1/$NEW_PORT") 2>/dev/null && break; sleep 0.5
 done
 echo "    up (pid $NEW_PROXY)"
 
 echo "==> 4/6  Bootstrap ownership + isolation on each new database"
+# Fresh gcloud-created users are members of cloudsqlsuperuser and have
+# CREATEROLE/CREATEDB. Connect AS the role itself:
+#  - it can reassign its DB + schema ownership to itself (member of self,
+#    has createdb, and the DB's current owner is cloudsqlsuperuser which it
+#    belongs to);
+#  - dropping its own CREATEROLE/CREATEDB needs the cloudsqlsuperuser group,
+#    reached via SET ROLE (no GRANT dance — that would cycle).
 for entry in "${MAP[@]}"; do
   db="${entry%%:*}"; role="${entry#*:}"; role="${role%%:*}"
-  # As <role> -> SET ROLE cloudsqlsuperuser (auto-granted on user create) to
-  # take DB + schema ownership, lock schema public to <role> only, and
-  # de-privilege the role. Mirrors db/provision-isolated-db.sh.
   PGPASSWORD="$APP_PASSWORD" psql \
     "host=127.0.0.1 port=$NEW_PORT dbname=$db user=$role sslmode=disable" \
     -v ON_ERROR_STOP=1 -v r="$role" -v d="$db" <<'SQL'
-SET ROLE cloudsqlsuperuser;
-GRANT :"r" TO cloudsqlsuperuser;
 ALTER DATABASE :"d" OWNER TO :"r";
-ALTER ROLE :"r" NOCREATEROLE NOCREATEDB;
-REVOKE cloudsqlsuperuser FROM :"r";
-REVOKE :"r" FROM cloudsqlsuperuser;
-RESET ROLE;
 ALTER SCHEMA public OWNER TO :"r";
-REVOKE ALL ON SCHEMA public FROM cloudsqlsuperuser;
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM cloudsqlsuperuser;
 GRANT ALL ON SCHEMA public TO :"r";
+SET ROLE cloudsqlsuperuser;
+REVOKE cloudsqlsuperuser FROM :"r";
+ALTER ROLE :"r" NOCREATEROLE NOCREATEDB;
+RESET ROLE;
 SQL
   echo "    $db owned by $role, locked down, $role de-privileged"
 done
