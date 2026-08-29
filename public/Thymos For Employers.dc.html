@@ -1191,7 +1191,7 @@
           <a href="employer-pitch.html" target="_blank" class="btn btn-outline">
             View full interactive pitch →
           </a>
-          <button class="btn btn-outline" onClick="{{ shareThisPage }}">
+          <button class="btn btn-outline" onClick="{{ forwardToBenefits }}">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
             Forward to your benefits team
           </button>
@@ -1684,6 +1684,32 @@ class Component extends DCLogic {
     }
   }
 
+  // "Forward to your benefits team" — always an email (not the OS share
+  // sheet), pre-filled with subject, body and CC to the Thymos employer
+  // intake so the partnerships team is looped in on a warm hand-off.
+  forwardToBenefits() {
+    const subject = encodeURIComponent(
+      "Worth a look: Thymos Health for our specialty biologic spend"
+    );
+    const body = encodeURIComponent(
+      "Hi team,\n\n" +
+      "Flagging this for the benefits team. Thymos Health runs a clinical " +
+      "program for members on specialty biologics for autoimmune conditions " +
+      "— they do the clinical work, we get de-identified monthly reporting.\n\n" +
+      window.location.href + "\n\n" +
+      "The numbers that stood out:\n" +
+      "  · ~8% of covered employees have autoimmune disease\n" +
+      "  · $12K–$300K per person per year in biologics alone\n" +
+      "  · ~65% get no meaningful relief but keep filling\n" +
+      "  · Thymos: $500 / participant / month in, up to $25K / month saved per patient\n" +
+      "  · Illustrative: 10 participants · 2 years · ~$480K net gain\n\n" +
+      "Next step is a PBM data pull to size our actual eligible population. " +
+      "Thymos (cc'd) can send the request template.\n"
+    );
+    window.location.href =
+      "mailto:?cc=data@thymoshealth.com&subject=" + subject + "&body=" + body;
+  }
+
   // No authenticated email-provider integration exists in this project
   // (no Gmail/Outlook OAuth, no backend draft API) — mailto: can't
   // reliably attach a file, so the CSV is downloaded to the visitor's
@@ -1749,6 +1775,7 @@ class Component extends DCLogic {
       openDiseaseModal: () => { document.body.style.overflow = "hidden"; this.setState({ diseaseModalOpen: true }); },
       closeDiseaseModal: () => { document.body.style.overflow = ""; this.setState({ diseaseModalOpen: false }); },
       shareThisPage: () => this.shareThisPage(),
+      forwardToBenefits: () => this.forwardToBenefits(),
       drugHumira: "pp-drug-btn" + (awp === 7150 ? " active" : ""),
       drugStelara: "pp-drug-btn" + (awp === 14200 ? " active" : ""),
       drugCosentyx: "pp-drug-btn" + (awp === 5800 ? " active" : ""),
