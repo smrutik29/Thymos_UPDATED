@@ -46,7 +46,26 @@ const nextConfig: NextConfig = {
   // Don't advertise the framework/version.
   poweredByHeader: false,
   async headers() {
-    return [{ source: "/:path*", headers: SECURITY_HEADERS }];
+    return [
+      { source: "/:path*", headers: SECURITY_HEADERS },
+      // Long-lived cache for immutable-ish media so navigating between the
+      // marketing pages doesn't re-fetch the shared images/video/fonts every
+      // time (Next serves public/ with max-age=0 by default).
+      {
+        source: "/:dir(img|images|video|fonts)/:file*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=2592000, stale-while-revalidate=86400",
+          },
+        ],
+      },
+      // The hand-written page scripts change occasionally — a day is plenty.
+      {
+        source: "/:file(support|site-search|waitlist-modal).js",
+        headers: [{ key: "Cache-Control", value: "public, max-age=86400" }],
+      },
+    ];
   },
   async rewrites() {
     return [
