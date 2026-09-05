@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Sora, Public_Sans } from "next/font/google";
 import "./globals.css";
 
@@ -37,6 +37,11 @@ export const metadata: Metadata = {
       "Take the Thymos Health quiz to get a personalized, root-cause approach to your autoimmune or chronic inflammatory symptoms.",
     images: ["/img/thymos-logo-flames.png"],
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

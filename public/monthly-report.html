@@ -547,6 +547,15 @@
   .bar-area-dense .b { width: 6px; }
   .bar-area-dense .bar-pair { gap: 2px; }
   .bar-area-dense .bar-lbl { font-size: 0.48rem; }
+
+  /* Report was authored desktop-first — these fixed-column grids overflow
+     a phone width instead of wrapping. */
+  @media (max-width: 640px) {
+    .kpi-row { grid-template-columns: 1fr; }
+    .stage-row { grid-template-columns: repeat(2, 1fr); }
+    .stage-row-new { grid-template-columns: repeat(2, 1fr); }
+    .funnel-meta, .funnel-con-meta { width: 120px; }
+  }
 </style>
   <link rel="stylesheet" href="/mobile-fixes.css">
 </head>

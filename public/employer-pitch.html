@@ -519,6 +519,7 @@
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 14px;
     overflow: hidden;
+    flex-shrink: 0;
   }
   .light .model-table,
   .white .model-table {
@@ -1072,7 +1073,8 @@
   }
   .pd-stb.active { background: var(--coral); color: var(--white); border-color: var(--coral); }
 
-  .pd-si-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+  .pd-si-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 18px; }
+  @media (min-width: 700px) { .pd-si-cards { grid-template-columns: repeat(4, 1fr); } }
   .pd-si-card { background: var(--white); border: 1px solid rgba(3,65,82,0.12); border-radius: 4px; padding: 14px 15px; }
   .pd-si-card.mid   { border-color: var(--teal); border-width: 1.5px; }
   .pd-si-card.hi    { border-color: var(--coral); border-width: 1.5px; }
@@ -1144,7 +1146,8 @@
   .pd-traj-legend-item { display: flex; align-items: center; gap: 6px; }
   .pd-legend-sw { width: 14px; height: 10px; border-radius: 2px; flex-shrink: 0; }
 
-  .pd-traj-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(3,65,82,0.14); }
+  .pd-traj-summary { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(3,65,82,0.14); }
+  @media (min-width: 700px) { .pd-traj-summary { grid-template-columns: repeat(4, 1fr); } }
   .pd-stat-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(3,65,82,0.4); margin-bottom: 4px; }
   .pd-stat-val { font-family: 'DM Serif Display', serif; font-size: 22px; line-height: 1; }
   .pd-stat-val.good { color: var(--teal); }
@@ -1320,9 +1323,10 @@
 
   /* ── Believe the ROI slide (broi-) ── */
   .broi-cards {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+    display: grid; grid-template-columns: 1fr; gap: 10px;
     margin: 20px 0 16px;
   }
+  @media (min-width: 560px) { .broi-cards { grid-template-columns: repeat(3, 1fr); } }
   .broi-card {
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.1);
@@ -1366,7 +1370,8 @@
   }
 
   /* ── Slide 2 · member vignettes ── */
-  .s2-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 22px 0 14px; }
+  .s2-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 22px 0 14px; }
+  @media (min-width: 560px) { .s2-grid { grid-template-columns: repeat(3, 1fr); } }
   .s2-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 16px 16px 18px; }
   .s2-avatar {
     width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center;
@@ -1528,13 +1533,8 @@
         When Thymos intervenes, the snowball <em style="color:var(--teal-m); font-style:normal;">melts</em>. Medication burden decreases. Downstream CVD and cancer risk follows. Your plan's long-term liability shrinks with it — before it ever compounds.
       </div>
 
-      <!-- Intervention trigger -->
-      <button class="sb-int-trigger" id="sb-int-btn" onclick="sbToggleIntervention()">
-        → See what happens when Thymos intervenes
-      </button>
-
       <!-- Intervention panel -->
-      <div class="sb-int-panel" id="sb-int-panel" style="display:none;">
+      <div class="sb-int-panel" id="sb-int-panel">
         <div class="sb-int-cards">
 
           <!-- Card 1: Biologic (Today) — intervenes after Yr 4.5 (ball 4) -->
@@ -1611,7 +1611,7 @@
     <!-- ─────────────────────────────────────────
          SLIDE 4 · Population flow & spend
     ───────────────────────────────────────── -->
-    <div class="slide light sk-slide">
+    <div class="slide light sk-slide scrollable">
       <div class="eyebrow" style="color:var(--teal);">Your population</div>
       <h2 class="headline" style="font-size:1.6rem;line-height:1.15;">What's happening<br>to your autoimmune members</h2>
 
@@ -2430,11 +2430,11 @@
       </div>
 
       <div style="display:flex; flex-direction:column; gap:8px; margin-top:20px;">
-        <a href="member-lettering.html" target="_blank"
+        <a href="member-lettering.html"
            style="display:flex; align-items:center; justify-content:center; gap:8px; padding:13px 20px; background:var(--deep); color:white; border-radius:10px; text-decoration:none; font-weight:700; font-size:0.82rem; letter-spacing:0.04em;">
           View member letter (direct outreach) &rarr;
         </a>
-        <a href="member-lettering.html" target="_blank"
+        <a href="member-lettering.html#hr"
            style="display:flex; align-items:center; justify-content:center; gap:8px; padding:13px 20px; background:rgba(7,100,89,0.12); color:var(--deep); border:1px solid rgba(7,100,89,0.2); border-radius:10px; text-decoration:none; font-weight:700; font-size:0.82rem; letter-spacing:0.04em;">
           View HR benefit announcement &rarr;
         </a>
@@ -2542,9 +2542,13 @@
 
   goTo(0);
 
-  // Tap / click to advance (but not on nav arrows)
+  // Tap / click to advance — but not when the click landed on something
+  // interactive within the slide (buttons, links, form controls, <summary>
+  // toggles, etc.). Without this, e.g. clicking "Adjust claims data" both
+  // opens/closes that <details> AND bubbles up here as an anywhere-click,
+  // which was also advancing the slide at the same time.
   document.getElementById('deck').addEventListener('click', function(e) {
-    if (e.target.closest('.nav-arrow')) return;
+    if (e.target.closest('.nav-arrow, button, a, input, select, textarea, summary, label, [onclick], [role="button"], .pd-si-cards')) return;
     if (isDragging) return;
     const x = e.clientX;
     if (x < window.innerWidth * 0.25) goTo(current - 1);
@@ -2561,12 +2565,21 @@
     isDragging = false;
   }, { passive: true });
 
+  // passive:false + preventDefault (only once a horizontal drag is
+  // confirmed) so a swipe meant for slide navigation doesn't also get read
+  // by the browser as its edge-swipe "go back" gesture — which was
+  // sending users back to whatever page linked to this pitch deck instead
+  // of just moving to the previous slide. Vertical drags are left alone so
+  // scrolling within a tall (.scrollable) slide still works normally.
   document.getElementById('deck').addEventListener('touchmove', function(e) {
     if (startX === null) return;
     const dx = e.touches[0].clientX - startX;
     const dy = e.touches[0].clientY - startY;
-    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 8) isDragging = true;
-  }, { passive: true });
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 8) {
+      isDragging = true;
+      e.preventDefault();
+    }
+  }, { passive: false });
 
   document.getElementById('deck').addEventListener('touchend', function(e) {
     if (startX === null) return;
@@ -2586,17 +2599,6 @@
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
     if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                     { e.preventDefault(); goTo(current - 1); }
   });
-
-  // ── Snowball intervention toggle ──
-  function sbToggleIntervention() {
-    const panel = document.getElementById('sb-int-panel');
-    const btn   = document.getElementById('sb-int-btn');
-    const open  = panel.style.display !== 'none';
-    panel.style.display = open ? 'none' : '';
-    btn.textContent = open
-      ? '→ See what happens when Thymos intervenes'
-      : '← Hide intervention scenarios';
-  }
 
     function pdSetTab(tab, btn) {
     document.querySelectorAll('.pd-itab').forEach(b => b.classList.remove('active'));

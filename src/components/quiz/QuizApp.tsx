@@ -25,10 +25,8 @@ import { Q4ResponseScreen } from "./screens/Q4ResponseScreen";
 import { Q5Screen } from "./screens/Q5Screen";
 import { Q5ResponseScreen } from "./screens/Q5ResponseScreen";
 import { ContactScreen } from "./screens/ContactScreen";
-import { FinalScreen } from "./screens/FinalScreen";
 import { ThankYouScreen } from "./screens/ThankYouScreen";
 import type { ContactFormValues } from "@/lib/schemas/contact";
-import type { FinalChoice } from "@/lib/quiz/types";
 
 export function QuizApp() {
   const [state, dispatch] = useReducer(quizReducer, initialState);
@@ -87,26 +85,6 @@ export function QuizApp() {
     }
   }
 
-  async function handleFinalChoice(choice: FinalChoice) {
-    if (state.submissionId && state.submissionId !== "discarded") {
-      try {
-        await fetch(`/api/quiz-submissions/${state.submissionId}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            ...(state.submissionToken
-              ? { "x-submission-token": state.submissionToken }
-              : {}),
-          },
-          body: JSON.stringify({ finalChoice: choice }),
-        });
-      } catch {
-        // Non-blocking — navigation proceeds regardless of network failure.
-      }
-    }
-    dispatch({ type: "SET_FINAL_CHOICE_AND_ADVANCE", choice });
-  }
-
   function renderScreen() {
     switch (state.step) {
       case "intro":
@@ -135,8 +113,6 @@ export function QuizApp() {
         return (
           <ContactScreen state={state} dispatch={dispatch} onSubmit={handleContactSubmit} />
         );
-      case "final":
-        return <FinalScreen onSelect={handleFinalChoice} />;
       case "thankyou":
         return <ThankYouScreen state={state} />;
       default:

@@ -119,18 +119,11 @@ export const contactContent = {
   heading: "Enter your info below and receive your personalized results.",
   subcopy: "No cost, no obligation — just clarity on your next step.",
   namePlaceholder: "Name",
-  dobPlaceholder: "mm/dd/yyyy",
+  dobPlaceholder: "Date of Birth",
   statePlaceholder: "State",
   emailPlaceholder: "Email",
   phonePlaceholder: "Phone (optional)",
   cta: "Get My Results →",
-};
-
-export const finalContent = {
-  heading: "Would you like to speak with a Thymos physician?",
-  yes: "Yes, please!",
-  waitlist: "Just add me to the new patient waitlist.",
-  no: "No thanks.",
 };
 
 export const thankyouContent: Record<"no" | "other", string> = {

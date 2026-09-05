@@ -639,6 +639,14 @@
       color: var(--gmail-subtext);
       cursor: default;
     }
+
+    /* The 220px sidebar is decorative Gmail-app chrome, not part of the
+       actual sample email — drop it on narrow screens so the email itself
+       gets the full width instead of being squeezed into what's left. */
+    @media (max-width: 640px) {
+      .sidebar { display: none; }
+      .compose-label { display: none; }
+    }
   </style>
   <link rel="stylesheet" href="/mobile-fixes.css">
 </head>

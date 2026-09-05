@@ -17,7 +17,7 @@ const CONTENT_SECURITY_POLICY = [
   "img-src 'self' data: blob:",
   "media-src 'self'",
   "connect-src 'self' https://unpkg.com https://challenges.cloudflare.com",
-  "frame-src https://challenges.cloudflare.com",
+  "frame-src 'self' https://challenges.cloudflare.com",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self' mailto:",
@@ -41,6 +41,28 @@ const SECURITY_HEADERS = [
   { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
 ];
 
+// employer-pitch.html embeds these as live same-origin iframe previews (both
+// small in-slide snippets and the "view" modal). The general X-Frame-Options
+// DENY / frame-ancestors 'none' above block ANY framing, including from our
+// own pages, so these specific embeddable fragments need a same-origin-only
+// override — narrower than allowing framing from anywhere.
+const EMBEDDABLE_PAGE_HEADERS = [
+  {
+    key: "Content-Security-Policy",
+    value: CONTENT_SECURITY_POLICY.replace(
+      "frame-ancestors 'none'",
+      "frame-ancestors 'self'"
+    ),
+  },
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
+];
+const EMBEDDABLE_PAGES = [
+  "roi-and-payback.html",
+  "pbm data request.html",
+  "member-lettering.html",
+  "monthly-report.html",
+];
+
 const nextConfig: NextConfig = {
   output: "standalone",
   // Don't advertise the framework/version.
@@ -62,9 +84,16 @@ const nextConfig: NextConfig = {
       },
       // The hand-written page scripts change occasionally — a day is plenty.
       {
-        source: "/:file(support|site-search|waitlist-modal).js",
+        source: "/:file(support|site-search|waitlist-modal|video-autoplay-fix|testimonial-nav|turnstile-render-fix).js",
         headers: [{ key: "Cache-Control", value: "public, max-age=86400" }],
       },
+      // Same-origin-framing override for the pages employer-pitch.html embeds
+      // as iframes — placed after the general /:path* rule above so these
+      // headers win for these specific paths.
+      ...EMBEDDABLE_PAGES.map((name) => ({
+        source: "/" + encodeURIComponent(name).replace(/%2F/g, "/"),
+        headers: EMBEDDABLE_PAGE_HEADERS,
+      })),
     ];
   },
   async rewrites() {

@@ -21,6 +21,7 @@
 <meta name="twitter:image" content="https://www.thymoshealth.com/img/thymos-logo-flames.png">
 <script src="./support.js"></script>
 <script src="./site-search.js"></script>
+<script src="./video-autoplay-fix.js"></script>
   <link rel="stylesheet" href="/mobile-fixes.css">
 </head>
 <body>
@@ -454,7 +455,13 @@
           <a href="Thymos Membership.dc.html" class="nav-dropdown-item">Membership</a>
         </div>
       </div>
-      <a href="Thymos Proven Approach.dc.html" style="color:#ea6047; font-weight:600; text-decoration:none;">Proven Approach</a>
+      <div class="nav-dropdown">
+        <a href="Thymos Proven Approach.dc.html" class="nav-dropdown-trigger" style="color:#ea6047; font-weight:600; text-decoration:none;">Proven Approach<svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav-dropdown-menu">
+          <a href="Thymos Proven Approach.dc.html" class="nav-dropdown-item">Proven Approach</a>
+          <a href="patient-cases.html" class="nav-dropdown-item">Patient Cases</a>
+        </div>
+      </div>
       <a href="Thymos Conditions Treated.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">Conditions Treated</a>
       <div class="nav-dropdown">
         <a href="Thymos For Employers.dc.html" class="nav-dropdown-trigger" style="color:#333; text-decoration:none;">For Partners<svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -487,7 +494,13 @@
             <a href="Thymos Membership.dc.html" style="color:#333; text-decoration:none;">Membership</a>
           </div>
         </details>
-        <a href="Thymos Proven Approach.dc.html" style="color:#ea6047; font-weight:600; text-decoration:none;">Proven Approach</a>
+        <div class="nav-dropdown">
+        <a href="Thymos Proven Approach.dc.html" class="nav-dropdown-trigger" style="color:#ea6047; font-weight:600; text-decoration:none;">Proven Approach<svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav-dropdown-menu">
+          <a href="Thymos Proven Approach.dc.html" class="nav-dropdown-item">Proven Approach</a>
+          <a href="patient-cases.html" class="nav-dropdown-item">Patient Cases</a>
+        </div>
+      </div>
         <a href="Thymos Conditions Treated.dc.html" style="color:#333; text-decoration:none;">Conditions Treated</a>
         <details class="nav-dropdown-mobile">
           <summary style="display:flex; align-items:center; justify-content:space-between; color:#333;">
@@ -509,7 +522,8 @@
 
   <section style="position:relative; width:100%; aspect-ratio:16/9; max-height:70vh; display:flex; align-items:center; justify-content:center; overflow:hidden;">
     <div style="position:relative; width:100%; height:90%; overflow:hidden;">
-      <video src="img/thymos-vs-traditional.webm" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" onLoadedMetadata="{{ playHero }}" onCanPlay="{{ playHero }}" onEnded="{{ restartHero }}" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1;"></video>
+      <video class="hero-video-desktop" src="img/thymos-vs-traditional.webm" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1;"></video>
+      <img class="hero-gif-mobile" src="img/thymos-vs-traditional.gif" alt="" style="display:none; position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1;" />
     </div>
   </section>
 
@@ -615,7 +629,7 @@
         </sc-for>
       </div>
       <div style="display:flex; justify-content:center;">
-        <a href="/quiz" style="margin:40px auto 0; display:inline-block; background:#ea6047; color:#fff; padding:14px 48px; font-size:1.1rem; font-weight:600; border-radius:8px; min-width:220px; text-align:center; text-decoration:none;" style-hover="background:#c14930; color:#fff;">Get Started</a>
+        <a href="/quiz" style="margin:40px auto 0; display:inline-block; background:#ea6047; color:#fff; padding:14px 48px; font-size:1.1rem; font-weight:600; border-radius:8px; min-width:220px; text-align:center; text-decoration:none;" style-hover="background:#c14930; color:#fff;">See if Thymos is right for you</a>
       </div>
     </div>
   </section>
@@ -690,13 +704,12 @@
           <ul class="footer-links">
             <li><a href="Thymos About Us.dc.html">Our Story</a></li>
             <li><a href="Thymos How We Work.dc.html#faq">Help Center</a></li>
-            <li><a href="/quiz">Contact Us</a></li>
+            <li><a href="#" data-waitlist-trigger="1">Contact Us</a></li>
           </ul>
 
           <div class="footer-spacer"></div>
           <div class="footer-spacer"></div>
 
-          <div class="subheading">Search our site.</div>
           <form class="footer-form" onSubmit="{{ handleFooterSearchSubmit }}">
             <div class="search-input-wrap">
               <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -705,7 +718,7 @@
               </svg>
               <input type="search" id="siteSearch" name="q" placeholder="Search" required="{{ true }}">
             </div>
-            <button type="submit" class="footer-btn">Search</button>
+            <button type="submit" class="footer-btn">Search our site</button>
           </form>
         </div>
 
@@ -721,7 +734,7 @@
           <div class="footer-spacer"></div>
           <div class="footer-spacer"></div>
 
-          <div class="subheading">Follow Us:</div>
+          <div class="subheading">Follow Thymos:</div>
           <div class="social-row">
             <a class="social-icon" href="https://www.instagram.com/payal.bhandarimd/" target="_blank" rel="noopener" aria-label="Thymos Health on Instagram">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -801,13 +814,6 @@ class Component extends DCLogic {
         const result = window.thymosSiteSearch ? window.thymosSiteSearch(query) : null;
         if (result && result.url) { window.location.href = result.url; }
       },
-      // Chrome doesn't reliably honor `autoplay`/`loop` on a <video> whose
-      // attributes were set after the initial HTML parse (same quirk
-      // documented for the quiz app's IntroVideo) — force playback explicitly
-      // once metadata is ready, and manually restart on end since `loop`
-      // alone leaves it frozen on the last frame instead of looping.
-      playHero: (e) => { e.target.play().catch(() => {}); },
-      restartHero: (e) => { e.target.currentTime = 0; e.target.play().catch(() => {}); },
       statsRowOne: [
         { title: "Symptoms", value: "80%", note: "within 3 months" },
         { title: "Inflammation", value: "67%", note: "within 6 months" },
@@ -1011,6 +1017,6 @@ class Component extends DCLogic {
     });
   })();
 </script>
-  <script src="waitlist-modal.js" defer></script>
+  <script src="waitlist-modal.js?v=2" defer></script>
 </body>
 </html>

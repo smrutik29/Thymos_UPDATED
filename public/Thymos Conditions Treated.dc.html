@@ -448,7 +448,13 @@
           <a href="Thymos Membership.dc.html" class="nav-dropdown-item">Membership</a>
         </div>
       </div>
-      <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">Proven Approach</a>
+      <div class="nav-dropdown">
+        <a href="Thymos Proven Approach.dc.html" class="nav-dropdown-trigger" style="color:#333; text-decoration:none;">Proven Approach<svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav-dropdown-menu">
+          <a href="Thymos Proven Approach.dc.html" class="nav-dropdown-item">Proven Approach</a>
+          <a href="patient-cases.html" class="nav-dropdown-item">Patient Cases</a>
+        </div>
+      </div>
       <a href="Thymos Conditions Treated.dc.html" style="color:#ea6047; font-weight:600; text-decoration:none;">Conditions Treated</a>
       <div class="nav-dropdown">
         <a href="Thymos For Employers.dc.html" class="nav-dropdown-trigger" style="color:#333; text-decoration:none;">For Partners<svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -481,7 +487,16 @@
             <a href="Thymos Membership.dc.html" style="color:#333; text-decoration:none;">Membership</a>
           </div>
         </details>
-        <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;">Proven Approach</a>
+        <details class="nav-dropdown-mobile">
+          <summary style="display:flex; align-items:center; justify-content:space-between; color:#333;">
+            <span>Proven Approach</span>
+            <svg class="nav-dropdown-mobile-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="nav-dropdown-mobile-menu">
+            <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;">Proven Approach</a>
+            <a href="patient-cases.html" style="color:#333; text-decoration:none;">Patient Cases</a>
+          </div>
+        </details>
         <a href="Thymos Conditions Treated.dc.html" style="color:#ea6047; font-weight:600; text-decoration:none;">Conditions Treated</a>
         <details class="nav-dropdown-mobile">
           <summary style="display:flex; align-items:center; justify-content:space-between; color:#333;">
@@ -507,7 +522,9 @@
 
   <main style="padding:60px 20px; max-width:900px; margin:0 auto;">
     <input type="text" placeholder="Search diseases..." value="{{ query }}" onChange="{{ onSearch }}" style="display:block; width:100%; padding:14px; font-size:16px; font-family:inherit; border:1px solid #ccc; border-radius:8px; margin-bottom:16px;" />
-    <p style="font-size:0.95rem; color:#666; margin-bottom:8px;">{{ countLabel }}</p>
+    <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}">
+      <p style="font-size:0.95rem; color:#666; margin-bottom:8px;">Loading conditions…</p>
+    </sc-if>
     <p style="font-size:0.9rem; color:#888; margin-bottom:40px;">Select a condition for symptoms, coexisting conditions, risk factors, and research. Conditions with a published patient journey are marked.</p>
 
     <div style="display:flex; flex-direction:column; gap:32px;">
@@ -518,7 +535,7 @@
             <sc-for list="{{ group.items }}" as="d" hint-placeholder-count="5">
               <li style="display:flex; align-items:center;">
                 <a href="{{ d.href }}" style="text-decoration:none; color:inherit; display:block; width:100%;" style-hover="color:#ea6047;">
-                  <div style="display:flex; align-items:baseline; gap:12px; padding:10px 14px; border-radius:10px; transition:background-color .2s ease, transform .2s ease;" style-hover="background:#f8f5f0; transform:translateX(4px);">
+                  <div style="display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 12px; padding:10px 14px; border-radius:10px; transition:background-color .2s ease, transform .2s ease;" style-hover="background:#f8f5f0; transform:translateX(4px);">
                     <span style="font-size:18px; font-weight:600; text-transform:capitalize;">{{ d.name }}</span>
                     <sc-if value="{{ d.hasJourney }}" hint-placeholder-val="{{ false }}">
                       <span style="font-size:13px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#ea6047;">+ Patient journey</span>
@@ -593,13 +610,12 @@
           <ul class="footer-links">
             <li><a href="Thymos About Us.dc.html">Our Story</a></li>
             <li><a href="Thymos How We Work.dc.html#faq">Help Center</a></li>
-            <li><a href="/quiz">Contact Us</a></li>
+            <li><a href="#" data-waitlist-trigger="1">Contact Us</a></li>
           </ul>
 
           <div class="footer-spacer"></div>
           <div class="footer-spacer"></div>
 
-          <div class="subheading">Search our site.</div>
           <form class="footer-form" onSubmit="{{ handleFooterSearchSubmit }}">
             <div class="search-input-wrap">
               <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -608,7 +624,7 @@
               </svg>
               <input type="search" id="siteSearch" name="q" placeholder="Search" required="{{ true }}">
             </div>
-            <button type="submit" class="footer-btn">Search</button>
+            <button type="submit" class="footer-btn">Search our site</button>
           </form>
         </div>
 
@@ -624,7 +640,7 @@
           <div class="footer-spacer"></div>
           <div class="footer-spacer"></div>
 
-          <div class="subheading">Follow Us:</div>
+          <div class="subheading">Follow Thymos:</div>
           <div class="social-row">
             <a class="social-icon" href="https://www.instagram.com/payal.bhandarimd/" target="_blank" rel="noopener" aria-label="Thymos Health on Instagram">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -670,7 +686,9 @@
 class Component extends DCLogic {
   state = { menuOpen: false, footerNewsletterSubmitted: false, footerNewsletterSubmitting: false, footerNewsletterError: false, query: "", diseases: [] };
 
-  // journey pages that exist in this project, keyed by slug
+  // journey pages that exist in this project, keyed by slug. Two separate
+  // sets (kept in sync with Thymos Condition Detail.dc.html) — a condition
+  // counts as having "a published patient journey" if it's in either.
   journeys = {
     "crohns-disease": "Patient Journey - Crohns.html",
     "alopecia-areata": "Patient Journey - Alopecia Areata.html",
@@ -680,6 +698,23 @@ class Component extends DCLogic {
     "polymyositis": "Patient Journey - Myositis.html",
     "psoriatic-arthritis": "Patient Journey - Psoriatic Arthritis.html",
     "hashimotos-thyroiditis": "Patient Journey - Hashimotos Thyroiditis.html"
+  };
+  newJourneys = {
+    "crohns-disease": "patient-journey_crohns-disease.html",
+    "alopecia-areata": "patient-journey_alopecia-areata.html",
+    "ankylosing-spondylitis": "patient-journey_ankylosing-spondylitis.html",
+    "autoimmune-hepatitis": "patient-journey_hepatitis.html",
+    "dermatomyositis": "patient-journey_myositis.html",
+    "polymyositis": "patient-journey_myositis.html",
+    "hashimotos-thyroiditis": "patient-journey_hashimotos-thyroiditis.html",
+    "multiple-sclerosis": "patient-journey_multiple-sclerosis.html",
+    "systemic-lupus-erythematosus": "patient-journey_lupus.html",
+    "rheumatoid-arthritis": "patient-journey_rheumatoid-arthritis.html",
+    "myasthenia-gravis": "patient-journey_myasthenia-gravis.html",
+    "ulcerative-colitis": "patient-journey_ulcerative-colitis.html",
+    "sjogren-syndrome": "patient-journey_sjogrens-syndrome.html",
+    "psoriasis": "patient-journey_psoriasis.html",
+    "guillain-barre-syndrome": "patient-journey_guillain-barre-syndrome.html"
   };
 
   componentDidMount() {
@@ -704,7 +739,7 @@ class Component extends DCLogic {
       (byLetter[l] = byLetter[l] || []).push({
         name: d.name,
         href: "Thymos Condition Detail.dc.html?slug=" + encodeURIComponent(d.slug),
-        hasJourney: !!this.journeys[d.slug]
+        hasJourney: !!(this.journeys[d.slug] || this.newJourneys[d.slug])
       });
     });
 
@@ -751,9 +786,7 @@ class Component extends DCLogic {
       onSearch: e => this.setState({ query: e.target.value }),
       groups,
       empty: all.length > 0 && filtered.length === 0,
-      countLabel: all.length === 0
-        ? "Loading conditions…"
-        : filtered.length + " of " + all.length + " conditions"
+      loading: all.length === 0
     };
   }
 }
@@ -947,6 +980,6 @@ class Component extends DCLogic {
     });
   })();
 </script>
-  <script src="waitlist-modal.js" defer></script>
+  <script src="waitlist-modal.js?v=2" defer></script>
 </body>
 </html>

@@ -21,7 +21,8 @@
 <meta name="twitter:image" content="https://www.thymoshealth.com/img/thymos-logo-flames.png">
 <script src="./support.js"></script>
 <script src="./site-search.js"></script>
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script src="./turnstile-render-fix.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=thymosRenderTurnstile&render=explicit" async defer></script>
   <link rel="stylesheet" href="/mobile-fixes.css">
 </head>
 <body>
@@ -116,6 +117,16 @@
   #hs-root .lede { font-size: clamp(0.92rem, 3.2vw, 1.05rem); line-height: 1.7; max-width: 540px; }
   #hs-root .lede.muted { opacity: 0.72; }
   #hs-root #economics .lede.muted { opacity: 1; color: var(--white); }
+  /* "The Thymos Solution" / "The Economics" / "Departments We Support" /
+     "Easy to Implement" intros read as a narrow, cramped column on wide
+     screens — let them run the fuller width of the section like the rest
+     of the page instead of the default .lede cap. */
+  #hs-root #solution .lede,
+  #hs-root #economics .lede,
+  #hs-root #departments .lede,
+  #hs-root #implementation .lede {
+    max-width: 760px;
+  }
 
   #hs-root .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -135,6 +146,9 @@
   #hs-root .trust-strip-inner { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.03em; color: var(--white); line-height: 1.9; padding-right: 60px; flex-shrink: 0; }
   #hs-root .trust-strip-inner strong { color: var(--teal-m); font-weight: 600; }
   @keyframes hs-trust-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (max-width: 640px) {
+    #hs-root .trust-strip-inner { font-size: 0.58rem; }
+  }
 
   #hs-root .cm-badge { display: inline-flex; align-items: center; gap: 8px; font-family: 'DM Mono', monospace; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mid-plum); background: var(--teal-l); border: 1px solid rgba(37,160,140,0.25); border-radius: 100px; padding: 7px 14px; margin-bottom: 22px; }
   #hs-root .cm-badge::before { content: '◆'; font-size: 0.6rem; }
@@ -677,7 +691,13 @@
           <a href="Thymos Membership.dc.html" class="nav-dropdown-item">Membership</a>
         </div>
       </div>
-      <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">Proven Approach</a>
+      <div class="nav-dropdown">
+        <a href="Thymos Proven Approach.dc.html" class="nav-dropdown-trigger" style="color:#333; text-decoration:none;">Proven Approach<svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav-dropdown-menu">
+          <a href="Thymos Proven Approach.dc.html" class="nav-dropdown-item">Proven Approach</a>
+          <a href="patient-cases.html" class="nav-dropdown-item">Patient Cases</a>
+        </div>
+      </div>
       <a href="Thymos Conditions Treated.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">Conditions Treated</a>
       <div class="nav-dropdown">
         <a href="Thymos For Employers.dc.html" class="nav-dropdown-trigger" style="color:#333; text-decoration:none;">For Partners<svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -710,7 +730,16 @@
             <a href="Thymos Membership.dc.html" style="color:#333; text-decoration:none;">Membership</a>
           </div>
         </details>
-        <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;">Proven Approach</a>
+        <details class="nav-dropdown-mobile">
+          <summary style="display:flex; align-items:center; justify-content:space-between; color:#333;">
+            <span>Proven Approach</span>
+            <svg class="nav-dropdown-mobile-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="nav-dropdown-mobile-menu">
+            <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;">Proven Approach</a>
+            <a href="patient-cases.html" style="color:#333; text-decoration:none;">Patient Cases</a>
+          </div>
+        </details>
         <a href="Thymos Conditions Treated.dc.html" style="color:#333; text-decoration:none;">Conditions Treated</a>
         <details class="nav-dropdown-mobile">
           <summary style="display:flex; align-items:center; justify-content:space-between; color:#333;">
@@ -1250,13 +1279,12 @@
           <ul class="footer-links">
             <li><a href="Thymos About Us.dc.html">Our Story</a></li>
             <li><a href="Thymos How We Work.dc.html#faq">Help Center</a></li>
-            <li><a href="/quiz">Contact Us</a></li>
+            <li><a href="#" data-waitlist-trigger="1">Contact Us</a></li>
           </ul>
 
           <div class="footer-spacer"></div>
           <div class="footer-spacer"></div>
 
-          <div class="subheading">Search our site.</div>
           <form class="footer-form" onSubmit="{{ handleFooterSearchSubmit }}">
             <div class="search-input-wrap">
               <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -1265,7 +1293,7 @@
               </svg>
               <input type="search" id="siteSearch" name="q" placeholder="Search" required="{{ true }}">
             </div>
-            <button type="submit" class="footer-btn">Search</button>
+            <button type="submit" class="footer-btn">Search our site</button>
           </form>
         </div>
 
@@ -1281,7 +1309,7 @@
           <div class="footer-spacer"></div>
           <div class="footer-spacer"></div>
 
-          <div class="subheading">Follow Us:</div>
+          <div class="subheading">Follow Thymos:</div>
           <div class="social-row">
             <a class="social-icon" href="https://www.instagram.com/payal.bhandarimd/" target="_blank" rel="noopener" aria-label="Thymos Health on Instagram">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -1670,6 +1698,6 @@ class Component extends DCLogic {
     });
   })();
 </script>
-  <script src="waitlist-modal.js" defer></script>
+  <script src="waitlist-modal.js?v=2" defer></script>
 </body>
 </html>

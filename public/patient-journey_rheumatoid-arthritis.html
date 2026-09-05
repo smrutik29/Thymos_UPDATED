@@ -854,7 +854,7 @@
                     <div class="detail-row">
                         <div class="detail-lbl">Your coinsurance for this drug</div>
                         <div class="chip-group" id="coins-ada">
-                            <button class="chip" data-value="0"    onclick="pickChip(this);recalc()">$0 covered</button>
+                            <button class="chip" data-value="0"    onclick="pickChip(this);recalc()">$0 (fully covered)</button>
                             <button class="chip" data-value="0.05" onclick="pickChip(this);recalc()">5%</button>
                             <button class="chip" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
                             <button class="chip active" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
@@ -941,7 +941,7 @@
                     <div class="detail-row">
                         <div class="detail-lbl">Your coinsurance for this drug</div>
                         <div class="chip-group" id="coins-upa">
-                            <button class="chip" data-value="0"    onclick="pickChip(this);recalc()">$0 covered</button>
+                            <button class="chip" data-value="0"    onclick="pickChip(this);recalc()">$0 (fully covered)</button>
                             <button class="chip" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
                             <button class="chip active" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
                             <button class="chip" data-value="0.30" onclick="pickChip(this);recalc()">30%</button>
@@ -1307,10 +1307,10 @@
         </div>
         <div class="cta-row">
             <div class="cta-col">
-                <button class="cta-btn cta-btn-secondary">See if Thymos is right for you →</button>
+                <button class="cta-btn cta-btn-secondary" onclick="window.location.href='/quiz'">See if Thymos is right for you →</button>
                 <div class="cta-note">No commitment. Takes 2 minutes.</div>
             </div>
-            <button class="cta-btn cta-btn-primary">Get Started</button>
+            <button class="cta-btn cta-btn-primary" data-waitlist-trigger="1">Get Started</button>
         </div>
     </div>
 </section>
@@ -1661,5 +1661,6 @@ function goToCite(n) {
 /* ── INIT ── */
 recalc();
 </script>
+<script src="waitlist-modal.js?v=2" defer></script>
 </body>
 </html>

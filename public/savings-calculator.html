@@ -650,11 +650,11 @@ body {
 
     <div class="actions">
       <a href="employer-pitch.html" target="_blank" class="action-link primary">View full pitch deck →</a>
-      <button class="action-link" onclick="shareCalc()">
+      <button type="button" class="action-link" onclick="shareCalc()">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
         Forward this
       </button>
-      <a href="employer-landing.html" class="action-link">← Back to overview</a>
+      <a href="Thymos For Employers.dc.html" class="action-link">← Back to overview</a>
     </div>
 
     <div class="fn" id="fn-text">
@@ -1041,7 +1041,7 @@ function shareCalc() {
       `Ongoing savings: ${fmtYear(ann)}/year · indefinitely\n\n` +
       window.location.href
     );
-    window.open('mailto:?subject=' + s + '&body=' + b, '_self');
+    window.location.href = 'mailto:?subject=' + s + '&body=' + b;
   }
 }
 

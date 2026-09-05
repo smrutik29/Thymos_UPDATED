@@ -108,6 +108,11 @@ body {
   color: var(--ink);
 }
 
+button {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
 ::selection {
   background: #dcead4;
 }

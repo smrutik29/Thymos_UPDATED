@@ -113,6 +113,7 @@ export function ContactScreen({ state, dispatch, onSubmit }: ContactScreenProps)
           <DateField
             value={watch("dob")}
             onChange={(v) => setValue("dob", v, { shouldValidate: true })}
+            placeholder={contactContent.dobPlaceholder}
           />
           {errors.dob && <span className="text-[12px] text-red-600">{errors.dob.message}</span>}
         </div>

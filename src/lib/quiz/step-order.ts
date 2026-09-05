@@ -13,7 +13,6 @@ export const STEP_ORDER: Step[] = [
   "q5",
   "q5resp",
   "contact",
-  "final",
   "thankyou",
 ];
 

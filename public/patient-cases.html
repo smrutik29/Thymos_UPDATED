@@ -524,7 +524,7 @@ const cases = {
   }
 };
 
-function renderCase(key){
+function renderCase(key, isInitial){
   const c=cases[key];
   document.getElementById('caseKicker').textContent=c.kicker;
   document.getElementById('caseTitle').textContent=c.title;
@@ -549,7 +549,14 @@ function renderCase(key){
   document.getElementById('timeline').innerHTML=c.timeline.map((x,i)=>`<div class="timepoint ${i===1?'highlight':''}"><div class="time">${x[0]}</div><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join('');
   document.getElementById('referralCopy').textContent=c.referralCopy;
   document.querySelectorAll('.case-tab').forEach(btn=>{const active=btn.dataset.case===key;btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',active?'true':'false')});
-  try{ history.replaceState(null,'','#cases'); }catch(e){ /* URL update unavailable in this embedding context (e.g. sandboxed preview) */ }
+  // Skipped on the initial page render — setting the #cases hash here,
+  // even via replaceState (no real navigation), was making the browser
+  // treat it as a pending fragment link and auto-scroll to the #cases
+  // section as soon as it appeared in the DOM, so every fresh visit to
+  // this page landed mid-page instead of at the top.
+  if(!isInitial){
+    try{ history.replaceState(null,'','#cases'); }catch(e){ /* URL update unavailable in this embedding context (e.g. sandboxed preview) */ }
+  }
 }
 
 function scrollToSection(el, offset){
@@ -596,7 +603,7 @@ function setupScrollSpy(){
   modules.forEach(m=>observer.observe(m));
 }
 setupScrollSpy();
-renderCase('case1');
+renderCase('case1', true);
 </script>
 </body>
 </html>

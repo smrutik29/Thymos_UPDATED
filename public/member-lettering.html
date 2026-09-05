@@ -459,6 +459,7 @@
     <span class="letter-nav-label">From:</span>
     <button class="letter-btn active" data-view="pbm" onclick="showView('pbm')">PBM / Clinical</button>
     <button class="letter-btn" data-view="hr" onclick="showView('hr')">HR / Benefits</button>
+    <a href="employer-pitch.html" style="margin-left:auto; font-family:'DM Mono',monospace; font-size:0.7rem; letter-spacing:0.04em; color:var(--muted); text-decoration:none; white-space:nowrap;">&larr; Back to pitch deck</a>
   </nav>
 
 
@@ -507,7 +508,7 @@
 
       <div class="closing">
         <p class="closing-warmly">Warmly,</p>
-        <div class="sig-name">Dr. M. Adler, MD</div>
+        <div class="sig-name">Payal Bhandari, M.D.</div>
         <div class="sig-title">Medical Director, Thymos Health</div>
       </div>
 
@@ -652,8 +653,8 @@
 
       <div class="closing">
         <p class="closing-warmly">Sincerely,</p>
-        <div class="sig-name">Sarah Okonkwo</div>
-        <div class="sig-title">Director of Benefits &amp; Employee Wellbeing</div>
+        <div class="sig-name">Payal Bhandari, M.D.</div>
+        <div class="sig-title">CEO of Thymos Provider Group</div>
       </div>
 
       <footer class="letter-footer">
@@ -680,6 +681,10 @@
       var btn = document.querySelector('[data-view="' + v + '"]');
       if (btn) btn.classList.add('active');
     }
+
+    // Deep-link the correct tab from the pitch deck: #hr for the HR
+    // benefit announcement link, otherwise default to PBM/Clinical.
+    if (window.location.hash === '#hr') showView('hr');
   </script>
 
 </body>

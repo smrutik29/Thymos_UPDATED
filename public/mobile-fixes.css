@@ -7,10 +7,36 @@
  * inline style) tame the specific offenders found by testing at 390px.
  * Scoped to <= 640px so tablet/desktop are untouched.
  */
+/* Homepage hero: the header is a fixed 650px tall box with the hero video
+ * cropped to fill it via object-fit:cover. That's fine in mobile portrait
+ * (viewport taller than wide), but in mobile landscape the viewport itself
+ * is often shorter than 650px, so the video ends up scaled/cropped against
+ * a box far taller than what's actually visible, and the subject drifts
+ * off-center. Cap the header to the shorter of 650px or the viewport height
+ * so the crop is always proportional to what's on screen. Keyed on a height
+ * (not width) breakpoint since it's the short dimension that matters here —
+ * this is what actually catches mobile landscape, which a max-width query
+ * scoped to phone-portrait widths would miss.
+ */
+@media (max-height: 500px) {
+  header[style*="height:650px"], header[style*="height: 650px"] {
+    height: min(650px, 100svh) !important;
+  }
+}
+
 @media (max-width: 640px) {
   html, body {
     overflow-x: hidden !important;
     max-width: 100vw;
+  }
+
+  /* Proven Approach hero: show the pre-rendered GIF instead of the video on
+     mobile — guaranteed to render with no autoplay policy or JS involved. */
+  .hero-video-desktop {
+    display: none !important;
+  }
+  .hero-gif-mobile {
+    display: block !important;
   }
 
   /* media never wider than the screen */
@@ -60,6 +86,7 @@
   }
 
   /* inline fixed pixel widths that exceed a phone column */
+  [style*="width:380px"], [style*="width: 380px"],
   [style*="width:400px"], [style*="width: 400px"],
   [style*="width:420px"], [style*="width: 420px"],
   [style*="width:460px"], [style*="width: 460px"],
@@ -81,9 +108,78 @@
   [style*="flex:0 0 4"], [style*="flex: 0 0 4"],
   [style*="flex:0 0 5"], [style*="flex: 0 0 5"],
   [style*="flex:0 0 6"], [style*="flex: 0 0 6"],
+  [style*="flex:1 1 3"], [style*="flex: 1 1 3"],
+  [style*="flex:1 1 4"], [style*="flex: 1 1 4"],
+  [style*="flex:1 1 5"], [style*="flex: 1 1 5"],
+  [style*="flex:1 1 6"], [style*="flex: 1 1 6"],
   [style*="flex-basis:3"], [style*="flex-basis: 3"],
   [style*="flex-basis:4"], [style*="flex-basis: 4"] {
     flex: 1 1 100% !important;
     max-width: 100% !important;
+  }
+
+  /* inline percentage max-widths used to split two-column sections into
+     a narrow text column + image — needlessly cramped once stacked */
+  [style*="max-width:65%"], [style*="max-width: 65%"],
+  [style*="max-width:60%"], [style*="max-width: 60%"],
+  [style*="max-width:55%"], [style*="max-width: 55%"],
+  [style*="max-width:50%"], [style*="max-width: 50%"],
+  [style*="max-width:45%"], [style*="max-width: 45%"],
+  [style*="max-width:42%"], [style*="max-width: 42%"],
+  [style*="max-width:40%"], [style*="max-width: 40%"] {
+    max-width: 100% !important;
+  }
+
+  /* Homepage "Thymos Journey vs. Conventional Care" steps comparison —
+     desktop 3-column grid (text | VS badge | text) stacked to one column */
+  .tj-columns {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Homepage "REAL PEOPLE, REAL RESULTS" testimonials — replace the
+     desktop auto-scrolling marquee with a one-card-per-view swipeable
+     strip navigable by the prev/next arrows added next to it. */
+  .tm-marquee {
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+  .tm-marquee::-webkit-scrollbar { display: none; }
+  .tm-track {
+    animation: none !important;
+    width: auto !important;
+  }
+  .tm-track > div {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-right: 0 !important;
+    padding: 28px 24px !important;
+    scroll-snap-align: center;
+  }
+  /* testimonialsLoop repeats the 4 real quotes for the desktop marquee's
+     seamless loop — only page through the first, non-repeated set */
+  .tm-track > div:nth-child(n+5) {
+    display: none !important;
+  }
+  .tm-nav-arrow {
+    display: flex !important;
+  }
+
+  /* "Proven Success" stat rows (WITHIN 3/6/1 MONTHS): the down-arrow and
+     percentage were baseline-aligned, but the arrow glyph's baseline sits
+     well above a numeral's at this font size, so the two visibly don't
+     line up. Center them against each other instead, and tighten/fix the
+     arrow's box so it doesn't wander per row. */
+  [style*="align-items:baseline; gap:8px"], [style*="align-items: baseline; gap: 8px"] {
+    align-items: center !important;
+    gap: 6px !important;
+  }
+  [style*="align-items:baseline; gap:8px"] > span:first-child,
+  [style*="align-items: baseline; gap: 8px"] > span:first-child {
+    width: 28px !important;
+    text-align: center !important;
   }
 }
