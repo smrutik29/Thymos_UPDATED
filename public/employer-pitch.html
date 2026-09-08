@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Thymos — Employer Pitch</title>
+<link rel="icon" type="image/png" href="/img/thymos-favicon.png">
+<link rel="apple-touch-icon" href="/img/thymos-favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -108,7 +110,10 @@
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* "safe" keeps the content vertically centred when it fits, but falls
+       back to top-aligned (instead of clipping the top AND bottom out of
+       reach) the moment a slide's content is taller than the viewport. */
+    justify-content: safe center;
     padding: 52px 28px 60px;
     -webkit-overflow-scrolling: touch;
   }
@@ -1409,6 +1414,41 @@
   .econ-net { font-size: 0.78rem; line-height: 1.6; opacity: 0.75; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1); }
 </style>
   <link rel="stylesheet" href="/mobile-fixes.css">
+  <style>
+  /* ── Pitch-deck mobile overrides (must come after mobile-fixes.css) ── */
+  @media (max-width: 640px) {
+    /* mobile-fixes.css forces every iframe to max-width:100%, which collapses
+       the scaled page-preview thumbnails on the "How It Works" slide into
+       blank strips. On a phone those shrunk-to-nothing previews are illegible
+       anyway — replace them with a clear tappable "View sample" affordance. */
+    .steps { align-items: start; }
+    .step-snip {
+      height: 44px !important; flex: 0 0 44px; margin-top: auto;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(7,100,89,0.08);
+    }
+    .step-snip iframe { display: none !important; }
+    .step-snip::after {
+      content: 'View sample \2197';
+      color: var(--deep); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.08em; opacity: 0.8;
+    }
+
+    /* Give the embedded report modal the whole screen on a phone so wide
+       report pages have the maximum room, and let the iframe scroll both
+       axes for anything that still overflows. Pinch-zoom also works now. */
+    .modal-inner {
+      width: 100vw; height: 100vh; height: 100dvh;
+      max-width: none; border-radius: 0;
+    }
+    .modal-inner iframe { width: 100%; height: 100%; }
+    .modal-close { top: max(10px, env(safe-area-inset-top)); right: 12px; width: 38px; height: 38px; }
+
+    /* Make it obvious the trajectory table pans sideways, and stop the deck
+       from hijacking that horizontal drag (also handled in JS). */
+    .pd-traj-scroll { touch-action: pan-x pan-y; overscroll-behavior-x: contain; }
+  }
+  </style>
 </head>
 <body>
 
@@ -2287,8 +2327,8 @@
               <div class="step-sub">One email to your PBM. Thymos tells you what to ask for.</div>
             </div>
           </div>
-          <div class="step-snip" onclick="openModal('pbm%20data%20request.html'); event.stopPropagation();">
-            <iframe src="pbm%20data%20request.html" scrolling="no" tabindex="-1" loading="lazy"></iframe>
+          <div class="step-snip" onclick="openModal('pbm-data-request.html'); event.stopPropagation();">
+            <iframe src="pbm-data-request.html" scrolling="no" tabindex="-1" loading="lazy"></iframe>
           </div>
         </div>
 
@@ -2394,7 +2434,7 @@
         </div>
       </div>
 
-      <a href="pbm%20data%20request.html" target="_blank"
+      <a href="pbm-data-request.html" target="_blank"
          style="display:flex; align-items:center; justify-content:center; gap:8px; margin-top:24px; padding:14px 20px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:white; border-radius:10px; text-decoration:none; font-weight:700; font-size:0.85rem; letter-spacing:0.04em;">
         View sample data request email →
       </a>
@@ -2430,11 +2470,11 @@
       </div>
 
       <div style="display:flex; flex-direction:column; gap:8px; margin-top:20px;">
-        <a href="member-lettering.html"
+        <a href="member-lettering.html" target="_blank" rel="noopener"
            style="display:flex; align-items:center; justify-content:center; gap:8px; padding:13px 20px; background:var(--deep); color:white; border-radius:10px; text-decoration:none; font-weight:700; font-size:0.82rem; letter-spacing:0.04em;">
           View member letter (direct outreach) &rarr;
         </a>
-        <a href="member-lettering.html#hr"
+        <a href="member-lettering.html#hr" target="_blank" rel="noopener"
            style="display:flex; align-items:center; justify-content:center; gap:8px; padding:13px 20px; background:rgba(7,100,89,0.12); color:var(--deep); border:1px solid rgba(7,100,89,0.2); border-radius:10px; text-decoration:none; font-weight:700; font-size:0.82rem; letter-spacing:0.04em;">
           View HR benefit announcement &rarr;
         </a>
@@ -2530,7 +2570,7 @@
   let startY    = null;
   let isDragging = false;
 
-  function goTo(n) {
+  function goTo(n, fromHistory) {
     n = Math.max(0, Math.min(total - 1, n));
     current = n;
     track.style.transform = `translateX(-${n * 100}vw)`;
@@ -2538,17 +2578,45 @@
     bar.style.width       = `${((n + 1) / total) * 100}%`;
     document.getElementById('nav-prev').style.opacity = n === 0 ? '0' : '0.3';
     document.getElementById('nav-next').style.opacity = n === total - 1 ? '0' : '0.3';
+
+    // Push one history entry per slide so the browser Back button (and the
+    // phone's edge-swipe / hardware back) steps to the PREVIOUS SLIDE instead
+    // of leaving the deck. Only a Back from slide 1 exits back to whatever
+    // page opened the deck.
+    if (!fromHistory) {
+      const st = { deckSlide: n };
+      if (history.state && typeof history.state.deckSlide === 'number') {
+        if (history.state.deckSlide !== n) history.pushState(st, '');
+      } else {
+        history.replaceState(st, '');
+      }
+    }
   }
 
   goTo(0);
 
+  window.addEventListener('popstate', function(e) {
+    const n = (e.state && typeof e.state.deckSlide === 'number') ? e.state.deckSlide : 0;
+    goTo(n, true);
+  });
+
+  // Is the touch/click target inside something the user is meant to scroll or
+  // interact with (a horizontally-scrollable table, the scenario cards, form
+  // controls, links) rather than a "tap anywhere to advance" zone?
+  function isInteractive(el) {
+    return !!(el && el.closest(
+      '.nav-arrow, button, a, input, select, textarea, summary, label, ' +
+      '[onclick], [role="button"], .pd-si-cards, .pd-traj-scroll, .no-advance'
+    ));
+  }
+
   // Tap / click to advance — but not when the click landed on something
   // interactive within the slide (buttons, links, form controls, <summary>
-  // toggles, etc.). Without this, e.g. clicking "Adjust claims data" both
-  // opens/closes that <details> AND bubbles up here as an anywhere-click,
-  // which was also advancing the slide at the same time.
+  // toggles, the scrollable trajectory table, etc.). Without this, e.g.
+  // clicking "Adjust claims data" both opens/closes that <details> AND
+  // bubbles up here as an anywhere-click, advancing the slide at the same time.
   document.getElementById('deck').addEventListener('click', function(e) {
-    if (e.target.closest('.nav-arrow, button, a, input, select, textarea, summary, label, [onclick], [role="button"], .pd-si-cards')) return;
+    if (isInteractive(e.target)) return;
     if (isDragging) return;
     const x = e.clientX;
     if (x < window.innerWidth * 0.25) goTo(current - 1);
@@ -2560,6 +2628,12 @@
 
   // Touch swipe
   document.getElementById('deck').addEventListener('touchstart', function(e) {
+    // Ignore multi-touch — a pinch-zoom must not be read as a swipe.
+    if (e.touches.length > 1) { startX = null; startY = null; return; }
+    // Ignore drags that begin inside a horizontally-scrollable element (the
+    // trajectory table on slide 10) so the user can pan it without the deck
+    // stealing the gesture to change slides.
+    if (e.target.closest('.pd-traj-scroll, .no-advance')) { startX = null; startY = null; return; }
     startX = e.touches[0].clientX;
     startY = e.touches[0].clientY;
     isDragging = false;
@@ -2567,12 +2641,10 @@
 
   // passive:false + preventDefault (only once a horizontal drag is
   // confirmed) so a swipe meant for slide navigation doesn't also get read
-  // by the browser as its edge-swipe "go back" gesture — which was
-  // sending users back to whatever page linked to this pitch deck instead
-  // of just moving to the previous slide. Vertical drags are left alone so
-  // scrolling within a tall (.scrollable) slide still works normally.
+  // by the browser as its edge-swipe "go back" gesture. Vertical drags are
+  // left alone so scrolling within a tall (.scrollable) slide still works.
   document.getElementById('deck').addEventListener('touchmove', function(e) {
-    if (startX === null) return;
+    if (startX === null || e.touches.length > 1) return;
     const dx = e.touches[0].clientX - startX;
     const dy = e.touches[0].clientY - startY;
     if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 8) {
@@ -2703,6 +2775,17 @@
 
   // ── Scale snip iframes to fill their containers ──
   function scaleSnips() {
+    // On phones the previews are hidden (see the mobile <style> block) and
+    // replaced with a "View sample" affordance — don't set inline heights
+    // that would fight that CSS.
+    if (window.matchMedia('(max-width: 640px)').matches) {
+      document.querySelectorAll('.step-snip').forEach(function(snip) {
+        snip.style.height = '';
+        const f = snip.querySelector('iframe');
+        if (f) f.style.transform = '';
+      });
+      return;
+    }
     document.querySelectorAll('.step-snip').forEach(function(snip) {
       const w = snip.offsetWidth;
       if (!w) return;

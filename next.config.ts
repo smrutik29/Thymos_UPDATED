@@ -58,7 +58,7 @@ const EMBEDDABLE_PAGE_HEADERS = [
 ];
 const EMBEDDABLE_PAGES = [
   "roi-and-payback.html",
-  "pbm data request.html",
+  "pbm-data-request.html",
   "member-lettering.html",
   "monthly-report.html",
 ];
@@ -103,7 +103,7 @@ const nextConfig: NextConfig = {
       // clean; since the destination file sits at the same public/ root
       // depth as "/", its relative asset paths (img/..., ./support.js)
       // resolve identically either way.
-      { source: "/", destination: "/Thymos%20Homepage.dc.html" },
+      { source: "/", destination: "/thymos-homepage.dc.html" },
     ];
   },
 };

@@ -3,7 +3,7 @@ import { z } from "zod";
 /**
  * Canonical disclaimer/consent wording shown beneath the "Request a Health
  * System Analysis" form. Server stores THIS string on every row. If the copy
- * in public/Thymos Health Systems.dc.html changes, update it here too.
+ * in public/thymos-health-systems.dc.html changes, update it here too.
  */
 export const HEALTH_SYSTEM_DISCLAIMER_TEXT =
   "Thymos Health needs your information to contact you about partnering for " +

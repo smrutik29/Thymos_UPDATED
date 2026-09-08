@@ -189,9 +189,9 @@ curl -s -o /dev/null -w '%{http_code}\n' https://<service-url>/quiz
 
 ## Making changes later
 
-- **Website content**: edit the relevant `public/*.dc.html` / `public/Patient
-  Journey - *.html` file directly (they're plain HTML/CSS, self-contained,
-  linked to each other by relative filename) and redeploy.
+- **Website content**: edit the relevant `public/*.dc.html` /
+  `public/patient-journey-*.html` file directly (they're plain HTML/CSS,
+  self-contained, linked to each other by relative filename) and redeploy.
 - **Quiz**: edit under `src/components/quiz/` and `src/app/quiz/` as usual;
   redeploy the same way.
 - **Redeploying**: re-run the `gcloud run deploy` command above from the repo

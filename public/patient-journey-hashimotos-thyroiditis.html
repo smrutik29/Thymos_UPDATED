@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Your Autoimmune Hepatitis Journey | Thymos Health</title>
+    <title>Your Hashimoto's Journey | Thymos Health</title>
+    <link rel="icon" type="image/png" href="/img/thymos-favicon.png">
+    <link rel="apple-touch-icon" href="/img/thymos-favicon.png">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
@@ -374,6 +376,19 @@
         }
         .cf-input:focus { outline: none; border-color: var(--teal-light); }
         .cf-input::placeholder { color: rgba(255,255,255,0.3); font-weight: 400; font-size: 14px; }
+        .cf-input-group {
+            display: flex; align-items: center; flex: 0 0 auto;
+            background: rgba(255,255,255,0.1);
+            border: 1.5px solid rgba(255,255,255,0.18);
+            border-radius: var(--r-sm);
+            overflow: hidden;
+        }
+        .cf-input-group:focus-within { border-color: var(--teal-light); }
+        .cf-dollar { padding: 11px 0 11px 12px; font-size: 18px; font-weight: 700; color: var(--white); }
+        .cf-input-group .cf-input {
+            width: 84px; padding: 11px 12px 11px 2px;
+            background: transparent; border: none; border-radius: 0;
+        }
 
         .total-box {
             background: rgba(255,255,255,0.07);
@@ -697,23 +712,23 @@
 
 <!-- HERO -->
 <section class="hero">
-    <div class="hero-chip">Your Autoimmune Hepatitis Journey</div>
+    <div class="hero-chip">Your Hashimoto's Journey</div>
     <h1 class="hero-h1">
-        Still on steroids.<br>Still relapsing <span class="flame">every time you taper off.</span><br>Still watching your liver labs.
+        Your labs look "normal."<br>You still feel <span class="flame">exhausted, foggy, and unheard.</span><br>Still no real answers.
     </h1>
-    <p class="hero-sub">You're not alone. This is how autoimmune hepatitis (AIH) is typically managed — and an honest look at what that journey costs, and what it leads to, over time.</p>
+    <p class="hero-sub">You're not alone. This is how autoimmune thyroiditis (also known as Hashimoto's) is typically managed – and an honest look at what that journey costs, and what it leads to, over time.</p>
     <div class="hero-grid">
         <div class="hero-stat">
-            <div class="hs-sentence"><span class="hs-num-inline">31.2 out of 100,000</span> Americans suffer with autoimmune hepatitis – with incidence rate rising annually.<sup class="ref"><a href="#cite-1" onclick="goToCite(1);return false;">1</a></sup></div>
+            <div class="hs-sentence"><span class="hs-num-inline">~5%</span> of U.S. adults have hypothyroidism, mostly caused by Hashimoto's.<sup class="ref"><a href="#cite-1" onclick="goToCite(1);return false;">1</a></sup></div>
         </div>
         <div class="hero-stat">
-            <div class="hs-sentence"><span class="hs-num-inline">80%</span> of patients achieve remission with prednisone ± azathioprine.<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
+            <div class="hs-sentence"><span class="hs-num-inline">10–15%</span> still report persistent symptoms despite normal labs and on thyroid medication.<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
         </div>
         <div class="hero-stat">
-            <div class="hs-sentence"><span class="hs-num-inline">Up to 80%</span> of patients relapse after treatment is stopped.<sup class="ref"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
+            <div class="hs-sentence"><span class="hs-num-inline">$4–15/mo</span> is the typical retail cost of generic levothyroxine — the cheapest chronic drug on this site.<sup class="ref"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
         </div>
         <div class="hero-stat">
-            <div class="hs-sentence"><span class="hs-num-inline">10–20%</span> eventually require a liver transplant.<sup class="ref"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></div>
+            <div class="hs-sentence"><span class="hs-num-inline">1 thyroid pill/day</span> is considered “treatment success” by most healthcare systems.<sup class="ref"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
         </div>
     </div>
 </section>
@@ -727,8 +742,8 @@
 
 <!-- DRUG JOURNEY -->
 <section class="sec" id="treatment-journey">
-    <h2 class="sec-h2">How autoimmune hepatitis is typically treated</h2>
-    <p class="sec-body">Autoimmune hepatitis is one of the few autoimmune diseases where the first-line therapy actually works for most patients — the problem is what happens when you try to stop it.</p>
+    <h2 class="sec-h2">How Hashimoto's is typically treated</h2>
+    <p class="sec-body">The drugs commonly used to treat autoimmune thyroiditis (a.k.a., Hashimoto's) are cheap, and the lab test that defines "treatment success" is simple. That's exactly the problem — treatment stops at a number, even when the patient doesn't feel better.</p>
     <div class="mark-row">
         <p class="sec-body-bold">Mark where you are in your journey and we'll show you the full picture.</p>
     </div>
@@ -738,20 +753,19 @@
         <div class="drug-card" id="card-s1">
             <div class="card-bar bar-1"></div>
             <div class="card-inner">
-                <div class="card-step-line"><span class="card-step-label">Step 1: Your hepatologist starts you on</span> <span class="card-name-inline">High-Dose Prednisone</span></div>
-                <div class="card-generic">Prednisone/prednisolone 40–60mg/day, tapered as liver enzymes normalize</div>
+                <div class="card-step-line"><span class="card-step-label">Step 1: Your doctor starts you on</span> <span class="card-name-inline">Levothyroxine (LT4) Monotherapy</span></div>
+                <div class="card-generic">Synthroid, Levoxyl, generic levothyroxine — one pill daily, dose set by TSH</div>
                 <div class="quote-block">
                     <div class="quote-label">What your doctor says</div>
-                    <div class="quote-text">"Your liver enzymes and IgG are quite elevated. We need to start high-dose steroids right away to bring the inflammation under control before it causes more liver damage."</div>
+                    <div class="quote-text">"Your TSH is elevated, so we'll start you on levothyroxine. Once your levels normalize, you should feel like yourself again."</div>
                 </div>
                 <div class="pills">
-                    <div class="pill">At least 80% of patients achieve remission<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
-                    <div class="pill warn-red">High doses (40–60mg) needed initially, with real steroid side effects</div>
-                    <div class="pill info">Response assessed within 7–14 days</div>
+                    <div class="pill">Normalizes TSH and resolves symptoms in most patients</div>
+                    <div class="pill warn-red">10–15% still symptomatic despite a normal TSH<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
                 </div>
                 <div class="cost-row">
-                    <span class="cost-lbl">Annual cost before insurance (generic)</span>
-                    <span class="cost-val hot">~$100–$400</span>
+                    <span class="cost-lbl">Annual cost before insurance (generic, retail)</span>
+                    <span class="cost-val hot">~$50–$180</span>
                 </div>
                 <div class="sbtn-group">
                     <button class="sbtn tried" onclick="setStatus('s1','tried')">✓ Tried this</button>
@@ -785,10 +799,10 @@
                     <div class="detail-row">
                         <div class="detail-lbl">What happened?</div>
                         <div class="outcome-group" id="out-s1">
-                            <button class="outcome-chip" data-value="worked" onclick="pickChip(this)">Enzymes normalized</button>
-                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Improved but not normal</button>
-                            <button class="outcome-chip" data-value="never" onclick="pickChip(this)">Poor response</button>
-                            <button class="outcome-chip" data-value="intolerant" onclick="pickChip(this)">Steroid side effects too much</button>
+                            <button class="outcome-chip" data-value="worked" onclick="pickChip(this)">Worked — I feel like myself</button>
+                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Labs normal, but still tired/foggy</button>
+                            <button class="outcome-chip" data-value="never" onclick="pickChip(this)">Labs never fully normalized</button>
+                            <button class="outcome-chip" data-value="intolerant" onclick="pickChip(this)">Side effects / dose instability</button>
                             <button class="outcome-chip" data-value="other" onclick="pickChip(this)">Something else…</button>
                             
                         </div>
@@ -797,11 +811,11 @@
                     <div class="detail-row">
                         <div class="detail-lbl">Your coinsurance for this drug</div>
                         <div class="chip-group" id="coins-s1">
-                            <button class="chip" data-value="0" onclick="pickChip(this);recalc()">$0 (fully covered)</button>
+                            <button class="chip" data-value="0" onclick="pickChip(this);recalc()">$0 – fully covered</button>
                             <button class="chip active" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
                             <button class="chip" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
                             <button class="chip" data-value="0.30" onclick="pickChip(this);recalc()">30%</button>
-                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">No insurance</button>
+                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">I pay the full cost</button>
                             
                         </div>
                     </div>
@@ -813,7 +827,7 @@
                 <div id="oth-s1" style="display:none">
                     <div class="detail-row">
                         <div class="detail-lbl">What did you try at this step?</div>
-                        <input class="other-input" type="text" placeholder="e.g. budesonide (non-cirrhotic patients)" />
+                        <input class="other-input" type="text" placeholder="e.g. brand-name Synthroid, Tirosint" />
                     </div>
                     <div class="detail-row">
                         <div class="detail-lbl">How often?</div>
@@ -829,27 +843,26 @@
 
         <div class="connector">
             <div class="conn-line"></div>
-            <div class="conn-badge">Azathioprine added as a steroid-sparing agent once response begins</div>
+            <div class="conn-badge">TSH is “normal” but symptoms persist in 1 out of every 7–10 patients</div>
             <div class="conn-line"></div>
         </div>
 
         <div class="drug-card" id="card-s2">
             <div class="card-bar bar-2"></div>
             <div class="card-inner">
-                <div class="card-step-line"><span class="card-step-label">Step 2: Once you respond, you add</span> <span class="card-name-inline">Azathioprine</span></div>
-                <div class="card-generic">1–2mg/kg/day — added to allow prednisone tapering while maintaining remission</div>
+                <div class="card-step-line"><span class="card-step-label">Step 2: Your doctor tries</span> <span class="card-name-inline">Dose Titration / Brand Switching</span></div>
+                <div class="card-generic">Adjusting Levothyroxine (T4) dose every 6-8 weeks, or switching between generic and brand formulations</div>
                 <div class="quote-block">
                     <div class="quote-label">What your doctor says</div>
-                    <div class="quote-text">"Now that your labs have improved, we'll add azathioprine so we can start reducing your steroid dose. Long-term steroid use has real risks we want to avoid."</div>
+                    <div class="quote-text">"Your labs are technically in range. Let's fine-tune your dose a bit more, or try a different brand — sometimes that makes a difference."</div>
                 </div>
                 <div class="pills">
-                    <div class="pill">83% remained in remission on azathioprine alone (median 67 mo)<sup class="ref"><a href="#cite-5" onclick="goToCite(5);return false;">5</a></sup></div>
-                    <div class="pill warn-red">~15% discontinue azathioprine in year one, mainly for intolerance<sup class="ref"><a href="#cite-6" onclick="goToCite(6);return false;">6</a></sup></div>
-                    <div class="pill info">Maintenance typically required for 2–3+ years minimum</div>
+                    <div class="pill warn-red">Does not help ~25–40% of patients with persistent symptoms</div>
+                    <div class="pill info">Repeated lab draws and dose changes over months to years</div>
                 </div>
                 <div class="cost-row">
-                    <span class="cost-lbl">Annual cost before insurance (generic)</span>
-                    <span class="cost-val hot">~$150–$600</span>
+                    <span class="cost-lbl">Annual cost before insurance</span>
+                    <span class="cost-val hot">~$60–$400</span>
                 </div>
                 <div class="sbtn-group">
                     <button class="sbtn tried" onclick="setStatus('s2','tried')">✓ Tried this</button>
@@ -874,10 +887,9 @@
                     <div class="detail-row">
                         <div class="detail-lbl">What happened?</div>
                         <div class="outcome-group" id="out-s2">
-                            <button class="outcome-chip" data-value="worked" onclick="pickChip(this)">Off steroids, labs stable</button>
-                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Tapering slowly, still on some steroid</button>
-                            <button class="outcome-chip" data-value="never" onclick="pickChip(this)">Couldn't taper steroids</button>
-                            <button class="outcome-chip" data-value="intolerant" onclick="pickChip(this)">Nausea / cytopenia / intolerance</button>
+                            <button class="outcome-chip" data-value="worked" onclick="pickChip(this)">Finally feel better</button>
+                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Marginal improvement</button>
+                            <button class="outcome-chip" data-value="never" onclick="pickChip(this)">No real change</button>
                             <button class="outcome-chip" data-value="other" onclick="pickChip(this)">Something else…</button>
                             
                         </div>
@@ -886,11 +898,11 @@
                     <div class="detail-row">
                         <div class="detail-lbl">Your coinsurance for this drug</div>
                         <div class="chip-group" id="coins-s2">
-                            <button class="chip" data-value="0" onclick="pickChip(this);recalc()">$0 (fully covered)</button>
+                            <button class="chip" data-value="0" onclick="pickChip(this);recalc()">$0 – fully covered</button>
                             <button class="chip active" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
                             <button class="chip" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
                             <button class="chip" data-value="0.30" onclick="pickChip(this);recalc()">30%</button>
-                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">No insurance</button>
+                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">I pay the full cost</button>
                             
                         </div>
                     </div>
@@ -902,7 +914,7 @@
                 <div id="oth-s2" style="display:none">
                     <div class="detail-row">
                         <div class="detail-lbl">What did you try at this step?</div>
-                        <input class="other-input" type="text" placeholder="e.g. mycophenolate mofetil" />
+                        <input class="other-input" type="text" placeholder="e.g. switching to Tirosint, weight-based re-dosing" />
                     </div>
                     <div class="detail-row">
                         <div class="detail-lbl">How often?</div>
@@ -918,25 +930,27 @@
 
         <div class="connector">
             <div class="conn-line"></div>
-            <div class="conn-badge">Incomplete response or intolerance — second-line agent considered</div>
+            <div class="conn-badge">Symptoms persist despite a biochemically “optimal” TSH</div>
             <div class="conn-line"></div>
         </div>
 
         <div class="drug-card" id="card-s3">
             <div class="card-bar bar-3"></div>
             <div class="card-inner">
-                <div class="card-step-line"><span class="card-step-label">Step 3: For non-responders or intolerance, you try</span> <span class="card-name-inline">Mycophenolate or Tacrolimus</span></div>
-                <div class="card-generic">Second-line agents for the 13–20% of patients with an incomplete response to standard therapy.<sup class="ref"><a href="#cite-7" onclick="goToCite(7);return false;">7</a></sup></div>
+                <div class="card-step-line"><span class="card-step-label">Step 3: If you push for it</span> <span class="card-name-inline">T3/T4 Combination Therapy</span></div>
+                <div class="card-generic">Liothyronine (T3) added to levothyroxine (T4) — off-guideline, patient-driven in most cases</div>
                 <div class="quote-block">
                     <div class="quote-label">What your doctor says</div>
-                    <div class="quote-text">"Since you're not achieving full remission — or not tolerating azathioprine — we'll switch to a second-line immunosuppressant. This is where treatment gets more individualized."</div>
+                    <div class="quote-text">"Guidelines don't generally recommend adding T3, but if you're still struggling despite normal labs, we can consider a trial."</div>
                 </div>
                 <div class="pills">
-                    <div class="pill info">Requires ongoing drug-level and liver-function monitoring</div>
+                    <div class="pill">Randomized crossover trial: improved quality of life vs. LT4 alone<sup class="ref"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></div>
+                    <div class="pill warn-red">Not standard of care — many physicians decline to prescribe it</div>
+                    <div class="pill info">No FDA-approved fixed-dose T3/T4 combination product</div>
                 </div>
                 <div class="cost-row">
                     <span class="cost-lbl">Annual cost before insurance</span>
-                    <span class="cost-val hot">~$1,500–$5,000</span>
+                    <span class="cost-val hot">~$200–$900</span>
                 </div>
                 <div class="sbtn-group">
                     <button class="sbtn tried" onclick="setStatus('s3','tried')">✓ Tried this</button>
@@ -961,9 +975,9 @@
                     <div class="detail-row">
                         <div class="detail-lbl">What happened?</div>
                         <div class="outcome-group" id="out-s3">
-                            <button class="outcome-chip" data-value="working" onclick="pickChip(this)">Achieved remission</button>
-                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Improved, not full remission</button>
-                            <button class="outcome-chip" data-value="never" onclick="pickChip(this)">Treatment failure</button>
+                            <button class="outcome-chip" data-value="working" onclick="pickChip(this)">Meaningful improvement</button>
+                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Some improvement</button>
+                            <button class="outcome-chip" data-value="never" onclick="pickChip(this)">No improvement / couldn't get prescribed</button>
                             <button class="outcome-chip" data-value="other" onclick="pickChip(this)">Something else…</button>
                             
                         </div>
@@ -972,11 +986,11 @@
                     <div class="detail-row">
                         <div class="detail-lbl">Your coinsurance for this drug</div>
                         <div class="chip-group" id="coins-s3">
-                            <button class="chip" data-value="0" onclick="pickChip(this);recalc()">$0 (fully covered)</button>
+                            <button class="chip" data-value="0" onclick="pickChip(this);recalc()">$0 – fully covered</button>
                             <button class="chip" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
                             <button class="chip active" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
                             <button class="chip" data-value="0.30" onclick="pickChip(this);recalc()">30%</button>
-                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">No insurance</button>
+                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">I pay the full cost</button>
                             
                         </div>
                     </div>
@@ -988,7 +1002,7 @@
                 <div id="oth-s3" style="display:none">
                     <div class="detail-row">
                         <div class="detail-lbl">What did you try at this step?</div>
-                        <input class="other-input" type="text" placeholder="e.g. tacrolimus, cyclosporine" />
+                        <input class="other-input" type="text" placeholder="e.g. compounded T3/T4, desiccated thyroid (NDT)" />
                     </div>
                     <div class="detail-row">
                         <div class="detail-lbl">How often?</div>
@@ -1005,76 +1019,77 @@
         <div class="drug-card" id="card-prog">
             <div class="card-bar bar-end"></div>
             <div class="card-inner">
-                <div class="card-step-line"><span class="card-step-label">When “in remission” meets “off medication”</span> <span class="card-name-inline danger">Relapse, Cirrhosis & Transplant Evaluation</span></div>
-                <div class="card-generic">The central paradox of autoimmune hepatitis: therapy usually works, but stopping it usually doesn't hold</div>
+                <div class="card-step-line"><span class="card-step-label">Where most patients are told the conversation ends</span> <span class="card-name-inline danger">“Your Labs Are Normal”</span></div>
+                <div class="card-generic">Biochemical euthyroidism with an unresolved, undiagnosed symptom burden — the most common dead end in autoimmune care</div>
                 <div class="quote-block">
                     <div class="quote-label">What Your Doctor says</div>
-                    <div class="quote-text">"Your labs looked great for two years, so we tried tapering you off. Unfortunately your enzymes have flared again — we'll need to restart treatment and likely keep you on it indefinitely."</div>
-                </div>
-                <div class="pills">
-                    <div class="pill warn-red">10–20% eventually require liver transplantation<sup class="ref"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></div>
+                    <div class="quote-text">"I understand you're still tired, but your thyroid levels are completely normal. This may be something else — have you considered your diet, your stress levels, or seeing a therapist?"</div>
                 </div>
                 <div class="prog-stat-grid">
                     <div class="prog-stat">
-                        <div class="ps-num">80%</div>
-                        <div class="ps-label">Relapse rate after stopping treatment, even after confirmed remission<sup class="ref"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
+                        <div class="ps-num">10–15%</div>
+                        <div class="ps-label">Of levothyroxine users have persistent symptoms at a normal TSH<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
                     </div>
                     <div class="prog-stat">
-                        <div class="ps-num">83%</div>
-                        <div class="ps-label">Maintain remission if kept on azathioprine long-term<sup class="ref"><a href="#cite-5" onclick="goToCite(5);return false;">5</a></sup></div>
+                        <div class="ps-num">~1.5M</div>
+                        <div class="ps-label">Estimated Americans still symptomatic despite guideline-concordant care<sup class="ref"><a href="#cite-5" onclick="goToCite(5);return false;">5</a></sup></div>
                     </div>
                     <div class="prog-stat">
-                        <div class="ps-num">36–68%</div>
-                        <div class="ps-label">Autoimmune hepatitis recurrence rate in the new liver within 5 years post-transplant<sup class="ref"><a href="#cite-8" onclick="goToCite(8);return false;">8</a></sup></div>
+                        <div class="ps-num">80.6%</div>
+                        <div class="ps-label">Of levothyroxine users have ≥1 comorbidity, complicating the picture further<sup class="ref"><a href="#cite-6" onclick="goToCite(6);return false;">6</a></sup></div>
+                    </div>
+                    <div class="prog-stat">
+                        <div class="ps-num">Lower QoL</div>
+                        <div class="ps-label">Levothyroxine users score lower on quality-of-life measures than non-users, matched for TSH<sup class="ref"><a href="#cite-6" onclick="goToCite(6);return false;">6</a></sup></div>
                     </div>
                     
                 </div>
-                <button class="prog-expand-btn" id="prog-btn" onclick="toggleProg()">What you should know about relapse & long-term outcomes ▼</button>
+                <button class="prog-expand-btn" id="prog-btn" onclick="toggleProg()">What you should know about persistent symptoms on “normal” labs ▼</button>
             </div>
             <div class="card-detail" id="det-prog">
                 <div class="prog-section">
-                    <div class="prog-section-title">The withdrawal dilemma, by the numbers</div>
+                    <div class="prog-section-title">What “residual symptoms” actually looks like</div>
                     <div class="prog-row">
-                        <span class="prog-row-lbl">Achieve remission on prednisone ± azathioprine</span>
-                        <span class="prog-row-val">~80%</span>
+                        <span class="prog-row-lbl">Fatigue</span>
+                        <span class="prog-row-val">Most common</span>
                     </div>
                     <div class="prog-row">
-                        <span class="prog-row-lbl">Incomplete responders even after 3 years</span>
-                        <span class="prog-row-val warn">13–20%</span>
+                        <span class="prog-row-lbl">Brain fog / memory complaints</span>
+                        <span class="prog-row-val">Very common</span>
                     </div>
                     <div class="prog-row">
-                        <span class="prog-row-lbl">Relapse rate after stopping treatment</span>
-                        <span class="prog-row-val warn">Up to 80%</span>
+                        <span class="prog-row-lbl">Weight gain despite normal TSH</span>
+                        <span class="prog-row-val warn">Common</span>
                     </div>
                     <div class="prog-row">
-                        <span class="prog-row-lbl">Maintain remission on azathioprine monotherapy long-term</span>
-                        <span class="prog-row-val">83% (median 67 mo)</span>
+                        <span class="prog-row-lbl">Depression / low mood</span>
+                        <span class="prog-row-val warn">Common comorbidity</span>
                     </div>
                 </div>
 <div class="prog-section">
-                    <div class="prog-section-title">What long-term management actually looks like</div>
+                    <div class="prog-section-title">Why the standard approach can miss it</div>
+                    <div class="prog-consequence">
+                        <span class="cons-icon">🧪</span>
+                        <span class="cons-text"><strong>TSH doesn't capture tissue-level thyroid hormone status for everyone.</strong> Even with a normal TSH, differences in deiodinase enzyme activity mean some patients don't achieve adequate T3 availability at the tissue level on LT4 monotherapy alone.<sup class="ref"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></span>
+                    </div>
                     <div class="prog-consequence">
                         <span class="cons-icon">🔁</span>
-                        <span class="cons-text"><strong>Most patients never truly “stop” treatment.</strong> Because periodic liver biopsy findings don't reliably predict who will relapse, and because relapse rates after withdrawal run as high as 80%, most patients end up on some form of indefinite immunosuppression rather than a defined treatment course.<sup class="ref"><a href="#cite-9" onclick="goToCite(9);return false;">9</a></sup></span>
+                        <span class="cons-text"><strong>The randomized evidence actually supports these patients.</strong> In a crossover RCT, patients with residual symptoms on LT4 who switched to LT3 monotherapy for 12 weeks showed measurable quality-of-life improvement — this isn't just anecdote.<sup class="ref"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></span>
                     </div>
                     <div class="prog-consequence">
-                        <span class="cons-icon">💊</span>
-                        <span class="cons-text"><strong>The steroid-sparing strategy exists precisely because long-term steroids are so costly to the body.</strong> The entire rationale for adding azathioprine is to allow prednisone tapering — an implicit acknowledgment that years of high-dose steroids carry real cumulative harm (bone loss, diabetes, cataracts, weight gain).</strong></span>
+                        <span class="cons-icon">🩺</span>
+                        <span class="cons-text"><strong>Comorbidity gets tangled with thyroid status.</strong> LT4 users have significantly more comorbidity than people who don't need thyroid hormone, and that comorbidity burden disproportionately drags down quality of life in LT4 users specifically.<sup class="ref"><a href="#cite-6" onclick="goToCite(6);return false;">6</a></sup></span>
                     </div>
                     <div class="prog-consequence">
-                        <span class="cons-icon">🫀</span>
-                        <span class="cons-text"><strong>Transplant is not a rare outcome — it's a real minority endpoint.</strong> Between 10% and 20% of autoimmune hepatitis patients eventually require liver transplantation, most often after progression to decompensated cirrhosis despite treatment.<sup class="ref"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></span>
-                    </div>
-                    <div class="prog-consequence">
-                        <span class="cons-icon">🔄</span>
-                        <span class="cons-text"><strong>Transplantation doesn't end the disease.</strong> autoimmune hepatitis recurs in the new liver in 36–68% of transplant recipients within 5 years — meaning even the most aggressive intervention available doesn't guarantee a cure.<sup class="ref"><a href="#cite-8" onclick="goToCite(8);return false;">8</a></sup></span>
+                        <span class="cons-icon">🚪</span>
+                        <span class="cons-text"><strong>The likeliest next stop is a referral away from endocrinology.</strong> Once TSH is normal, persistent symptoms are often reframed as depression, stress, or “nothing thyroid-related left to check” — even though thyroid autoimmunity itself is associated with persisting symptoms independent of hormone levels.</strong></span>
                     </div>
                 </div>
 <div class="prog-section">
                     <div class="prog-section-title"></div>
                     <div class="prog-alert">
-                        <div class="prog-alert-title">⚠ Remission and cure are not the same thing</div>
-                        <div class="prog-alert-text">Autoimmune hepatitis treatment is genuinely effective at inducing remission for most patients — that's real, documented success. But “in remission” in autoimmune hepatitis almost always means “on ongoing immunosuppression,” and the disease is quick to return the moment that support is removed.</div>
+                        <div class="prog-alert-title">⚠ Normal TSH is a lab target, not a symptom guarantee</div>
+                        <div class="prog-alert-text">Hashimoto's is the cheapest disease on this site to treat by prescription cost — and one of the most common places patients are dismissed once the number on the lab report looks fine. The gap between “treated” and “well” is measured in symptoms, not in TSH.</div>
                     </div>
                 </div>
 
@@ -1088,26 +1103,29 @@
 
 <!-- COST CALCULATOR -->
 <section class="sec">
-    <h2 class="sec-h2">What autoimmune hepatitis is really costing you</h2>
-    <p class="sec-body">Generic steroids and azathioprine are inexpensive — but years of monitoring labs, managing steroid side effects, and the risk of a relapse or transplant workup add real cost that a simple prescription total doesn't capture.</p>
+    <h2 class="sec-h2">What Hashimoto's is really costing you</h2>
+    <p class="sec-body">The pill itself costs almost nothing. What it doesn't show up on any invoice is the fatigue, brain fog, and lost productive hours patients report even when their labs look fine.</p>
 
     <div class="calc-card">
         <div class="calc-sub" id="calcSub">Based on your journey above–adjust the numbers to match your situation.</div>
         <div class="calc-fields">
             <div class="cf-row">
-                <div class="cf-label">Work days affected by flares or steroid side effects in the last 12 months</div>
-                <input type="number" class="cf-input" id="sickDays" value="10" min="0" max="365"
-                       oninput="recalc()" placeholder="e.g. 10">
+                <div class="cf-label">Work days affected by fatigue/brain fog in the last 12 months</div>
+                <input type="number" class="cf-input" id="sickDays" value="12" min="0" max="365"
+                       oninput="recalc()" placeholder="e.g. 12">
             </div>
             <div class="cf-row">
                 <div class="cf-label">Your hourly wage (for lost income calculation)</div>
-                <input type="number" class="cf-input" id="hourlyRate" value="30" min="0"
-                       oninput="recalc()" placeholder="e.g. 30">
+                <div class="cf-input-group">
+                    <span class="cf-dollar">$</span>
+                    <input type="number" class="cf-input" id="hourlyRate" value="35" min="0"
+                           oninput="recalc()" placeholder="e.g. 35">
+                </div>
             </div>
         </div>
         <div class="total-box">
             <div class="total-row">
-                <span class="total-label">Your estimated total annual cost of autoimmune hepatitis</span>
+                <span class="total-label">Your estimated total annual cost of Hashimoto's</span>
                 <span class="total-num" id="totalCost">$0</span>
             </div>
             <div class="brow-divider"></div>
@@ -1125,14 +1143,14 @@
                     <span class="brow-val" id="b-present">$0</span>
                 </div>
                 <div class="brow" style="margin-top:2px;">
-                    <span style="font-size:13px; color:rgba(255,255,255,0.6);">Fatigue, steroid side effects, and the anxiety of monitoring for relapse all reduce day-to-day output even between flares</span>
+                    <span style="font-size:13px; color:rgba(255,255,255,0.6);">Estimated productivity impact for the ~10–15% of levothyroxine users with persistent symptoms despite a normal TSH<sup class="ref" style="color:rgba(94,196,210,0.8)"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></span>
                 </div>
             </div>
         </div>
         <div class="phase3-box">
-            <div class="phase3-label">If your care reaches the last phase of this journey — <strong>Mycophenolate or Tacrolimus</strong></div>
+            <div class="phase3-label">If your care reaches the last phase of this journey — <strong>T3/T4 Combination Therapy</strong></div>
             <div class="phase3-amount" id="phase3PatientCost">$0</div>
-            <div class="phase3-sub">Projected patient out-of-pocket cost for a full year at this phase, given your coinsurance selection for it above (or a typical default if you haven't reached it yet)</div>
+            <div class="phase3-sub">Projected patient out-of-pocket cost for a full year at that phase, given your coinsurance selection for it above (or a typical default if you haven't reached it yet).</div>
         </div>
     </div>
 </section>
@@ -1142,65 +1160,65 @@
 <!-- PAYER COST SECTION -->
 <section class="sec">
     <h2 class="sec-h2">What your insurer is paying</h2>
-    <p class="sec-body">Autoimmune hepatitis drugs themselves are inexpensive generics — but the disease's high relapse rate means your plan often ends up paying for the same induction therapy more than once, plus the cost of a transplant workup in a meaningful minority of patients.</p>
+    <p class="sec-body">Hashimoto's is, by prescription cost, nearly the cheapest chronic autoimmune disease your plan covers. The real cost your insurer absorbs shows up elsewhere — in comorbidity care and repeat visits for symptoms that never get connected back to the thyroid.</p>
 
     <div class="payer-card">
         <div class="payer-head">
             <div class="payer-head-chip">Annual Payer Perspective — Commercial Insurance</div>
-            <div class="payer-head-title">What your health plan spends on your autoimmune hepatitis each year</div>
+            <div class="payer-head-title">What your health plan spends on your Hashimoto's each year</div>
             <div class="payer-head-sub" id="payerSub">Based on your treatment journey above · All figures reflect payer (insurer) paid portion, not patient out-of-pocket cost.</div>
         </div>
         <div class="payer-body">
             <div class="payer-total-header">
-                <span class="ptb-label">Estimated annual payer cost for your autoimmune hepatitis care</span>
+                <span class="ptb-label">Estimated annual payer cost for your Hashimoto's care</span>
                 <span class="ptb-amount" id="payerTotal">$0</span>
             </div>
             <div class="payer-row">
                 <div class="payer-row-left">
-                    <div class="payer-row-label">Immunosuppressant drug spend (payer portion)</div>
-                    <div class="payer-row-desc">~80% of net price after patient coinsurance; prednisone and azathioprine are both inexpensive generics</div>
+                    <div class="payer-row-label">Levothyroxine drug spend (payer portion)</div>
+                    <div class="payer-row-desc">Generic LT4 is one of the least expensive chronic prescriptions in the U.S. formulary system</div>
                 </div>
                 <div class="payer-row-val" id="p-drug">$0</div>
             </div>
             <div class="payer-row">
                 <div class="payer-row-left">
-                    <div class="payer-row-label">Medical costs (hepatology visits, labs, imaging, biopsy)</div>
-                    <div class="payer-row-desc">Frequent liver panels and periodic biopsy to confirm histologic remission before any withdrawal attempt</div>
+                    <div class="payer-row-label">Medical costs (endocrinology, labs, dose-titration visits)</div>
+                    <div class="payer-row-desc">Repeat TSH/FT4 panels and follow-up visits for dose adjustment and symptom review</div>
                 </div>
-                <div class="payer-row-val">~$3,200</div>
+                <div class="payer-row-val">~$900</div>
             </div>
             <div class="payer-row" id="prow-relapse" style="display:none;">
                 <div class="payer-row-left">
-                    <div class="payer-row-label">Added cost from a relapse or cirrhosis progression</div>
-                    <div class="payer-row-desc">A relapse restarts induction-dose therapy and monitoring; decompensated cirrhosis triggers transplant evaluation</div>
+                    <div class="payer-row-label">Cost of unresolved symptoms routed elsewhere in the system</div>
+                    <div class="payer-row-desc">Persistent fatigue/depression/weight complaints often become separate mental-health, weight-management, or specialist referrals</div>
                 </div>
                 <div class="payer-row-val warn" id="p-relapse">$0</div>
             </div>
         </div>
         
         <div style="padding: 0 20px 16px;">
-            <div style="font-size: 12px; font-weight: 600; color: var(--gray-700); margin-bottom: 8px;">Have you relapsed after a treatment taper, or progressed toward cirrhosis?</div>
+            <div style="font-size: 12px; font-weight: 600; color: var(--gray-700); margin-bottom: 8px;">Are you still symptomatic despite a “normal” TSH?</div>
             <div class="chip-group" id="relapse-count">
-                <button class="chip active" data-value="0" onclick="pickChip(this);recalcPayer()">No</button>
-                <button class="chip" data-value="1" onclick="pickChip(this);recalcPayer()">Relapsed once</button>
-                <button class="chip" data-value="2" onclick="pickChip(this);recalcPayer()">Cirrhosis / transplant evaluation</button>
+                <button class="chip active" data-value="0" onclick="pickChip(this);recalcPayer()">No, I feel well</button>
+                <button class="chip" data-value="1" onclick="pickChip(this);recalcPayer()">Somewhat</button>
+                <button class="chip" data-value="2" onclick="pickChip(this);recalcPayer()">Yes, significantly</button>
                 
             </div>
-            <div style="font-size: 11px; color: var(--gray-500); margin-top: 6px; line-height: 1.45;">Liver transplant evaluation and listing is one of the largest single cost events in autoimmune gastroenterology</div>
+            <div style="font-size: 11px; color: var(--gray-500); margin-top: 6px; line-height: 1.45;">These costs rarely appear on a “thyroid” line item — they show up as separate claims for depression, weight management, or unexplained fatigue workups</div>
         </div>
         <div class="payer-total-box">
-            <div class="ptb-note">Because up to <strong>80% of patients relapse</strong> after stopping treatment, payers frequently fund repeated rounds of induction-dose therapy rather than a single completed course.</div>
+            <div class="ptb-note">Hashimoto's/hypothyroidism is one of the lowest direct drug-cost autoimmune diseases to insure — <strong>which is exactly why persistent symptoms are so easy to deprioritize</strong> once TSH looks normal.</div>
         </div>
 
         <div class="payer-phase3-box">
-            <div class="p3-label">Payer cost projection if care reaches the last phase of this journey — <strong>Mycophenolate or Tacrolimus</strong></div>
+            <div class="p3-label">Payer cost projection if care reaches the last phase of this journey — <strong>T3/T4 Combination Therapy</strong></div>
             <div class="p3-amount" id="phase3PayerCost">$0</div>
             <div class="p3-sub">Estimated annual payer spend at that phase: ~80% of drug price plus baseline medical costs, excluding any flare/crisis event above</div>
         </div>
 
         <div class="payer-insight">
-            <div class="pi-title">⚑ Why autoimmune hepatitis is cheap on paper but expensive in practice</div>
-            <div class="pi-text">The drugs themselves are some of the least expensive on this site. The real cost driver is the disease's biology: high relapse rates after withdrawal mean many patients cycle back to induction-dose steroids repeatedly, and 10–20% eventually reach transplant — an outcome that dwarfs years of prior drug spend combined.</div>
+            <div class="pi-title">⚑ The cheapest drug can hide the most overlooked patients</div>
+            <div class="pi-text">Because levothyroxine is inexpensive and TSH normalization is an easy box to check, there is little financial pressure on the system to look further when a patient says they still don't feel right. That silence isn't free — it just gets billed under a different diagnosis code.</div>
         </div>
     </div>
 </section>
@@ -1211,29 +1229,29 @@
 <section class="sec sec-tint" id="understanding-risk">
     <div class="sec-chip">Understanding Your Risk</div>
     <h2 class="sec-h2">What the research shows over time</h2>
-    <p class="sec-body">These outcomes are not inevitable — but they are the documented range of what happens across the autoimmune hepatitis treatment and withdrawal cycle.</p>
+    <p class="sec-body">These outcomes are not inevitable — but they are the documented experience for a meaningful share of patients whose care stops once TSH normalizes.</p>
 
     <div class="risk-card">
         <div class="risk-head">
             <div class="risk-head-label">Based on peer-reviewed clinical data</div>
-            <div class="risk-head-title">Long-term outcomes for autoimmune hepatitis patients on today's standard of care</div>
+            <div class="risk-head-title">Long-term outcomes for Hashimoto's patients on standard LT4-only care</div>
         </div>
         <div class="risk-items">
             <div class="risk-row">
-                <div class="risk-icon ri-g">💊</div>
-                <div class="risk-desc"><span class="risk-num">~80%</span> of patients achieve biochemical remission with prednisone alone or combined with azathioprine — genuinely effective first-line therapy<sup class="ref" style="color:#aaa"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
+                <div class="risk-icon ri-o">😴</div>
+                <div class="risk-desc"><span class="risk-num">10–15%</span> of levothyroxine users report persistent fatigue, brain fog, and reduced quality of life despite a normal TSH<sup class="ref" style="color:#aaa"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
             </div>
             <div class="risk-row">
-                <div class="risk-icon ri-r">🔁</div>
-                <div class="risk-desc"><span class="risk-num red">Up to 80%</span> relapse after treatment is stopped, even following confirmed remission — the central challenge of autoimmune hepatitis management<sup class="ref" style="color:#aaa"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
+                <div class="risk-icon ri-r">📊</div>
+                <div class="risk-desc"><span class="risk-num red">~1.5M</span> estimated Americans currently receiving guideline-concordant treatment who still feel unwell<sup class="ref" style="color:#aaa"><a href="#cite-5" onclick="goToCite(5);return false;">5</a></sup></div>
             </div>
             <div class="risk-row">
-                <div class="risk-icon ri-y">🫀</div>
-                <div class="risk-desc"><span class="risk-num">10–20%</span> of patients eventually require liver transplantation, most often after progression to decompensated cirrhosis<sup class="ref" style="color:#aaa"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></div>
+                <div class="risk-icon ri-y">🧩</div>
+                <div class="risk-desc"><span class="risk-num">80.6%</span> of LT4 users carry at least one additional comorbidity, which further lowers quality of life and complicates the picture<sup class="ref" style="color:#aaa"><a href="#cite-6" onclick="goToCite(6);return false;">6</a></sup></div>
             </div>
             <div class="risk-row">
-                <div class="risk-icon ri-o">🔄</div>
-                <div class="risk-desc"><span class="risk-num">36–68%</span> of transplant recipients experience autoimmune hepatitis recurrence in the new liver within 5 years<sup class="ref" style="color:#aaa"><a href="#cite-8" onclick="goToCite(8);return false;">8</a></sup></div>
+                <div class="risk-icon ri-g">🔬</div>
+                <div class="risk-desc"><span class="risk-num">RCT-proven</span> benefit exists for some residual-symptom patients from T3/T4 combination therapy — an option most patients are never offered<sup class="ref" style="color:#aaa"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></div>
             </div>
             
         </div>
@@ -1247,7 +1265,7 @@
     <div class="thymos-card">
         <div class="thymos-chip">✦ A different journey exists</div>
         <h2 class="thymos-h">Thymos Health offers <span class="g">another way</span></h2>
-        <p class="thymos-body">Conventional autoimmune hepatitis care treats remission and cure as the same thing, often leading to repeated relapse-and-restart cycles. Thymos goes further – synthesizing your liver labs, biopsy history, and treatment response to identify who might safely taper, and building steroid-sparing strategies around your specific relapse risk.</p>
+        <p class="thymos-body">Conventional care treats a normal TSH as success. Thymos goes further – synthesizing your full thyroid panel (including T3, reverse T3, and antibody trends), symptoms, and history to figure out why you still don't feel right, and to build a plan around feeling well, not just testing well.</p>
         <div class="outcomes">
             <div class="orow">
                 <div class="ocheck">✓</div>
@@ -1285,48 +1303,33 @@
     <div class="citations-list" id="citeList">
         <div class="cite-item" id="cite-1">
             <span class="cite-num">[1]</span>
-            Epidemiology of Autoimmune Hepatitis (AIH) in the United States Between 2014 and 2019: A Population-based National Study. <em>PubMed</em>, 2020 (n=37,161,280 screened; 11,600 autoimmune hepatitis cases). Estimated U.S. AIH prevalence: 31.2 per 100,000; a separate Kaiser Permanente Northern California cohort found prevalence roughly doubling from 9.1 (2010) to 18.8 (2019) per 100,000.
-            <div class="cite-doi">PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/33074948/" target="_blank">33074948</a></div>
+            Persistent symptoms in euthyroid Hashimoto's thyroiditis: current hypotheses and emerging management strategies. PMC, 2025. Hypothyroidism affects an estimated 4.8–25.8% of women and 0.9–7.9% of men; Hashimoto's thyroiditis is the most common cause in iodine-sufficient countries and the most common autoimmune/endocrine disease overall.
+            <div class="cite-doi">PMC: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12313505/" target="_blank">PMC12313505</a></div>
         </div>
         <div class="cite-item" id="cite-2">
             <span class="cite-num">[2]</span>
-            The medical treatment for autoimmune hepatitis through corticosteroid to new immunosuppressive agents: A concise review. ScienceDirect, 2019. At least 80% of patients with autoimmune hepatitis can be placed into remission with prednisone monotherapy or in combination with azathioprine.
-            <div class="cite-doi">Source: <a href="https://www.sciencedirect.com/science/article/pii/S166526811931899X" target="_blank">sciencedirect.com</a></div>
+            Effect of Liothyronine Treatment on Quality of Life in Female Hypothyroid Patients With Residual Symptoms on Levothyroxine Therapy. PMC, randomized crossover study. Despite adequate TSH normalization on LT4, 5–10% (other studies report up to 10–15%) of hypothyroid patients report persisting symptoms with a major negative impact on quality of life.
+            <div class="cite-doi">PMC: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8902821/" target="_blank">PMC8902821</a></div>
         </div>
         <div class="cite-item" id="cite-3">
             <span class="cite-num">[3]</span>
-            Methods and compositions for treatment/diagnosis of autoimmune hepatitis (patent filings summarizing clinical literature), 2019–2021. Up to 80% of patients experience relapse after treatment withdrawal, even following confirmed biochemical and histologic remission, requiring immunosuppressive therapy to be restarted.
-            <div class="cite-doi">Source: <a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10641780" target="_blank">USPTO filing</a></div>
+            Real Practice Assessment of Persistent Symptoms After Initiation of Levothyroxine. <em>Endocrine Practice</em> / ScienceDirect, 2023. Approximately 10%–15% of patients experience persistent symptoms despite normal TSH on LT4; generic levothyroxine remains among the least expensive chronic prescription drugs in the U.S.
+            <div class="cite-doi">Source: <a href="https://www.sciencedirect.com/science/article/abs/pii/S1530891X23007309" target="_blank">sciencedirect.com</a></div>
         </div>
         <div class="cite-item" id="cite-4">
             <span class="cite-num">[4]</span>
-            Global epidemiology and determinants of autoimmune hepatitis recurrence post-liver transplantation: A systematic review and meta-analysis. ScienceDirect, 2025. Approximately 10–20% of patients with autoimmune hepatitis will ultimately require liver transplantation during the course of their disease.
-            <div class="cite-doi">Source: <a href="https://www.sciencedirect.com/science/article/abs/pii/S0955470X25000849" target="_blank">sciencedirect.com</a></div>
+            Effect of Liothyronine Treatment on Quality of Life in Female Hypothyroid Patients With Residual Symptoms on Levothyroxine Therapy: A Randomized Crossover Study. Fifty-nine patients; LT3 monotherapy improved quality of life (ThyPRO, Fatigue Questionnaire, SF-36) versus LT4 monotherapy or LT4/LT3 combination, without inducing biochemical hyperthyroidism or adverse cardiovascular effects short-term.
+            <div class="cite-doi">PMC: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8902821/" target="_blank">PMC8902821</a> &nbsp;·&nbsp; Trial: <a href="https://clinicaltrials.gov/study/NCT03627611" target="_blank">NCT03627611</a></div>
         </div>
         <div class="cite-item" id="cite-5">
             <span class="cite-num">[5]</span>
-            Azathioprine for Long-Term Maintenance of Remission in Autoimmune Hepatitis. <em>New England Journal of Medicine</em>, 1995 (n=72, median follow-up 67 months). 83% of patients remained in remission on azathioprine monotherapy (2mg/kg/day) after prednisolone withdrawal; 45 of 48 follow-up biopsies showed inactive or minimal disease.
-            <div class="cite-doi">Source: <a href="https://www.nejm.org/doi/full/10.1056/NEJM199510123331502" target="_blank">nejm.org</a></div>
+            Hypothyroidism symptoms linger despite medication use, normal blood tests. ScienceDaily, reporting Rush University Medical Center research. About 15% of the 10–12 million people in the U.S. with hypothyroidism continue to feel unwell despite following standard-of-care treatment and normal TSH.
+            <div class="cite-doi">Source: <a href="https://www.sciencedaily.com/releases/2016/10/161012132038.htm" target="_blank">sciencedaily.com</a></div>
         </div>
         <div class="cite-item" id="cite-6">
             <span class="cite-num">[6]</span>
-            High discontinuation rate of azathioprine in autoimmune hepatitis, independent of time of treatment initiation. PMC, multicenter international retrospective cohort. Azathioprine discontinuation rate ~15% within the first year of treatment, primarily due to intolerance (nausea, vomiting); early vs. delayed initiation did not affect remission or discontinuation rates.
-            <div class="cite-doi">PMC: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7496382/" target="_blank">PMC7496382</a></div>
-        </div>
-        <div class="cite-item" id="cite-7">
-            <span class="cite-num">[7]</span>
-            Autoimmune Hepatitis (AIH) Treatment & Management. <em>Medscape</em>, clinical reference. Incomplete response — improvement insufficient to satisfy remission criteria — occurs in an estimated 13% of patients; many require indefinite low-dose immunosuppression to prevent clinical deterioration.
-            <div class="cite-doi">Source: <a href="https://emedicine.medscape.com/article/172356-treatment" target="_blank">emedicine.medscape.com</a></div>
-        </div>
-        <div class="cite-item" id="cite-8">
-            <span class="cite-num">[8]</span>
-            Autoimmune hepatitis and liver transplantation: Indications, and recurrent and de novo autoimmune hepatitis. PMC, 2022. Autoimmune hepatitis recurs in the transplanted liver in 36%–68% of recipients within 5 years post-transplant.
-            <div class="cite-doi">PMC: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8968478/" target="_blank">PMC8968478</a></div>
-        </div>
-        <div class="cite-item" id="cite-9">
-            <span class="cite-num">[9]</span>
-            The medical treatment for autoimmune hepatitis through corticosteroid to new immunosuppressive agents: A concise review. ScienceDirect, 2019. Periodic abnormal findings on liver biopsy do not reliably predict relapse; continued interface hepatitis with otherwise normal biochemistry carries a very high recurrence rate if medications are stopped.
-            <div class="cite-doi">Source: <a href="https://www.sciencedirect.com/science/article/pii/S166526811931899X" target="_blank">sciencedirect.com</a></div>
+            Endocrine Society press release summarizing Wouters H et al. Netherlands Consortium for Healthy Ageing / BioSHaRE-EU study. Among LT4 users, 80.6% had comorbidity vs. 66.0% of non-users; LT4 users scored lower on nearly all health-related quality-of-life domains than matched non-users, even with normal TSH in 60% of users.
+            <div class="cite-doi">Source: <a href="https://www.endocrine.org/news-and-advocacy/news-room/2018/patients-on-levothyroxine-continue-to-experience-symptoms-despite-normal-thyroid-hormone-levels" target="_blank">endocrine.org</a></div>
         </div>
     </div>
 </div>
@@ -1340,14 +1343,14 @@
 <script>
 /* ── CONFIG (disease-specific) ── */
 const STEP_IDS   = ["s1", "s2", "s3"];
-const STEP_NAMES = {"s1": "High-Dose Prednisone", "s2": "Azathioprine", "s3": "Mycophenolate or Tacrolimus"};
-const AWP        = {"s1": 250, "s2": 350, "s3": 3000};
+const STEP_NAMES = {"s1": "Levothyroxine (LT4) Monotherapy", "s2": "Dose Titration / Brand Switching", "s3": "T3/T4 Combination Therapy"};
+const AWP        = {"s1": 100, "s2": 150, "s3": 500};
 const IS_DRUG    = {"s1": true, "s2": true, "s3": true};
 const HAS_FLARE  = true;
-const FLARE_VAL  = {"0": 0, "1": 3500, "2": 60000};
-const DEFAULT_AWP= 250;
-const MEDICAL_COST = 3200;
-const PRESENT_MULT = 80;
+const FLARE_VAL  = {"0": 0, "1": 800, "2": 2600};
+const DEFAULT_AWP= 100;
+const MEDICAL_COST = 900;
+const PRESENT_MULT = 90;
 const LAST_ID    = "s3";
 const LAST_COINS_DEFAULT = 0.2;
 
@@ -1518,8 +1521,8 @@ function toggleProg() {
     const btn    = document.getElementById('prog-btn');
     const isOpen = detail.classList.toggle('open');
     btn.textContent = isOpen
-        ? 'What you should know about relapse & long-term outcomes ▲'
-        : 'What you should know about relapse & long-term outcomes ▼';
+        ? 'What you should know about persistent symptoms on “normal” labs ▲'
+        : 'What you should know about persistent symptoms on “normal” labs ▼';
 }
 
 /* ── CITATIONS TOGGLE ── */

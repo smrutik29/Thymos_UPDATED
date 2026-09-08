@@ -4,6 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>ROI &amp; Payback</title>
+<link rel="icon" type="image/png" href="/img/thymos-favicon.png">
+<link rel="apple-touch-icon" href="/img/thymos-favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -1518,6 +1520,12 @@
     .traj-section { padding: 24px 20px; overflow-x: auto; }
     .traj-grid { min-width: 640px; }
     .traj-summary { grid-template-columns: repeat(2, 1fr); }
+    /* "Employer Payback Window" section: stack the 3-up card rows so the
+       card text stops spilling off the right edge on a phone. !important
+       because the base .ep-kpi-row / .ep-pb-row rules are defined later in
+       this stylesheet and would otherwise win on source order. */
+    .ep-kpi-row { grid-template-columns: 1fr !important; }
+    .ep-pb-row { grid-template-columns: 1fr !important; }
   }
 
   /* ===== REPORT SECTIONS ===== */

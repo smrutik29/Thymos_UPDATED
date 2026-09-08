@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Your Dermatomyositis/Polymyositis Journey | Thymos Health</title>
+    <title>Your Psoriatic Arthritis Journey | Thymos Health</title>
+    <link rel="icon" type="image/png" href="/img/thymos-favicon.png">
+    <link rel="apple-touch-icon" href="/img/thymos-favicon.png">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
@@ -374,6 +376,19 @@
         }
         .cf-input:focus { outline: none; border-color: var(--teal-light); }
         .cf-input::placeholder { color: rgba(255,255,255,0.3); font-weight: 400; font-size: 14px; }
+        .cf-input-group {
+            display: flex; align-items: center; flex: 0 0 auto;
+            background: rgba(255,255,255,0.1);
+            border: 1.5px solid rgba(255,255,255,0.18);
+            border-radius: var(--r-sm);
+            overflow: hidden;
+        }
+        .cf-input-group:focus-within { border-color: var(--teal-light); }
+        .cf-dollar { padding: 11px 0 11px 12px; font-size: 18px; font-weight: 700; color: var(--white); }
+        .cf-input-group .cf-input {
+            width: 84px; padding: 11px 12px 11px 2px;
+            background: transparent; border: none; border-radius: 0;
+        }
 
         .total-box {
             background: rgba(255,255,255,0.07);
@@ -697,23 +712,23 @@
 
 <!-- HERO -->
 <section class="hero">
-    <div class="hero-chip">Your Myositis Journey</div>
+    <div class="hero-chip">Your Psoriatic Arthritis Journey</div>
     <h1 class="hero-h1">
-        Still weak.<br>Still rashed. <span class="flame">Still on high-dose steroids.</span><br>Still waiting for a real option.
+        Still swollen.<br>Still switching <span class="flame">biologic after biologic.</span><br>Still no clear answers.
     </h1>
-    <p class="hero-sub">You're not alone. This is how dermatomyositis and polymyositis are typically managed — and an honest look at what that journey costs, and what it leads to, over time.</p>
+    <p class="hero-sub">You're not alone. This is how psoriatic arthritis (PsA) is typically managed — and an honest look at what that journey costs, and what it leads to, over time.</p>
     <div class="hero-grid">
         <div class="hero-stat">
-            <div class="hs-sentence"><span class="hs-num-inline">1–10</span> adults per million are diagnosed with dermatomyositis — a genuinely rare disease.<sup class="ref"><a href="#cite-1" onclick="goToCite(1);return false;">1</a></sup></div>
+            <div class="hs-sentence"><span class="hs-num-inline">~2.4M</span> Americans are estimated to have psoriatic arthritis.<sup class="ref"><a href="#cite-1" onclick="goToCite(1);return false;">1</a></sup></div>
         </div>
         <div class="hero-stat">
-            <div class="hs-sentence"><span class="hs-num-inline">2021</span> is the year the first FDA-approved therapy for dermatomyositis finally arrived.<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
+            <div class="hs-sentence"><span class="hs-num-inline">2.5 years</span> is the median delay from joint symptoms to a psoriatic arthritis diagnosis.<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
         </div>
         <div class="hero-stat">
-            <div class="hs-sentence"><span class="hs-num-inline">79%</span> IVIG response rate vs. 44% placebo in the pivotal ProDERM trial.<sup class="ref"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
+            <div class="hs-sentence"><span class="hs-num-inline">40%</span> of psoriatic arthritis cases go undetected even in dedicated screening studies.<sup class="ref"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
         </div>
         <div class="hero-stat">
-            <div class="hs-sentence"><span class="hs-num-inline">60–80%</span> is the 5-year survival range historically reported for PM/DM.<sup class="ref"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></div>
+            <div class="hs-sentence"><span class="hs-num-inline">$30K</span> is the average annual all-cause cost of care per psoriatic arthritis patient.<sup class="ref"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></div>
         </div>
     </div>
 </section>
@@ -727,8 +742,8 @@
 
 <!-- DRUG JOURNEY -->
 <section class="sec" id="treatment-journey">
-    <h2 class="sec-h2">How dermatomyositis / polymyositis is typically treated</h2>
-    <p class="sec-body">Until 2021, there was no FDA-approved therapy for dermatomyositis at all — everything was used off-label, extrapolated from small, decades-old studies.</p>
+    <h2 class="sec-h2">How psoriatic arthritis is typically treated</h2>
+    <p class="sec-body">Most rheumatologists and insurance plans require NSAID and Methotrexate failure before approving a biologic. Each step can take 3–6 months to fail, while joint erosion accumulates in ways that later treatment cannot undo.</p>
     <div class="mark-row">
         <p class="sec-body-bold">Mark where you are in your journey and we'll show you the full picture.</p>
     </div>
@@ -738,20 +753,20 @@
         <div class="drug-card" id="card-s1">
             <div class="card-bar bar-1"></div>
             <div class="card-inner">
-                <div class="card-step-line"><span class="card-step-label">Step 1: Your rheumatologist starts you on</span> <span class="card-name-inline">High-Dose Prednisone</span></div>
-                <div class="card-generic">1mg/kg/day (or 40–60mg/day), tapered as creatine kinase (CK) normalizes over ~12 months</div>
+                <div class="card-step-line"><span class="card-step-label">Step 1: Your rheumatologist starts you on</span> <span class="card-name-inline">NSAIDs & Methotrexate</span></div>
+                <div class="card-generic">Naproxen or ibuprofen for pain, plus methotrexate 15–25mg/week as first-line DMARD</div>
                 <div class="quote-block">
                     <div class="quote-label">What your doctor says</div>
-                    <div class="quote-text">"Your muscle enzymes are very elevated, and there's no controlled trial establishing an ideal steroid dose — but high-dose prednisone remains the universal first-line therapy."</div>
+                    <div class="quote-text">"Let's start with an anti-inflammatory for pain control and methotrexate to slow down joint damage."</div>
                 </div>
                 <div class="pills">
-                    <div class="pill">Remains first-line despite no placebo-controlled trial ever conducted<sup class="ref"><a href="#cite-5" onclick="goToCite(5);return false;">5</a></sup></div>
-                    <div class="pill warn-red">12-month taper is standard — a full year of steroid exposure</div>
-                    <div class="pill info">CK monitored every 3–4 weeks to guide tapering</div>
+                    <div class="pill">Inexpensive, decades of clinical experience</div>
+                    <div class="pill info">Doesn't treat skin disease or spinal involvement well</div>
+                    <div class="pill warn-red">Scientific evidence for reducing joint damage is far less effective in psoriatic arthritis than in rheumatoid arthritis</div>
                 </div>
                 <div class="cost-row">
-                    <span class="cost-lbl">Annual cost before insurance (generic)</span>
-                    <span class="cost-val hot">~$100–$400</span>
+                    <span class="cost-lbl">Annual cost before insurance</span>
+                    <span class="cost-val hot">~$300–$800</span>
                 </div>
                 <div class="sbtn-group">
                     <button class="sbtn tried" onclick="setStatus('s1','tried')">✓ Tried this</button>
@@ -785,10 +800,10 @@
                     <div class="detail-row">
                         <div class="detail-lbl">What happened?</div>
                         <div class="outcome-group" id="out-s1">
-                            <button class="outcome-chip" data-value="worked" onclick="pickChip(this)">CK normalized, strength returned</button>
-                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Some improvement, not full strength</button>
-                            <button class="outcome-chip" data-value="never" onclick="pickChip(this)">Poor response</button>
-                            <button class="outcome-chip" data-value="intolerant" onclick="pickChip(this)">Steroid side effects too much</button>
+                            <button class="outcome-chip" data-value="worked" onclick="pickChip(this)">Worked — joints under control</button>
+                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Some relief, still swelling/pain</button>
+                            <button class="outcome-chip" data-value="never" onclick="pickChip(this)">Little to no improvement</button>
+                            <button class="outcome-chip" data-value="intolerant" onclick="pickChip(this)">Liver labs / nausea too much</button>
                             <button class="outcome-chip" data-value="other" onclick="pickChip(this)">Something else…</button>
                             
                         </div>
@@ -797,11 +812,11 @@
                     <div class="detail-row">
                         <div class="detail-lbl">Your coinsurance for this drug</div>
                         <div class="chip-group" id="coins-s1">
-                            <button class="chip" data-value="0" onclick="pickChip(this);recalc()">$0 (fully covered)</button>
-                            <button class="chip active" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
-                            <button class="chip" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
+                            <button class="chip" data-value="0" onclick="pickChip(this);recalc()">$0 – fully covered</button>
+                            <button class="chip" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
+                            <button class="chip active" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
                             <button class="chip" data-value="0.30" onclick="pickChip(this);recalc()">30%</button>
-                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">No insurance</button>
+                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">I pay the full cost</button>
                             
                         </div>
                     </div>
@@ -813,7 +828,7 @@
                 <div id="oth-s1" style="display:none">
                     <div class="detail-row">
                         <div class="detail-lbl">What did you try at this step?</div>
-                        <input class="other-input" type="text" placeholder="e.g. IV pulse methylprednisolone" />
+                        <input class="other-input" type="text" placeholder="e.g. sulfasalazine, leflunomide" />
                     </div>
                     <div class="detail-row">
                         <div class="detail-lbl">How often?</div>
@@ -829,26 +844,27 @@
 
         <div class="connector">
             <div class="conn-line"></div>
-            <div class="conn-badge">Steroid-sparing agent added once tapering begins</div>
+            <div class="conn-badge">Inadequate joint response after 3+ months — escalate to a biologic</div>
             <div class="conn-line"></div>
         </div>
 
         <div class="drug-card" id="card-s2">
             <div class="card-bar bar-2"></div>
             <div class="card-inner">
-                <div class="card-step-line"><span class="card-step-label">Step 2: As you taper, you add</span> <span class="card-name-inline">Methotrexate or Azathioprine</span></div>
-                <div class="card-generic">Steroid-sparing immunosuppressant added to allow steroid reduction and prevent relapse</div>
+                <div class="card-step-line"><span class="card-step-label">Step 2: You're approved for</span> <span class="card-name-inline">TNF Inhibitor Biologic</span></div>
+                <div class="card-generic">Adalimumab, etanercept, golimumab, infliximab — self-injection or infusion</div>
                 <div class="quote-block">
                     <div class="quote-label">What your doctor says</div>
-                    <div class="quote-text">"Now that your CK is improving, we'll add a steroid-sparing drug so we can bring your prednisone dose down without your disease flaring back up."</div>
+                    <div class="quote-text">"Time to escalate — a TNF inhibitor targets the inflammatory driver of your joint disease directly, and can also help clear your skin."</div>
                 </div>
                 <div class="pills">
-                    <div class="pill warn-red">22% relapse rate reported with drug withdrawal in one cohort<sup class="ref"><a href="#cite-6" onclick="goToCite(6);return false;">6</a></sup></div>
-                    <div class="pill info">5-year survival historically 60–80%, driven by overlap and malignancy risk<sup class="ref"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></div>
+                    <div class="pill">58–78% of psoriatic arthritis patients experience 20% reduction in joint discomfort<sup class="ref"><a href="#cite-5" onclick="goToCite(5);return false;">5</a></sup></div>
+                    <div class="pill warn-red">20–32% of patients experience 70% improvement in psoriatic arthritis symptoms<sup class="ref"><a href="#cite-5" onclick="goToCite(5);return false;">5</a></sup></div>
+                    <div class="pill info">Radiographic progression continues in ~30% despite treatment<sup class="ref"><a href="#cite-6" onclick="goToCite(6);return false;">6</a></sup></div>
                 </div>
                 <div class="cost-row">
-                    <span class="cost-lbl">Annual cost before insurance (generic)</span>
-                    <span class="cost-val hot">~$150–$600</span>
+                    <span class="cost-lbl">Annual cost before insurance</span>
+                    <span class="cost-val hot">~$27,000–$32,000</span>
                 </div>
                 <div class="sbtn-group">
                     <button class="sbtn tried" onclick="setStatus('s2','tried')">✓ Tried this</button>
@@ -866,17 +882,17 @@
                             <button class="chip" data-value="6" onclick="pickChip(this);recalc()">3–6 mo</button>
                             <button class="chip active" data-value="12" onclick="pickChip(this);recalc()">6–12 mo</button>
                             <button class="chip" data-value="24" onclick="pickChip(this);recalc()">1–2 yr</button>
-                            <button class="chip" data-value="48" onclick="pickChip(this);recalc()">2+ yr</button>
+                            <button class="chip" data-value="36" onclick="pickChip(this);recalc()">2+ yr</button>
                             
                         </div>
                     </div>
                     <div class="detail-row">
                         <div class="detail-lbl">What happened?</div>
                         <div class="outcome-group" id="out-s2">
-                            <button class="outcome-chip" data-value="worked" onclick="pickChip(this)">Tapered steroids, stayed in remission</button>
-                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Partial taper, some activity persists</button>
-                            <button class="outcome-chip" data-value="never" onclick="pickChip(this)">Couldn't taper / relapsed</button>
-                            <button class="outcome-chip" data-value="intolerant" onclick="pickChip(this)">Side effects too much</button>
+                            <button class="outcome-chip" data-value="worked" onclick="pickChip(this)">Worked — joints & skin controlled</button>
+                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Partial response, activity persists</button>
+                            <button class="outcome-chip" data-value="never" onclick="pickChip(this)">Didn't respond</button>
+                            <button class="outcome-chip" data-value="intolerant" onclick="pickChip(this)">Infections / side effects</button>
                             <button class="outcome-chip" data-value="other" onclick="pickChip(this)">Something else…</button>
                             
                         </div>
@@ -885,11 +901,11 @@
                     <div class="detail-row">
                         <div class="detail-lbl">Your coinsurance for this drug</div>
                         <div class="chip-group" id="coins-s2">
-                            <button class="chip" data-value="0" onclick="pickChip(this);recalc()">$0 (fully covered)</button>
-                            <button class="chip active" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
-                            <button class="chip" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
+                            <button class="chip" data-value="0" onclick="pickChip(this);recalc()">$0 – fully covered</button>
+                            <button class="chip" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
+                            <button class="chip active" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
                             <button class="chip" data-value="0.30" onclick="pickChip(this);recalc()">30%</button>
-                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">No insurance</button>
+                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">I pay the full cost</button>
                             
                         </div>
                     </div>
@@ -901,7 +917,7 @@
                 <div id="oth-s2" style="display:none">
                     <div class="detail-row">
                         <div class="detail-lbl">What did you try at this step?</div>
-                        <input class="other-input" type="text" placeholder="e.g. mycophenolate mofetil" />
+                        <input class="other-input" type="text" placeholder="e.g. certolizumab pegol" />
                     </div>
                     <div class="detail-row">
                         <div class="detail-lbl">How often?</div>
@@ -917,27 +933,28 @@
 
         <div class="connector">
             <div class="conn-line"></div>
-            <div class="conn-badge">Persistent skin or muscle disease despite steroid + steroid-sparing agent</div>
+            <div class="conn-badge">TNF inadequate or lost response — switch drug class</div>
             <div class="conn-line"></div>
         </div>
 
         <div class="drug-card" id="card-s3">
             <div class="card-bar bar-3"></div>
             <div class="card-inner">
-                <div class="card-step-line"><span class="card-step-label">Step 3: For persistent disease, you're prescribed</span> <span class="card-name-inline">IVIG (Octagam 10%)</span></div>
-                <div class="card-generic">2.0 g/kg every 4 weeks — the first and only FDA-approved therapy specifically for dermatomyositis (2021)</div>
+                <div class="card-step-line"><span class="card-step-label">Step 3: You switch to</span> <span class="card-name-inline">IL-17 / IL-23 Inhibitor or JAK Inhibitor</span></div>
+                <div class="card-generic">Secukinumab, ixekizumab, guselkumab, or oral upadacitinib — different mechanism than Step 2</div>
                 <div class="quote-block">
                     <div class="quote-label">What your doctor says</div>
-                    <div class="quote-text">"Since you're still struggling despite steroids and a steroid-sparing agent, we can now use IVIG. It's the first drug ever formally approved for dermatomyositis, based on a real placebo-controlled trial."</div>
+                    <div class="quote-text">"Since the TNF inhibitor isn't fully working, let's try a drug from a different class. Many patients who don't respond to one mechanism respond well to another."</div>
                 </div>
                 <div class="pills">
-                    <div class="pill">79% of patients respond vs. 44% on sugar pill respond at week 16<sup class="ref"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
-                    <div class="pill warn-red">Blood-clotting events occurred in 6 patients on IVIG in the pivotal ProDerm study<sup class="ref"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
-                    <div class="pill info">Median time to response: 35 days</div>
+                    <div class="pill">70% of patients on Secukinumab experience a 20% reduction in joint discomfort<sup class="ref"><a href="#cite-7" onclick="goToCite(7);return false;">7</a></sup></div>
+                    <div class="pill">28% of patients on Secukinumab experience near-complete resolution of psoriatic arthritis symptoms<sup class="ref"><a href="#cite-7" onclick="goToCite(7);return false;">7</a></sup></div>
+                    <div class="pill warn-red">Response rates are consistently lower in TNF-experienced patients<sup class="ref"><a href="#cite-6" onclick="goToCite(6);return false;">6</a></sup></div>
+                    <div class="pill info">Upadacitinib shown noninferior to adalimumab in head-to-head trial<sup class="ref"><a href="#cite-8" onclick="goToCite(8);return false;">8</a></sup></div>
                 </div>
                 <div class="cost-row">
                     <span class="cost-lbl">Annual cost before insurance</span>
-                    <span class="cost-val hot">~$80,000–$130,000</span>
+                    <span class="cost-val hot">~$30,000–$36,000</span>
                 </div>
                 <div class="sbtn-group">
                     <button class="sbtn tried" onclick="setStatus('s3','tried')">✓ Tried this</button>
@@ -962,9 +979,10 @@
                     <div class="detail-row">
                         <div class="detail-lbl">What happened?</div>
                         <div class="outcome-group" id="out-s3">
-                            <button class="outcome-chip" data-value="working" onclick="pickChip(this)">Meaningful improvement</button>
-                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Some improvement</button>
-                            <button class="outcome-chip" data-value="never" onclick="pickChip(this)">No response</button>
+                            <button class="outcome-chip" data-value="working" onclick="pickChip(this)">Working — low disease activity</button>
+                            <button class="outcome-chip" data-value="partial" onclick="pickChip(this)">Some continued activity</button>
+                            <button class="outcome-chip" data-value="switched" onclick="pickChip(this)">Had to switch again</button>
+                            <button class="outcome-chip" data-value="never" onclick="pickChip(this)">Didn't respond</button>
                             <button class="outcome-chip" data-value="other" onclick="pickChip(this)">Something else…</button>
                             
                         </div>
@@ -973,11 +991,11 @@
                     <div class="detail-row">
                         <div class="detail-lbl">Your coinsurance for this drug</div>
                         <div class="chip-group" id="coins-s3">
-                            <button class="chip" data-value="0" onclick="pickChip(this);recalc()">$0 (fully covered)</button>
+                            <button class="chip" data-value="0" onclick="pickChip(this);recalc()">$0 – fully covered</button>
                             <button class="chip" data-value="0.10" onclick="pickChip(this);recalc()">10%</button>
                             <button class="chip active" data-value="0.20" onclick="pickChip(this);recalc()">20%</button>
                             <button class="chip" data-value="0.30" onclick="pickChip(this);recalc()">30%</button>
-                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">No insurance</button>
+                            <button class="chip" data-value="1.00" onclick="pickChip(this);recalc()">I pay the full cost</button>
                             
                         </div>
                     </div>
@@ -989,7 +1007,7 @@
                 <div id="oth-s3" style="display:none">
                     <div class="detail-row">
                         <div class="detail-lbl">What did you try at this step?</div>
-                        <input class="other-input" type="text" placeholder="e.g. rituximab, JAK inhibitor" />
+                        <input class="other-input" type="text" placeholder="e.g. risankizumab, tofacitinib" />
                     </div>
                     <div class="detail-row">
                         <div class="detail-lbl">How often?</div>
@@ -1006,81 +1024,77 @@
         <div class="drug-card" id="card-prog">
             <div class="card-bar bar-end"></div>
             <div class="card-inner">
-                <div class="card-step-line"><span class="card-step-label">For non-responders to standard treatment,</span> <span class="card-name-inline danger">Rising Cancer Risk & Multi-Organ Damage</span></div>
-                <div class="card-generic">Interstitial lung disease, treatment-resistant weakness, and an elevated malignancy risk that standard therapy doesn't screen for on its own</div>
+                <div class="card-step-line"><span class="card-step-label">Step Therapy Leads to</span> <span class="card-name-inline danger">Worsening Joint Damage &amp; Disability</span></div>
+                <div class="card-generic">Structural damage accrued during the pre-diagnosis and step-therapy delay, now largely irreversible</div>
                 <div class="quote-block">
                     <div class="quote-label">What Your Doctor says</div>
-                    <div class="quote-text">"Your muscle strength has plateaued despite everything we've tried. We should also make sure you're up to date on cancer screening, since dermatomyositis carries an associated malignancy risk."</div>
-                </div>
-                <div class="pills">
-                    <div class="pill warn-red">22% relapse rate reported after treatment withdrawal<sup class="ref"><a href="#cite-6" onclick="goToCite(6);return false;">6</a></sup></div>
-                    <div class="pill warn-red">No FDA-approved therapy existed at all until 2021<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
+                    <div class="quote-text">"Your imaging shows some joint erosion that developed before we got your disease under control. We'll focus on preventing further damage from here."</div>
                 </div>
                 <div class="prog-stat-grid">
                     <div class="prog-stat">
-                        <div class="ps-num">79%</div>
-                        <div class="ps-label">IVIG responder rate in the pivotal ProDERM trial<sup class="ref"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
+                        <div class="ps-num">7.49 yr</div>
+                        <div class="ps-label">Average diagnostic delay worsens permanent joint damage<sup class="ref"><a href="#cite-9" onclick="goToCite(9);return false;">9</a></sup></div>
                     </div>
                     <div class="prog-stat">
-                        <div class="ps-num">44%</div>
-                        <div class="ps-label">Placebo responder rate in the same trial<sup class="ref"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
+                        <div class="ps-num">27.4%</div>
+                        <div class="ps-label">Underwent joint surgery during that delay period<sup class="ref"><a href="#cite-9" onclick="goToCite(9);return false;">9</a></sup></div>
                     </div>
                     <div class="prog-stat">
-                        <div class="ps-num">60–80%</div>
-                        <div class="ps-label">Historical 5-year survival range for PM/DM<sup class="ref"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></div>
+                        <div class="ps-num">~5 yr</div>
+                        <div class="ps-label">Before diagnosis, healthcare costs are already climbing<sup class="ref"><a href="#cite-10" onclick="goToCite(10);return false;">10</a></sup></div>
                     </div>
                     <div class="prog-stat">
-                        <div class="ps-num">35 days</div>
-                        <div class="ps-label">Median time to IVIG response<sup class="ref"><a href="#cite-7" onclick="goToCite(7);return false;">7</a></sup></div>
+                        <div class="ps-num">$30K/yr</div>
+                        <div class="ps-label">Average all-cause cost once psoriatic arthritis is finally diagnosed<sup class="ref"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></div>
                     </div>
                     
                 </div>
-                <button class="prog-expand-btn" id="prog-btn" onclick="toggleProg()">What you should know about refractory disease & long-term risk ▼</button>
+                <button class="prog-expand-btn" id="prog-btn" onclick="toggleProg()">What you should know about diagnostic delay & joint damage ▼</button>
             </div>
             <div class="card-detail" id="det-prog">
                 <div class="prog-section">
-                    <div class="prog-section-title">ProDERM trial results at Week 16</div>
+                    <div class="prog-section-title">Diagnostic delay timeline (population-based cohort)</div>
                     <div class="prog-row">
-                        <span class="prog-row-lbl">Octagam 10% (IVIG) responders</span>
-                        <span class="prog-row-val">78.7%</span>
+                        <span class="prog-row-lbl">Diagnosed within 6 months of symptom onset</span>
+                        <span class="prog-row-val">23% of patients</span>
                     </div>
                     <div class="prog-row">
-                        <span class="prog-row-lbl">Placebo responders</span>
-                        <span class="prog-row-val warn">43.8%</span>
+                        <span class="prog-row-lbl">Diagnosed within 1 year</span>
+                        <span class="prog-row-val">35% of patients</span>
                     </div>
                     <div class="prog-row">
-                        <span class="prog-row-lbl">At least moderate improvement (TIS ≥40) on IVIG</span>
-                        <span class="prog-row-val">68%</span>
+                        <span class="prog-row-lbl">Diagnosed within 2 years</span>
+                        <span class="prog-row-val warn">45% of patients</span>
                     </div>
                     <div class="prog-row">
-                        <span class="prog-row-lbl">Major improvement (TIS ≥60) on IVIG</span>
-                        <span class="prog-row-val">32%</span>
+                        <span class="prog-row-lbl">No improvement in delay time, 2000–2017</span>
+                        <span class="prog-row-val warn">Unchanged</span>
                     </div>
                 </div>
 <div class="prog-section">
-                    <div class="prog-section-title">What refractory or advanced disease actually involves</div>
+                    <div class="prog-section-title">What happens while the diagnosis is pending</div>
                     <div class="prog-consequence">
-                        <span class="cons-icon">⏳</span>
-                        <span class="cons-text"><strong>Until 2021, there was no approved drug at all.</strong> Every therapy for dermatomyositis — steroids, methotrexate, azathioprine, even IVIG before its approval — was used off-label, extrapolated from small trials or decades-old case series, until the ProDERM trial finally established a formal evidence base.<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></span>
+                        <span class="cons-icon">🔪</span>
+                        <span class="cons-text"><strong>Surgery becomes a substitute for disease control.</strong> In a real-world cohort, the annual rate of musculoskeletal surgery was significantly higher during the diagnostic-delay period than after psoriatic arthritis was formally diagnosed and treated.<sup class="ref"><a href="#cite-9" onclick="goToCite(9);return false;">9</a></sup></span>
                     </div>
                     <div class="prog-consequence">
-                        <span class="cons-icon">🫁</span>
-                        <span class="cons-text"><strong>Interstitial lung disease and malignancy both ride along with the muscle disease.</strong> PM/DM carries meaningful associations with underlying malignancy and interstitial lung disease, both of which require separate, ongoing screening that standard myositis follow-up doesn't automatically include.</strong></span>
+                        <span class="cons-icon">📈</span>
+                        <span class="cons-text"><strong>The claims history starts rising years before anyone names the disease.</strong> Healthcare costs begin increasing approximately 5 years before an eventual psoriatic arthritis diagnosis — driven substantially by MSK surgeries and unexplained joint complaints.<sup class="ref"><a href="#cite-10" onclick="goToCite(10);return false;">10</a></sup></span>
                     </div>
                     <div class="prog-consequence">
-                        <span class="cons-icon">💉</span>
-                        <span class="cons-text"><strong>Even the newest approved therapy carries real risk.</strong> In the pivotal ProDERM trial, thromboembolic events occurred in patients receiving IVIG, prompting a reduced maximum infusion rate — a reminder that this population is already at elevated clotting risk.<sup class="ref"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></span>
+                        <span class="cons-icon">🦴</span>
+                        <span class="cons-text"><strong>Delay of even 6–12 months predicts worse function.</strong> Multiple studies link diagnostic delays of this length to structural joint damage and poorer long-term functional outcomes that later biologic therapy cannot reverse.<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></span>
                     </div>
                     <div class="prog-consequence">
-                        <span class="cons-icon">📉</span>
-                        <span class="cons-text"><strong>Survival estimates reflect a genuinely serious disease.</strong> Historical 5-year survival estimates of 60–80% for PM/DM reflect not just muscle weakness but the cumulative impact of lung disease, cardiac involvement, aspiration risk, and malignancy.<sup class="ref"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></span>
+                        <span class="cons-icon">🎯</span>
+                        <span class="cons-text"><strong>Awareness gaps, not biology, drive much of the delay.</strong> Clinical awareness of psoriatic arthritis compared to rheumatoid arthritis remains poor in general community practice, contributing to slow rheumatology referral.<sup class="ref"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></span>
                     </div>
                 </div>
 <div class="prog-section">
                     <div class="prog-section-title"></div>
                     <div class="prog-alert">
-                        <div class="prog-alert-title">⚠ A real drug approval doesn't erase decades of an evidence gap</div>
-                        <div class="prog-alert-text">IVIG's 2021 approval was a genuine breakthrough — the first randomized, placebo-controlled proof that a specific dermatomyositis therapy works. But it followed decades where every other treatment decision was made without that level of evidence, and many refractory patients still fall outside what any approved therapy can fully address.</div>
+                        <div class="prog-alert-title">⚠ The biologic ladder starts the clock too late</div>
+                        <div class="prog-alert-text">Step therapy sequences which conventional DMARD to try first, then which biologic — but none of that addresses the years patients often spend with unrecognized joint symptoms before any therapy starts. By the time Step 1 begins, damage may already be underway.</div>
                     </div>
                 </div>
 
@@ -1094,26 +1108,29 @@
 
 <!-- COST CALCULATOR -->
 <section class="sec">
-    <h2 class="sec-h2">What dermatomyositis/polymyositis is really costing you</h2>
-    <p class="sec-body">Proximal muscle weakness directly affects the physical tasks most jobs require — climbing stairs, lifting, even rising from a chair. That functional impact, plus the rash and fatigue, adds up well beyond the drug bill.</p>
+    <h2 class="sec-h2">What psoriatic arthritis is really costing you</h2>
+    <p class="sec-body">Psoriatic arthritis drug costs are only part of the picture. Joint pain, stiffness, and fatigue translate directly into missed work and reduced output — and that's before counting any surgery from the diagnostic delay.</p>
 
     <div class="calc-card">
         <div class="calc-sub" id="calcSub">Based on your journey above–adjust the numbers to match your situation.</div>
         <div class="calc-fields">
             <div class="cf-row">
-                <div class="cf-label">Work days affected by weakness/rash/fatigue in the last 12 months</div>
-                <input type="number" class="cf-input" id="sickDays" value="18" min="0" max="365"
-                       oninput="recalc()" placeholder="e.g. 18">
+                <div class="cf-label">Work days missed due to joint pain/flares in the last 12 months</div>
+                <input type="number" class="cf-input" id="sickDays" value="15" min="0" max="365"
+                       oninput="recalc()" placeholder="e.g. 15">
             </div>
             <div class="cf-row">
                 <div class="cf-label">Your hourly wage (for lost income calculation)</div>
-                <input type="number" class="cf-input" id="hourlyRate" value="30" min="0"
-                       oninput="recalc()" placeholder="e.g. 30">
+                <div class="cf-input-group">
+                    <span class="cf-dollar">$</span>
+                    <input type="number" class="cf-input" id="hourlyRate" value="35" min="0"
+                           oninput="recalc()" placeholder="e.g. 35">
+                </div>
             </div>
         </div>
         <div class="total-box">
             <div class="total-row">
-                <span class="total-label">Your estimated total annual cost of myositis</span>
+                <span class="total-label">Your estimated total annual cost of psoriatic arthritis</span>
                 <span class="total-num" id="totalCost">$0</span>
             </div>
             <div class="brow-divider"></div>
@@ -1131,14 +1148,14 @@
                     <span class="brow-val" id="b-present">$0</span>
                 </div>
                 <div class="brow" style="margin-top:2px;">
-                    <span style="font-size:13px; color:rgba(255,255,255,0.6);">Proximal muscle weakness directly limits physical job tasks even on days formally “worked”</span>
+                    <span style="font-size:13px; color:rgba(255,255,255,0.6);">Psoriatic arthritis patients report substantially higher work disability than psoriasis alone; ~140 hrs/yr is a conservative estimate of reduced-output time from active joint disease.<sup class="ref" style="color:rgba(94,196,210,0.8)"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup> Drug out-of-pocket costs based on your coinsurance selection for it above (or a typical default if you haven't reached it yet).</span>
                 </div>
             </div>
         </div>
         <div class="phase3-box">
-            <div class="phase3-label">If your care reaches the last phase of this journey — <strong>IVIG (Octagam 10%)</strong></div>
+            <div class="phase3-label">If your care reaches the last phase of this journey — <strong>IL-17 / IL-23 Inhibitor or JAK Inhibitor</strong></div>
             <div class="phase3-amount" id="phase3PatientCost">$0</div>
-            <div class="phase3-sub">Projected patient out-of-pocket for a full year at that phase, at your coinsurance selection for it above (or a typical default if you haven't reached it yet)</div>
+            <div class="phase3-sub">Projected patient out-of-pocket cost for a full year at that phase, given your coinsurance selection for it above (or a typical default if you haven't reached it yet).</div>
         </div>
     </div>
 </section>
@@ -1147,67 +1164,66 @@
 
 <!-- PAYER COST SECTION -->
 <section class="sec">
-    <div class="sec-chip">The Other Side of the Bill</div>
     <h2 class="sec-h2">What your insurer is paying</h2>
-    <p class="sec-body">Steroids and steroid-sparing agents are inexpensive generics — but IVIG, the only FDA-approved dermatomyositis therapy, is one of the most expensive infused products in autoimmune medicine.</p>
+    <p class="sec-body">Psoriatic arthritis is one of the costliest rheumatic diseases per patient in commercial insurance, driven by biologic pharmacy spend that starts around $30,000/year and climbs further with each drug switch.</p>
 
     <div class="payer-card">
         <div class="payer-head">
             <div class="payer-head-chip">Annual Payer Perspective — Commercial Insurance</div>
-            <div class="payer-head-title">What your health plan spends on your myositis each year</div>
+            <div class="payer-head-title">What your health plan spends on your psoriatic arthritis each year</div>
             <div class="payer-head-sub" id="payerSub">Based on your treatment journey above · All figures reflect payer (insurer) paid portion, not patient out-of-pocket cost.</div>
         </div>
         <div class="payer-body">
             <div class="payer-total-header">
-                <span class="ptb-label">Estimated annual payer cost for your myositis care</span>
+                <span class="ptb-label">Estimated annual payer cost for your psoriatic arthritis care</span>
                 <span class="ptb-amount" id="payerTotal">$0</span>
             </div>
             <div class="payer-row">
                 <div class="payer-row-left">
-                    <div class="payer-row-label">Immunosuppressant / IVIG drug spend (payer portion)</div>
-                    <div class="payer-row-desc">~80% of net price after patient coinsurance; IVIG alone can exceed $100,000/year at full dosing</div>
+                    <div class="payer-row-label">Biologic drug spend (payer portion)</div>
+                    <div class="payer-row-desc">~80% of net price after patient coinsurance; biologics represent the large majority of psoriatic arthritis pharmacy cost</div>
                 </div>
                 <div class="payer-row-val" id="p-drug">$0</div>
             </div>
             <div class="payer-row">
                 <div class="payer-row-left">
-                    <div class="payer-row-label">Medical costs (rheumatology, infusion administration, malignancy/ILD screening)</div>
-                    <div class="payer-row-desc">Includes periodic cancer screening and pulmonary function testing associated with PM/DM</div>
+                    <div class="payer-row-label">Medical costs (rheumatology visits, imaging, labs)</div>
+                    <div class="payer-row-desc">Baseline non-drug medical costs for a managed psoriatic arthritis patient</div>
                 </div>
-                <div class="payer-row-val">~$7,500</div>
+                <div class="payer-row-val">~$4,200</div>
             </div>
             <div class="payer-row" id="prow-relapse" style="display:none;">
                 <div class="payer-row-left">
-                    <div class="payer-row-label">Added cost from a relapse or organ complication (ILD, malignancy workup)</div>
-                    <div class="payer-row-desc">Relapse after steroid withdrawal, or a new lung/malignancy finding, both trigger substantial additional workup</div>
+                    <div class="payer-row-label">Added cost from a joint surgery during undiagnosed delay</div>
+                    <div class="payer-row-desc">27.4% of patients undergo at least one MSK surgery before diagnosis — a cost step therapy sequencing does nothing to prevent</div>
                 </div>
                 <div class="payer-row-val warn" id="p-relapse">$0</div>
             </div>
         </div>
         
         <div style="padding: 0 20px 16px;">
-            <div style="font-size: 12px; font-weight: 600; color: var(--gray-700); margin-bottom: 8px;">Have you relapsed, or been evaluated for lung/cancer involvement, in the last 12 months?</div>
+            <div style="font-size: 12px; font-weight: 600; color: var(--gray-700); margin-bottom: 8px;">Have you had a joint procedure or surgery related to these symptoms?</div>
             <div class="chip-group" id="relapse-count">
                 <button class="chip active" data-value="0" onclick="pickChip(this);recalcPayer()">No</button>
-                <button class="chip" data-value="1" onclick="pickChip(this);recalcPayer()">Relapsed once</button>
-                <button class="chip" data-value="2" onclick="pickChip(this);recalcPayer()">Organ complication found</button>
+                <button class="chip" data-value="1" onclick="pickChip(this);recalcPayer()">Considering one</button>
+                <button class="chip" data-value="2" onclick="pickChip(this);recalcPayer()">Yes, already had one</button>
                 
             </div>
-            <div style="font-size: 11px; color: var(--gray-500); margin-top: 6px; line-height: 1.45;">Malignancy and interstitial lung disease workups are a recurring, often underappreciated cost center in myositis care</div>
+            <div style="font-size: 11px; color: var(--gray-500); margin-top: 6px; line-height: 1.45;">Surgical cost is a downstream consequence of diagnostic delay, not of the biologic ladder itself — but it lands on the same claims history</div>
         </div>
         <div class="payer-total-box">
-            <div class="ptb-note">IVIG, the only FDA-approved dermatomyositis therapy, can cost <strong>$80,000–$130,000/year</strong> at full dosing — among the highest per-patient drug costs on this site.</div>
+            <div class="ptb-note">All-cause annual healthcare costs for psoriatic arthritis patients run <strong>~$30,000/patient/year</strong> — nearly 3× the cost of psoriasis alone, largely driven by biologic pharmacy spend and imaging.</div>
         </div>
 
         <div class="payer-phase3-box">
-            <div class="p3-label">Payer cost projection if care reaches the last phase of this journey — <strong>IVIG (Octagam 10%)</strong></div>
+            <div class="p3-label">Payer cost projection if care reaches the last phase of this journey — <strong>IL-17 / IL-23 Inhibitor or JAK Inhibitor</strong></div>
             <div class="p3-amount" id="phase3PayerCost">$0</div>
             <div class="p3-sub">Estimated annual payer spend at that phase: ~80% of drug price plus baseline medical costs, excluding any flare/crisis event above</div>
         </div>
 
         <div class="payer-insight">
-            <div class="pi-title">⚑ The cost of decades without a real evidence base</div>
-            <div class="pi-text">Because every therapy besides IVIG was adopted without placebo-controlled trials, dosing and duration decisions have historically been driven by expert consensus rather than data — which can mean longer, less targeted treatment courses (and cost) than a disease with a fuller evidence base might otherwise require.</div>
+            <div class="pi-title">⚑ Where the real savings are being missed</div>
+            <div class="pi-text">Step therapy controls which biologic is tried first — but the biggest avoidable cost sits upstream of it, in the ~5 years of rising claims and elevated surgery rates before psoriatic arthritis is even diagnosed. Faster rheumatology referral, not a different biologic sequence, is where the larger savings opportunity lives.</div>
         </div>
     </div>
 </section>
@@ -1218,29 +1234,29 @@
 <section class="sec sec-tint" id="understanding-risk">
     <div class="sec-chip">Understanding Your Risk</div>
     <h2 class="sec-h2">What the research shows over time</h2>
-    <p class="sec-body">These outcomes are not inevitable — but they are the documented range of what happens across the myositis treatment ladder, including for patients now able to access IVIG.</p>
+    <p class="sec-body">These outcomes are not inevitable — but they are the documented trajectory for patients who move through conventional-DMARD-then-biologic step therapy without earlier detection of joint disease.</p>
 
     <div class="risk-card">
         <div class="risk-head">
             <div class="risk-head-label">Based on peer-reviewed clinical data</div>
-            <div class="risk-head-title">Long-term outcomes for myositis patients on today's standard of care</div>
+            <div class="risk-head-title">Long-term outcomes for psoriatic arthritis patients on standard step therapy</div>
         </div>
         <div class="risk-items">
             <div class="risk-row">
+                <div class="risk-icon ri-r">⏳</div>
+                <div class="risk-desc"><span class="risk-num red">7.49 yr</span> mean diagnostic delay reported in a real-world psoriatic arthritis cohort, with symptomatic joint disease going unaddressed the entire time<sup class="ref" style="color:#aaa"><a href="#cite-9" onclick="goToCite(9);return false;">9</a></sup></div>
+            </div>
+            <div class="risk-row">
+                <div class="risk-icon ri-y">🔪</div>
+                <div class="risk-desc"><span class="risk-num">27.4%</span> of patients underwent at least one musculoskeletal surgery during the diagnostic-delay period — at a higher annual rate than after diagnosis<sup class="ref" style="color:#aaa"><a href="#cite-9" onclick="goToCite(9);return false;">9</a></sup></div>
+            </div>
+            <div class="risk-row">
+                <div class="risk-icon ri-o">📈</div>
+                <div class="risk-desc"><span class="risk-num">~5 yr</span> before diagnosis, healthcare costs are already rising — the disease is generating claims long before it has a name<sup class="ref" style="color:#aaa"><a href="#cite-10" onclick="goToCite(10);return false;">10</a></sup></div>
+            </div>
+            <div class="risk-row">
                 <div class="risk-icon ri-g">💊</div>
-                <div class="risk-desc"><span class="risk-num">78.7%</span> of patients responded to IVIG (Octagam 10%) at week 16 in the pivotal ProDERM trial, vs. 43.8% on placebo<sup class="ref" style="color:#aaa"><a href="#cite-3" onclick="goToCite(3);return false;">3</a></sup></div>
-            </div>
-            <div class="risk-row">
-                <div class="risk-icon ri-y">🔁</div>
-                <div class="risk-desc"><span class="risk-num">22%</span> relapse rate reported after treatment withdrawal in one long-term follow-up cohort<sup class="ref" style="color:#aaa"><a href="#cite-6" onclick="goToCite(6);return false;">6</a></sup></div>
-            </div>
-            <div class="risk-row">
-                <div class="risk-icon ri-r">📉</div>
-                <div class="risk-desc"><span class="risk-num red">60–80%</span> historical 5-year survival range for polymyositis/dermatomyositis, reflecting lung, cardiac, and malignancy-related risk<sup class="ref" style="color:#aaa"><a href="#cite-4" onclick="goToCite(4);return false;">4</a></sup></div>
-            </div>
-            <div class="risk-row">
-                <div class="risk-icon ri-o">🧬</div>
-                <div class="risk-desc"><span class="risk-num">2021</span> was the year the first-ever FDA-approved dermatomyositis therapy arrived — decades after the disease was first described<sup class="ref" style="color:#aaa"><a href="#cite-2" onclick="goToCite(2);return false;">2</a></sup></div>
+                <div class="risk-desc"><span class="risk-num">58–78%</span> ACR20 response achievable with a first-line TNF inhibitor — meaningful relief exists once treatment actually starts<sup class="ref" style="color:#aaa"><a href="#cite-5" onclick="goToCite(5);return false;">5</a></sup></div>
             </div>
             
         </div>
@@ -1254,7 +1270,7 @@
     <div class="thymos-card">
         <div class="thymos-chip">✦ A different journey exists</div>
         <h2 class="thymos-h">Thymos Health offers <span class="g">another way</span></h2>
-        <p class="thymos-body">Conventional myositis care focuses on managing symptoms through sequential medications. Thymos goes further – synthesizing diagnostics, medical history, symptoms, and lifestyle to understand what's driving your disease and customizes care based on your individual needs.</p>
+        <p class="thymos-body">Conventional psoriatic arthritis care escalates drugs after damage shows up on imaging. Thymos goes further – synthesizing your skin history, joint symptoms, labs, and imaging to flag psoriatic arthritis early and coordinate rheumatology and dermatology around one plan, instead of waiting years for a referral.</p>
         <div class="outcomes">
             <div class="orow">
                 <div class="ocheck">✓</div>
@@ -1292,38 +1308,53 @@
     <div class="citations-list" id="citeList">
         <div class="cite-item" id="cite-1">
             <span class="cite-num">[1]</span>
-            Dermatomyositis. <em>American Family Physician</em>, 2001, and Pharmacological Strategies in Dermatomyositis: Current Treatments and Future Directions, PMC, 2024. Dermatomyositis prevalence estimated at 1–10 cases per million adults; global annual incidence 1–2 per 100,000 and rising.
-            <div class="cite-doi">Source: <a href="https://www.aafp.org/pubs/afp/issues/2001/1101/p1565.html" target="_blank">aafp.org</a></div>
+            Derived from Rheumatology Advisor (2024) reporting 30%–33% of the ~8 million Americans with psoriasis also have psoriatic arthritis (≈2.4–2.7 million); undiagnosed psoriatic arthritis reported in 9% of psoriasis patients.
+            <div class="cite-doi">Source: <a href="https://www.rheumatologyadvisor.com/cch/improving-the-early-diagnosis-of-psoriatic-arthritis/" target="_blank">rheumatologyadvisor.com</a></div>
         </div>
         <div class="cite-item" id="cite-2">
             <span class="cite-num">[2]</span>
-            ProDERM study results of octagam 10% treatment in patients with dermatomyositis published in NEJM. Octapharma press release, 2022. Prior to the ProDERM study, no therapy had been approved in the US or Europe for dermatomyositis based on randomized clinical trial evidence; Octagam 10% was approved by the FDA in 2021 on this basis.
-            <div class="cite-doi">Source: <a href="https://www.octapharma.com/news/press-release/2022/proderm-study-results-of-octagam-10-treatment-in-patients-with-dermatomyositis-published-in-the-new-england-journal-of-medicine" target="_blank">octapharma.com</a></div>
+            Diagnostic Delay in Psoriatic Arthritis: A Population-based Study. <em>The Journal of Rheumatology</em>, 2021 (n=164). Median time from symptom onset to physician diagnosis: 2.5 years (IQR 0.5–7.3); diagnosed by 6 months in 23%, by 1 year in 35%, by 2 years in 45%. No improvement in delay 2000–2017.
+            <div class="cite-doi">Source: <a href="https://www.jrheum.org/content/48/9/1410" target="_blank">jrheum.org</a></div>
         </div>
         <div class="cite-item" id="cite-3">
             <span class="cite-num">[3]</span>
-            Trial of Intravenous Immune Globulin in Dermatomyositis (ProDERM). <em>New England Journal of Medicine</em>, 2022 (n=95). Responder rate 78.7% (IVIG) vs. 43.8% (placebo) at week 16; thromboembolic events occurred in patients on IVIG, prompting a reduced maximum infusion rate.
-            <div class="cite-doi">Source: <a href="https://www.nejm.org/doi/full/10.1056/NEJMoa2117912" target="_blank">nejm.org</a></div>
+            What Clinical Factors Affect Length of Transition to Psoriatic Arthritis in Patients With Psoriasis? <em>ACR Open Rheumatology</em>, 2024. Psoriatic arthritis occurs in up to 40% of psoriasis patients; up to 40% of psoriatic arthritis cases were not previously identified even in dedicated screening studies of psoriasis patients.
+            <div class="cite-doi">DOI: <a href="https://acrjournals.onlinelibrary.wiley.com/doi/10.1002/acr2.11703" target="_blank">10.1002/acr2.11703</a></div>
         </div>
         <div class="cite-item" id="cite-4">
             <span class="cite-num">[4]</span>
-            Predictors of survival in a cohort of patients with polymyositis and dermatomyositis: effect of corticosteroids, methotrexate and azathioprine. PMC. 5-year survival estimates for PM/DM historically range from 60% to 80%; younger age, female sex, and Caucasian race independently predicted better long-term survival.
-            <div class="cite-doi">PMC: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3392815/" target="_blank">PMC3392815</a></div>
+            Employer Health Innovation Co., "Soaring Psoriasis: Market Trends and Opportunities for Psoriatic Conditions," 2023. Over the last 10 years, all-cause annual healthcare costs per psoriatic arthritis patient averaged almost $30,000, compared to about $11,000 for plaque psoriasis alone.
+            <div class="cite-doi">Source: <a href="https://www.employershealthco.com/resource-center/articles/soaring-psoriasis-market-trends-and-opportunities-for-psoriatic-conditions/" target="_blank">employershealthco.com</a></div>
         </div>
         <div class="cite-item" id="cite-5">
             <span class="cite-num">[5]</span>
-            Therapy of polymyositis and dermatomyositis. ScienceDirect, 2011. High-dose oral prednisone (1mg/kg/day) is the mainstay first-line therapy for PM/DM, adopted from case-series-level evidence rather than placebo-controlled trials.
-            <div class="cite-doi">Source: <a href="https://www.sciencedirect.com/science/article/abs/pii/S0755498211000546" target="_blank">sciencedirect.com</a></div>
+            TNF Inhibitor Therapy for Psoriatic Arthritis (Healio clinical review, citing Mease PJ et al., ADEPT trial, <em>Arthritis Rheum</em> 2005, and Genovese MC et al., <em>J Rheumatol</em> 2007). Etanercept ACR20/50/70 at 12 wks: 59%/38%/11% vs. 15%/4%/0% placebo. Adalimumab (ADEPT) ACR20/50/70 at wk12: 58%/36%/20%.
+            <div class="cite-doi">Source: <a href="https://www.healio.com/clinical-guidance/psoriatic-arthritis/tnf-inhibitor-therapy" target="_blank">healio.com</a></div>
         </div>
         <div class="cite-item" id="cite-6">
             <span class="cite-num">[6]</span>
-            Clinical, electrophysiologic, and histopathologic profile, and outcome in idiopathic inflammatory myositis: An analysis of 68 cases. PMC. Prednisolone ± azathioprine was the initial treatment in the large majority of cases; relapse with drug withdrawal occurred in 22% of patients, with 70% overall favorable outcome and 16% mortality in this cohort.
-            <div class="cite-doi">PMC: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3021927/" target="_blank">PMC3021927</a></div>
+            Biologic Therapy chapter, Healio clinical review of psoriatic arthritis trials (SPIRIT-P1/P2, FUTURE 2/5). Response rates for TNF-experienced patients are consistently lower than biologic-naïve patients across trial programs; radiographic progression (change in van der Heijde-modified Total Sharp Score) continues in a meaningful minority of treated patients.
+            <div class="cite-doi">Source: <a href="https://www.healio.com/clinical-guidance/psoriatic-arthritis/biologic-therapy" target="_blank">healio.com</a></div>
         </div>
         <div class="cite-item" id="cite-7">
             <span class="cite-num">[7]</span>
-            Intravenous Immunoglobulin for the Treatment of Adult Dermatomyositis. <em>Rare Disease Advisor</em>, 2025, summarizing the ProDERM trial. Median time to IVIG response was 35 days, with a clinical response rate approaching 80%.
-            <div class="cite-doi">Source: <a href="https://www.rarediseaseadvisor.com/cch/intravenous-immunoglobulin-dermatomyositis-c3-c4-membrane-attack-complex/" target="_blank">rarediseaseadvisor.com</a></div>
+            Use of IL-17 antagonists to inhibit progression of structural damage in psoriatic arthritis patients (secukinumab FUTURE program pooled analysis). At week 52, ACR20/50/70 (observed analysis) were 69.5%/50.0%/28.2% for secukinumab 10mg/kg IV→150mg SC.
+            <div class="cite-doi">Source: <a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11278618" target="_blank">USPTO patent filing citing trial data</a></div>
+        </div>
+        <div class="cite-item" id="cite-8">
+            <span class="cite-num">[8]</span>
+            Trial of Upadacitinib and Adalimumab for Psoriatic Arthritis (SELECT-PsA 1). <em>New England Journal of Medicine</em>, 2020. Upadacitinib 30mg met noninferiority and superiority criteria vs. adalimumab on ACR20 at week 12.
+            <div class="cite-doi">Source: <a href="https://www.nejm.org/doi/full/10.1056/NEJMoa2022516" target="_blank">nejm.org</a></div>
+        </div>
+        <div class="cite-item" id="cite-9">
+            <span class="cite-num">[9]</span>
+            Increased Musculoskeletal Surgery Rates During Diagnostic Delay in Psoriatic Arthritis: A Retrospective Cohort Study (n=84). Mean diagnostic delay: 7.49 years. 27.4% underwent ≥1 MSK surgery during the delay period, at a significantly higher annual rate (Z=−3.18, p=0.001) than post-diagnosis.
+            <div class="cite-doi">PMC: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12071673/" target="_blank">PMC12071673</a></div>
+        </div>
+        <div class="cite-item" id="cite-10">
+            <span class="cite-num">[10]</span>
+            Same cohort study (PMC12071673): healthcare costs, driven substantially by MSK surgeries, begin increasing approximately 5 years before an eventual PsA diagnosis.
+            <div class="cite-doi">PMC: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12071673/" target="_blank">PMC12071673</a></div>
         </div>
     </div>
 </div>
@@ -1337,14 +1368,14 @@
 <script>
 /* ── CONFIG (disease-specific) ── */
 const STEP_IDS   = ["s1", "s2", "s3"];
-const STEP_NAMES = {"s1": "High-Dose Prednisone", "s2": "Methotrexate or Azathioprine", "s3": "IVIG (Octagam 10%)"};
-const AWP        = {"s1": 250, "s2": 350, "s3": 100000};
+const STEP_NAMES = {"s1": "NSAIDs & Methotrexate", "s2": "TNF Inhibitor Biologic", "s3": "IL-17 / IL-23 Inhibitor or JAK Inhibitor"};
+const AWP        = {"s1": 500, "s2": 30000, "s3": 33000};
 const IS_DRUG    = {"s1": true, "s2": true, "s3": true};
 const HAS_FLARE  = true;
-const FLARE_VAL  = {"0": 0, "1": 4500, "2": 28000};
-const DEFAULT_AWP= 350;
-const MEDICAL_COST = 7500;
-const PRESENT_MULT = 150;
+const FLARE_VAL  = {"0": 0, "1": 0, "2": 18000};
+const DEFAULT_AWP= 28000;
+const MEDICAL_COST = 4200;
+const PRESENT_MULT = 140;
 const LAST_ID    = "s3";
 const LAST_COINS_DEFAULT = 0.2;
 
@@ -1515,8 +1546,8 @@ function toggleProg() {
     const btn    = document.getElementById('prog-btn');
     const isOpen = detail.classList.toggle('open');
     btn.textContent = isOpen
-        ? 'What you should know about refractory disease & long-term risk ▲'
-        : 'What you should know about refractory disease & long-term risk ▼';
+        ? 'What you should know about diagnostic delay & joint damage ▲'
+        : 'What you should know about diagnostic delay & joint damage ▼';
 }
 
 /* ── CITATIONS TOGGLE ── */

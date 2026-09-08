@@ -41,7 +41,7 @@
     "unsubscribe at any time via the link in any email, and that my " +
     "information will be handled per the Thymos Health Privacy Policy.";
 
-  var PRIVACY_HREF = "Thymos Privacy Policy.dc.html";
+  var PRIVACY_HREF = "thymos-privacy-policy.dc.html";
 
   // Cloudflare Turnstile site key (public). A <meta name="turnstile-site-key">
   // on the page overrides this if present.

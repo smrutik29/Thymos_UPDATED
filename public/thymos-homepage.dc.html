@@ -7,7 +7,8 @@
 <meta name="description" content="Convenient, collaborative, data-driven care for 150+ autoimmune disorders and mysterious diseases. Trusted by 5,000+ patients.">
 <!-- seo:injected -->
 <link rel="canonical" href="https://www.thymoshealth.com/">
-<link rel="icon" type="image/png" href="/img/thymos-logo-flames.png">
+<link rel="icon" type="image/png" href="/img/thymos-favicon.png">
+<link rel="apple-touch-icon" href="/img/thymos-favicon.png">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Thymos Health">
@@ -505,41 +506,59 @@
       transition: none !important;
     }
   }
+
+  /* ─── "Proven Success" stat rows — keep the ↓ arrow + % in a single
+     aligned column across all three cards, even when a label wraps or
+     contains an unbreakable long word (e.g. "Inflammation"). ─────────── */
+  .ps-stat-label { overflow-wrap: break-word; }
+  @media (max-width: 560px) {
+    .ps-stat-card { padding: 26px 20px !important; }
+    .ps-stat-row { column-gap: 12px !important; }
+    .ps-stat-fig { gap: 6px !important; }
+    .ps-stat-arrow { font-size: 1.85rem !important; width: 24px !important; }
+    .ps-stat-val { font-size: 1.6rem !important; min-width: 58px !important; }
+  }
 </style>
 </helmet>
 
 <div style="width:100%; font-family:'Montserrat',sans-serif; color:#212121;">
 
   <nav style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:20px clamp(16px,3vw,40px); background:#fff; border-bottom:1px solid #ddd; position:sticky; top:0; z-index:1000; gap:20px;">
-    <a href="Thymos Homepage.dc.html" style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:20px; color:#1a1a1a; white-space:nowrap; text-decoration:none;">
+    <a href="thymos-homepage.dc.html" style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:20px; color:#1a1a1a; white-space:nowrap; text-decoration:none;">
       <img src="img/thymos-logo-flames.png" alt="Thymos Logo" style="height:52px; width:auto;">
       <span>Thymos Health</span>
     </a>
     <div class="nav-desktop" style="display:flex; gap:20px; font-size:16px;">
       <div class="nav-dropdown">
-        <a href="Thymos How We Work.dc.html" class="nav-dropdown-trigger" style="color:#333; text-decoration:none;">How We Work<svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="thymos-how-we-work.dc.html" class="nav-dropdown-trigger" style="color:#333; text-decoration:none;">How We Work<svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <div class="nav-dropdown-menu">
-          <a href="Thymos How We Work.dc.html" class="nav-dropdown-item">How We Work</a>
-          <a href="Thymos Membership.dc.html" class="nav-dropdown-item">Membership</a>
+          <a href="thymos-how-we-work.dc.html" class="nav-dropdown-item">How We Work</a>
+          <a href="thymos-membership.dc.html" class="nav-dropdown-item">Membership</a>
         </div>
       </div>
       <div class="nav-dropdown">
-        <a href="Thymos Proven Approach.dc.html" class="nav-dropdown-trigger" style="color:#333; text-decoration:none;">Proven Approach<svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="thymos-proven-approach.dc.html" class="nav-dropdown-trigger" style="color:#333; text-decoration:none;">Proven Approach<svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <div class="nav-dropdown-menu">
-          <a href="Thymos Proven Approach.dc.html" class="nav-dropdown-item">Proven Approach</a>
+          <a href="thymos-proven-approach.dc.html" class="nav-dropdown-item">Proven Approach</a>
           <a href="patient-cases.html" class="nav-dropdown-item">Patient Cases</a>
         </div>
       </div>
-      <a href="Thymos Conditions Treated.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">Conditions Treated</a>
+      <a href="thymos-conditions-treated.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">Conditions Treated</a>
       <div class="nav-dropdown">
-        <a href="Thymos For Employers.dc.html" class="nav-dropdown-trigger" style="color:#333; text-decoration:none;">For Partners<svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="thymos-for-employers.dc.html" class="nav-dropdown-trigger" style="color:#333; text-decoration:none;">For Partners<svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <div class="nav-dropdown-menu">
-          <a href="Thymos For Employers.dc.html" class="nav-dropdown-item">Employers</a>
-          <a href="Thymos Health Systems.dc.html" class="nav-dropdown-item">Health Systems</a>
-          <a href="Thymos Providers.dc.html" class="nav-dropdown-item">Providers</a>
+          <a href="thymos-for-employers.dc.html" class="nav-dropdown-item">Employers</a>
+          <a href="thymos-health-systems.dc.html" class="nav-dropdown-item">Health Systems</a>
+          <a href="thymos-providers.dc.html" class="nav-dropdown-item">Providers</a>
         </div>
       </div>
-      <a href="Thymos About Us.dc.html" style="color:#333; text-decoration:none;" style-hover="color:#ea6047; text-decoration:underline;">About</a>
+      <div class="nav-dropdown">
+        <a href="thymos-about-us.dc.html" class="nav-dropdown-trigger" style="color:#333; text-decoration:none;">About Us<svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav-dropdown-menu">
+          <a href="thymos-about-us.dc.html" class="nav-dropdown-item">About Us</a>
+          <a href="contact-us.html" class="nav-dropdown-item">Contact Us</a>
+        </div>
+      </div>
     </div>
     <div class="nav-desktop" style="display:flex; align-items:center; gap:16px;">
       <a href="#" data-waitlist-trigger="1" style="color:#333; text-decoration:none; font-size:16px;" style-hover="color:#ea6047; text-decoration:underline;">Sign Up</a>
@@ -558,8 +577,8 @@
             <svg class="nav-dropdown-mobile-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </summary>
           <div class="nav-dropdown-mobile-menu">
-            <a href="Thymos How We Work.dc.html" style="color:#333; text-decoration:none;">How We Work</a>
-            <a href="Thymos Membership.dc.html" style="color:#333; text-decoration:none;">Membership</a>
+            <a href="thymos-how-we-work.dc.html" style="color:#333; text-decoration:none;">How We Work</a>
+            <a href="thymos-membership.dc.html" style="color:#333; text-decoration:none;">Membership</a>
           </div>
         </details>
         <details class="nav-dropdown-mobile">
@@ -568,23 +587,32 @@
             <svg class="nav-dropdown-mobile-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </summary>
           <div class="nav-dropdown-mobile-menu">
-            <a href="Thymos Proven Approach.dc.html" style="color:#333; text-decoration:none;">Proven Approach</a>
+            <a href="thymos-proven-approach.dc.html" style="color:#333; text-decoration:none;">Proven Approach</a>
             <a href="patient-cases.html" style="color:#333; text-decoration:none;">Patient Cases</a>
           </div>
         </details>
-        <a href="Thymos Conditions Treated.dc.html" style="color:#333; text-decoration:none;">Conditions Treated</a>
+        <a href="thymos-conditions-treated.dc.html" style="color:#333; text-decoration:none;">Conditions Treated</a>
         <details class="nav-dropdown-mobile">
           <summary style="display:flex; align-items:center; justify-content:space-between; color:#333;">
             <span>For Partners</span>
             <svg class="nav-dropdown-mobile-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </summary>
           <div class="nav-dropdown-mobile-menu">
-            <a href="Thymos For Employers.dc.html" style="color:#333; text-decoration:none;">Employers</a>
-            <a href="Thymos Health Systems.dc.html" style="color:#333; text-decoration:none;">Health Systems</a>
-            <a href="Thymos Providers.dc.html" style="color:#333; text-decoration:none;">Providers</a>
+            <a href="thymos-for-employers.dc.html" style="color:#333; text-decoration:none;">Employers</a>
+            <a href="thymos-health-systems.dc.html" style="color:#333; text-decoration:none;">Health Systems</a>
+            <a href="thymos-providers.dc.html" style="color:#333; text-decoration:none;">Providers</a>
           </div>
         </details>
-        <a href="Thymos About Us.dc.html" style="color:#333; text-decoration:none;">About</a>
+        <details class="nav-dropdown-mobile">
+          <summary style="display:flex; align-items:center; justify-content:space-between; color:#333;">
+            <span>About Us</span>
+            <svg class="nav-dropdown-mobile-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="nav-dropdown-mobile-menu">
+            <a href="thymos-about-us.dc.html" style="color:#333; text-decoration:none;">About Us</a>
+            <a href="contact-us.html" style="color:#333; text-decoration:none;">Contact Us</a>
+          </div>
+        </details>
         <a href="#" data-waitlist-trigger="1" style="color:#333; text-decoration:none;">Sign Up</a>
         <a href="/quiz" style="align-self:flex-start; padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:15px; font-weight:500; text-decoration:none;">Take Quiz</a>
       </div>
@@ -596,7 +624,7 @@
     <div style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:2; background:linear-gradient(to bottom, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.4) 60%, rgba(255,255,255,0) 100%);"></div>
     <div style="position:relative; z-index:3; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; text-align:center; padding:100px 20px 0;">
       <h1 style="color:#222; font-size:3.4rem; font-weight:800; line-height:1.3; max-width:1200px; margin-bottom:24px;">Specialty Autoimmune Care,<br>Without Compromise</h1>
-      <p style="font-size:1.6rem; font-weight:600; color:#333; max-width:800px; margin-bottom:20px; line-height:1.6; font-style:italic;">Convenient and collaborative care for <a href="Thymos Conditions Treated.dc.html" style="color:#034152; text-decoration:underline;" style-hover="color:#d24f3f;">150+ autoimmune disorders</a> and mysterious diseases.</p>
+      <p style="font-size:1.6rem; font-weight:600; color:#333; max-width:800px; margin-bottom:20px; line-height:1.6; font-style:italic;">Convenient and collaborative care for <a href="thymos-conditions-treated.dc.html" style="color:#034152; text-decoration:underline;" style-hover="color:#d24f3f;">150+ autoimmune disorders</a> and mysterious diseases.</p>
       <a href="#" data-waitlist-trigger="1" style="padding:8px 16px; background:#ea6047; color:#fff; border-radius:8px; font-size:16px; font-weight:500; margin:24px auto; text-decoration:none;" style-hover="background:#c14930; color:#fff;">Join The Waitlist</a>
     </div>
   </header>
@@ -612,7 +640,7 @@
   </section>
 
   <section style="padding:60px 20px; background:#02302d; text-align:center; overflow:hidden;">
-    <h2 style="font-size:1.8rem; font-weight:600; margin-bottom:32px; color:#f4f9f9; text-wrap:pretty;">Thymos diagnoses, treats, and uncovers the root causes of <strong style="color:#ea6047; font-weight:800;"><a href="Thymos Conditions Treated.dc.html" style="color:#ea6047; text-decoration:underline;">hundreds of conditions</a></strong></h2>
+    <h2 style="font-size:1.8rem; font-weight:600; margin-bottom:32px; color:#f4f9f9; text-wrap:pretty;">Thymos diagnoses, treats, and uncovers the root causes of <strong style="color:#ea6047; font-weight:800;"><a href="thymos-conditions-treated.dc.html" style="color:#ea6047; text-decoration:underline;">hundreds of conditions</a></strong></h2>
     <sc-for list="{{ conditionRows }}" as="row" hint-placeholder-count="3">
       <div style="overflow:hidden; white-space:nowrap; margin:16px 0; position:relative; width:100%;">
         <div style="display:inline-flex; animation: {{ row.anim }};">
@@ -634,15 +662,15 @@
         <h3 style="font-size: 1.46rem; font-weight: 700; color: #333; margin-bottom: 32px; width: 600px">Experience what 5,000+ patients have achieved:</h3>
         <div style="display:flex; flex-direction:column; align-items:stretch; gap:20px; width:100%; text-align:left;">
           <sc-for list="{{ stats }}" as="group" hint-placeholder-count="3">
-            <div style="background:#f8f5f0; border-radius:20px; padding:32px 36px; box-shadow:0 8px 24px rgba(0,0,0,0.05); display:flex; flex-direction:column; gap:24px; transition:transform .25s ease, box-shadow .25s ease, background-color .25s ease;" style-hover="transform:translateY(-6px); box-shadow:0 18px 40px rgba(0,0,0,0.14); background:#ffffff;">
+            <div class="ps-stat-card" style="background:#f8f5f0; border-radius:20px; padding:32px 36px; box-shadow:0 8px 24px rgba(0,0,0,0.05); display:flex; flex-direction:column; gap:24px; transition:transform .25s ease, box-shadow .25s ease, background-color .25s ease;" style-hover="transform:translateY(-6px); box-shadow:0 18px 40px rgba(0,0,0,0.14); background:#ffffff;">
               <h4 style="font-size: 1.35rem; font-weight: 800; letter-spacing: -0.01em; text-transform: uppercase; color: #1a1a1a;">{{ group.period }}</h4>
               <div style="display:flex; flex-direction:column; gap:20px; width:100%;">
                 <sc-for list="{{ group.rows }}" as="row" hint-placeholder-count="2">
-                  <div style="display:grid; grid-template-columns:1fr auto; gap:16px; align-items:center;">
-                    <span style="font-size: 1.05rem; font-weight: 700; color: #1a1a1a">{{ row.label }}</span>
-                    <span style="display:flex; align-items:baseline; gap:8px; justify-self:end;">
-                      <span style="color: #3aaf3c; font-size: 2.75rem; font-weight: 600; line-height: 1; width: 38px; padding-left: 0px; padding-right: 0px">↓</span>
-                      <span style="font-size:2rem; font-weight:800; color:#a63f2d; line-height:1; min-width:76px; text-align:right; font-variant-numeric:tabular-nums;">{{ row.value }}</span>
+                  <div class="ps-stat-row" style="display:grid; grid-template-columns:minmax(0,1fr) auto; gap:16px; align-items:center;">
+                    <span class="ps-stat-label" style="font-size: 1.05rem; font-weight: 700; color: #1a1a1a; min-width:0;">{{ row.label }}</span>
+                    <span class="ps-stat-fig" style="display:flex; align-items:baseline; gap:8px; justify-self:end;">
+                      <span class="ps-stat-arrow" style="color: #3aaf3c; font-size: 2.75rem; font-weight: 600; line-height: 1; width: 38px; text-align:center; padding-left: 0px; padding-right: 0px">↓</span>
+                      <span class="ps-stat-val" style="font-size:2rem; font-weight:800; color:#a63f2d; line-height:1; min-width:76px; text-align:right; font-variant-numeric:tabular-nums;">{{ row.value }}</span>
                     </span>
                   </div>
                 </sc-for>
@@ -703,7 +731,7 @@
       </div>
     </div>
     <div style="margin-top:48px;">
-      <a href="Thymos Proven Approach.dc.html" style="background:#ea6047; color:#fff; font-weight:600; font-size:1rem; padding:10px 20px; border-radius:8px; text-decoration:none; display:inline-block;" style-hover="background:#c14930; color:#fff;">Learn More</a>
+      <a href="thymos-proven-approach.dc.html" style="background:#ea6047; color:#fff; font-weight:600; font-size:1rem; padding:10px 20px; border-radius:8px; text-decoration:none; display:inline-block;" style-hover="background:#c14930; color:#fff;">Learn More</a>
     </div>
   </section>
 
@@ -869,7 +897,7 @@
             <div class="aud-item"><div class="aud-check">✓</div><span class="txt">Real clinical relief, not just cost control</span></div>
             <div class="aud-item"><div class="aud-check">✓</div><span class="txt">Layers onto your existing plan — no disruption</span></div>
           </div>
-          <a href="Thymos For Employers.dc.html" class="aud-btn">Learn More →</a>
+          <a href="thymos-for-employers.dc.html" class="aud-btn">Learn More →</a>
         </div>
 
         <!-- Health Systems -->
@@ -881,7 +909,7 @@
             <div class="aud-item"><div class="aud-check">✓</div><span class="txt">Lower cost to manage your autoimmune population</span></div>
             <div class="aud-item"><div class="aud-check">✓</div><span class="txt">Appropriate escalation keeps care in-network</span></div>
           </div>
-          <a href="Thymos Health Systems.dc.html" class="aud-btn">Learn More →</a>
+          <a href="thymos-health-systems.dc.html" class="aud-btn">Learn More →</a>
         </div>
 
         <!-- Providers -->
@@ -893,7 +921,7 @@
             <div class="aud-item"><div class="aud-check">✓</div><span class="txt">34% of autoimmune patients have multiple diseases Thymos addresses</span></div>
             <div class="aud-item"><div class="aud-check">✓</div><span class="txt">Extend your care without disrupting patient relationships</span></div>
           </div>
-          <a href="Thymos Providers.dc.html" class="aud-btn">Learn More →</a>
+          <a href="thymos-providers.dc.html" class="aud-btn">Learn More →</a>
         </div>
 
       </div>
@@ -927,10 +955,10 @@
         <div class="footer-col">
           <div class="footer-col-label">Explore</div>
           <ul class="footer-links">
-            <li><a href="Thymos How We Work.dc.html">Thymos Journey</a></li>
-            <li><a href="Thymos Membership.dc.html">Membership</a></li>
-            <li><a href="Thymos Proven Approach.dc.html">Proven Approach</a></li>
-            <li><a href="Thymos Conditions Treated.dc.html">150+ Diseases Treated</a></li>
+            <li><a href="thymos-how-we-work.dc.html">Thymos Journey</a></li>
+            <li><a href="thymos-membership.dc.html">Membership</a></li>
+            <li><a href="thymos-proven-approach.dc.html">Proven Approach</a></li>
+            <li><a href="thymos-conditions-treated.dc.html">150+ Diseases Treated</a></li>
           </ul>
 
           <div class="footer-spacer"></div>
@@ -954,9 +982,9 @@
         <div class="footer-col">
           <div class="footer-col-label">About Thymos</div>
           <ul class="footer-links">
-            <li><a href="Thymos About Us.dc.html">Our Story</a></li>
-            <li><a href="Thymos How We Work.dc.html#faq">Help Center</a></li>
-            <li><a href="#" data-waitlist-trigger="1">Contact Us</a></li>
+            <li><a href="thymos-about-us.dc.html">Our Story</a></li>
+            <li><a href="thymos-how-we-work.dc.html#faq">Help Center</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
           </ul>
 
           <div class="footer-spacer"></div>
@@ -978,9 +1006,9 @@
         <div class="footer-col">
           <div class="footer-col-label">Partner with Thymos</div>
           <ul class="footer-links">
-            <li><a href="Thymos For Employers.dc.html">For Employers</a></li>
-            <li><a href="Thymos Health Systems.dc.html">For Health Systems</a></li>
-            <li><a href="Thymos Providers.dc.html">For Providers</a></li>
+            <li><a href="thymos-for-employers.dc.html">For Employers</a></li>
+            <li><a href="thymos-health-systems.dc.html">For Health Systems</a></li>
+            <li><a href="thymos-providers.dc.html">For Providers</a></li>
           </ul>
 
           <div class="footer-spacer"></div>
@@ -1015,9 +1043,9 @@
       </div>
 
       <div class="footer-legal-row">
-        <a href="Thymos Privacy Policy.dc.html">Privacy Policy</a>
+        <a href="thymos-privacy-policy.dc.html">Privacy Policy</a>
         <span class="footer-legal-sep">|</span>
-        <a href="Thymos Terms of Service.dc.html">Terms &amp; Conditions</a>
+        <a href="thymos-terms-of-service.dc.html">Terms &amp; Conditions</a>
         <span class="footer-legal-sep">|</span>
         <a href="#" class="privacy-choices-link" id="privacyChoicesTrigger">Your Privacy Choices</a>
         <span class="footer-legal-sep">|</span>
