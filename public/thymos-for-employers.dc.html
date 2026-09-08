@@ -1217,9 +1217,9 @@
         <p class="lede" style="opacity:0.85; margin:0 auto 32px;">The model above uses industry averages. One ask to your health plan or PBM gives you an actual count of eligible members — and a real ROI projection built from your own claims data.</p>
 
         <div class="cta-buttons">
-          <a href="mailto:?cc=data@thymoshealth.com&subject=PBM%20Data%20Pull%20Request&body=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20sizing%20our%20population%20for%20the%20Thymos%20program." class="btn btn-white" onClick="{{ handlePbmDataPull }}">
+          <!--email_off--><a href="mailto:?cc=data&#64;thymoshealth.com&subject=PBM%20Data%20Pull%20Request&body=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20sizing%20our%20population%20for%20the%20Thymos%20program." class="btn btn-white" onClick="{{ handlePbmDataPull }}">
             Request a PBM data pull →
-          </a>
+          </a><!--/email_off-->
           <a href="employer-pitch.html" target="_blank" class="btn btn-outline">
             View full interactive pitch →
           </a>
@@ -1236,7 +1236,7 @@
           <div class="pbm-status">Downloaded <strong>thymos-pbm-data-request.csv</strong> and opened an email draft. Your browser can't auto-attach files to a mail draft, so please attach the downloaded CSV before sending.</div>
         </sc-if>
         <sc-if value="{{ pbmErrorState }}" hint-placeholder-val="{{ false }}">
-          <div class="pbm-status pbm-status-error">Something went wrong preparing your request. <a href="mailto:?cc=data@thymoshealth.com&subject=PBM%20Data%20Pull%20Request&body=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20sizing%20our%20population%20for%20the%20Thymos%20program." class="pbm-retry-link" onClick="{{ handlePbmDataPull }}">Try again</a>.</div>
+          <div class="pbm-status pbm-status-error">Something went wrong preparing your request. <!--email_off--><a href="mailto:?cc=data&#64;thymoshealth.com&subject=PBM%20Data%20Pull%20Request&body=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20sizing%20our%20population%20for%20the%20Thymos%20program." class="pbm-retry-link" onClick="{{ handlePbmDataPull }}">Try again</a><!--/email_off-->.</div>
         </sc-if>
 
         <div class="cta-fine">

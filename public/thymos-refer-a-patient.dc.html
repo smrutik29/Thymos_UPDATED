@@ -709,7 +709,7 @@
         <h1>Refer a patient</h1>
         <p class="lede muted">Use this form to refer a patient to Thymos Health if they have been diagnosed with autoimmune disorder(s) or if autoimmunity is suspected.</p>
         <p class="lede muted">After receiving your referral, our team verifies eligibility and contacts the patient directly to complete enrollment and better understand their needs.</p>
-        <p class="lede muted">We'll notify your team once they're enrolled or if we have any questions. For questions or referral updates, contact us at <a href="mailto:referrals@thymoshealth.com">referrals@thymoshealth.com</a>.</p>
+        <p class="lede muted">We'll notify your team once they're enrolled or if we have any questions. For questions or referral updates, contact us at <!--email_off--><a href="mailto:referrals&#64;thymoshealth.com">referrals&#64;thymoshealth.com</a><!--/email_off-->.</p>
       </div>
     </section>
 
@@ -833,7 +833,7 @@
             <button type="submit" class="btn btn-teal">Submit Referral</button>
             <div class="form-fine">HIPAA-compliant intake · You remain the doctor of record</div>
             <sc-if value="{{ confirmVisible }}" hint-placeholder-val="{{ false }}">
-              <div class="confirm-banner"><strong>Thanks — your referral is ready to send.</strong> Your email client should open with the referral details addressed to referrals@thymoshealth.com. If it doesn't open automatically, you can email us directly at that address.</div>
+              <div class="confirm-banner"><strong>Thanks — your referral is ready to send.</strong> Your email client should open with the referral details addressed to <!--email_off-->referrals&#64;thymoshealth.com<!--/email_off-->. If it doesn't open automatically, you can email us directly at that address.</div>
             </sc-if>
             <sc-if value="{{ errorVisible }}" hint-placeholder-val="{{ false }}">
               <div class="error-banner">Please fill in all required fields before submitting.</div>
