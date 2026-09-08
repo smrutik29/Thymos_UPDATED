@@ -648,10 +648,43 @@
     @media (max-width: 640px) {
       .sidebar { display: none; }
       .compose-label { display: none; }
-      /* the GPI reference tables are wider than a phone — let them scroll
-         sideways instead of being clipped by .gpi-wrapper's overflow:hidden */
-      .gpi-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      .gpi-table { min-width: 480px; }
+
+      /* Email header: let the FROM/TO/CC rows wrap and the timestamp drop
+         onto its own line instead of shoving the row off the right edge. */
+      .header-row { flex-wrap: wrap; }
+      .header-value { flex: 1 1 100%; min-width: 0; overflow-wrap: anywhere; }
+      .header-value .addr-email { display: inline-block; overflow-wrap: anywhere; }
+      .header-date { margin-left: 56px; flex-basis: 100%; }
+      .email-subject-bar { flex-wrap: wrap; }
+      .email-header, .email-pane, .email-body { padding-left: 16px; padding-right: 16px; }
+
+      /* Flatten the fake-mail-client's nested fixed-height scroll regions so
+         the whole page scrolls as one document on a phone. */
+      .shell { height: auto; min-height: 0; }
+      .body-split { display: block; overflow: visible; }
+      .email-pane { overflow: visible; }
+      .email-body-scroll { overflow: visible; flex: none; padding: 20px 16px 24px; }
+      .email-body { max-width: none; }
+
+      /* GPI tables — two kinds:
+         · the 3-column list in the email body → fixed layout + tuned column
+           widths + wrap so the whole table fits the screen with no sideways scroll.
+         · the wide multi-column CSV tables → keep cells on one line and let
+           the wrapper scroll sideways (never clipped, never widening page). */
+      .gpi-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
+
+      .email-body .gpi-table { min-width: 0; width: 100%; font-size: 9.5px; table-layout: fixed; }
+      .email-body .gpi-table th,
+      .email-body .gpi-table td { padding: 6px 6px; white-space: normal; overflow-wrap: break-word; word-break: break-word; vertical-align: top; }
+      .email-body .gpi-table th:nth-child(1), .email-body .gpi-table td:nth-child(1) { width: 26%; }
+      .email-body .gpi-table th:nth-child(2), .email-body .gpi-table td:nth-child(2) { width: 30%; }
+      .email-body .gpi-table .td-gpi { white-space: normal; }
+
+      .csv-section .gpi-table { font-size: 10.5px; }
+      .csv-section .gpi-table th,
+      .csv-section .gpi-table td { padding: 7px 10px; }
+
+      .csv-section { padding-left: 16px; padding-right: 16px; }
     }
   </style>
   <link rel="stylesheet" href="/mobile-fixes.css">
@@ -848,7 +881,7 @@
 
           <div class="gpi-summary">
             <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm.75 10.5h-1.5v-4.5h1.5v4.5zm0-6h-1.5v-1.5h1.5v1.5z"/></svg>
-            Please include a <strong>&nbsp;UNIQUE member count&nbsp;</strong> (deduplicated across all classes) as a summary line in your output.
+            <span>Please include a <strong>UNIQUE member count</strong> (deduplicated across all classes) as a summary line in your output.</span>
           </div>
 
           <p><strong>Timeline:</strong> We'd appreciate this within 5 business days if possible.</p>

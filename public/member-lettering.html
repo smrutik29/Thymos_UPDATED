@@ -451,6 +451,30 @@
       text-align: center;
       font-style: italic;
     }
+
+    /* ── Phone layout ──
+       Without this the wide 5-column drug table forces .letter wider than
+       the screen; because <body> centres its children, the letter then gets
+       clipped on BOTH sides. min-width:0 lets it shrink back to the screen,
+       the tables scroll inside their own box, and the multi-col grids stack. */
+    @media (max-width: 640px) {
+      body { padding-left: 12px; padding-right: 12px; }
+      /* #view-pbm / #view-hr are the flex items of <body>; their default
+         min-width:auto is what lets the wide drug table push them (and the
+         letter) past the screen and, because <body> centres them, clip both
+         edges. Pin them to the screen and let the table scroll inside. */
+      #view-pbm, #view-hr { min-width: 0; max-width: 100%; width: 100%; }
+      .letter { min-width: 0; max-width: 100%; padding: 28px 18px 24px; }
+      .letter-nav { flex-wrap: wrap; max-width: 100%; }
+      .letter-nav > a[href="employer-pitch.html"] { margin-left: 0 !important; }
+      .letterhead { flex-wrap: wrap; gap: 4px 14px; }
+      .benefit-banner { margin-left: -18px; margin-right: -18px; padding-left: 18px; padding-right: 18px; flex-wrap: wrap; gap: 8px; }
+      .cond-grid { grid-template-columns: 1fr 1fr; }
+      .elig-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
+      .drug-table { min-width: 460px; }
+      .cta-block { flex-wrap: wrap; }
+      .cta-block span { white-space: normal; overflow-wrap: anywhere; }
+    }
   </style>
   <link rel="stylesheet" href="/mobile-fixes.css">
 </head>
