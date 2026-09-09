@@ -9,7 +9,7 @@
 # form -> its own database" store (waitlist, provider referrals, ...).
 #
 #   NEW_DB=thymos_guide NEW_USER=guide_app SCHEMA_FILE=db/guide-schema.sql \
-#   QUIZ_APP_PASSWORD=... NEW_USER_PASSWORD=... \
+#   NEW_USER_PASSWORD=... \
 #   bash db/provision-isolated-db.sh
 #
 # Override INSTANCE=... to target a different Cloud SQL instance.
@@ -18,9 +18,8 @@
 #   - `gcloud auth login` (interactive; token must be fresh)
 #   - ./cloud-sql-proxy at repo root
 #   - psql on PATH
-#   - QUIZ_APP_PASSWORD  — existing quiz_app password (a cloudsqlsuperuser,
-#                          used only to run the bootstrap GRANTs)
-#   - NEW_USER_PASSWORD  — password to set on the new role
+#   - NEW_USER_PASSWORD  — password to set on the new role (also goes into
+#                          the <role>-db-password Secret Manager entry)
 #
 # Idempotent: safe to re-run.
 
@@ -32,11 +31,10 @@ REGION="${REGION:-us-west2}"
 CONN="${PROJECT}:${REGION}:${INSTANCE}"
 PROXY_PORT="${PROXY_PORT:-5433}"
 
-: "${NEW_DB:?set NEW_DB (e.g. thymos_referrals)}"
-: "${NEW_USER:?set NEW_USER (e.g. referrals_app)}"
-: "${SCHEMA_FILE:?set SCHEMA_FILE (e.g. db/referrals-schema.sql)}"
+: "${NEW_DB:?set NEW_DB (e.g. thymos_guide)}"
+: "${NEW_USER:?set NEW_USER (e.g. guide_app)}"
+: "${SCHEMA_FILE:?set SCHEMA_FILE (e.g. db/guide-schema.sql)}"
 : "${NEW_USER_PASSWORD:?export NEW_USER_PASSWORD first}"
-: "${QUIZ_APP_PASSWORD:?export QUIZ_APP_PASSWORD first}"
 
 cd "$(dirname "$0")/.."
 [ -f "$SCHEMA_FILE" ] || { echo "schema file not found: $SCHEMA_FILE" >&2; exit 1; }
@@ -68,35 +66,26 @@ for _ in $(seq 1 30); do
 done
 echo "    proxy up (pid $PROXY_PID)"
 
-echo "==> 4/5  Bootstrap ownership + privileges"
-# 4a — connect as quiz_app and immediately SET ROLE cloudsqlsuperuser (quiz_app
-# is a member of it). quiz_app itself is a least-privilege runtime role now
-# (NOCREATEROLE NOCREATEDB), so the role/ownership DDL below has to run under
-# the superuser group. Hand $NEW_DB to $NEW_USER, strip the cloudsqlsuperuser
-# group it was auto-granted, and de-privilege it. Reassigning DB ownership
-# requires the caller to be a member of the new owner, hence the transient GRANT.
-PGPASSWORD="$QUIZ_APP_PASSWORD" psql \
-  "host=127.0.0.1 port=$PROXY_PORT dbname=thymos_quiz user=quiz_app sslmode=disable" \
-  -v ON_ERROR_STOP=1 -v nu="$NEW_USER" -v ndb="$NEW_DB" <<'SQL'
-SET ROLE cloudsqlsuperuser;
-GRANT :"nu" TO cloudsqlsuperuser;
-ALTER DATABASE :"ndb" OWNER TO :"nu";
-ALTER ROLE :"nu" NOCREATEROLE NOCREATEDB;
-REVOKE cloudsqlsuperuser FROM :"nu";
-REVOKE :"nu" FROM cloudsqlsuperuser;
-RESET ROLE;
-SQL
-# 4b — as $NEW_USER (now DB owner => implicitly pg_database_owner): take
-# explicit ownership of schema public and wall everyone else out.
+echo "==> 4/5  Bootstrap ownership + isolation (connect AS \$NEW_USER)"
+# A freshly gcloud-created user is a member of cloudsqlsuperuser and has
+# CREATEROLE/CREATEDB, so it can hand its own DB + schema to itself, wall
+# everyone else out of schema public, then SET ROLE cloudsqlsuperuser (it's a
+# member) to strip that group + CREATEROLE/CREATEDB off itself. No quiz_app /
+# transient-GRANT dance needed. (Mirrors db/migrate-to-new-instance.sh step 4.)
 PGPASSWORD="$NEW_USER_PASSWORD" psql \
   "host=127.0.0.1 port=$PROXY_PORT dbname=$NEW_DB user=$NEW_USER sslmode=disable" \
-  -v ON_ERROR_STOP=1 -v nu="$NEW_USER" <<'SQL'
-ALTER SCHEMA public OWNER TO :"nu";
-REVOKE ALL ON SCHEMA public FROM cloudsqlsuperuser;
+  -v ON_ERROR_STOP=1 -v r="$NEW_USER" -v d="$NEW_DB" <<'SQL'
+ALTER DATABASE :"d" OWNER TO :"r";
+ALTER SCHEMA public OWNER TO :"r";
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
-GRANT ALL ON SCHEMA public TO :"nu";
+REVOKE ALL ON SCHEMA public FROM cloudsqlsuperuser;
+GRANT ALL ON SCHEMA public TO :"r";
+SET ROLE cloudsqlsuperuser;
+REVOKE cloudsqlsuperuser FROM :"r";
+ALTER ROLE :"r" NOCREATEROLE NOCREATEDB;
+RESET ROLE;
 SQL
-echo "    ownership set, $NEW_USER de-privileged, schema public locked down"
+echo "    $NEW_DB owned by $NEW_USER, schema public locked down, $NEW_USER de-privileged"
 
 echo "==> 5/5  Apply $SCHEMA_FILE (as $NEW_USER)"
 PGPASSWORD="$NEW_USER_PASSWORD" psql \
