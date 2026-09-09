@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources | Thymos Health</title>
+<link rel="icon" type="image/png" href="/img/thymos-favicon.png">
+<link rel="apple-touch-icon" href="/img/thymos-favicon.png">
+<meta name="description" content="Guides and papers from Thymos Health on root-cause autoimmune care — what actually moves the needle on diagnosis, symptoms, and long-term outcomes.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://thymoshealth.com/resources">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Thymos Health">
+<meta property="og:title" content="Resources | Thymos Health">
+<meta property="og:description" content="Guides and papers from Thymos Health on root-cause autoimmune care.">
+<meta property="og:url" content="https://thymoshealth.com/resources">
+<meta property="og:image" content="https://thymoshealth.com/img/thymos-logo-flames.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Resources | Thymos Health">
+<meta name="twitter:description" content="Guides and papers from Thymos Health on root-cause autoimmune care.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --deep:#034152; --plum:#065d76; --mid-plum:#076459; --teal:#25a08c; --teal-m:#3ab7a0;
+  --teal-l:#e1f5ee; --coral:#f25630; --amber:#f79820;
+  --off:#f6f6f6; --curve-bg:#f9f6f1; --pale:#f0ede8; --white:#fff; --gray:#474747; --lgray:#e8e4e0;
+  --shadow:0 18px 60px rgba(3,65,82,.10);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{font-size:19px}
+body{margin:0;font-family:'DM Sans',sans-serif;color:var(--deep);background:var(--off);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.inner{max-width:1000px;margin:0 auto;padding:0 24px}
+
+.topbar{position:sticky;top:0;z-index:50;background:rgba(3,65,82,.97);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+.topbar-inner{max-width:1000px;margin:0 auto;padding:15px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{color:#fff;text-decoration:none;font-weight:800;font-size:1.02rem;letter-spacing:-.01em;display:flex;align-items:center;gap:9px}
+.brand img{height:26px;width:auto}
+.nav-actions{display:flex;align-items:center;gap:18px}
+.nav-link{color:rgba(255,255,255,.82);text-decoration:none;font-size:.92rem;font-weight:500}
+.nav-link:hover{color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:.9rem;padding:11px 20px;border-radius:10px;text-decoration:none;transition:.18s ease;border:0;cursor:pointer}
+.btn-teal{background:var(--teal);color:#fff;box-shadow:0 7px 18px rgba(37,160,140,.2)}
+.btn-teal:hover{background:var(--teal-m)}
+
+.hero{background:var(--deep);color:#fff;padding:78px 0 66px}
+.eyebrow{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.17em;text-transform:uppercase;color:var(--teal-m);font-weight:500;margin-bottom:16px}
+h1{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(2.1rem,5vw,3rem);line-height:1.08;margin:0 0 18px}
+h1 em{color:var(--teal-m);font-style:normal}
+.lede{font-size:1.1rem;color:rgba(255,255,255,.8);max-width:620px;margin:0}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:60px 0 80px}
+.card{
+  background:var(--white);border:1px solid var(--lgray);border-radius:18px;padding:34px 30px;
+  box-shadow:0 6px 26px rgba(3,65,82,.05);display:flex;flex-direction:column;gap:14px;
+}
+.card-kicker{font-family:'DM Mono',monospace;font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);font-weight:500}
+.card h2{font-family:'DM Serif Display',serif;font-weight:400;font-size:1.5rem;line-height:1.15;margin:0}
+.card p{margin:0;color:var(--gray);font-size:.98rem}
+.card-actions{margin-top:auto;padding-top:8px}
+.card.pending{background:var(--curve-bg);border-style:dashed}
+.card.pending h2,.card.pending .card-kicker{opacity:.75}
+.badge{align-self:flex-start;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--mid-plum);background:var(--teal-l);padding:5px 11px;border-radius:999px}
+.btn-disabled{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.9rem;padding:11px 20px;border-radius:10px;background:var(--pale);color:rgba(3,65,82,.5);cursor:not-allowed}
+
+footer.disclaimer{background:var(--deep);color:rgba(255,255,255,.62);font-size:.78rem;line-height:1.6}
+footer.disclaimer .inner{padding-top:30px;padding-bottom:30px}
+footer.disclaimer a{color:rgba(255,255,255,.82)}
+
+@media(max-width:680px){
+  html{font-size:17px}
+  .topbar-inner{padding:12px 16px}
+  .brand span{display:none}
+  .nav-link{display:none}
+  .hero{padding:60px 0 52px}
+  .inner{padding:0 18px}
+  .grid{grid-template-columns:1fr;padding:44px 0 60px}
+}
+</style>
+<link rel="stylesheet" href="/mobile-fixes.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="/"><img src="/img/thymos-favicon.png" alt=""> Thymos Health <span>&middot; Resources</span></a>
+    <nav class="nav-actions" aria-label="Resources navigation">
+      <a class="nav-link" href="thymos-proven-approach.dc.html">Proven Approach</a>
+      <a class="btn btn-teal" href="/quiz">Take the Quiz</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="inner">
+      <div class="eyebrow">Resources</div>
+      <h1>Start with a <em>guide</em>, not a commitment.</h1>
+      <p class="lede">Practical, patient-first reading on root-cause autoimmune care — what actually moves the needle on diagnosis and symptoms, and the questions worth asking any specialist.</p>
+    </div>
+  </section>
+
+  <div class="inner">
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-kicker">Guide &middot; For patients &amp; caregivers</div>
+        <h2>The Root-Cause Autoimmune Care Guide</h2>
+        <p>Why autoimmune care can feel fragmented, how symptoms change over time, and a clearer path through diagnosis, treatment, and monitoring.</p>
+        <div class="card-actions">
+          <a class="btn btn-teal" href="autoimmune-guide.html" target="_blank" rel="noopener">Read the guide &rarr;</a>
+        </div>
+      </article>
+
+      <article class="card pending">
+        <div class="card-kicker">White paper &middot; Clinical &amp; partners</div>
+        <h2>Thymos White Paper</h2>
+        <p>Our clinical model and the evidence behind it — outcomes, methodology, and the economics of tapering high-cost biologics.</p>
+        <span class="badge">Coming soon</span>
+        <div class="card-actions">
+          <span class="btn-disabled" aria-disabled="true">Not yet available</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</main>
+
+<footer class="disclaimer">
+  <div class="inner">
+    Individual results vary. Thymos Health resources are for general education and are not a substitute for evaluation by a qualified clinician. Medication changes should be directed by the appropriate treating clinician based on individual disease activity and clinical judgment.
+  </div>
+</footer>
+
+</body>
+</html>
