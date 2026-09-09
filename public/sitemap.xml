@@ -56,9 +56,33 @@
   </url>
   <url>
     <loc>https://www.thymoshealth.com/thymos-privacy-policy.dc.html</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.thymoshealth.com/notice-of-privacy-practices.html</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.thymoshealth.com/washington-consumer-health-data-privacy-policy.html</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.thymoshealth.com/nevada-privacy-notice.html</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.thymoshealth.com/account-deletion.html</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.thymoshealth.com/thymos-proven-approach.dc.html</loc>
