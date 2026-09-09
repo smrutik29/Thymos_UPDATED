@@ -1163,6 +1163,7 @@ html { font-size: 18px; scroll-behavior: smooth; }
         <p style="font-size:0.78rem; color:var(--gray); margin-bottom:14px;">Enter your info and we'll send it right away.</p>
 
         <form id="whitepaperForm" novalidate>
+          <input type="text" name="companyWebsite" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;">
           <div class="field-row">
             <div class="field" id="fieldFirstName">
               <label for="wpFirstName">First name</label>
@@ -1219,8 +1220,16 @@ html { font-size: 18px; scroll-behavior: smooth; }
 
       <div id="wpSuccessState" class="modal-success" style="display:none;">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
-        <h3>Check your inbox</h3>
-        <p>Your guide is on its way. If you'd rather talk it through first, membership starts <a href="#pricing" style="color:var(--teal); font-weight:700;" onclick="closeLeadModal()">right here</a>.</p>
+        <h3>Your guide is ready</h3>
+        <p style="margin-bottom:14px;">We've saved your details and a copy is on its way to your inbox. You can also open it right now:</p>
+        <a href="autoimmune-guide.html" target="_blank" rel="noopener" class="btn btn-teal btn-block" style="margin-bottom:12px;">Open the guide</a>
+        <p>If you'd rather talk it through first, membership starts <a href="#pricing" style="color:var(--teal); font-weight:700;" onclick="closeLeadModal()">right here</a>.</p>
+      </div>
+
+      <div id="wpErrorState" class="modal-success" style="display:none;">
+        <h3>Something went wrong</h3>
+        <p>We couldn't submit that just now. Please try again in a moment, or email <!--email_off--><a href="mailto:care&#64;thymoshealth.com" style="color:var(--teal); font-weight:700;">care&#64;thymoshealth.com</a><!--/email_off--> and we'll send the guide over.</p>
+        <button type="button" class="btn btn-teal btn-block" id="wpRetryBtn" style="margin-top:12px;">Back to the form</button>
       </div>
 
     </div>
@@ -1614,6 +1623,13 @@ class Component extends DCLogic {
     function getModal() { return document.getElementById('lead-modal'); }
     window.openLeadModal = function () {
       var m = getModal(); if (!m) return;
+      // Always open on the form itself (not a stale success/error state).
+      var fs = document.getElementById('wpFormState'),
+          ss = document.getElementById('wpSuccessState'),
+          es = document.getElementById('wpErrorState');
+      if (fs) fs.style.display = 'block';
+      if (ss) ss.style.display = 'none';
+      if (es) es.style.display = 'none';
       m.classList.add('open');
       document.body.style.overflow = 'hidden';
     };
@@ -1693,18 +1709,61 @@ class Component extends DCLogic {
       var emailOk     = markField('fieldEmail', isValidEmail(email.value));
       var phoneOk     = markField('fieldPhone', isValidPhone(phone.value));
       var stateOk     = markField('fieldState', !!state.value);
-      if (!firstNameOk || !lastNameOk || !emailOk || !phoneOk || !stateOk) return;
+      var consentOk   = !!(consent && consent.checked);
+      var consentRow  = consent ? consent.closest('.consent-row') : null;
+      if (consentRow) consentRow.classList.toggle('invalid', !consentOk);
+      if (!firstNameOk || !lastNameOk || !emailOk || !phoneOk || !stateOk || !consentOk) return;
 
-      // PLACEHOLDER: point this at a real lead endpoint before launch.
-      console.log('Lead captured (no backend wired yet):', {
-        firstName: firstName.value, lastName: lastName.value,
-        email: email.value, phone: phone.value, state: state.value,
-        consent: consent && consent.checked
-      });
+      var form = e.target;
+      var submitBtn = form.querySelector('button[type="submit"]');
+      if (submitBtn && submitBtn.disabled) return;
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.dataset.label = submitBtn.textContent; submitBtn.textContent = 'Sending…'; }
 
-      var fs = g('wpFormState'), ss = g('wpSuccessState');
-      if (fs) fs.style.display = 'none';
-      if (ss) ss.style.display = 'block';
+      // Honeypot — bail silently if a bot filled the hidden field.
+      var hp = form.querySelector('[name="companyWebsite"]');
+      if (hp && hp.value.trim() !== '') { return; }
+
+      var payload = {
+        firstName: firstName.value.trim(),
+        lastName: lastName.value.trim(),
+        email: email.value.trim(),
+        phone: phone.value.trim(),
+        state: state.value,
+        consent: true,
+        sourcePage: document.title,
+        companyWebsite: ''
+      };
+
+      var fs = g('wpFormState'), ss = g('wpSuccessState'), es = g('wpErrorState');
+
+      fetch('/api/guide-requests', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('bad_status_' + res.status);
+          if (fs) fs.style.display = 'none';
+          if (es) es.style.display = 'none';
+          if (ss) ss.style.display = 'block';
+        })
+        .catch(function () {
+          if (fs) fs.style.display = 'none';
+          if (ss) ss.style.display = 'none';
+          if (es) es.style.display = 'block';
+        })
+        .finally(function () {
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = submitBtn.dataset.label || 'Send Me the Guide'; }
+        });
+    });
+
+    // "Back to the form" from the error state
+    document.addEventListener('click', function (e) {
+      if (!e.target || !e.target.closest || !e.target.closest('#wpRetryBtn')) return;
+      var g = function (id) { return document.getElementById(id); };
+      var fs = g('wpFormState'), es = g('wpErrorState');
+      if (es) es.style.display = 'none';
+      if (fs) fs.style.display = 'block';
     });
   })();
 </script>

@@ -6,6 +6,7 @@ declare global {
   var __thymosWaitlistPoolPromise: Promise<Pool> | undefined;
   var __thymosReferralsPoolPromise: Promise<Pool> | undefined;
   var __thymosHealthSystemsPoolPromise: Promise<Pool> | undefined;
+  var __thymosGuidePoolPromise: Promise<Pool> | undefined;
 }
 
 function requireEnv(name: string): string {
@@ -166,4 +167,16 @@ export function getHealthSystemsPool(): Promise<Pool> {
       createPrefixedPool("HEALTH_SYSTEMS");
   }
   return globalThis.__thymosHealthSystemsPoolPromise;
+}
+
+/**
+ * Same lazy/cached contract as {@link getPool}, but for the isolated
+ * `thymos_guide` database (dedicated `guide_app` user) — the "Send Me the
+ * Guide" lead-capture form on the Membership page.
+ */
+export function getGuidePool(): Promise<Pool> {
+  if (!globalThis.__thymosGuidePoolPromise) {
+    globalThis.__thymosGuidePoolPromise = createPrefixedPool("GUIDE");
+  }
+  return globalThis.__thymosGuidePoolPromise;
 }
