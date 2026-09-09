@@ -1,14 +1,18 @@
 #!/usr/bin/env bash
 #
 # Provision an ISOLATED database + de-privileged login role on the shared
-# `thymos-quiz-dev` Cloud SQL instance, then apply a schema file.
+# Cloud SQL instance (default `thymos-db` — the live instance since the
+# 2026-08-29 migration off the trial-flagged `thymos-quiz-dev`), then apply
+# a schema file.
 #
 # Generalised from db/provision-waitlist.sh. Used for every "marketing-site
 # form -> its own database" store (waitlist, provider referrals, ...).
 #
-#   NEW_DB=thymos_referrals NEW_USER=referrals_app SCHEMA_FILE=db/referrals-schema.sql \
+#   NEW_DB=thymos_guide NEW_USER=guide_app SCHEMA_FILE=db/guide-schema.sql \
 #   QUIZ_APP_PASSWORD=... NEW_USER_PASSWORD=... \
 #   bash db/provision-isolated-db.sh
+#
+# Override INSTANCE=... to target a different Cloud SQL instance.
 #
 # Prereqs:
 #   - `gcloud auth login` (interactive; token must be fresh)
@@ -23,8 +27,8 @@
 set -euo pipefail
 
 PROJECT="thymos-health"
-INSTANCE="thymos-quiz-dev"
-REGION="us-west2"
+INSTANCE="${INSTANCE:-thymos-db}"
+REGION="${REGION:-us-west2}"
 CONN="${PROJECT}:${REGION}:${INSTANCE}"
 PROXY_PORT="${PROXY_PORT:-5433}"
 
