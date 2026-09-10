@@ -106,6 +106,22 @@ const nextConfig: NextConfig = {
       { source: "/", destination: "/thymos-homepage.dc.html" },
     ];
   },
+  async redirects() {
+    return [
+      // Canonical host is www.thymoshealth.com (matches every <link rel=
+      // canonical>, og:url, and the sitemap). The apex also resolves 200 with
+      // no redirect, which splits crawl/ranking signals between two hosts, so
+      // 301 every apex request to the www host. `/.well-known/*` is excluded
+      // so Google-managed TLS renewal for the apex domain mapping is never
+      // redirected.
+      {
+        source: "/:path((?!\\.well-known/).*)",
+        has: [{ type: "host", value: "thymoshealth.com" }],
+        destination: "https://www.thymoshealth.com/:path",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
