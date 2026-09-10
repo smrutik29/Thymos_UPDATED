@@ -12,15 +12,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box}
 html{font-size:18px}
-body{margin:0;font-family:'DM Sans',sans-serif;color:#173f49;background:#f6f6f6;line-height:1.75;-webkit-font-smoothing:antialiased}
+body{margin:0;font-family:'DM Sans',sans-serif;color:#173f49;background:#f6f6f6;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .wrap{max-width:820px;margin:0 auto;padding:0 24px}
-.topbar{background:#034152}
-.topbar .wrap{display:flex;align-items:center;gap:10px;padding:16px 24px}
-.topbar a{color:#fff;text-decoration:none;font-weight:800;font-size:1rem;display:flex;align-items:center;gap:9px}
-.topbar img{height:24px;width:auto}
 main{padding:52px 0 72px}
 h1{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(2rem,5vw,2.6rem);line-height:1.1;margin:0 0 14px}
 .meta{font-family:'DM Mono',monospace;font-size:0.78rem;letter-spacing:.04em;color:#6b7c81;margin:0 0 6px;text-transform:uppercase}
@@ -32,16 +29,488 @@ li{margin-bottom:6px}
 a{color:#0077cc}
 .callout{background:#e1f5ee;border-left:3px solid #25a08c;border-radius:6px;padding:18px 22px;margin:22px 0}
 .callout p:last-child{margin-bottom:0}
-footer.legal{background:#034152;color:rgba(255,255,255,.62);font-size:.82rem}
-footer.legal .wrap{padding:26px 24px;display:flex;flex-wrap:wrap;gap:8px 14px;justify-content:center;text-align:center}
-footer.legal a{color:rgba(255,255,255,.82);text-decoration:none}
-footer.legal a:hover{color:#3ab7a0}
-@media(max-width:560px){footer.legal .wrap a{width:100%}}
+
+/* ===== Shared site navigation — matches the .dc.html marketing pages ===== */
+.site-nav{font-family:'Montserrat',sans-serif;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:20px clamp(16px,3vw,40px);background:#fff;border-bottom:1px solid #ddd;position:sticky;top:0;z-index:1000;gap:20px;color:#212121;line-height:1.6}
+.site-nav a{color:#333;text-decoration:none}
+.site-nav .nav-brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:20px;color:#1a1a1a;white-space:nowrap}
+.site-nav .nav-brand img{height:52px;width:auto}
+.site-nav .nav-desktop{display:flex;align-items:center;font-size:16px}
+.site-nav .nav-desktop.nav-links{gap:20px;flex-wrap:wrap}
+.site-nav .nav-desktop.actions{gap:16px}
+.site-nav .nav-desktop a:hover{color:#ea6047}
+.site-nav .nav-current{color:#ea6047;font-weight:600}
+.site-nav .nav-cta{padding:8px 16px;background:#ea6047;color:#fff;border-radius:8px;font-size:15px;font-weight:500}
+.site-nav .nav-cta:hover{background:#c14930;color:#fff}
+.site-nav .nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:32px;height:28px;background:none;border:none;cursor:pointer;padding:0}
+.site-nav .nav-burger span{width:24px;height:3px;background:#333;border-radius:2px}
+.site-nav .nav-dropdown{position:relative;padding-bottom:14px;margin-bottom:-14px}
+.site-nav .nav-dropdown-trigger{display:inline-flex;align-items:center;gap:5px}
+.site-nav .nav-dropdown-caret{width:9px;height:9px;flex-shrink:0;transition:transform .15s ease}
+.site-nav .nav-dropdown:hover .nav-dropdown-caret,.site-nav .nav-dropdown:focus-within .nav-dropdown-caret{transform:rotate(180deg)}
+.site-nav .nav-dropdown-menu{position:absolute;top:100%;left:0;background:#fff;border:1px solid #eee;border-radius:10px;box-shadow:0 12px 28px rgba(0,0,0,.14);min-width:190px;padding:8px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .15s ease,transform .15s ease,visibility .15s ease;z-index:1001}
+.site-nav .nav-dropdown:hover .nav-dropdown-menu,.site-nav .nav-dropdown:focus-within .nav-dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.site-nav .nav-dropdown-item{display:block;padding:9px 12px;border-radius:6px;color:#333;font-size:15px;white-space:nowrap}
+.site-nav .nav-dropdown-item:hover{background:#f8f5f0;color:#ea6047}
+.site-nav .nav-mobile{flex-basis:100%;flex-direction:column;gap:14px;padding-top:8px;font-size:16px}
+.site-nav .nav-mobile[hidden]{display:none}
+.site-nav .nav-mobile:not([hidden]){display:flex}
+.site-nav .nav-mobile details summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;color:#333}
+.site-nav .nav-mobile details summary::-webkit-details-marker{display:none}
+.site-nav .nav-mobile details[open] .nav-dropdown-caret{transform:rotate(180deg)}
+.site-nav .nav-mobile-menu{display:flex;flex-direction:column;gap:12px;padding:12px 0 2px 16px}
+@media(max-width:1080px){.site-nav .nav-desktop{display:none!important}.site-nav .nav-burger{display:flex}}
+@media(min-width:1081px){.site-nav .nav-mobile{display:none!important}}
+
+  /* ═══════════════════════════════════════════════════════
+     SITE FOOTER — shared across every marketing page.
+     Fully scoped under .site-footer (every selector below is
+     prefixed with it) so it can never bleed into this page's
+     own styles, and vice versa. Sizes are plain px (not the
+     source file's rem) so this drops in safely regardless of
+     whether this page sets a custom root font-size.
+  ═══════════════════════════════════════════════════════ */
+  .site-footer {
+    --sf-dark:     #182220;
+    --sf-dark-2:   #1f2b28;
+    --sf-teal:     #25a08c;
+    --sf-teal-m:   #3ab7a0;
+    --sf-white:    #ffffff;
+    --sf-line:     rgba(255,255,255,0.1);
+    --sf-muted:    rgba(255,255,255,0.68);
+
+    background: var(--sf-dark);
+    color: var(--sf-muted);
+    padding: 64px 24px 40px;
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .site-footer .footer-inner { max-width: 1240px; margin: 0 auto; }
+  .site-footer .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px; }
+
+  .site-footer .footer-col-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12.4px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sf-teal-m);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .site-footer .footer-col-label::before { content: ''; width: 18px; height: 1.5px; background: currentColor; flex-shrink: 0; }
+
+  .site-footer .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .site-footer .footer-links a { color: var(--sf-white); text-decoration: none; font-size: 18.4px; opacity: 0.85; transition: opacity 0.15s, color 0.15s; }
+  .site-footer .footer-links a:hover { opacity: 1; color: var(--sf-teal-m); }
+
+  .site-footer .footer-spacer { height: 30px; }
+
+  .site-footer .app-tagline { font-size: 17px; color: var(--sf-muted); margin-bottom: 20px; }
+  .site-footer .app-mockup { display: flex; justify-content: flex-start; padding: 20px 0 8px; margin-bottom: 4px; }
+  .site-footer .iphone-frame {
+    position: relative; width: 168px; aspect-ratio: 9 / 19.5;
+    background: linear-gradient(160deg, #4a4a4c, #2b2b2d 55%, #1c1c1e);
+    border-radius: 38px; padding: 7px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset, 0 1px 0 rgba(255,255,255,0.15) inset, 0 18px 40px rgba(0,0,0,0.55);
+  }
+  .site-footer .iphone-screen { position: relative; width: 100%; height: 100%; border-radius: 31px; overflow: hidden; background: #000; }
+  .site-footer .iphone-screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .site-footer .iphone-island { position: absolute; top: 9px; left: 50%; transform: translateX(-50%); width: 32%; height: 7px; background: #000; border-radius: 5px; z-index: 2; }
+  .site-footer .iphone-btn { position: absolute; background: #2b2b2d; box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset; }
+  .site-footer .iphone-btn.action  { left: -2.5px; top: 21%; width: 2.5px; height: 22px; border-radius: 2px 0 0 2px; }
+  .site-footer .iphone-btn.vol-up   { left: -2.5px; top: 31%; width: 2.5px; height: 30px; border-radius: 2px 0 0 2px; }
+  .site-footer .iphone-btn.vol-down { left: -2.5px; top: 41.5%; width: 2.5px; height: 30px; border-radius: 2px 0 0 2px; }
+  .site-footer .iphone-btn.power    { right: -2.5px; top: 30%; width: 2.5px; height: 46px; border-radius: 0 2px 2px 0; }
+
+  .site-footer .footer-legal-row {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px;
+    margin-top: 56px; padding-top: 26px; border-top: 1px solid var(--sf-line); text-align: center;
+  }
+  .site-footer .footer-legal-row a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 15.6px; transition: color 0.15s; }
+  .site-footer .footer-legal-row a:hover { color: var(--sf-teal-m); }
+  .site-footer .footer-legal-sep { color: rgba(255,255,255,0.25); font-size: 15.6px; }
+  .site-footer .footer-legal-copyright { font-size: 15.6px; color: rgba(255,255,255,0.4); }
+  @media (max-width: 560px) {
+    .site-footer .footer-legal-row { gap: 8px 10px; }
+    .site-footer .footer-legal-sep { display: none; }
+    .site-footer .footer-legal-row a, .site-footer .footer-legal-copyright { width: 100%; }
+  }
+
+  .site-footer .subheading { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 19px; color: var(--sf-white); margin-bottom: 14px; }
+  .site-footer .footer-form { display: flex; flex-direction: column; gap: 10px; }
+  .site-footer .footer-form input[type="email"],
+  .site-footer .footer-form input[type="search"] {
+    font-family: 'DM Sans', sans-serif; font-size: 17.6px; color: var(--sf-white);
+    background: var(--sf-dark-2); border: 1.5px solid var(--sf-line); border-radius: 10px;
+    padding: 12px 14px; width: 100%; transition: border-color 0.15s;
+  }
+  .site-footer .footer-form input::placeholder { color: rgba(255,255,255,0.4); }
+  .site-footer .footer-form input:focus { outline: none; border-color: var(--sf-teal); }
+
+  .site-footer .search-input-wrap { position: relative; }
+  .site-footer .search-input-wrap input[type="search"] { padding-left: 40px; }
+  .site-footer .search-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: rgba(255,255,255,0.45); pointer-events: none; }
+
+  .site-footer .footer-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 16.4px; font-weight: 800;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    background: var(--sf-teal); color: white; border: none; cursor: pointer;
+    border-radius: 50px; padding: 12px 20px; transition: background 0.15s, transform 0.1s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .site-footer .footer-btn:hover { background: var(--sf-teal-m); }
+  .site-footer .footer-btn:active { transform: scale(0.98); }
+  .site-footer .footer-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+  .site-footer .form-note { display: none; font-size: 15.6px; color: var(--sf-teal-m); margin-top: 2px; line-height: 1.5; }
+  .site-footer .form-note.error { color: #ff8a75; }
+  .site-footer .form-note.visible { display: block; }
+
+  .site-footer .social-row { display: flex; gap: 12px; margin-top: 4px; }
+  .site-footer .social-icon {
+    display: flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--sf-teal); border: 1px solid var(--sf-teal);
+    color: var(--sf-white); transition: background 0.15s, border-color 0.15s;
+  }
+  .site-footer .social-icon:hover { background: var(--sf-teal-m); border-color: var(--sf-teal-m); }
+  .site-footer .social-icon svg { width: 18px; height: 18px; }
+
+  @media (max-width: 980px) {
+    .site-footer .footer-grid { grid-template-columns: repeat(2, 1fr); row-gap: 48px; }
+  }
+  @media (max-width: 560px) {
+    .site-footer .footer-grid { grid-template-columns: 1fr; }
+    .site-footer { padding: 48px 20px 32px; }
+  }
+
+  /* ─── "Your Privacy Choices" modal (footer) ───────────────────────── */
+  :root {
+    --privacy-deep: #034152;
+    --privacy-teal: #25a08c;
+    --privacy-coral: #f25630;
+    --privacy-cream: #f8f5f0;
+    --privacy-card: #fbfaf6;
+    --privacy-border: rgba(3, 65, 82, 0.14);
+    --privacy-text-soft: rgba(3, 65, 82, 0.66);
+    --privacy-overlay: rgba(18, 28, 26, 0.55);
+  }
+  .privacy-choices-link {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8125rem;
+    color: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+    opacity: 0.85;
+    transition: opacity 0.15s ease;
+  }
+  .privacy-choices-link:hover,
+  .privacy-choices-link:focus-visible {
+    opacity: 1;
+  }
+  .privacy-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: var(--privacy-overlay);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+  .privacy-overlay.is-open {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+  }
+  .privacy-modal {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    background: var(--privacy-cream);
+    border-radius: 14px;
+    padding: 32px 32px 28px;
+    box-shadow: 0 24px 60px rgba(3, 65, 82, 0.28);
+    transform: translateY(10px) scale(0.97);
+    transition: transform 0.22s ease;
+  }
+  .privacy-overlay.is-open .privacy-modal {
+    transform: translateY(0) scale(1);
+  }
+  .privacy-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    border-radius: 8px;
+    color: var(--privacy-deep);
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .privacy-close svg {
+    width: 18px;
+    height: 18px;
+  }
+  .privacy-close:hover,
+  .privacy-close:focus-visible {
+    background: rgba(3, 65, 82, 0.08);
+  }
+  .privacy-title {
+    margin: 0 40px 12px 0;
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: var(--privacy-deep);
+  }
+  .privacy-desc {
+    margin: 0 0 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--privacy-text-soft);
+  }
+  .privacy-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .privacy-card {
+    border: 1px solid var(--privacy-border);
+    background: var(--privacy-card);
+    border-radius: 10px;
+    padding: 14px 18px;
+    transition: border-color 0.15s ease;
+  }
+  .privacy-card:focus-visible,
+  .privacy-card:hover {
+    border-color: var(--privacy-teal);
+    outline: none;
+  }
+  .privacy-card h3 {
+    margin: 0 0 4px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--privacy-deep);
+  }
+  .privacy-card p {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--privacy-text-soft);
+  }
+  .privacy-card--essential {
+    border: 1px solid var(--privacy-border);
+    padding: 14px 18px;
+  }
+  .privacy-footer-row {
+    border-top: 1px solid var(--privacy-border);
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .privacy-toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .privacy-toggle-label {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: var(--privacy-deep);
+  }
+  .privacy-toggle {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+    border-radius: 999px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    background: #d8d3c8;
+    transition: background 0.2s ease;
+  }
+  .privacy-toggle[aria-checked="true"] {
+    background: var(--privacy-teal);
+  }
+  .privacy-toggle-knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--privacy-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.2s ease, background 0.2s ease;
+  }
+  .privacy-toggle-knob svg {
+    width: 10px;
+    height: 10px;
+  }
+  .privacy-toggle[aria-checked="true"] .privacy-toggle-knob {
+    left: 22px;
+    background: #ffffff;
+  }
+  .privacy-toggle[aria-checked="true"] .privacy-toggle-knob svg {
+    color: var(--privacy-teal);
+  }
+  .privacy-toggle:focus-visible {
+    outline: 2px solid var(--privacy-teal);
+    outline-offset: 3px;
+  }
+  .privacy-ok {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--privacy-deep);
+    background: transparent;
+    border: 1.5px solid var(--privacy-deep);
+    border-radius: 999px;
+    padding: 10px 40px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .privacy-ok:hover,
+  .privacy-ok:focus-visible {
+    background: var(--privacy-coral);
+    border-color: var(--privacy-coral);
+    color: #ffffff;
+  }
+  @media (max-width: 480px) {
+    .privacy-modal {
+      padding: 26px 20px 22px;
+    }
+    .privacy-toggle-row {
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .privacy-overlay,
+    .privacy-modal,
+    .privacy-toggle,
+    .privacy-toggle-knob,
+    .privacy-close,
+    .privacy-ok,
+    .privacy-card {
+      transition: none !important;
+    }
+  }
 </style>
 <link rel="stylesheet" href="/mobile-fixes.css">
 </head>
 <body>
-<header class="topbar"><div class="wrap"><a href="/"><img src="/img/thymos-favicon.png" alt=""> Thymos Health</a></div></header>
+<nav class="site-nav" aria-label="Primary">
+  <a class="nav-brand" href="thymos-homepage.dc.html">
+    <img src="img/thymos-logo-flames.png" alt="Thymos Health">
+    <span>Thymos Health</span>
+  </a>
+  <div class="nav-desktop nav-links">
+    <div class="nav-dropdown">
+      <a href="thymos-how-we-work.dc.html" class="nav-dropdown-trigger">How We Work<svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="nav-dropdown-menu">
+        <a href="thymos-how-we-work.dc.html" class="nav-dropdown-item">How We Work</a>
+        <a href="thymos-membership.dc.html" class="nav-dropdown-item">Membership</a>
+      </div>
+    </div>
+    <div class="nav-dropdown">
+      <a href="thymos-proven-approach.dc.html" class="nav-dropdown-trigger">Proven Approach<svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="nav-dropdown-menu">
+        <a href="thymos-proven-approach.dc.html" class="nav-dropdown-item">Proven Approach</a>
+        <a href="patient-cases.html" class="nav-dropdown-item">Patient Cases</a>
+        <a href="resources.html" class="nav-dropdown-item">Resources</a>
+      </div>
+    </div>
+    <a href="thymos-conditions-treated.dc.html">Conditions Treated</a>
+    <div class="nav-dropdown">
+      <a href="thymos-for-employers.dc.html" class="nav-dropdown-trigger">For Partners<svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="nav-dropdown-menu">
+        <a href="thymos-for-employers.dc.html" class="nav-dropdown-item">Employers</a>
+        <a href="thymos-health-systems.dc.html" class="nav-dropdown-item">Health Systems</a>
+        <a href="thymos-providers.dc.html" class="nav-dropdown-item">Providers</a>
+      </div>
+    </div>
+    <div class="nav-dropdown">
+      <a href="thymos-about-us.dc.html" class="nav-dropdown-trigger">About Us<svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="nav-dropdown-menu">
+        <a href="thymos-about-us.dc.html" class="nav-dropdown-item">About Us</a>
+        <a href="contact-us.html" class="nav-dropdown-item">Contact Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="nav-desktop actions">
+    <a href="#" data-waitlist-trigger="1">Sign Up</a>
+    <a class="nav-cta" href="/quiz">Take Quiz</a>
+  </div>
+  <button class="nav-burger" id="navBurger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <div class="nav-mobile" id="navMobile" hidden>
+    <details>
+      <summary><span>How We Work</span><svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <div class="nav-mobile-menu">
+        <a href="thymos-how-we-work.dc.html">How We Work</a>
+        <a href="thymos-membership.dc.html">Membership</a>
+      </div>
+    </details>
+    <details>
+      <summary><span>Proven Approach</span><svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <div class="nav-mobile-menu">
+        <a href="thymos-proven-approach.dc.html">Proven Approach</a>
+        <a href="patient-cases.html">Patient Cases</a>
+        <a href="resources.html">Resources</a>
+      </div>
+    </details>
+    <a href="thymos-conditions-treated.dc.html">Conditions Treated</a>
+    <details>
+      <summary><span>For Partners</span><svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <div class="nav-mobile-menu">
+        <a href="thymos-for-employers.dc.html">Employers</a>
+        <a href="thymos-health-systems.dc.html">Health Systems</a>
+        <a href="thymos-providers.dc.html">Providers</a>
+      </div>
+    </details>
+    <details>
+      <summary><span>About Us</span><svg class="nav-dropdown-caret" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <div class="nav-mobile-menu">
+        <a href="thymos-about-us.dc.html">About Us</a>
+        <a href="contact-us.html">Contact Us</a>
+      </div>
+    </details>
+    <a href="#" data-waitlist-trigger="1">Sign Up</a>
+    <a class="nav-cta" href="/quiz" style="align-self:flex-start">Take Quiz</a>
+  </div>
+</nav>
 <main><div class="wrap">
 <p class="meta">Your Account</p>
 <h1>Account Deletion</h1>
@@ -69,13 +538,376 @@ footer.legal a:hover{color:#3ab7a0}
 <h2>Questions</h2>
 <p>Contact the Thymos Health Privacy Office at <!--email_off--><a href="mailto:privacy&#64;thymoshealth.com">privacy&#64;thymoshealth.com</a><!--/email_off--> or (415) 379-0745. See also our <a href="thymos-privacy-policy.dc.html">Privacy Policy</a>.</p>
 </div></main>
-<footer class="legal"><div class="wrap">
-  <a href="thymos-terms-of-service.dc.html">Terms &amp; Conditions</a>
-  <a href="thymos-privacy-policy.dc.html">Privacy Policy</a>
-  <a href="notice-of-privacy-practices.html">Notice of Privacy Practices</a>
-  <a href="washington-consumer-health-data-privacy-policy.html">Washington Consumer Health Data Privacy Policy</a>
-  <a href="account-deletion.html">Account Deletion</a>
-  <span>&copy; 2026 Thymos Health. All rights reserved.</span>
-</div></footer>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+
+        <!-- Column 1: App download -->
+        <div class="footer-col">
+          <div class="footer-col-label">Start Today</div>
+          <div class="app-tagline">Total Care. Totally Different.<br>Download Thymos App.</div>
+
+          <div class="app-mockup">
+            <div class="iphone-frame">
+              <div class="iphone-screen">
+                <img src="img/thymos-footer-app-mockup.jpg" alt="Thymos Health app screen">
+                <div class="iphone-island"></div>
+              </div>
+              <div class="iphone-btn action"></div>
+              <div class="iphone-btn vol-up"></div>
+              <div class="iphone-btn vol-down"></div>
+              <div class="iphone-btn power"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2: Explore + newsletter -->
+        <div class="footer-col">
+          <div class="footer-col-label">Explore</div>
+          <ul class="footer-links">
+            <li><a href="thymos-how-we-work.dc.html">Thymos Journey</a></li>
+            <li><a href="thymos-membership.dc.html">Membership</a></li>
+            <li><a href="thymos-proven-approach.dc.html">Proven Approach</a></li>
+            <li><a href="thymos-conditions-treated.dc.html">150+ Diseases Treated</a></li>
+          </ul>
+
+          <div class="footer-spacer"></div>
+          <div class="footer-spacer"></div>
+
+          <div class="subheading">Join #ThymosHealth Community!</div>
+          <form class="footer-form" id="footerNewsletterForm" novalidate>
+            <input type="text" name="hp_field_9f3a" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute; left:-9999px; height:0; width:0; opacity:0;">
+            <input type="email" id="newsletterEmail" name="email" placeholder="Email address" required autocomplete="email">
+            <button type="submit" class="footer-btn" id="footerNewsletterBtn">Let's Work Together</button>
+            <div class="form-note" id="footerNewsletterOk">Thanks for joining — keep an eye on your inbox.</div>
+            <div class="form-note error" id="footerNewsletterErr">Something went wrong — please try again.</div>
+          </form>
+        </div>
+
+        <!-- Column 3: About + search -->
+        <div class="footer-col">
+          <div class="footer-col-label">About Thymos</div>
+          <ul class="footer-links">
+            <li><a href="thymos-about-us.dc.html">Our Story</a></li>
+            <li><a href="thymos-how-we-work.dc.html#faq">Help Center</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+          </ul>
+
+          <div class="footer-spacer"></div>
+          <div class="footer-spacer"></div>
+
+          <form class="footer-form" id="footerSearchForm">
+            <div class="search-input-wrap">
+              <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <circle cx="11" cy="11" r="7"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="search" id="siteSearch" name="q" placeholder="Search" required>
+            </div>
+            <button type="submit" class="footer-btn">Search our site</button>
+          </form>
+        </div>
+
+        <!-- Column 4: Partner + social -->
+        <div class="footer-col">
+          <div class="footer-col-label">Partner with Thymos</div>
+          <ul class="footer-links">
+            <li><a href="thymos-for-employers.dc.html">For Employers</a></li>
+            <li><a href="thymos-health-systems.dc.html">For Health Systems</a></li>
+            <li><a href="thymos-providers.dc.html">For Providers</a></li>
+          </ul>
+
+          <div class="footer-spacer"></div>
+          <div class="footer-spacer"></div>
+
+          <div class="subheading">Follow Thymos:</div>
+          <div class="social-row">
+            <a class="social-icon" href="https://www.instagram.com/payal.bhandarimd/" target="_blank" rel="noopener" aria-label="Thymos Health on Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                <circle cx="12" cy="12" r="4"></circle>
+                <circle cx="17.2" cy="6.8" r="1"></circle>
+              </svg>
+            </a>
+            <a class="social-icon" href="https://www.facebook.com/doctorpbhandari/" target="_blank" rel="noopener" aria-label="Thymos Health on Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 3h-2a5 5 0 0 0-5 5v3H6v4h2v6h4v-6h3l1-4h-4V8a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a class="social-icon" href="https://www.linkedin.com/company/thymos-health/" target="_blank" rel="noopener" aria-label="Thymos Health on LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+                <line x1="7.5" y1="9.5" x2="7.5" y2="16.5"></line>
+                <circle cx="7.5" cy="6.7" r="1"></circle>
+                <path d="M11.5 16.5v-4a2.3 2.3 0 0 1 4.6 0v4"></path>
+                <line x1="11.5" y1="10" x2="11.5" y2="16.5"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-legal-row">
+        <a href="thymos-terms-of-service.dc.html">Terms &amp; Conditions</a>
+        <span class="footer-legal-sep">|</span>
+        <a href="thymos-privacy-policy.dc.html">Privacy Policy</a>
+        <span class="footer-legal-sep">|</span>
+        <a href="notice-of-privacy-practices.html">Notice of Privacy Practices</a>
+        <span class="footer-legal-sep">|</span>
+        <a href="washington-consumer-health-data-privacy-policy.html">Washington Consumer Health Data Privacy Policy</a>
+        <span class="footer-legal-sep">|</span>
+        <a href="account-deletion.html">Account Deletion</a>
+        <span class="footer-legal-sep">|</span>
+        <a href="#" class="privacy-choices-link" id="privacyChoicesTrigger">Your Privacy Choices</a>
+        <span class="footer-legal-sep">|</span>
+        <span class="footer-legal-copyright">&copy; 2026 Thymos Health. All rights reserved.</span>
+      </div>
+
+    </div>
+  </footer>
+<div class="privacy-overlay" id="privacyOverlay" aria-hidden="true">
+  <div
+    class="privacy-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="privacyTitle"
+    aria-describedby="privacyDesc"
+  >
+    <button class="privacy-close" id="privacyClose" aria-label="Close privacy settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="5" y1="5" x2="19" y2="19"></line>
+        <line x1="19" y1="5" x2="5" y2="19"></line>
+      </svg>
+    </button>
+
+    <h2 id="privacyTitle" class="privacy-title">Privacy Settings</h2>
+    <p id="privacyDesc" class="privacy-desc">
+      Here you can find information about the categories of personal information we collect and the purposes for which information may be used.
+    </p>
+
+    <div class="privacy-categories">
+      <div class="privacy-card" tabindex="0">
+        <h3>Marketing</h3>
+        <p>These technologies are used by advertisers to serve ads that are relevant to your interests.</p>
+      </div>
+
+      <div class="privacy-card" tabindex="0">
+        <h3>Functional</h3>
+        <p>These technologies enable us to analyze usage behavior in order to measure and improve performance.</p>
+      </div>
+
+      <div class="privacy-card privacy-card--essential" tabindex="0">
+        <h3>Essential</h3>
+        <p>These technologies are required to activate the core functionality of our service.</p>
+      </div>
+    </div>
+
+    <div class="privacy-footer-row">
+      <div class="privacy-toggle-row">
+        <span class="privacy-toggle-label" id="privacyToggleLabel">Do not sell my personal information</span>
+        <button
+          class="privacy-toggle"
+          id="privacyToggle"
+          role="switch"
+          aria-checked="false"
+          aria-labelledby="privacyToggleLabel"
+        >
+          <span class="privacy-toggle-knob">
+            <svg class="privacy-toggle-icon-off" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round">
+              <line x1="5" y1="5" x2="19" y2="19"></line>
+              <line x1="19" y1="5" x2="5" y2="19"></line>
+            </svg>
+            <svg class="privacy-toggle-icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" style="display:none;">
+              <polyline points="4 12 9 17 20 6"></polyline>
+            </svg>
+          </span>
+        </button>
+      </div>
+
+      <button class="privacy-ok" id="privacyOk">OK</button>
+    </div>
+  </div>
+</div>
+<script>
+  (function () {
+    var overlay = document.getElementById('privacyOverlay');
+    var modal = overlay.querySelector('.privacy-modal');
+    var closeBtn = document.getElementById('privacyClose');
+    var okBtn = document.getElementById('privacyOk');
+    var toggle = document.getElementById('privacyToggle');
+    var toggleIconOff = toggle.querySelector('.privacy-toggle-icon-off');
+    var toggleIconOn = toggle.querySelector('.privacy-toggle-icon-on');
+    var lastFocused = null;
+    var STORAGE_KEY = 'thymos_do_not_sell';
+    var COOKIE_NAME = 'thymos_do_not_sell';
+    var COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
+
+    function readCookie(name) {
+      var match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+      return match ? decodeURIComponent(match[1]) : null;
+    }
+
+    function writeCookie(name, value) {
+      document.cookie = name + '=' + encodeURIComponent(value) + '; path=/; max-age=' + COOKIE_MAX_AGE + '; SameSite=Lax';
+    }
+
+    // Cookie is the source of truth other scripts on the site would check
+    // before firing marketing/analytics tags; localStorage is just a fallback
+    // for browsers/contexts where cookie writes are blocked.
+    function persistChoice(isOn) {
+      writeCookie(COOKIE_NAME, String(isOn));
+      try {
+        localStorage.setItem(STORAGE_KEY, String(isOn));
+      } catch (e) {
+        /* localStorage unavailable — cookie still carries the preference */
+      }
+    }
+
+    function setToggleState(isOn) {
+      toggle.setAttribute('aria-checked', isOn ? 'true' : 'false');
+      toggleIconOff.style.display = isOn ? 'none' : 'block';
+      toggleIconOn.style.display = isOn ? 'block' : 'none';
+    }
+
+    // Restore any saved preference on load
+    var saved = readCookie(COOKIE_NAME);
+    if (saved === null) {
+      try {
+        saved = localStorage.getItem(STORAGE_KEY);
+      } catch (e) {
+        saved = null;
+      }
+    }
+    setToggleState(saved === 'true');
+
+    var closeTimer = null;
+
+    function openModal(e) {
+      if (e) e.preventDefault();
+      if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+      lastFocused = document.activeElement;
+      overlay.style.display = 'flex';
+      // Force layout so the browser registers the display change before the
+      // class toggle, otherwise opacity/visibility jump straight to their
+      // end state instead of transitioning (display:none can't animate).
+      overlay.offsetHeight;
+      overlay.classList.add('is-open');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+      document.addEventListener('keydown', onKeydown);
+    }
+
+    function closeModal() {
+      overlay.classList.remove('is-open');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onKeydown);
+      if (lastFocused) lastFocused.focus();
+      if (closeTimer) clearTimeout(closeTimer);
+      closeTimer = setTimeout(function () { overlay.style.display = 'none'; }, 220);
+    }
+
+    function onKeydown(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+        return;
+      }
+      // simple focus trap
+      if (e.key === 'Tab') {
+        var focusable = modal.querySelectorAll(
+          'button, [href], [tabindex]:not([tabindex="-1"])'
+        );
+        var first = focusable[0];
+        var last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+
+    // Delegated (not a direct reference) because the footer that
+    // contains the trigger is re-rendered by the page's component
+    // runtime, which would silently orphan a directly-bound listener.
+    document.addEventListener('click', function (e) {
+      var el = e.target.closest && e.target.closest('#privacyChoicesTrigger');
+      if (el) openModal(e);
+    });
+    closeBtn.addEventListener('click', closeModal);
+    okBtn.addEventListener('click', function () {
+      persistChoice(toggle.getAttribute('aria-checked') === 'true');
+      closeModal();
+    });
+
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeModal();
+    });
+
+    toggle.addEventListener('click', function () {
+      var next = toggle.getAttribute('aria-checked') !== 'true';
+      setToggleState(next);
+      persistChoice(next);
+    });
+  })();
+</script>
+<script>
+(function () {
+  var f = document.getElementById('footerNewsletterForm');
+  if (!f) return;
+  var btn = document.getElementById('footerNewsletterBtn');
+  var ok  = document.getElementById('footerNewsletterOk');
+  var err = document.getElementById('footerNewsletterErr');
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    ok.classList.remove('visible');
+    err.classList.remove('visible');
+    if (!f.checkValidity()) { f.reportValidity(); return; }
+    if (f.hp_field_9f3a.value.trim() !== '') { return; }
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    fetch('/api/newsletter-signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: f.email.value, sourcePage: document.title, companyWebsite: f.hp_field_9f3a.value })
+    })
+      .then(function (r) {
+        if (!r.ok) throw new Error('bad_status');
+        btn.disabled = false; btn.textContent = "Let's Work Together";
+        f.reset(); ok.classList.add('visible');
+      })
+      .catch(function () {
+        btn.disabled = false; btn.textContent = "Let's Work Together";
+        err.classList.add('visible');
+      });
+  });
+})();
+(function () {
+  var f = document.getElementById('footerSearchForm');
+  if (!f) return;
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var q = f.q.value;
+    var r = window.thymosSiteSearch ? window.thymosSiteSearch(q) : null;
+    if (r && r.url) { window.location.href = r.url; }
+  });
+})();
+(function () {
+  var b = document.getElementById('navBurger');
+  var m = document.getElementById('navMobile');
+  if (!b || !m) return;
+  b.addEventListener('click', function () {
+    var willOpen = m.hasAttribute('hidden');
+    if (willOpen) { m.removeAttribute('hidden'); } else { m.setAttribute('hidden', ''); }
+    b.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+  });
+})();
+</script>
+<script src="site-search.js" defer></script>
+<script src="waitlist-modal.js?v=2" defer></script>
 </body>
 </html>
