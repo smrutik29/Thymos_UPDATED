@@ -83,8 +83,8 @@ gcloud run deploy thymos-quiz-app \
   --region us-west2 \
   --service-account thymos-quiz-app@thymos-health.iam.gserviceaccount.com \
   --allow-unauthenticated \
-  --set-env-vars DB_NAME=thymos_quiz,DB_USER=quiz_app,INSTANCE_CONNECTION_NAME=thymos-health:us-west2:thymos-db,WAITLIST_DB_NAME=thymos_waitlist,WAITLIST_DB_USER=waitlist_app,REFERRALS_DB_NAME=thymos_referrals,REFERRALS_DB_USER=referrals_app,HEALTH_SYSTEMS_DB_NAME=thymos_health_systems,HEALTH_SYSTEMS_DB_USER=health_systems_app,GUIDE_DB_NAME=thymos_guide,GUIDE_DB_USER=guide_app,NEXT_PUBLIC_TURNSTILE_SITE_KEY=0x4AAAAAAEgd99jX8gK0sp_v \
-  --set-secrets DB_PASSWORD=quiz-db-password:latest,WAITLIST_DB_PASSWORD=waitlist-db-password:latest,REFERRALS_DB_PASSWORD=referrals-db-password:latest,HEALTH_SYSTEMS_DB_PASSWORD=health-systems-db-password:latest,GUIDE_DB_PASSWORD=guide-db-password:latest,TURNSTILE_SECRET_KEY=turnstile-secret-key:latest,SUBMISSION_TOKEN_SECRET=submission-token-secret:latest
+  --set-env-vars DB_NAME=thymos_quiz,DB_USER=quiz_app,INSTANCE_CONNECTION_NAME=thymos-health:us-west2:thymos-db,WAITLIST_DB_NAME=thymos_waitlist,WAITLIST_DB_USER=waitlist_app,REFERRALS_DB_NAME=thymos_referrals,REFERRALS_DB_USER=referrals_app,HEALTH_SYSTEMS_DB_NAME=thymos_health_systems,HEALTH_SYSTEMS_DB_USER=health_systems_app,GUIDE_DB_NAME=thymos_guide,GUIDE_DB_USER=guide_app,RESOURCE_DB_NAME=thymos_resources,RESOURCE_DB_USER=resource_app,NEXT_PUBLIC_TURNSTILE_SITE_KEY=0x4AAAAAAEgd99jX8gK0sp_v \
+  --set-secrets DB_PASSWORD=quiz-db-password:latest,WAITLIST_DB_PASSWORD=waitlist-db-password:latest,REFERRALS_DB_PASSWORD=referrals-db-password:latest,HEALTH_SYSTEMS_DB_PASSWORD=health-systems-db-password:latest,GUIDE_DB_PASSWORD=guide-db-password:latest,RESOURCE_DB_PASSWORD=resource-db-password:latest,TURNSTILE_SECRET_KEY=turnstile-secret-key:latest,SUBMISSION_TOKEN_SECRET=submission-token-secret:latest
 ```
 
 **Turnstile (CAPTCHA) + submission token** — create the two secrets before the
@@ -112,12 +112,13 @@ Secret Manager entry. Until `TURNSTILE_SECRET_KEY` reaches the running service,
 verification is skipped server-side (honeypot + rate-limit still apply) — the
 `--set-secrets` line above wires it in.
 
-The waitlist, provider-referral, health-system-analysis, and "Send Me the
-Guide" forms each store to their own isolated database (`thymos_waitlist`,
-`thymos_referrals`, `thymos_health_systems`, `thymos_guide`) on the **same**
+The waitlist, provider-referral, health-system-analysis, "Send Me the
+Guide", and Resources-page "Get instant access" forms each store to their
+own isolated database (`thymos_waitlist`, `thymos_referrals`,
+`thymos_health_systems`, `thymos_guide`, `thymos_resources`) on the **same**
 Cloud SQL instance, each via a dedicated de-privileged user (`waitlist_app`,
-`referrals_app`, `health_systems_app`, `guide_app`), so no extra
-`INSTANCE_CONNECTION_NAME` is needed — `src/lib/db/client.ts` reuses it.
+`referrals_app`, `health_systems_app`, `guide_app`, `resource_app`), so no
+extra `INSTANCE_CONNECTION_NAME` is needed — `src/lib/db/client.ts` reuses it.
 Provision each once with `db/provision-isolated-db.sh`, e.g.:
 `NEW_DB=thymos_guide NEW_USER=guide_app
 SCHEMA_FILE=db/guide-schema.sql QUIZ_APP_PASSWORD=… NEW_USER_PASSWORD=…
@@ -131,6 +132,18 @@ The `guide-db-password` secret must exist before the deploy that wires it:
 printf '%s' 'THE_GUIDE_APP_PASSWORD' | gcloud secrets create guide-db-password \
   --project thymos-health --data-file=-
 gcloud secrets add-iam-policy-binding guide-db-password --project thymos-health \
+  --member="serviceAccount:thymos-quiz-app@thymos-health.iam.gserviceaccount.com" \
+  --role="roles/secretmanager.secretAccessor"
+```
+
+Likewise `resource-db-password` for the `thymos_resources` store — provision it
+with `NEW_DB=thymos_resources NEW_USER=resource_app
+SCHEMA_FILE=db/resource-schema.sql NEW_USER_PASSWORD=… bash
+db/provision-isolated-db.sh`, then:
+```sh
+printf '%s' 'THE_RESOURCE_APP_PASSWORD' | gcloud secrets create resource-db-password \
+  --project thymos-health --data-file=-
+gcloud secrets add-iam-policy-binding resource-db-password --project thymos-health \
   --member="serviceAccount:thymos-quiz-app@thymos-health.iam.gserviceaccount.com" \
   --role="roles/secretmanager.secretAccessor"
 ```

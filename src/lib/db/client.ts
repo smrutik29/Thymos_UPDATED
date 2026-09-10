@@ -7,6 +7,7 @@ declare global {
   var __thymosReferralsPoolPromise: Promise<Pool> | undefined;
   var __thymosHealthSystemsPoolPromise: Promise<Pool> | undefined;
   var __thymosGuidePoolPromise: Promise<Pool> | undefined;
+  var __thymosResourcePoolPromise: Promise<Pool> | undefined;
 }
 
 function requireEnv(name: string): string {
@@ -179,4 +180,17 @@ export function getGuidePool(): Promise<Pool> {
     globalThis.__thymosGuidePoolPromise = createPrefixedPool("GUIDE");
   }
   return globalThis.__thymosGuidePoolPromise;
+}
+
+/**
+ * Same lazy/cached contract as {@link getPool}, but for the isolated
+ * `thymos_resources` database (dedicated `resource_app` user) — the
+ * "Get instant access" lead form behind both Featured Resources on the
+ * public Resources page.
+ */
+export function getResourcePool(): Promise<Pool> {
+  if (!globalThis.__thymosResourcePoolPromise) {
+    globalThis.__thymosResourcePoolPromise = createPrefixedPool("RESOURCE");
+  }
+  return globalThis.__thymosResourcePoolPromise;
 }
