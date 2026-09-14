@@ -82,10 +82,16 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      // The hand-written page scripts change occasionally — a day is plenty.
+      // The hand-written page scripts change occasionally. A flat 24h cache
+      // meant a change could take up to a day to reach returning visitors
+      // (no filename hash/version to bust it) regardless of how many times
+      // we deploy or purge Cloudflare's edge cache — traced live 2026-09-13.
+      // `no-cache` still lets browsers/Cloudflare cache the bytes, but forces
+      // a conditional revalidation (cheap 304 if unchanged) on every request,
+      // so a real change reaches everyone on their next load.
       {
         source: "/:file(support|site-search|waitlist-modal|video-autoplay-fix|testimonial-nav|turnstile-render-fix).js",
-        headers: [{ key: "Cache-Control", value: "public, max-age=86400" }],
+        headers: [{ key: "Cache-Control", value: "public, no-cache" }],
       },
       // Same-origin-framing override for the pages employer-pitch.html embeds
       // as iframes — placed after the general /:path* rule above so these
