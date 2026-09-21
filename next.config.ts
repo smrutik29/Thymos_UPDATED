@@ -87,6 +87,25 @@ const nextConfig: NextConfig = {
         source: "/:file(support|site-search|waitlist-modal|video-autoplay-fix|testimonial-nav|turnstile-render-fix).js",
         headers: [{ key: "Cache-Control", value: "public, max-age=86400" }],
       },
+      // Universal Links (iOS) / App Links (Android) association files for the
+      // refer-a-friend share links (/r/<CODE>, ADR-0006). Apple fetches the
+      // extension-less AASA file and requires application/json with no
+      // redirect; Next would otherwise serve it as application/octet-stream.
+      // Short cache so a fingerprint/appID change propagates within the hour.
+      {
+        source: "/.well-known/apple-app-site-association",
+        headers: [
+          { key: "Content-Type", value: "application/json" },
+          { key: "Cache-Control", value: "public, max-age=3600" },
+        ],
+      },
+      {
+        source: "/.well-known/assetlinks.json",
+        headers: [
+          { key: "Content-Type", value: "application/json" },
+          { key: "Cache-Control", value: "public, max-age=3600" },
+        ],
+      },
       // Same-origin-framing override for the pages employer-pitch.html embeds
       // as iframes — placed after the general /:path* rule above so these
       // headers win for these specific paths.

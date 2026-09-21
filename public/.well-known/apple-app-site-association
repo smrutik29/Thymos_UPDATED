@@ -1,0 +1,19 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "BZ79WW8V27.com.thymos",
+          "BZ79WW8V27.com.thymos.staging",
+          "BZ79WW8V27.com.thymos.dev"
+        ],
+        "components": [
+          {
+            "/": "/r/*",
+            "comment": "Refer-a-friend share links (ADR-0006). The app parks the code for checkout; nothing else on this site opens the app."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -209,6 +209,39 @@ curl -s -o /dev/null -w '%{http_code}\n' https://<service-url>/
 curl -s -o /dev/null -w '%{http_code}\n' https://<service-url>/quiz
 ```
 
+## Refer-a-friend landing page (`/r/<CODE>`)
+
+The patient referral share link (`https://thymoshealth.com/r/<CODE>`, ADR-0006)
+lands on `src/app/r/[code]/page.tsx`. It is a plain server-rendered page: no
+database, no call to `thymos-backend`. Three things to know when deploying:
+
+- **Amount copy.** The page shows "$50 off" by default. The real amounts live in
+  the backend's `referral_programs` row; if Thymos changes the program, set
+  `REFERRAL_RECIPIENT_DISCOUNT` / `REFERRAL_REFERRER_REWARD` (e.g. `$25`) on the
+  service so the page agrees with the app:
+  ```sh
+  gcloud run services update thymos-quiz-app --project thymos-health --region us-west2 \
+    --update-env-vars REFERRAL_RECIPIENT_DISCOUNT='$25',REFERRAL_REFERRER_REWARD='$25'
+  ```
+- **iOS Universal Links** — `public/.well-known/apple-app-site-association` lists
+  the three app IDs (`BZ79WW8V27.com.thymos`, `.staging`, `.dev`) for `/r/*`.
+  `next.config.ts` forces `Content-Type: application/json` on it (Apple rejects
+  `application/octet-stream` and any redirect). Verify after a deploy:
+  ```sh
+  curl -sI https://thymoshealth.com/.well-known/apple-app-site-association | grep -i '^content-type'
+  ```
+  The mobile app needs `applinks:thymoshealth.com` in its entitlements for this
+  to take effect; Apple's CDN re-fetches the file when the app is installed.
+- **Android App Links** — `public/.well-known/assetlinks.json` currently verifies
+  only `com.thymos.dev` with the repo's debug keystore fingerprint. **Before store
+  launch, append entries for `com.thymos` and `com.thymos.staging`** using the
+  SHA-256 of the certificate Google Play signs the app with (Play Console → Setup
+  → App signing → "App signing key certificate"), not the upload key. Without
+  them the https link opens in the browser on production builds (the page still
+  works; the "Open in the Thymos app" button uses the `thymos://` scheme).
+- **Store badges** are "Coming soon" tiles until the listings exist; put the
+  store URLs into `STORE_BADGES` in `src/lib/referral-landing/content.ts`.
+
 ## Making changes later
 
 - **Website content**: edit the relevant `public/*.dc.html` /
