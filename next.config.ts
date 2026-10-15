@@ -63,6 +63,28 @@ const EMBEDDABLE_PAGES = [
   "monthly-report.html",
 ];
 
+// Unlisted patient legal documents the mobile app links to by exact URL
+// (HIPAA Authorization, Research Participation Authorization, Informed
+// Consents and Arbitration Agreement). They must stay private and out of
+// search engines, so beyond the <meta name="robots"> in each file they get
+// an X-Robots-Tag header (covers crawlers that honour headers over meta),
+// no-referrer (the URL is not leaked to any site linked from the page) and
+// a non-shared cache (Cloudflare never keeps an edge copy). They are also
+// absent from sitemap.xml, site-search.js and every nav/footer. They are
+// deliberately NOT listed in robots.txt: a Disallow there would publish the
+// URLs in a world-readable file and stop crawlers from ever fetching the
+// page, which is the only way they can see the noindex directive.
+const PRIVATE_PAGES = [
+  "hipaa-authorization.html",
+  "research-participation-authorization.html",
+  "informed-consents-and-arbitration-agreement.html",
+];
+const PRIVATE_PAGE_HEADERS = [
+  { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive, nosnippet" },
+  { key: "Referrer-Policy", value: "no-referrer" },
+  { key: "Cache-Control", value: "private, no-cache" },
+];
+
 const nextConfig: NextConfig = {
   output: "standalone",
   // Don't advertise the framework/version.
@@ -99,6 +121,12 @@ const nextConfig: NextConfig = {
       ...EMBEDDABLE_PAGES.map((name) => ({
         source: "/" + encodeURIComponent(name).replace(/%2F/g, "/"),
         headers: EMBEDDABLE_PAGE_HEADERS,
+      })),
+      // Private legal documents — after the general /:path* rule so these
+      // headers win for these specific paths.
+      ...PRIVATE_PAGES.map((name) => ({
+        source: "/" + name,
+        headers: PRIVATE_PAGE_HEADERS,
       })),
     ];
   },
